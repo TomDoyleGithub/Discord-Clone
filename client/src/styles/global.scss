@@ -1,0 +1,40 @@
+$purple: #5865f2;
+$gray: #383c3c;
+
+.border {
+  border: 1px solid black;
+}
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fullscreen {
+  width: 100vw;
+  height: 100vh;
+  background-color: $purple;
+  color: white;
+  overflow: hidden;
+  position: relative;
+  @include flex-center;
+}
+
+.auth-container {
+  width: 480px;
+  height: 570px;
+  background-color: $gray;
+  border-radius: 5px;
+  position: relative;
+  z-index: 2;
+}
+
+.backdrop-img {
+  flex-shrink: 0;
+  min-width: 101%;
+  min-height: 101%;
+  top: 0;
+  position: absolute;
+  z-index: 1;
+}
