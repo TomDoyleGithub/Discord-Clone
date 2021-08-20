@@ -2,9 +2,9 @@ import React from 'react'
 
 function Register() {
     return (
-        <>
-            <p className='border'>Register Page</p>
-        </>
+        <div className='fullscreen'>
+            <p>Register</p>
+        </div>
     )
 }
 

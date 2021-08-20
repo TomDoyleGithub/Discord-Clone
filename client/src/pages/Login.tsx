@@ -2,9 +2,9 @@ import React from 'react'
 
 function Login() {
     return (
-        <>
-            <p className='border'>Login Page</p>
-        </>
+        <div className='fullscreen'>
+            <p>Login</p>
+        </div>
     )
 }
 
