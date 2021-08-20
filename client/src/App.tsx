@@ -1,12 +1,18 @@
 import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './styles/reset.sass'
 import './styles/global.sass'
+import Login from './pages/Login';
 
 function App() {
   return (
-    <div className="App">
-      <p className='border'>Root Page</p>
-    </div>
+    <>
+      <Router>
+        <Switch>
+          <Route exact path='/login' component={Login} />
+        </Switch>
+      </Router>
+    </>
   );
 }
 
