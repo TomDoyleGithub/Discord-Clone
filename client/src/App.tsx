@@ -5,7 +5,7 @@ import './styles/global.sass'
 function App() {
   return (
     <div className="App">
-      <p>Root Page</p>
+      <p className='border'>Root Page</p>
     </div>
   );
 }
