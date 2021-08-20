@@ -5,7 +5,7 @@ function Register() {
     return (
         <div className='fullscreen'>
             <img className='backdrop-img' src={backdrop} alt='Backdrop'/>
-            <section className='auth-container'>
+            <section className='register-container'>
 
             </section>
         </div>

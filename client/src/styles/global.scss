@@ -11,6 +11,13 @@ $gray: #383c3c;
   align-items: center;
 }
 
+@mixin gray-container {
+  background-color: $gray;
+  border-radius: 5px;
+  position: relative;
+  z-index: 2;
+}
+
 .fullscreen {
   width: 100vw;
   height: 100vh;
@@ -21,13 +28,16 @@ $gray: #383c3c;
   @include flex-center;
 }
 
-.auth-container {
+.register-container {
   width: 480px;
   height: 570px;
-  background-color: $gray;
-  border-radius: 5px;
-  position: relative;
-  z-index: 2;
+  @include gray-container;
+}
+
+.login-container {
+  width: 780px;
+  height: 410px;
+  @include gray-container;
 }
 
 .backdrop-img {
