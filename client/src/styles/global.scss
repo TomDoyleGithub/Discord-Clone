@@ -5,6 +5,10 @@ $gray: #383c3c;
   border: 1px solid black;
 }
 
+.white-border {
+  border: 1px solid white;
+}
+
 @mixin flex-center {
   display: flex;
   justify-content: center;
@@ -31,12 +35,14 @@ $gray: #383c3c;
 .register-container {
   width: 480px;
   height: 570px;
+  @include flex-center;
   @include gray-container;
 }
 
 .login-container {
-  width: 780px;
+  width: 480px;
   height: 410px;
+  @include flex-center;
   @include gray-container;
 }
 
@@ -47,4 +53,9 @@ $gray: #383c3c;
   top: 0;
   position: absolute;
   z-index: 1;
+}
+
+.form-container {
+  width: 85%;
+  height: 80%;
 }
