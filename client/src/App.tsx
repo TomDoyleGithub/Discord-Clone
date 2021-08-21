@@ -11,6 +11,7 @@ import 'firebase/auth';
 
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from'react-firebase-hooks/firestore';
+import Home from './pages/Home';
 
 firebase.initializeApp({
   apiKey: "AIzaSyCPeGT3Hz2_DG7x5K1gE-Bw1o1eg383EmQ",
@@ -29,6 +30,7 @@ function App() {
     <>
       <Router>
         <Switch>
+          <Route exact path='/' component={Home} />
           <Route exact path='/login' component={Login} />
           <Route exact path='/register' component={Register} />
         </Switch>
