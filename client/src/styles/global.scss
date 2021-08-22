@@ -1,5 +1,7 @@
 $purple: #5865f2;
 $gray: #383c3c;
+$graphie-font: graphie, sans-serif;
+$sans-font: davis-sans, sans-serif;
 
 .border {
   border: 1px solid black;
@@ -7,6 +9,50 @@ $gray: #383c3c;
 
 .white-border {
   border: 1px solid white;
+}
+
+.header-font {
+  font-family: $graphie-font;
+}
+
+.normal-font {
+  font-family: $sans-font;
+}
+
+.f100 {
+  font-weight: 100;
+}
+
+.f200 {
+  font-weight: 200;
+}
+
+.f300 {
+  font-weight: 300;
+}
+
+.f400 {
+  font-weight: 400;
+}
+
+.f500 {
+  font-weight: 500;
+}
+
+.f600 {
+  font-weight: 600;
+}
+
+.f700 {
+  font-weight: 700;
+}
+
+.f800 {
+  font-weight: 800;
+}
+
+.f900 {
+  font-weight: 900;
 }
 
 @mixin flex-center {
