@@ -21,7 +21,7 @@ function Login() {
                         <input type='password' name='password' className='input normal-font f300'/>
                     </div>
                     <button className='form-button normal-font' style={{marginTop: '20px'}}>Login</button>
-                    <p className='normal-font f300' style={{opacity: 0.5, fontSize: "14px"}}>Need an account?<Link className='link f400' to='/register' style={{opacity: 1}}> Register</Link> </p>
+                    <p className='normal-font f300' style={{opacity: 0.5, fontSize: "14px"}}>Need an account? <Link className='link f400' to='/register' style={{opacity: 1}}>Register</Link> </p>
                 </form>
             </section>
             </Fade>
