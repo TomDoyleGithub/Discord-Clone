@@ -17,6 +17,7 @@ $sans-font: davis-sans, sans-serif;
 
 .normal-font {
   font-family: $sans-font;
+  letter-spacing: 0.025rem;
 }
 
 .f100 {
@@ -102,6 +103,38 @@ $sans-font: davis-sans, sans-serif;
 }
 
 .form-container {
-  width: 85%;
-  height: 80%;
+  width: 86%;
+  height: 82%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+}
+
+.input {
+  padding: 13px;
+  border-radius: 5px;
+  background-color: #2d3131e3;
+  border: 1px solid rgba(0, 0, 0, 0.281);
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  padding-top: 11px;
+}
+
+.login-label {
+  padding-bottom: 12px;
+}
+
+.form-button {
+  background-color: $purple;
+  color: white;
+  padding: 13px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 150ms ease;
+  &:hover {
+    filter: brightness(0.85);
+  }
 }
