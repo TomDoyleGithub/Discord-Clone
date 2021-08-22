@@ -25,6 +25,17 @@ function Register() {
                     </div>
                     <div className='input-container'>
                         <label className='normal-font f500 login-label' style={{fontSize: "12px", opacity: 0.7}}>DATE OF BIRTH</label>
+                        <div>
+                            <select className='input'>
+                              <option value="January">January</option>
+                            </select>
+                            <select className='input'>
+                              <option value="January">January</option>
+                            </select>
+                            <select className='input'>
+                              <option value="January">January</option>
+                            </select>
+                        </div>
                     </div>
                     <button className='form-button normal-font' style={{marginTop: '20px'}}>Continue</button>
                     <p className='normal-font f300' style={{fontSize: "14px"}}><Link className='link f400' to='/login' style={{opacity: 1}}>Already have an account?</Link> </p>
