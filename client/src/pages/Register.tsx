@@ -3,12 +3,8 @@ import Fade from 'react-reveal/Fade';
 import { Link } from 'react-router-dom'
 import backdrop from '../images/AuthBackground.svg'
 function Register() {
-    const days = Array.from({length: 31}, (_, index) => index + 1);
-    const months = Array.from({length: 12}, (item, i) => {
-        return new Date(0, i).toLocaleString('en-US', {month: 'long'})
-      });
     function generateArrayOfYears() {
-        const max = new Date().getFullYear()
+        const max = new Date().getFullYear() - 3
         const min = max - 150
         const years:any = []
       
@@ -17,13 +13,21 @@ function Register() {
         }
         return years
       }
-      
+
+    const days = Array.from({length: 31}, (_, index) => index + 1);
+    const months = Array.from({length: 12}, (item, i) => {
+        return new Date(0, i).toLocaleString('en-US', {month: 'long'})
+      });
     const years = generateArrayOfYears();
+
+    const [realMonth, setMonth] = useState('');
+    const [realDay, setDay] = useState('');
+    const [realYear, setYear] = useState('');
     const [mmActive, setmmActive] = useState(false);
     const [ddActive, setddActive] = useState(false);
     const [yyActive, setyyActive] = useState(false);
 
-    const handleClick = (e) =>  {
+    const handleClick = (e:any) =>  {
         switch (e.target.name) {
             case 'mm':
                 setmmActive(!mmActive);
@@ -37,8 +41,24 @@ function Register() {
         }
     };
 
+    const clickDob = (e:any) => {
+        const data = e.target.getAttribute("data-value");
+        switch (e.target.getAttribute("data-name")) {
+            case 'month':
+                setMonth(data);
+                break;
+            case 'day':
+                setDay(data);
+                break;
+            case 'year':
+                setYear(data);
+                break;
+        }
+    }
+
+    // Closes the selection menu when you click outside the container
     useEffect(() => {
-        const pageClickEvent = (e) => {
+        const pageClickEvent = (e:any) => {
           setmmActive(false);
           setddActive(false);
           setyyActive(false);
@@ -79,26 +99,26 @@ function Register() {
                             <section className='full-dropdown'>
                                 <section className={mmActive ? 'selection' : 'none'} style={{width: '150px'}}>
                                 {months.map((month, i) => (
-                                        <p key={i}>{month}</p>
+                                        <p key={i} data-value={month} data-name='month' onClick={clickDob}>{month}</p>
                                     ))}
                                 </section>
-                                <input name='mm' onClick={handleClick} className='input normal-font f300' placeholder='Select' style={{width: '150px', cursor: 'default'}}/>
+                                <input readOnly defaultValue={realMonth} name='mm' onClick={handleClick} className='input normal-font f300' placeholder='Select' style={{width: '150px', cursor: 'default'}}/>
                             </section>
                             <section className='full-dropdown'>
                                 <section className={ddActive ? 'selection' : 'none'} style={{width: '100px'}}>
                                     {days.map((day, i) => (
-                                        <p key={i}>{day}</p>
+                                        <p key={i} data-value={day} data-name='day' onClick={clickDob}>{day}</p>
                                     ))}
                                 </section>
-                                <input name='dd' onClick={handleClick} className='input normal-font f300' placeholder='Select' style={{width: '100px', cursor: 'default'}}/>
+                                <input readOnly defaultValue={realDay} name='dd' onClick={handleClick} className='input normal-font f300' placeholder='Select' style={{width: '100px', cursor: 'default'}}/>
                             </section>
                             <section className='full-dropdown'>
                                 <section className={yyActive ? 'selection' : 'none'}  style={{width: '122px'}}>
                                     {years?.map((item:string , i:number) => (
-                                        <p key={i}>{item}</p>
+                                        <p key={i} data-value={item} data-name='year' onClick={clickDob}>{item}</p>
                                     ))}
                                 </section>
-                                <input name='yy' onClick={handleClick} className='input normal-font f300' placeholder='Select' style={{width: '120px', cursor: 'default'}}/>
+                                <input readOnly defaultValue={realYear} name='yy' onClick={handleClick} className='input normal-font f300' placeholder='Select' style={{width: '120px', cursor: 'default'}}/>
                             </section>
                         </div>
                     </div>
