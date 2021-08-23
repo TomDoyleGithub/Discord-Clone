@@ -179,3 +179,17 @@ input:-webkit-autofill:active {
   display: flex;
   column-gap: 20px;
 }
+
+.full-dropdown {
+  position: relative;
+}
+
+.selection {
+  background-color: $gray;
+  filter: brightness(0.85);
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.575);
+  position: absolute;
+  top: -213px;
+  height: 215px;
+}
