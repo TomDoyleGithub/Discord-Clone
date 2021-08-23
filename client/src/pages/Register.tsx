@@ -7,7 +7,7 @@ function Register() {
     const [mmActive, setmmActive] = useState(false);
     const [ddActive, setddActive] = useState(false);
     const [yyActive, setyyActive] = useState(false);
-    
+
     const handleClick = (e) =>  {
         switch (e.target.name) {
             case 'mm':
@@ -61,20 +61,18 @@ function Register() {
                     <div className='input-container'>
                         <label className='normal-font f500 login-label' style={{fontSize: "12px", opacity: 0.7}}>DATE OF BIRTH</label>
                         <div className='dropdown-container'>
-                            <section className={`${mmActive ? 'border' : 'none'}`} style={{width: '150px'}}>
-
+                            <section>
+                                <section className={`${mmActive ? 'border' : 'none'}`} style={{width: '150px'}}></section>
+                                <input name='mm' onClick={handleClick} className='input normal-font f300' placeholder='Select' style={{fontSize: '18px', width: '150px'}}/>
                             </section>
-                            <section className={`${ddActive ? 'border' : 'none'}`} style={{width: '100px'}}>
-
+                            <section>
+                                <section className={`${ddActive ? 'border' : 'none'}`} style={{width: '100px'}}></section>
+                                <input name='dd' onClick={handleClick} className='input normal-font f300' placeholder='Select' style={{fontSize: '18px', width: '100px'}}/>
                             </section>
-                            <section className={`${yyActive ? 'border' : 'none'}`} style={{width: '120px'}}>
-
+                            <section>
+                                <section className={`${yyActive ? 'border' : 'none'}`} style={{width: '120px'}}></section>
+                                <input name='yy' onClick={handleClick} className='input normal-font f300' placeholder='Select' style={{fontSize: '18px', width: '120px'}}/>
                             </section>
-                        </div>
-                        <div className='dropdown-container'>
-                            <input name='mm' onClick={handleClick} className='input normal-font f300' placeholder='Select' style={{fontSize: '18px', width: '150px'}}/>
-                            <input name='dd' onClick={handleClick} className='input normal-font f300' placeholder='Select' style={{fontSize: '18px', width: '100px'}}/>
-                            <input name='yy' onClick={handleClick} className='input normal-font f300' placeholder='Select' style={{fontSize: '18px', width: '120px'}}/>
                         </div>
                     </div>
                     <button className='form-button normal-font' style={{marginTop: '11px'}}>Continue</button>
