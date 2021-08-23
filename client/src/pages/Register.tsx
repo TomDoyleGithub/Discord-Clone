@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Fade from 'react-reveal/Fade';
 import { Link } from 'react-router-dom'
 import backdrop from '../images/AuthBackground.svg'
+import dropArrow from '../images/white-down-arrow.png'
 function Register() {
     function generateArrayOfYears() {
         const max = new Date().getFullYear() - 3
@@ -97,6 +98,7 @@ function Register() {
                         <label className='normal-font f500 login-label' style={{fontSize: "12px", opacity: 0.7}}>DATE OF BIRTH</label>
                         <div className='dropdown-container'>
                             <section className='full-dropdown'>
+                                <img className='dropdown-icon' alt='Arrow' src={dropArrow}/>
                                 <section className={mmActive ? 'selection' : 'none'} style={{width: '150px'}}>
                                 {months.map((month, i) => (
                                         <p key={i} data-value={month} data-name='month' onClick={clickDob}>{month}</p>
@@ -105,6 +107,7 @@ function Register() {
                                 <input readOnly defaultValue={realMonth} name='mm' onClick={handleClick} className='input normal-font f300' placeholder='Select' style={{width: '150px', cursor: 'default'}}/>
                             </section>
                             <section className='full-dropdown'>
+                                <img className='dropdown-icon' alt='Arrow' src={dropArrow}/>
                                 <section className={ddActive ? 'selection' : 'none'} style={{width: '100px'}}>
                                     {days.map((day, i) => (
                                         <p key={i} data-value={day} data-name='day' onClick={clickDob}>{day}</p>
@@ -113,6 +116,7 @@ function Register() {
                                 <input readOnly defaultValue={realDay} name='dd' onClick={handleClick} className='input normal-font f300' placeholder='Select' style={{width: '100px', cursor: 'default'}}/>
                             </section>
                             <section className='full-dropdown'>
+                                <img className='dropdown-icon' alt='Arrow' src={dropArrow}/>
                                 <section className={yyActive ? 'selection' : 'none'}  style={{width: '122px'}}>
                                     {years?.map((item:string , i:number) => (
                                         <p key={i} data-value={item} data-name='year' onClick={clickDob}>{item}</p>
