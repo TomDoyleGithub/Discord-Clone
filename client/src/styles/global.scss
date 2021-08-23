@@ -182,14 +182,30 @@ input:-webkit-autofill:active {
 
 .full-dropdown {
   position: relative;
+  font-size: "18px";
 }
 
 .selection {
   background-color: $gray;
   filter: brightness(0.85);
-  border-radius: 5px;
+  border-radius: 3px;
   border: 1px solid rgba(0, 0, 0, 0.575);
   position: absolute;
   top: -213px;
   height: 215px;
+  overflow: scroll;
+}
+
+.selection {
+  p {
+    padding: 13px;
+    cursor: pointer;
+    &:hover {
+      background-color: #292c2c5b;
+    }
+  }
+}
+
+.none {
+  display: none;
 }

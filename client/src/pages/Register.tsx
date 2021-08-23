@@ -62,16 +62,29 @@ function Register() {
                         <label className='normal-font f500 login-label' style={{fontSize: "12px", opacity: 0.7}}>DATE OF BIRTH</label>
                         <div className='dropdown-container'>
                             <section className='full-dropdown'>
-                                <section className={mmActive ? 'selection' : 'none'} style={{width: '150px'}}></section>
-                                <input name='mm' onClick={handleClick} className='input normal-font f300' placeholder='Select' style={{fontSize: '18px', width: '150px', cursor: 'default'}}/>
+                                <section className={mmActive ? 'selection' : 'none'} style={{width: '150px'}}>
+                                    <p>January</p>
+                                    <p>February</p>
+                                    <p>March</p>
+                                    <p>April</p>
+                                    <p>May</p>
+                                    <p>June</p>
+                                    <p>July</p>
+                                    <p>August</p>
+                                    <p>September</p>
+                                    <p>October</p>
+                                    <p>November</p>
+                                    <p>December</p>
+                                </section>
+                                <input name='mm' onClick={handleClick} className='input normal-font f300' placeholder='Select' style={{width: '150px', cursor: 'default'}}/>
                             </section>
                             <section className='full-dropdown'>
                                 <section className={ddActive ? 'selection' : 'none'} style={{width: '100px'}}></section>
-                                <input name='dd' onClick={handleClick} className='input normal-font f300' placeholder='Select' style={{fontSize: '18px', width: '100px', cursor: 'default'}}/>
+                                <input name='dd' onClick={handleClick} className='input normal-font f300' placeholder='Select' style={{width: '100px', cursor: 'default'}}/>
                             </section>
                             <section className='full-dropdown'>
                                 <section className={yyActive ? 'selection' : 'none'}  style={{width: '122px'}}></section>
-                                <input name='yy' onClick={handleClick} className='input normal-font f300' placeholder='Select' style={{fontSize: '18px', width: '120px', cursor: 'default'}}/>
+                                <input name='yy' onClick={handleClick} className='input normal-font f300' placeholder='Select' style={{width: '120px', cursor: 'default'}}/>
                             </section>
                         </div>
                     </div>
