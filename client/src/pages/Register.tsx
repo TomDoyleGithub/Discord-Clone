@@ -25,20 +25,15 @@ function Register() {
                     </div>
                     <div className='input-container'>
                         <label className='normal-font f500 login-label' style={{fontSize: "12px", opacity: 0.7}}>DATE OF BIRTH</label>
-                        <div>
-                            <select className='input'>
-                              <option value="January">January</option>
-                            </select>
-                            <select className='input'>
-                              <option value="January">January</option>
-                            </select>
-                            <select className='input'>
-                              <option value="January">January</option>
-                            </select>
+                        <div className='dropdown-container'>
+                            <input className='input normal-font f300' placeholder='Select' style={{fontSize: '18px', width: '150px'}}/>
+                            <input className='input normal-font f300' placeholder='Select' style={{fontSize: '18px', width: '100px'}}/>
+                            <input className='input normal-font f300' placeholder='Select' style={{fontSize: '18px', width: '120px'}}/>
                         </div>
                     </div>
-                    <button className='form-button normal-font' style={{marginTop: '20px'}}>Continue</button>
+                    <button className='form-button normal-font' style={{marginTop: '11px'}}>Continue</button>
                     <p className='normal-font f300' style={{fontSize: "14px"}}><Link className='link f400' to='/login' style={{opacity: 1}}>Already have an account?</Link> </p>
+                    <p className='normal-font f300' style={{fontSize: "12px", opacity: 0.3, marginTop: '12px'}}>By registering, you agree to Discord's Terms of Service and Privacy Policy</p>
                 </form>
             </section>
             </Fade>

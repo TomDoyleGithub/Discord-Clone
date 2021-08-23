@@ -2,6 +2,7 @@ $purple: #5865f2;
 $gray: #383c3c;
 $blue: #4eaaea;
 $white: #dcddde;
+$slide: all 150ms ease;
 $graphie-font: graphie, sans-serif;
 $sans-font: davis-sans, sans-serif;
 
@@ -133,11 +134,15 @@ input:-webkit-autofill:active {
 }
 
 .input {
-  padding: 11px;
+  padding: 9px 11px;
   border-radius: 5px;
   background-color: #2d3131e3;
   color: $white;
   border: 1px solid rgba(0, 0, 0, 0.281);
+  transition: $slide;
+  &:hover {
+    border: 1px solid black;
+  }
 }
 
 .input-container {
@@ -156,7 +161,7 @@ input:-webkit-autofill:active {
   padding: 13px;
   border-radius: 5px;
   cursor: pointer;
-  transition: all 150ms ease;
+  transition: $slide;
   &:hover {
     filter: brightness(0.85);
   }
@@ -167,4 +172,10 @@ input:-webkit-autofill:active {
   &:hover {
     text-decoration: underline;
   }
+}
+
+.dropdown-container {
+  width: 100%;
+  display: flex;
+  column-gap: 20px;
 }
