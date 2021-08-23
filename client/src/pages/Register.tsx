@@ -4,6 +4,20 @@ import { Link } from 'react-router-dom'
 import backdrop from '../images/AuthBackground.svg'
 
 function Register() {
+    const handleClick = (e) => {
+        let name = e.target.name;
+        switch (name) {
+            case 'mm':
+                console.log('Month Input');
+                break;
+            case 'dd':
+                console.log('Day Input');
+                break;
+            case 'yy':
+                console.log('Year Input');
+                break;
+        }
+    };
     return (
         <div className='fullscreen'>
             <img className='backdrop-img' src={backdrop} alt='Backdrop'/>
@@ -26,9 +40,9 @@ function Register() {
                     <div className='input-container'>
                         <label className='normal-font f500 login-label' style={{fontSize: "12px", opacity: 0.7}}>DATE OF BIRTH</label>
                         <div className='dropdown-container'>
-                            <input className='input normal-font f300' placeholder='Select' style={{fontSize: '18px', width: '150px'}}/>
-                            <input className='input normal-font f300' placeholder='Select' style={{fontSize: '18px', width: '100px'}}/>
-                            <input className='input normal-font f300' placeholder='Select' style={{fontSize: '18px', width: '120px'}}/>
+                            <input name='mm' onClick={handleClick} className='input normal-font f300' placeholder='Select' style={{fontSize: '18px', width: '150px'}}/>
+                            <input name='dd' onClick={handleClick} className='input normal-font f300' placeholder='Select' style={{fontSize: '18px', width: '100px'}}/>
+                            <input name='yy' onClick={handleClick} className='input normal-font f300' placeholder='Select' style={{fontSize: '18px', width: '120px'}}/>
                         </div>
                     </div>
                     <button className='form-button normal-font' style={{marginTop: '11px'}}>Continue</button>
