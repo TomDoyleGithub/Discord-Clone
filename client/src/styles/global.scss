@@ -200,6 +200,8 @@ input:-webkit-autofill:active {
   p {
     padding: 13px;
     cursor: pointer;
+    font-family: $sans-font;
+    letter-spacing: 0.025rem;
     &:hover {
       background-color: #292c2c5b;
     }
