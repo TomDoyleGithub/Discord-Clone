@@ -3,24 +3,8 @@ import Fade from 'react-reveal/Fade';
 import { Link } from 'react-router-dom'
 import backdrop from '../images/AuthBackground.svg'
 import dropArrow from '../images/white-down-arrow.png'
+import { days, months, years } from '../utils/TimeFunctions';
 function Register() {
-    function generateArrayOfYears() {
-        const max = new Date().getFullYear() - 3
-        const min = max - 150
-        const years:any = []
-      
-        for (let i:number = max; i >= min; i--) {
-          years.push(i)
-        }
-        return years
-      }
-
-    const days = Array.from({length: 31}, (_, index) => index + 1);
-    const months = Array.from({length: 12}, (item, i) => {
-        return new Date(0, i).toLocaleString('en-US', {month: 'long'})
-      });
-    const years = generateArrayOfYears();
-
     const [realMonth, setMonth] = useState('');
     const [realDay, setDay] = useState('');
     const [realYear, setYear] = useState('');
