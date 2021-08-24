@@ -224,6 +224,10 @@ input:-webkit-autofill:active {
   width: 100%;
 }
 
+.auth-logo {
+  display: none;
+}
+
 @media screen and (max-width: 485px) {
   .register-container,
   .login-container {
@@ -233,5 +237,16 @@ input:-webkit-autofill:active {
 
   .dropdown-icon {
     display: none;
+  }
+
+  .form-container {
+    padding-top: 75px;
+  }
+
+  .auth-logo {
+    display: block;
+    position: absolute;
+    top: 22px;
+    width: 130px;
   }
 }

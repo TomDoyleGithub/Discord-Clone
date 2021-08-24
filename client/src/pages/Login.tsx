@@ -2,6 +2,7 @@ import React from 'react'
 import Fade from 'react-reveal/Fade';
 import { Link } from 'react-router-dom'
 import backdrop from '../images/AuthBackground.svg'
+import logo from '../images/Discord-Logo-White.svg'
 
 function Login() {
     return (
@@ -9,6 +10,7 @@ function Login() {
             <img className='backdrop-img' src={backdrop} alt='Backdrop'/>
             <Fade bottom ssrFadeout>
             <section className='login-container'>
+                <img className='auth-logo' alt='Discord Logo' src={logo}/>
                 <form className='form-container'>
                     <p className='header-font f600' style={{fontSize: "25px"}}>Welcome back!</p>
                     <p className='normal-font f300' style={{opacity: 0.7}}>We're so excited to see you again!</p>

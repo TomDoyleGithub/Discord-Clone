@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import backdrop from '../images/AuthBackground.svg'
 import dropArrow from '../images/white-down-arrow.png'
 import { days, months, years } from '../utils/TimeFunctions';
+import logo from '../images/Discord-Logo-White.svg'
 function Register() {
     const [realMonth, setMonth] = useState('');
     const [realDay, setDay] = useState('');
@@ -64,6 +65,7 @@ function Register() {
             <img className='backdrop-img' src={backdrop} alt='Backdrop'/>
             <Fade bottom ssrFadeout>
             <section className='register-container'>
+                <img className='auth-logo' alt='Discord Logo' src={logo}/>
                 <form className='form-container' style={{position: 'relative', bottom: '13px'}}>
                     <p className='header-font f600' style={{fontSize: "25px", textAlign: 'center'}}>Create an account</p>
                     <div className='input-container'>
@@ -112,7 +114,7 @@ function Register() {
                     </div>
                     <button className='form-button normal-font' style={{marginTop: '11px'}}>Continue</button>
                     <p className='normal-font f300' style={{fontSize: "14px"}}><Link className='link f400' to='/login' style={{opacity: 1}}>Already have an account?</Link> </p>
-                    <p className='normal-font f300' style={{fontSize: "12px", opacity: 0.3, marginTop: '12px'}}>By registering, you agree to Discord's Terms of Service and Privacy Policy</p>
+                    <p className='normal-font f300' style={{fontSize: "12px", opacity: 0.3, marginTop: '12px', lineHeight: '18px'}}>By registering, you agree to Discord's Terms of Service and Privacy Policy</p>
                 </form>
             </section>
             </Fade>
