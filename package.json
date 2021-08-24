@@ -2,9 +2,9 @@
   "name": "discord-clone",
   "version": "1.0.0",
   "description": "A clone of discord!",
-  "main": "index.js",
+  "main": "index.tsx",
   "scripts": {
-    "start": "node server/server.js",
+    "start": "node server/server.tsx",
     "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
     "install": "cd server && npm i && cd ../client && npm i",
     "seed": "cd server && npm run seed",
@@ -22,5 +22,9 @@
   "homepage": "https://github.com/Punkinut/Discord-Clone#readme",
   "devDependencies": {
     "concurrently": "^5.1.0"
+  },
+  "dependencies": {
+    "apollo-server-express": "^2.12.0",
+    "express": "^4.17.1"
   }
 }
