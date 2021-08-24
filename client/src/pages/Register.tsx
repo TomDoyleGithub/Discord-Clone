@@ -88,7 +88,7 @@ function Register() {
                                         <p key={i} data-value={month} data-name='month' onClick={clickDob}>{month}</p>
                                     ))}
                                 </section>
-                                <input readOnly defaultValue={realMonth} name='mm' onClick={handleClick} className='input normal-font f300' placeholder='Select' style={{width: '150px', cursor: 'default'}}/>
+                                <input readOnly defaultValue={realMonth} name='mm' onClick={handleClick} className='input dropdown-input normal-font f300' placeholder='Select' style={{cursor: 'default'}}/>
                             </section>
                             <section className='full-dropdown'>
                                 <img className='dropdown-icon' alt='Arrow' src={dropArrow}/>
@@ -97,7 +97,7 @@ function Register() {
                                         <p key={i} data-value={day} data-name='day' onClick={clickDob}>{day}</p>
                                     ))}
                                 </section>
-                                <input readOnly defaultValue={realDay} name='dd' onClick={handleClick} className='input normal-font f300' placeholder='Select' style={{width: '100px', cursor: 'default'}}/>
+                                <input readOnly defaultValue={realDay} name='dd' onClick={handleClick} className='input dropdown-input  normal-font f300' placeholder='Select' style={{cursor: 'default'}}/>
                             </section>
                             <section className='full-dropdown'>
                                 <img className='dropdown-icon' alt='Arrow' src={dropArrow}/>
@@ -106,7 +106,7 @@ function Register() {
                                         <p key={i} data-value={item} data-name='year' onClick={clickDob}>{item}</p>
                                     ))}
                                 </section>
-                                <input readOnly defaultValue={realYear} name='yy' onClick={handleClick} className='input normal-font f300' placeholder='Select' style={{width: '120px', cursor: 'default'}}/>
+                                <input readOnly defaultValue={realYear} name='yy' onClick={handleClick} className='input dropdown-input  normal-font f300' placeholder='Select' style={{cursor: 'default'}}/>
                             </section>
                         </div>
                     </div>
