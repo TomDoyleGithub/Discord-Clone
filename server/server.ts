@@ -2,11 +2,10 @@ import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
 import path from 'path';
 
-import { schemaExport } from './schemas';
+import { typeDefs, resolvers} from './schemas';
 import { authMiddleware } from './utils/auth';
 
-import { db } from './config/connection';
-const { typeDefs, resolvers } = schemaExport;
+import db from './config/connection';
 
 const app = express();
 const PORT = process.env.PORT || 3001;

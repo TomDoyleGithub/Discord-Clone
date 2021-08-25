@@ -1,5 +1,7 @@
-export const resolvers = {
+const resolvers = {
     Query : {
 
     },
 };
+
+export default resolvers

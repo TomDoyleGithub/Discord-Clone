@@ -7,4 +7,4 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/geplydb', {
   useFindAndModify: false
 });
 
-export const db = mongoose.connection;
+export default mongoose.connection;
