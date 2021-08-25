@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 const secret = 'mysecret';
 const expiration = '2h';
 
-export const authMiddleware = {
+const authMiddleware = {
   authMiddleware: function ({req}:any) {
     let token = req.body.token || req.query.token || req.headers.authorization;
 
@@ -29,3 +29,5 @@ export const authMiddleware = {
     return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
   },
 };
+
+export default authMiddleware;
