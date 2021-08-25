@@ -1,11 +1,11 @@
-const express = require('express');
-const { ApolloServer } = require('apollo-server-express');
-const path = require('path');
+import express from 'express';
+import { ApolloServer } from 'apollo-server-express';
+import path from 'path';
 
-import toExport from './schemas';
-const { typeDefs, resolvers } = toExport;
+import { schemaExport } from './schemas';
 
-const db = require('./config/connection');
+import { db } from './config/connection';
+const { typeDefs, resolvers } = schemaExport;
 
 const app = express();
 const PORT = process.env.PORT || 3001;

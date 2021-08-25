@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/geplydb', {
   useNewUrlParser: true,
@@ -7,4 +7,4 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/geplydb', {
   useFindAndModify: false
 });
 
-module.exports = mongoose.connection;
+export const db = mongoose.connection;
