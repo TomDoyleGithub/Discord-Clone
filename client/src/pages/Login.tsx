@@ -9,7 +9,6 @@ import { LOGIN } from '../utils/mutations';
 
 function Login() {
     const [formState, setFormState] = useState({ email: '', password: '' });
-    console.log(formState);
     const [login] = useMutation(LOGIN);
 
     const handleChange = (event: any) => {
@@ -21,7 +20,7 @@ function Login() {
         event.preventDefault();
 
         try {
-            const mutationResponse = await login({ variables: {email: formState.email, password: formState.password,}})
+            const mutationResponse = await login({ variables: {email: formState?.email, password: formState?.password,}})
             const token = mutationResponse?.data?.login?.token;
             Auth.login(token)
         } catch (err) {
@@ -34,7 +33,7 @@ function Login() {
             <Fade bottom ssrFadeout>
             <section className='login-container'>
                 <img className='auth-logo' alt='Discord Logo' src={logo}/>
-                <form className='form-container'>
+                <form onSubmit={handleFormSubmit} className='form-container'>
                     <p className='header-font f600' style={{fontSize: "25px"}}>Welcome back!</p>
                     <p className='normal-font f300' style={{opacity: 0.7}}>We're so excited to see you again!</p>
                     <div className='input-container'>
