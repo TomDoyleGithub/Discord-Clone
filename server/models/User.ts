@@ -28,14 +28,14 @@ import bcrypt from "bcrypt";
   userSchema.pre('save', async function (next) {
     if (this.isNew || this.isModified('password')) {
       const saltRounds = 10;
-      this.set('password', bcrypt.hash(this.get('password'), saltRounds))
+      (this as any).password = await bcrypt.hash((this as any).password, saltRounds);
     }
   
     next();
   });
   
   userSchema.methods.isCorrectPassword = async function (password) {
-    return bcrypt.compare(password, this.get('password'));
+    return bcrypt.compare(password, (this as any).password);
   };
   
   export default model ('User', userSchema);
