@@ -13,3 +13,17 @@ mutation login ($email: String!, $password: String!) {
     }
   }
 `;
+
+export const REGISTER = gql `
+mutation register($email: String!, $username: String!, $password: String!, $birthday: String!) {
+    register(email: $email, username: $username, password: $password, birthday: $birthday) {
+      user {
+        _id
+        email
+        username
+        birthday
+      }
+      token
+    }
+  }
+`;
