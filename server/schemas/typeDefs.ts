@@ -8,8 +8,17 @@ const typeDefs = gql`
         birthday: String!
     }
 
+    type Auth {
+        token: ID!
+        user: User
+      }
+
     type Query {
         allUsers: [User]
+    }
+
+    type Mutation {
+        register(email: String!, username: String!, password: String!, birthday: String!): Auth
     }
 `;
 
