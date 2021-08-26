@@ -9,7 +9,17 @@ import bcrypt from "bcrypt";
       lowercase: true,
       trim: true
     },
+    username : {
+      type: String,
+      unique: true,
+      required: true,
+      trim: true
+    },
     password: {
+      type: String,
+      required: true
+    },
+    birthday: {
       type: String,
       required: true
     }
