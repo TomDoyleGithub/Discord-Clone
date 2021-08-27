@@ -4,8 +4,11 @@ import { Link } from 'react-router-dom'
 import backdrop from '../images/AuthBackground.svg'
 import dropArrow from '../images/white-down-arrow.png'
 import { days, months, years } from '../utils/TimeFunctions';
+import Auth from '../utils/auth';
 import logo from '../images/Discord-Logo-White.svg'
+
 function Register() {
+    const [formState, setFormState] = useState({ email: '', username: '', password: ''});
     const [dateState, setDateState] = useState({ realMonth: '', realDay: '', realYear: ''});
     const [clickState, setClickState] = useState({ mmActive: false, ddActive: false, yyActive: false});
 
@@ -14,7 +17,22 @@ function Register() {
         setClickState({...clickState, [boxName]: true})
     };
 
-    // Convert State
+    const handleChange = (event: any) => {
+        const { name, value } = event.target;
+        setFormState({...formState, [name]: value });
+      };
+
+    const handleFormSubmit = async (event: any) => {
+        event.preventDefault();
+        try {
+            // const mutationResponse = await login({ variables: {email: formState?.email, password: formState?.password,}})
+            // const token = mutationResponse?.data?.login?.token;
+            // Auth.login(token)
+        } catch (err) {
+            console.log('Something went wrong...')
+        }
+    };
+
     const clickDob = (e:any) => {
         const data = e.target.getAttribute("data-value");
         const dateType = e.target.getAttribute("data-name");
@@ -43,19 +61,19 @@ function Register() {
             <Fade bottom ssrFadeout>
             <section className='register-container'>
                 <img className='auth-logo' alt='Discord Logo' src={logo}/>
-                <form className='form-container' style={{position: 'relative', bottom: '13px'}}>
+                <form onSubmit={handleFormSubmit} className='form-container' style={{position: 'relative', bottom: '13px'}}>
                     <p className='header-font f600' style={{fontSize: "25px", textAlign: 'center'}}>Create an account</p>
                     <div className='input-container'>
                         <label className='normal-font f500 login-label' style={{fontSize: "12px", opacity: 0.7}}>EMAIL</label>
-                        <input type='email' name='email' className='input normal-font f300'/>
+                        <input onChange={handleChange} type='email' name='email' className='input normal-font f300'/>
                     </div>
                     <div className='input-container'>
                         <label className='normal-font f500 login-label' style={{fontSize: "12px", opacity: 0.7}}>USERNAME</label>
-                        <input type='name' name='name' className='input normal-font f300'/>
+                        <input onChange={handleChange} type='name' name='username' className='input normal-font f300'/>
                     </div>
                     <div className='input-container'>
                         <label className='normal-font f500 login-label' style={{fontSize: "12px", opacity: 0.7}}>PASSWORD</label>
-                        <input type='password' name='password' className='input normal-font f300'/>
+                        <input onChange={handleChange} type='password' name='password' className='input normal-font f300'/>
                     </div>
                     <div className='input-container'>
                         <label className='normal-font f500 login-label' style={{fontSize: "12px", opacity: 0.7}}>DATE OF BIRTH</label>
