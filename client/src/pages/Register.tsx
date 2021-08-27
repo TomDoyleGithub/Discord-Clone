@@ -121,7 +121,7 @@ function Register() {
                         </div>
                     </div>
                     <button disabled={disabled} className='form-button normal-font' style={{marginTop: '11px'}}>Continue</button>
-                    <p className='normal-font f300' style={{fontSize: "14px"}}><Link className='link f400' to='/login' style={{opacity: 1}}>Already have an account?</Link> </p>
+                    <Link className='link f400 normal-font' to='/login' style={{opacity: 1, fontSize: "14px"}}>Already have an account?</Link>
                     <p className='normal-font f300' style={{fontSize: "12px", opacity: 0.3, marginTop: '12px', lineHeight: '18px'}}>By registering, you agree to Discord's Terms of Service and Privacy Policy</p>
                 </form>
             </section>
