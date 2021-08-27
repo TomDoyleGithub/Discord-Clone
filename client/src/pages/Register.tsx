@@ -6,9 +6,7 @@ import dropArrow from '../images/white-down-arrow.png'
 import { days, months, years } from '../utils/TimeFunctions';
 import logo from '../images/Discord-Logo-White.svg'
 function Register() {
-    const [realMonth, setMonth] = useState('');
-    const [realDay, setDay] = useState('');
-    const [realYear, setYear] = useState('');
+    const [dateState, setDateState] = useState({ realMonth: '', realDay: '', realYear: ''});
     const [mmActive, setmmActive] = useState(false);
     const [ddActive, setddActive] = useState(false);
     const [yyActive, setyyActive] = useState(false);
@@ -27,19 +25,11 @@ function Register() {
         }
     };
 
+    // Convert State
     const clickDob = (e:any) => {
         const data = e.target.getAttribute("data-value");
-        switch (e.target.getAttribute("data-name")) {
-            case 'month':
-                setMonth(data);
-                break;
-            case 'day':
-                setDay(data);
-                break;
-            case 'year':
-                setYear(data);
-                break;
-        }
+        const dateType = e.target.getAttribute("data-name");
+        setDateState({...dateState, [dateType]: data});
     }
 
     // Closes the selection menu when you click outside the container
@@ -87,28 +77,28 @@ function Register() {
                                 <img className='dropdown-icon' alt='Arrow' src={dropArrow}/>
                                 <section className={mmActive ? 'selection' : 'none'} style={{width: '150px'}}>
                                 {months.map((month, i) => (
-                                        <p key={i} data-value={month} data-name='month' onClick={clickDob}>{month}</p>
+                                        <p key={i} data-value={month} data-name='realMonth' onClick={clickDob}>{month}</p>
                                     ))}
                                 </section>
-                                <input readOnly defaultValue={realMonth} name='mm' onClick={handleClick} className='input dropdown-input normal-font f300' placeholder='Select' style={{cursor: 'default'}}/>
+                                <input readOnly defaultValue={dateState.realMonth} name='mm' onClick={handleClick} className='input dropdown-input normal-font f300' placeholder='Select' style={{cursor: 'default'}}/>
                             </section>
                             <section className='full-dropdown'>
                                 <img className='dropdown-icon' alt='Arrow' src={dropArrow}/>
                                 <section className={ddActive ? 'selection' : 'none'} style={{width: '100px'}}>
                                     {days.map((day, i) => (
-                                        <p key={i} data-value={day} data-name='day' onClick={clickDob}>{day}</p>
+                                        <p key={i} data-value={day} data-name='realDay' onClick={clickDob}>{day}</p>
                                     ))}
                                 </section>
-                                <input readOnly defaultValue={realDay} name='dd' onClick={handleClick} className='input dropdown-input  normal-font f300' placeholder='Select' style={{cursor: 'default'}}/>
+                                <input readOnly defaultValue={dateState.realDay} name='dd' onClick={handleClick} className='input dropdown-input  normal-font f300' placeholder='Select' style={{cursor: 'default'}}/>
                             </section>
                             <section className='full-dropdown'>
                                 <img className='dropdown-icon' alt='Arrow' src={dropArrow}/>
                                 <section className={yyActive ? 'selection' : 'none'}  style={{width: '122px'}}>
                                     {years?.map((item:string , i:number) => (
-                                        <p key={i} data-value={item} data-name='year' onClick={clickDob}>{item}</p>
+                                        <p key={i} data-value={item} data-name='realYear' onClick={clickDob}>{item}</p>
                                     ))}
                                 </section>
-                                <input readOnly defaultValue={realYear} name='yy' onClick={handleClick} className='input dropdown-input  normal-font f300' placeholder='Select' style={{cursor: 'default'}}/>
+                                <input readOnly defaultValue={dateState.realYear} name='yy' onClick={handleClick} className='input dropdown-input  normal-font f300' placeholder='Select' style={{cursor: 'default'}}/>
                             </section>
                         </div>
                     </div>
