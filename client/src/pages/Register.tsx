@@ -78,11 +78,11 @@ function Register() {
                     <p className='header-font f600' style={{fontSize: "25px", textAlign: 'center'}}>Create an account</p>
                     <div className='input-container'>
                         <label className='normal-font f500 login-label' style={{fontSize: "12px", opacity: 0.7}}>EMAIL</label>
-                        <input onChange={handleChange} type='email' name='email' className='input normal-font f300'/>
+                        <input onChange={handleChange} type='email' name='email' maxLength={30}  className='input normal-font f300'/>
                     </div>
                     <div className='input-container'>
                         <label className='normal-font f500 login-label' style={{fontSize: "12px", opacity: 0.7}}>USERNAME</label>
-                        <input onChange={handleChange} type='name' name='username' className='input normal-font f300'/>
+                        <input onChange={handleChange} type='name' maxLength={30} name='username' className='input normal-font f300'/>
                     </div>
                     <div className='input-container'>
                         <label className='normal-font f500 login-label' style={{fontSize: "12px", opacity: 0.7}}>PASSWORD</label>
