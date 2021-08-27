@@ -7,22 +7,11 @@ import { days, months, years } from '../utils/TimeFunctions';
 import logo from '../images/Discord-Logo-White.svg'
 function Register() {
     const [dateState, setDateState] = useState({ realMonth: '', realDay: '', realYear: ''});
-    const [mmActive, setmmActive] = useState(false);
-    const [ddActive, setddActive] = useState(false);
-    const [yyActive, setyyActive] = useState(false);
+    const [clickState, setClickState] = useState({ mmActive: false, ddActive: false, yyActive: false});
 
     const handleClick = (e:any) =>  {
-        switch (e.target.name) {
-            case 'mm':
-                setmmActive(!mmActive);
-                break;
-            case 'dd':
-                setddActive(!ddActive);
-                break;
-            case 'yy':
-                setyyActive(!yyActive);
-                break;
-        }
+        const boxName = e.target.name;
+        setClickState({...clickState, [boxName]: true})
     };
 
     // Convert State
@@ -35,12 +24,10 @@ function Register() {
     // Closes the selection menu when you click outside the container
     useEffect(() => {
         const pageClickEvent = (e:any) => {
-          setmmActive(false);
-          setddActive(false);
-          setyyActive(false);
+          setClickState({...clickState, mmActive: false, ddActive: false, yyActive: false});
         };
       
-        if (mmActive || ddActive || yyActive) {
+        if (clickState.mmActive || clickState.ddActive || clickState.yyActive) {
           window.addEventListener('click', pageClickEvent);
         }
       
@@ -48,7 +35,7 @@ function Register() {
           window.removeEventListener('click', pageClickEvent);
         }
       
-      }, [mmActive, ddActive, yyActive]);
+      }, [clickState.mmActive, clickState.ddActive, clickState.yyActive, clickState]);
 
     return (
         <div className='fullscreen'>
@@ -75,30 +62,30 @@ function Register() {
                         <div className='dropdown-container'>
                             <section className='full-dropdown'>
                                 <img className='dropdown-icon' alt='Arrow' src={dropArrow}/>
-                                <section className={mmActive ? 'selection' : 'none'} style={{width: '150px'}}>
+                                <section className={clickState.mmActive ? 'selection' : 'none'} style={{width: '150px'}}>
                                 {months.map((month, i) => (
                                         <p key={i} data-value={month} data-name='realMonth' onClick={clickDob}>{month}</p>
                                     ))}
                                 </section>
-                                <input readOnly defaultValue={dateState.realMonth} name='mm' onClick={handleClick} className='input dropdown-input normal-font f300' placeholder='Select' style={{cursor: 'default'}}/>
+                                <input readOnly defaultValue={dateState.realMonth} name='mmActive' onClick={handleClick} className='input dropdown-input normal-font f300' placeholder='Select' style={{cursor: 'default'}}/>
                             </section>
                             <section className='full-dropdown'>
                                 <img className='dropdown-icon' alt='Arrow' src={dropArrow}/>
-                                <section className={ddActive ? 'selection' : 'none'} style={{width: '100px'}}>
+                                <section className={clickState.ddActive ? 'selection' : 'none'} style={{width: '100px'}}>
                                     {days.map((day, i) => (
                                         <p key={i} data-value={day} data-name='realDay' onClick={clickDob}>{day}</p>
                                     ))}
                                 </section>
-                                <input readOnly defaultValue={dateState.realDay} name='dd' onClick={handleClick} className='input dropdown-input  normal-font f300' placeholder='Select' style={{cursor: 'default'}}/>
+                                <input readOnly defaultValue={dateState.realDay} name='ddActive' onClick={handleClick} className='input dropdown-input  normal-font f300' placeholder='Select' style={{cursor: 'default'}}/>
                             </section>
                             <section className='full-dropdown'>
                                 <img className='dropdown-icon' alt='Arrow' src={dropArrow}/>
-                                <section className={yyActive ? 'selection' : 'none'}  style={{width: '122px'}}>
+                                <section className={clickState.yyActive ? 'selection' : 'none'}  style={{width: '122px'}}>
                                     {years?.map((item:string , i:number) => (
                                         <p key={i} data-value={item} data-name='realYear' onClick={clickDob}>{item}</p>
                                     ))}
                                 </section>
-                                <input readOnly defaultValue={dateState.realYear} name='yy' onClick={handleClick} className='input dropdown-input  normal-font f300' placeholder='Select' style={{cursor: 'default'}}/>
+                                <input readOnly defaultValue={dateState.realYear} name='yyActive' onClick={handleClick} className='input dropdown-input  normal-font f300' placeholder='Select' style={{cursor: 'default'}}/>
                             </section>
                         </div>
                     </div>
