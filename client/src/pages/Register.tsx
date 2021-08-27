@@ -10,6 +10,7 @@ import { useMutation } from '@apollo/client';
 import { REGISTER } from '../utils/mutations';
 
 function Register() {
+    const [disabled, setDisable] = useState(true);
     const [formState, setFormState] = useState({ email: '', username: '', password: ''});
     const [dateState, setDateState] = useState({ realMonth: '', realDay: '', realYear: ''});
     const [clickState, setClickState] = useState({ mmActive: false, ddActive: false, yyActive: false});
@@ -41,6 +42,15 @@ function Register() {
         const dateType = e.target.getAttribute("data-name");
         setDateState({...dateState, [dateType]: data});
     }
+
+    // Use effect that disables the form submit button
+    useEffect(() => {
+        if (formState.email === '' || formState.username === '' || formState.password === '' || dateState.realDay === '' || dateState.realMonth === '' || dateState.realYear) {
+            setDisable(true);
+        } else {
+            setDisable(false);
+        }
+    }, [formState, dateState])
 
     // Closes the selection menu when you click outside the container
     useEffect(() => {
@@ -110,7 +120,7 @@ function Register() {
                             </section>
                         </div>
                     </div>
-                    <button className='form-button normal-font' style={{marginTop: '11px'}}>Continue</button>
+                    <button disabled={disabled} className='form-button normal-font' style={{marginTop: '11px'}}>Continue</button>
                     <p className='normal-font f300' style={{fontSize: "14px"}}><Link className='link f400' to='/login' style={{opacity: 1}}>Already have an account?</Link> </p>
                     <p className='normal-font f300' style={{fontSize: "12px", opacity: 0.3, marginTop: '12px', lineHeight: '18px'}}>By registering, you agree to Discord's Terms of Service and Privacy Policy</p>
                 </form>

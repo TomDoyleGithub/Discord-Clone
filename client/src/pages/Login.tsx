@@ -27,6 +27,7 @@ function Login() {
             console.log('Something went wrong...')
         }
     }
+
     return (
         <div className='fullscreen'>
             <img className='backdrop-img' src={backdrop} alt='Backdrop'/>
