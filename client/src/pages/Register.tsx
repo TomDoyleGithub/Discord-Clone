@@ -6,11 +6,14 @@ import dropArrow from '../images/white-down-arrow.png'
 import { days, months, years } from '../utils/TimeFunctions';
 import Auth from '../utils/auth';
 import logo from '../images/Discord-Logo-White.svg'
+import { useMutation } from '@apollo/client';
+import { REGISTER } from '../utils/mutations';
 
 function Register() {
     const [formState, setFormState] = useState({ email: '', username: '', password: ''});
     const [dateState, setDateState] = useState({ realMonth: '', realDay: '', realYear: ''});
     const [clickState, setClickState] = useState({ mmActive: false, ddActive: false, yyActive: false});
+    const [register] = useMutation(REGISTER);
 
     const handleClick = (e:any) =>  {
         const boxName = e.target.name;
@@ -25,9 +28,9 @@ function Register() {
     const handleFormSubmit = async (event: any) => {
         event.preventDefault();
         try {
-            // const mutationResponse = await login({ variables: {email: formState?.email, password: formState?.password,}})
-            // const token = mutationResponse?.data?.login?.token;
-            // Auth.login(token)
+            const mutationResponse = await register({ variables: {email: formState.email, username: formState.username, password: formState.password, birthday: `${dateState.realMonth} | ${dateState.realDay} | ${dateState.realYear}` }});
+            const token = mutationResponse?.data?.register?.token;
+            Auth.login(token)
         } catch (err) {
             console.log('Something went wrong...')
         }
