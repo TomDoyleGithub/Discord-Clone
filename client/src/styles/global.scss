@@ -2,6 +2,7 @@ $purple: #5865f2;
 $gray: #383c3c;
 $blue: #4eaaea;
 $white: #dcddde;
+$red: #ed4245;
 $slide: all 150ms ease;
 $graphie-font: graphie, sans-serif;
 $sans-font: davis-sans, sans-serif;
@@ -11,6 +12,11 @@ textarea:focus,
 select:focus {
   outline: none;
   animation: focus 500ms ease;
+}
+
+.red-text {
+  color: $red;
+  opacity: 1 !important;
 }
 
 * {
@@ -92,6 +98,14 @@ input:-webkit-autofill:active {
   z-index: 2;
 }
 
+@mixin form-input {
+  padding: 9px 11px;
+  border-radius: 5px;
+  background-color: #2d3131e3;
+  color: $white;
+  transition: $slide;
+}
+
 .fullscreen {
   width: 100vw;
   height: 100vh;
@@ -134,15 +148,16 @@ input:-webkit-autofill:active {
 }
 
 .input {
-  padding: 9px 11px;
-  border-radius: 5px;
-  background-color: #2d3131e3;
-  color: $white;
   border: 1px solid rgba(0, 0, 0, 0.281);
-  transition: $slide;
   &:hover {
     border: 1px solid black;
   }
+  @include form-input;
+}
+
+.red-input {
+  border: 1px solid $red;
+  @include form-input;
 }
 
 .input-container {
