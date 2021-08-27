@@ -1,5 +1,5 @@
 import { useMutation } from '@apollo/client';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Fade from 'react-reveal/Fade';
 import { Link } from 'react-router-dom'
 import backdrop from '../images/AuthBackground.svg'
@@ -8,6 +8,7 @@ import Auth from '../utils/auth';
 import { LOGIN } from '../utils/mutations';
 
 function Login() {
+    const [disabled, setDisable] = useState(true);
     const [formState, setFormState] = useState({ email: '', password: '' });
     const [formError, setError ] = useState(false);
     const [login] = useMutation(LOGIN);
@@ -28,7 +29,15 @@ function Login() {
         } catch (err) {
             setError(true);
         }
-    }
+    };
+
+    useEffect(() => {
+        if (formState.email === '' || formState.password === '' ) {
+            setDisable(true);
+        } else {
+            setDisable(false);
+        }
+    }, [formState])
 
     return (
         <div className='fullscreen'>
@@ -55,7 +64,7 @@ function Login() {
                         )}
                         <input onChange={handleChange} type='password' name='password' className={'normal-font f300 ' + (!formError ? 'input' : 'red-input')}/>
                     </div>
-                    <button className='form-button normal-font' style={{marginTop: '20px'}}>Login</button>
+                    <button disabled={disabled} className='form-button normal-font' style={{marginTop: '20px'}}>Login</button>
                     <p className='normal-font f300' style={{opacity: 0.5, fontSize: "14px"}}>Need an account? <Link className='link f400' to='/register'>Register</Link> </p>
                 </form>
             </section>
