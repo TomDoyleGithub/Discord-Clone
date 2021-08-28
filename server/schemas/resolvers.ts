@@ -1,6 +1,7 @@
 import { AuthenticationError } from 'apollo-server-express';
 import { User } from '../models';
 import jwt from 'jsonwebtoken';
+import bcrypt from "bcrypt";
 import authMiddleware from '../utils/auth';
 
 const resolvers = {
@@ -39,7 +40,8 @@ const resolvers = {
                 id: user._id
             };
             const token = jwt.sign(payload, secret, {expiresIn: '15h'})
-            const link = `https://localhost:3001/reset-password/${user.username}/${token}` || `${process.env.ADDRESS}/reset-password/${user._id}/${token}`;
+            const link = `https://localhost:3001/reset-password/${user._id}/${token}` || `${process.env.ADDRESS}/reset-password/${user._id}/${token}`;
+            // Send link in email
             console.log(link)
             return user;
         },
@@ -51,6 +53,7 @@ const resolvers = {
             const secret = 'mysecret' + user.password;
             try {
                 const payload = jwt.verify(token, secret);
+                password = await bcrypt.hash(password, 10);
                 await User.updateOne({ _id: id }, { password }, {new: true});
                 return user;
             } catch (err) {
