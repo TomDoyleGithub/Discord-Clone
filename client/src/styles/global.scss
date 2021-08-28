@@ -137,6 +137,11 @@ input:-webkit-autofill:active {
   @include gray-container;
 }
 
+.reset-img {
+  width: 171px;
+  margin: 0px auto;
+}
+
 .backdrop-img {
   flex-shrink: 0;
   min-width: 101%;
@@ -252,7 +257,8 @@ input:-webkit-autofill:active {
 
 @media screen and (max-width: 485px) {
   .register-container,
-  .login-container {
+  .login-container,
+  .reset-container {
     width: 100%;
     height: 100%;
   }

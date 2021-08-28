@@ -33,8 +33,8 @@ function ResetPassword() {
             <section className='reset-container'>
                 <img className='auth-logo' alt='Discord Logo' src={logo}/>
                 <form onSubmit={handleSubmit} className='form-container'>
-                    <img style={{paddingBottom: '17px'}} src={reset} alt='Reset Icon'/>
-                    <p className='header-font f600' style={{fontSize: "25px", margin: 'auto'}}>Change Your Password</p>
+                    <img className='reset-img' style={{paddingBottom: '17px'}} src={reset} alt='Reset Icon'/>
+                    <p className='header-font f600' style={{fontSize: "25px", margin: '0px auto'}}>Change Your Password</p>
                     <div className='input-container'>
                         {!formError ? (
                             <>
