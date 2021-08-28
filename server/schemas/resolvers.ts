@@ -1,5 +1,6 @@
 import { AuthenticationError } from 'apollo-server-express';
 import { User } from '../models';
+import jwt from 'jsonwebtoken';
 import authMiddleware from '../utils/auth';
 
 const resolvers = {
@@ -25,6 +26,22 @@ const resolvers = {
               }
             const token = authMiddleware.signToken(user);
             return { token, user };
+        },
+        sendPassword: async (_:any, { email }:any) => {
+            const user = await User.findOne({ email });
+            if(!user) {
+                throw new AuthenticationError('No user found with this email address');
+            };
+
+            const secret = 'mysecret' + user.password;
+            const payload = {
+                email: user.email,
+                id: user._id
+            };
+            const token = jwt.sign(payload, secret, {expiresIn: '15m'})
+            const link = `https://localhost:3001/reset-password/${user._id}/${token}` || `${process.env.ADDRESS}/reset-password/${user._id}/${token}`;
+            console.log(link);
+            return user;
         }
     },
 };

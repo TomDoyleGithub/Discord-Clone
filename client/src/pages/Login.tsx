@@ -31,6 +31,10 @@ function Login() {
         }
     };
 
+    const forgotPassword = () => {
+        console.log('Handling password request');
+    };
+
     useEffect(() => {
         if (formState.email === '' || formState.password === '' ) {
             setDisable(true);
@@ -64,7 +68,7 @@ function Login() {
                         )}
                         <input onChange={handleChange} type='password' name='password' className={'normal-font f300 ' + (!formError ? 'input' : 'red-input')}/>
                     </div>
-                    <p className='link f400 normal-font' style={{opacity: 1, fontSize: "14px", cursor: 'pointer'}}>Forgot your password?</p>
+                    <p onClick={forgotPassword} className='link f400 normal-font' style={{opacity: 1, fontSize: "14px", cursor: 'pointer'}}>Forgot your password?</p>
                     <button disabled={disabled} className='form-button normal-font' style={{marginTop: '10px'}}>Login</button>
                     <p className='normal-font f300' style={{fontSize: "14px"}}><span style={{opacity: 0.3}}>Need an account? </span><Link className='link f400' to='/register'>Register</Link> </p>
                 </form>
