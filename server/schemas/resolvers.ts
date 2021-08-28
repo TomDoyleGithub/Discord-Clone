@@ -39,7 +39,7 @@ const resolvers = {
                 id: user._id
             };
             const token = jwt.sign(payload, secret, {expiresIn: '15h'})
-            const link = `https://localhost:3001/reset-password/${user._id}/${token}` || `${process.env.ADDRESS}/reset-password/${user._id}/${token}`;
+            const link = `https://localhost:3001/reset-password/${user.username}/${token}` || `${process.env.ADDRESS}/reset-password/${user._id}/${token}`;
             console.log(link)
             return user;
         },
@@ -51,7 +51,7 @@ const resolvers = {
             const secret = 'mysecret' + user.password;
             try {
                 const payload = jwt.verify(token, secret);
-                User.updateOne({ _id: id }, { password: password }, {new: true});
+                await User.updateOne({ _id: id }, { password }, {new: true});
                 return user;
             } catch (err) {
                 console.log('Invalid token');
