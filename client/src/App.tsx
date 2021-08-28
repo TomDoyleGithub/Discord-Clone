@@ -7,6 +7,7 @@ import './styles/global.scss'
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Home from './pages/Home';
+import ResetPassword from './pages/ResetPassword';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -35,6 +36,7 @@ function App() {
         <Switch>
           <Route exact path='/' component={Home} />
           <Route exact path='/login' component={Login} />
+          <Route exact path='/reset-password/:id/:token' component={ResetPassword}/>
           <Route exact path='/register' component={Register} />
         </Switch>
       </Router>
