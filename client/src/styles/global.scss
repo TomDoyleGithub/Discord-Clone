@@ -130,6 +130,13 @@ input:-webkit-autofill:active {
   @include gray-container;
 }
 
+.reset-container {
+  width: 480px;
+  height: 349px;
+  @include flex-center;
+  @include gray-container;
+}
+
 .backdrop-img {
   flex-shrink: 0;
   min-width: 101%;

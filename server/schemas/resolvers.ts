@@ -40,7 +40,7 @@ const resolvers = {
                 id: user._id
             };
             const token = jwt.sign(payload, secret, {expiresIn: '15h'})
-            const link = `https://localhost:3001/reset-password/${user._id}/${token}` || `${process.env.ADDRESS}/reset-password/${user._id}/${token}`;
+            const link = `http://localhost:3000/reset-password/${user._id}/${token}` || `${process.env.ADDRESS}/reset-password/${user._id}/${token}`;
             // Send link in email
             console.log(link)
             return user;
