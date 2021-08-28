@@ -38,10 +38,25 @@ const resolvers = {
                 email: user.email,
                 id: user._id
             };
-            const token = jwt.sign(payload, secret, {expiresIn: '15m'})
+            const token = jwt.sign(payload, secret, {expiresIn: '15h'})
             const link = `https://localhost:3001/reset-password/${user._id}/${token}` || `${process.env.ADDRESS}/reset-password/${user._id}/${token}`;
-            console.log(link);
+            console.log(link)
             return user;
+        },
+        changePassword: async (_:any, { id, token, password }:any) => {
+            const user = await User.findOne({ _id: id });
+            if(!user) {
+                throw new AuthenticationError('No user found...');
+            };
+            const secret = 'mysecret' + user.password;
+            try {
+                const payload = jwt.verify(token, secret);
+                User.updateOne({ _id: id }, { password: password }, {new: true});
+                return user;
+            } catch (err) {
+                console.log('Invalid token');
+                return user;
+            }
         }
     },
 };
