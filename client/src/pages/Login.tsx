@@ -5,14 +5,14 @@ import { Link } from 'react-router-dom'
 import backdrop from '../images/AuthBackground.svg'
 import logo from '../images/Discord-Logo-White.svg'
 import Auth from '../utils/auth';
-import { LOGIN } from '../utils/mutations';
+import { LOGIN, SEND_PASSWORD } from '../utils/mutations';
 
 function Login() {
     const [disabled, setDisable] = useState(true);
     const [formState, setFormState] = useState({ email: '', password: '' });
     const [formError, setError ] = useState(false);
     const [login] = useMutation(LOGIN);
-    console.log(formError)
+    const [sendPassword] = useMutation(SEND_PASSWORD);
 
     const handleChange = (event: any) => {
         const { name, value } = event.target;
@@ -31,8 +31,12 @@ function Login() {
         }
     };
 
-    const forgotPassword = () => {
-        console.log('Handling password request');
+    const forgotPassword = async () => {
+        try {
+            await sendPassword({ variables: {email: formState?.email}})
+        } catch (err) {
+            setError(true);
+        }
     };
 
     useEffect(() => {

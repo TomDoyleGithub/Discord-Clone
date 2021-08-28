@@ -27,3 +27,14 @@ mutation register($email: String!, $username: String!, $password: String!, $birt
     }
   }
 `;
+
+export const SEND_PASSWORD = gql `
+mutation sendPassword ($email: String!) {
+  sendPassword(email: $email) {
+    _id
+    email
+    username
+    birthday
+  }
+}
+`;
