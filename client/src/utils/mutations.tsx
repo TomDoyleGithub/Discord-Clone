@@ -38,3 +38,14 @@ mutation sendPassword ($email: String!) {
   }
 }
 `;
+
+export const CHANGE_PASSWORD = gql `
+mutation changePassword ($id: String!, $token: String!, $password: String!) {
+  changePassword(id: $id, token: $token, password: $password) {
+    _id
+    email
+    username
+    birthday
+  }
+}
+`;
