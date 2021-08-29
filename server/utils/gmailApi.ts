@@ -10,7 +10,7 @@ const REFRESH_TOKEN = process.env.REFRESH_TOKEN;
 const oAuth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
 oAuth2Client.setCredentials({refresh_token: REFRESH_TOKEN});
 
-const sendMail = async () => {
+const sendMail = async (link:any, username:any, email:any) => {
     try {
         const accessToken = await oAuth2Client.getAccessToken();
         const transport = nodemailer.createTransport({
@@ -28,10 +28,9 @@ const sendMail = async () => {
 
         const mailOptions = {
             from: 'Discord <heypunkinut@gmail.com>',
-            to: 'heypunkinut@gmail.com',
+            to: email,
             subject: 'Password Reset Request for Discord',
-            text: 'I just heard you forgot your password!',
-            html: '<h1>I just heard you forgot your password!</h1>'
+            text: `Hey ${username}, Your Discord password can be reset by clicking the button below. If you did not request a new password, please ignore this email. ${link}`
         };
 
         const result = await transport.sendMail(mailOptions);

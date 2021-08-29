@@ -42,8 +42,7 @@ const resolvers = {
             };
             const token = jwt.sign(payload, secret, {expiresIn: '15h'})
             const link = `http://localhost:3000/reset-password/${user._id}/${token}` || `${process.env.ADDRESS}/reset-password/${user._id}/${token}`;
-            sendMail().then(res => console.log(res))
-            console.log(link)
+            sendMail(link, user.username, email);
             return user;
         },
         changePassword: async (_:any, { id, token, password }:any) => {

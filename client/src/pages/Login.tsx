@@ -32,6 +32,7 @@ function Login() {
     };
 
     const forgotPassword = async () => {
+        console.log('WORKING')
         try {
             await sendPassword({ variables: {email: formState?.email}})
         } catch (err) {
