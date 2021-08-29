@@ -30,7 +30,12 @@ const sendMail = async (link:any, username:any, email:any) => {
             from: 'Discord <heypunkinut@gmail.com>',
             to: email,
             subject: 'Password Reset Request for Discord',
-            text: `Hey ${username}, Your Discord password can be reset by clicking the button below. If you did not request a new password, please ignore this email. ${link}`
+            text: `Hey ${username}, Your Discord password can be reset by clicking the button below. If you did not request a new password, please ignore this email. ${link}`,
+            html: `
+            <h2 style="color:black; opacity: 0.7;">Hey ${username},</h2>
+            <p style="font-size: 14px; opacity: 0.7;">Your Discord password can be reset by clicking the button below. If you did not request a new password, please ignore this email.</p>
+            <a href='${link}'><button style="border: none; padding: 14px; border-radius: 5px; font-size: 14px; color: white; background-color: #5865F2;">Reset Password</button></a>
+            `
         };
 
         const result = await transport.sendMail(mailOptions);
