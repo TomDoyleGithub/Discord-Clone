@@ -2,6 +2,7 @@ import { useMutation } from '@apollo/client';
 import React, { useEffect, useState } from 'react'
 import Fade from 'react-reveal/Fade';
 import { Link } from 'react-router-dom'
+import PasswordModal from '../components/PasswordModal';
 import backdrop from '../images/AuthBackground.svg'
 import logo from '../images/Discord-Logo-White.svg'
 import Auth from '../utils/auth';
@@ -50,6 +51,7 @@ function Login() {
 
     return (
         <div className='fullscreen'>
+            <PasswordModal/>
             <img className='backdrop-img' src={backdrop} alt='Backdrop'/>
             <Fade bottom ssrFadeout>
             <section className='login-container'>

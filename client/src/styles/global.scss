@@ -159,6 +159,36 @@ input:-webkit-autofill:active {
   row-gap: 12px;
 }
 
+.modal-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  z-index: 9999999;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.788);
+}
+
+.password-send {
+  width: 440px;
+  height: 206px;
+  border-radius: 5px;
+  line-height: 1.3rem;
+  padding: 18px;
+  overflow: hidden;
+  @include gray-container;
+}
+
+.button-container {
+  height: 100%;
+  width: 440px;
+  position: relative;
+  right: 18px;
+  top: 18px;
+  background-color: rgba(0, 0, 0, 0.151);
+}
+
 .input {
   border: 1px solid rgba(0, 0, 0, 0.281);
   &:hover {
