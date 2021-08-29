@@ -8,7 +8,7 @@ import authMiddleware from './utils/auth';
 import db from './config/connection';
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 const server = new ApolloServer({
     typeDefs,
     resolvers,
