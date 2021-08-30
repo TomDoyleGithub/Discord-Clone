@@ -2,15 +2,15 @@ import React from "react";
 import { Redirect, Route } from "react-router-dom";
 import Auth from '../utils/auth';
 
-function ProtectedRoute({ component: Component, ...restOfProps }) {
+function ProtectedAuth({ component: Component, ...restOfProps }) {
     return (
       <Route
         {...restOfProps}
         render={(props:any) =>
-          Auth.loggedIn() ? <Component {...props} /> : <Redirect to='/login' />
+          !Auth.loggedIn() ? <Component {...props} /> : <Redirect to='/' />
         }
       />
     );
   }
   
-  export default ProtectedRoute;
+  export default ProtectedAuth;

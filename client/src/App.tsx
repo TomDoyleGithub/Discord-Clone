@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import './styles/reset.sass'
@@ -9,6 +9,7 @@ import Register from './pages/Register';
 import Home from './pages/Home';
 import ResetPassword from './pages/ResetPassword';
 import ProtectedRoute from './components/ProtectedRoute';
+import ProtectedAuth from './components/ProtectedAuth';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -36,9 +37,9 @@ function App() {
       <Router>
         <Switch>
           <ProtectedRoute exact path='/' component={Home} />
-          <Route exact path='/login' component={Login} />
-          <Route exact path='/reset-password/:id/:token' component={ResetPassword}/>
-          <Route exact path='/register' component={Register} />
+          <ProtectedAuth exact path='/login' component={Login} />
+          <ProtectedAuth exact path='/reset-password/:id/:token' component={ResetPassword}/>
+          <ProtectedAuth exact path='/register' component={Register} />
         </Switch>
       </Router>
     </ApolloProvider>
