@@ -10,6 +10,7 @@ import { LOGIN, SEND_PASSWORD } from '../utils/mutations';
 
 function Login() {
     const [disabled, setDisable] = useState(true);
+    const [modal, setModal] = useState(false);
     const [formState, setFormState] = useState({ email: '', password: '' });
     const [formError, setError ] = useState(false);
     const [login] = useMutation(LOGIN);
@@ -33,9 +34,9 @@ function Login() {
     };
 
     const forgotPassword = async () => {
-        console.log('WORKING')
         try {
-            await sendPassword({ variables: {email: formState?.email}})
+            await sendPassword({ variables: {email: formState?.email}});
+            setModal(true);
         } catch (err) {
             setError(true);
         }
@@ -51,7 +52,7 @@ function Login() {
 
     return (
         <div className='fullscreen'>
-            <PasswordModal/>
+            <PasswordModal modal={modal} setModal={setModal} />
             <img className='backdrop-img' src={backdrop} alt='Backdrop'/>
             <Fade bottom ssrFadeout>
             <section className='login-container'>

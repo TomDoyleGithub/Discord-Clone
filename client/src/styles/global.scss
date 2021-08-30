@@ -19,6 +19,14 @@ select:focus {
   opacity: 1 !important;
 }
 
+.show {
+  display: flex !important;
+}
+
+.hide {
+  display: none !important;
+}
+
 * {
   -webkit-touch-callout: none;
   -webkit-text-size-adjust: none;
@@ -306,5 +314,14 @@ input:-webkit-autofill:active {
     position: absolute;
     top: 22px;
     width: 130px;
+  }
+
+  .password-send {
+    height: 100vh;
+  }
+
+  .button-container {
+    position: relative;
+    top: 625px;
   }
 }
