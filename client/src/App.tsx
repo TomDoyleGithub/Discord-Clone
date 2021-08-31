@@ -10,6 +10,7 @@ import Home from './pages/Home';
 import ResetPassword from './pages/ResetPassword';
 import ProtectedRoute from './components/ProtectedRoute';
 import ProtectedAuth from './components/ProtectedAuth';
+import DesktopNav from './components/MainNavigation/DesktopNav';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -35,6 +36,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
+        <DesktopNav/>
         <Switch>
           <ProtectedRoute exact path='/' component={Home} />
           <ProtectedAuth exact path='/login' component={Login} />
