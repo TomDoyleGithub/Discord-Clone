@@ -8,8 +8,10 @@ import Auth from '../utils/auth';
 import logo from '../images/Discord-Logo-White.svg'
 import { useMutation } from '@apollo/client';
 import { REGISTER } from '../utils/mutations';
+import ThreeDotsWave from '../components/ThreeDotsWave';
 
 function Register() {
+    const [ showLoading, setLoading ] = useState(false);
     const [disabled, setDisable] = useState(true);
     const [formState, setFormState] = useState({ email: '', username: '', password: ''});
     const [dateState, setDateState] = useState({ realMonth: '', realDay: '', realYear: ''});
@@ -29,9 +31,11 @@ function Register() {
     const handleFormSubmit = async (event: any) => {
         event.preventDefault();
         try {
+            setLoading(true);
             const mutationResponse = await register({ variables: {email: formState.email, username: formState.username, password: formState.password, birthday: `${dateState.realMonth} | ${dateState.realDay} | ${dateState.realYear}` }});
-            const token = mutationResponse?.data?.register?.token;
-            Auth.login(token)
+            const token = await mutationResponse?.data?.register?.token;
+            Auth.login(token);
+            setLoading(false);
         } catch (err) {
             console.log('Something went wrong...')
         }
@@ -45,7 +49,7 @@ function Register() {
 
     // Use effect that disables the form submit button
     useEffect(() => {
-        if (formState.email === '' || formState.username === '' || formState.password === '' || dateState.realDay === '' || dateState.realMonth === '' || dateState.realYear) {
+        if (formState.email === '' || formState.username === '' || formState.password === '' || dateState.realDay === '' || dateState.realMonth === '' || dateState.realYear === '') {
             setDisable(true);
         } else {
             setDisable(false);
@@ -120,7 +124,11 @@ function Register() {
                             </section>
                         </div>
                     </div>
-                    <button disabled={disabled} className='form-button normal-font' style={{marginTop: '11px'}}>Continue</button>
+                    {showLoading ? (
+                        <button disabled={disabled} className='form-button normal-font' style={{marginTop: '11px'}}><ThreeDotsWave/></button>
+                    ) : (
+                        <button disabled={disabled} className='form-button normal-font' style={{marginTop: '11px'}}>Continue</button>
+                    )}
                     <Link className='link f400 normal-font' to='/login' style={{opacity: 1, fontSize: "14px"}}>Already have an account?</Link>
                     <p className='normal-font f300' style={{fontSize: "12px", opacity: 0.3, marginTop: '12px', lineHeight: '18px'}}>By registering, you agree to Discord's Terms of Service and Privacy Policy</p>
                 </form>

@@ -25,6 +25,7 @@ function Login() {
 
     const handleFormSubmit = async (event: any) => {
         event.preventDefault();
+        console.log('Submit')
 
         try {
             setLoading(true);
@@ -33,6 +34,7 @@ function Login() {
             Auth.login(token)
             setLoading(false);
         } catch (err) {
+            setLoading(false);
             setError(true);
         }
     };
