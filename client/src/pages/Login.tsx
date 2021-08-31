@@ -9,6 +9,7 @@ import Auth from '../utils/auth';
 import { LOGIN, SEND_PASSWORD } from '../utils/mutations';
 
 function Login() {
+    const [ showLoading, setLoading ] = useState(false);
     const [disabled, setDisable] = useState(true);
     const [modal, setModal] = useState(false);
     const [formState, setFormState] = useState({ email: '', password: '' });
@@ -25,9 +26,11 @@ function Login() {
         event.preventDefault();
 
         try {
+            setLoading(true);
             const mutationResponse = await login({ variables: {email: formState?.email, password: formState?.password,}})
             const token = mutationResponse?.data?.login?.token;
             Auth.login(token)
+            setLoading(false);
         } catch (err) {
             setError(true);
         }
