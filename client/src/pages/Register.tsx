@@ -37,6 +37,7 @@ function Register() {
             Auth.login(token);
             setLoading(false);
         } catch (err) {
+            setLoading(false);
             console.log('Something went wrong...')
         }
     };
