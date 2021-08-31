@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
 
 
-import counterReducer from './Counter/counter.reducer';
+import loadingReducer from './Loader/loader.reducer';
 
 
 const rootReducer = combineReducers({
 
-    counter: counterReducer,
+    loading: loadingReducer,
 
 });
 
