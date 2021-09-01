@@ -9,9 +9,12 @@ import logo from '../images/Discord-Logo-White.svg'
 import { useMutation } from '@apollo/client';
 import { REGISTER } from '../utils/mutations';
 import ThreeDotsWave from '../components/ThreeDotsWave';
+import { useDispatch, useSelector, RootStateOrAny } from 'react-redux';
+import { TOGGLE_LOAD } from '../redux/actions';
 
 function Register() {
-    const [ showLoading, setLoading ] = useState(false);
+    const dispatch = useDispatch();
+    const state = useSelector((state: RootStateOrAny) => state);
     const [disabled, setDisable] = useState(true);
     const [formState, setFormState] = useState({ email: '', username: '', password: ''});
     const [dateState, setDateState] = useState({ realMonth: '', realDay: '', realYear: ''});
@@ -31,13 +34,13 @@ function Register() {
     const handleFormSubmit = async (event: any) => {
         event.preventDefault();
         try {
-            setLoading(true);
+            dispatch({ type: TOGGLE_LOAD });
             const mutationResponse = await register({ variables: {email: formState.email, username: formState.username, password: formState.password, birthday: `${dateState.realMonth} | ${dateState.realDay} | ${dateState.realYear}` }});
             const token = await mutationResponse?.data?.register?.token;
             Auth.login(token);
-            setLoading(false);
+            dispatch({ type: TOGGLE_LOAD });
         } catch (err) {
-            setLoading(false);
+            dispatch({ type: TOGGLE_LOAD });
             console.log('Something went wrong...')
         }
     };
@@ -125,7 +128,7 @@ function Register() {
                             </section>
                         </div>
                     </div>
-                    {showLoading ? (
+                    {state?.loading ? (
                         <button disabled={disabled} className='form-button normal-font' style={{marginTop: '11px'}}><ThreeDotsWave/></button>
                     ) : (
                         <button disabled={disabled} className='form-button normal-font' style={{marginTop: '11px'}}>Continue</button>

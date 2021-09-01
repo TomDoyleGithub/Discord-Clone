@@ -14,7 +14,6 @@ import { TOGGLE_LOAD } from '../redux/actions';
 function Login() {
     const dispatch = useDispatch();
     const state = useSelector((state: RootStateOrAny) => state);
-    // const [ showLoading, setLoading ] = useState(false);
     const [disabled, setDisable] = useState(true);
     const [modal, setModal] = useState(false);
     const [formState, setFormState] = useState({ email: '', password: '' });
@@ -87,7 +86,7 @@ function Login() {
                         <input onChange={handleChange} type='password' name='password' className={'normal-font f300 ' + (!formError ? 'input' : 'red-input')}/>
                     </div>
                     <p onClick={forgotPassword} className='link f400 normal-font' style={{opacity: 1, fontSize: "14px", cursor: 'pointer'}}>Forgot your password?</p>
-                    {state.loading ? (
+                    {state?.loading ? (
                         <button disabled={true} className='form-button normal-font' style={{marginTop: '10px'}}><ThreeDotsWave/></button>
                     ) : (
                         <button disabled={disabled} className='form-button normal-font' style={{marginTop: '10px'}}>Login</button>
