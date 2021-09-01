@@ -17,6 +17,19 @@ $transition: all 150ms ease-in-out;
   row-gap: 8px;
 }
 
+.green-icon {
+  color: $green;
+  font-size: 25.5px;
+  transition: $transition;
+}
+
+.white-logo {
+  color: $green;
+  opacity: 0.8;
+  width: 26px;
+  transition: $transition;
+}
+
 .white-strip {
   height: 0px;
   width: 0px;
@@ -29,13 +42,22 @@ $transition: all 150ms ease-in-out;
 }
 
 .nav-speech-bubble {
-  width: 100px;
-  height: 32px;
+  padding: 10px;
+  visibility: hidden;
+  opacity: 0;
+  white-space: nowrap;
   position: absolute;
   top: 9px;
   left: 68px;
+  max-width: 200px;
   border-radius: 6px;
   background-color: $black;
+  color: rgba(255, 255, 255, 0.808);
+  transition: $transition;
+  &:hover {
+    opacity: 0;
+    display: none !important;
+  }
 }
 
 .purple-back {
@@ -59,6 +81,9 @@ $transition: all 150ms ease-in-out;
   transition: $transition;
   transition: $transition;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   &:hover {
     border-radius: 18px;
   }
@@ -68,8 +93,18 @@ $transition: all 150ms ease-in-out;
     width: 20px;
     top: 11px;
   }
+  &:hover .nav-speech-bubble {
+    visibility: visible;
+    opacity: 1;
+  }
   &:active {
     top: 1.2px;
+  }
+  &:hover .green-icon {
+    color: white;
+  }
+  &:hover .white-logo {
+    opacity: 1;
   }
 }
 
