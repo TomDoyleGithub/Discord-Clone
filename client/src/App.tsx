@@ -12,6 +12,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import ProtectedAuth from './components/ProtectedAuth';
 import DesktopNav from './components/MainNavigation/DesktopNav';
 import StoreProvider from './redux/GlobalState';
+import UserCard from './components/UserCard/UserCard';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -39,6 +40,7 @@ function App() {
       <Router>
         <StoreProvider>
         <DesktopNav/>
+        <UserCard/>
         <Switch>
           <ProtectedRoute exact path='/' component={Home} />
           <ProtectedAuth exact path='/login' component={Login} />
