@@ -17,6 +17,13 @@ $transition: all 150ms ease-in-out;
   row-gap: 8px;
 }
 
+.speech-triangle {
+  position: absolute;
+  left: -9px;
+  color: $black;
+  transform: rotate(180deg);
+}
+
 .active-discord {
   background-color: $purple !important;
   border-radius: 18px !important;
