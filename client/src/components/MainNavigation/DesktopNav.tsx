@@ -8,8 +8,22 @@ function DesktopNav() {
         return <></>
     }
     return (
-        <div>
-            <p>Nav</p>
+        <div className='border left-side-nav-container'>
+            <section className='nav-circle purple-back'>
+                <div className='white-strip'></div>
+                <div className='nav-speech-bubble'></div>
+            </section>
+            <div className='line'>
+
+            </div>
+            <section className='nav-circle light-gray-back'>
+                <div className='white-strip'></div>
+
+            </section>
+            <section className='nav-circle light-gray-back'>
+                <div className='white-strip'></div>
+
+            </section>
         </div>
     )
 }

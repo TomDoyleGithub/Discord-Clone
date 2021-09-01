@@ -1,0 +1,81 @@
+$dark-gray: #1f2225;
+$purple: #5765f2;
+$light-gray: #36393e;
+$black: #060607;
+$green: #3aa55d;
+$transition: all 150ms ease-in-out;
+
+.left-side-nav-container {
+  width: 71px;
+  height: 100vh;
+  background-color: $dark-gray;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 11px;
+  row-gap: 8px;
+}
+
+.white-strip {
+  height: 0px;
+  width: 0px;
+  background-color: white;
+  position: absolute;
+  top: 22px;
+  right: 60px;
+  border-radius: 5px;
+  transition: $transition;
+}
+
+.nav-speech-bubble {
+  width: 100px;
+  height: 32px;
+  position: absolute;
+  top: 9px;
+  left: 68px;
+  border-radius: 6px;
+  background-color: $black;
+}
+
+.purple-back {
+  &:hover {
+    background-color: $purple;
+  }
+}
+
+.light-gray-back {
+  &:hover {
+    background-color: $green;
+  }
+}
+
+.nav-circle {
+  height: 48px;
+  width: 48px;
+  cursor: pointer;
+  border-radius: 50px;
+  background-color: $light-gray;
+  transition: $transition;
+  transition: $transition;
+  position: relative;
+  &:hover {
+    border-radius: 18px;
+  }
+  &:hover .white-strip {
+    right: 56px;
+    height: 22px;
+    width: 20px;
+    top: 11px;
+  }
+  &:active {
+    top: 1.2px;
+  }
+}
+
+.line {
+  height: 2px;
+  width: 31px;
+  background-color: $light-gray;
+  border-radius: 50px;
+}
