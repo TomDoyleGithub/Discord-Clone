@@ -17,6 +17,34 @@ $transition: all 150ms ease-in-out;
   row-gap: 8px;
 }
 
+.active-discord {
+  background-color: $purple !important;
+  border-radius: 18px !important;
+  img {
+    opacity: 1 !important;
+  }
+  section {
+    right: 56px;
+    height: 40px;
+    width: 20px;
+    top: 4px;
+  }
+}
+
+.active-green {
+  background-color: $green !important;
+  border-radius: 18px !important;
+  section {
+    right: 56px;
+    height: 40px;
+    width: 20px;
+    top: 4px;
+  }
+  .green-icon {
+    color: white !important;
+  }
+}
+
 .green-icon {
   color: $green;
   font-size: 25.5px;
