@@ -8,9 +8,13 @@ import logo from '../images/Discord-Logo-White.svg'
 import Auth from '../utils/auth';
 import { LOGIN, SEND_PASSWORD } from '../utils/mutations';
 import ThreeDotsWave from '../components/ThreeDotsWave';
+import { useDispatch, useSelector, RootStateOrAny } from 'react-redux';
+import { TOGGLE_LOAD } from '../redux/actions';
 
 function Login() {
-    const [ showLoading, setLoading ] = useState(false);
+    const dispatch = useDispatch();
+    const state = useSelector((state: RootStateOrAny) => state);
+    // const [ showLoading, setLoading ] = useState(false);
     const [disabled, setDisable] = useState(true);
     const [modal, setModal] = useState(false);
     const [formState, setFormState] = useState({ email: '', password: '' });
@@ -28,13 +32,13 @@ function Login() {
         console.log('Submit')
 
         try {
-            setLoading(true);
+            dispatch({ type: TOGGLE_LOAD });
             const mutationResponse = await login({ variables: {email: formState?.email, password: formState?.password,}})
             const token = await mutationResponse?.data?.login?.token;
             Auth.login(token)
-            setLoading(false);
+            dispatch({ type: TOGGLE_LOAD });
         } catch (err) {
-            setLoading(false);
+            dispatch({ type: TOGGLE_LOAD });
             setError(true);
         }
     };
@@ -83,7 +87,7 @@ function Login() {
                         <input onChange={handleChange} type='password' name='password' className={'normal-font f300 ' + (!formError ? 'input' : 'red-input')}/>
                     </div>
                     <p onClick={forgotPassword} className='link f400 normal-font' style={{opacity: 1, fontSize: "14px", cursor: 'pointer'}}>Forgot your password?</p>
-                    {showLoading ? (
+                    {state.loading ? (
                         <button disabled={true} className='form-button normal-font' style={{marginTop: '10px'}}><ThreeDotsWave/></button>
                     ) : (
                         <button disabled={disabled} className='form-button normal-font' style={{marginTop: '10px'}}>Login</button>

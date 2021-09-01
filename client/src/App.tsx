@@ -11,6 +11,7 @@ import ResetPassword from './pages/ResetPassword';
 import ProtectedRoute from './components/ProtectedRoute';
 import ProtectedAuth from './components/ProtectedAuth';
 import DesktopNav from './components/MainNavigation/DesktopNav';
+import StoreProvider from './redux/GlobalState';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -36,6 +37,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
+        <StoreProvider>
         <DesktopNav/>
         <Switch>
           <ProtectedRoute exact path='/' component={Home} />
@@ -43,6 +45,7 @@ function App() {
           <ProtectedAuth exact path='/reset-password/:id/:token' component={ResetPassword}/>
           <ProtectedAuth exact path='/register' component={Register} />
         </Switch>
+        </StoreProvider>
       </Router>
     </ApolloProvider>
   );
