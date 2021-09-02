@@ -1,7 +1,8 @@
-import { TOGGLE_LOAD, UPDATE_FORM } from './actions';
+import { TOGGLE_ERROR, TOGGLE_LOAD, UPDATE_FORM } from './actions';
 
 const initalState = {
     loading: false,
+    error: false,
     email: '',
     username: '',
     password: '',
@@ -16,6 +17,11 @@ export default function reducer (state = initalState, action) {
             return { 
                 ...state, 
                 loading: !state.loading
+            };
+        case TOGGLE_ERROR:
+            return { 
+                ...state,
+                error: !state.error
             };
         case UPDATE_FORM:
             let name = action.name;

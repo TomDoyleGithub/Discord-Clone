@@ -15,7 +15,7 @@ import { TOGGLE_LOAD, UPDATE_FORM } from '../redux/actions';
 function Register() {
     const dispatch = useDispatch();
     const state = useSelector((state: RootStateOrAny) => state);
-    console.log(state)
+
     const [disabled, setDisable] = useState(true);
     const [clickState, setClickState] = useState({ mmActive: false, ddActive: false, yyActive: false});
     const [register] = useMutation(REGISTER);
