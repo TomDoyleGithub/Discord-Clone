@@ -9,7 +9,7 @@ import Auth from '../utils/auth';
 import { LOGIN, SEND_PASSWORD } from '../utils/mutations';
 import ThreeDotsWave from '../components/ThreeDotsWave';
 import { useDispatch, useSelector, RootStateOrAny } from 'react-redux';
-import { TOGGLE_LOAD, UPDATE_FORM } from '../redux/actions';
+import { TOGGLE_LOAD, UPDATE_FORM, TOGGLE_ERROR } from '../redux/actions';
 
 function Login() {
     const dispatch = useDispatch();
@@ -17,7 +17,6 @@ function Login() {
 
     const [disabled, setDisable] = useState(true);
     const [modal, setModal] = useState(false);
-    const [formError, setError ] = useState(false);
     const [login] = useMutation(LOGIN);
     const [sendPassword] = useMutation(SEND_PASSWORD);
 
@@ -35,9 +34,10 @@ function Login() {
             const token = await mutationResponse?.data?.login?.token;
             Auth.login(token)
             dispatch({ type: TOGGLE_LOAD });
+            dispatch({ type: TOGGLE_ERROR, value: false });
         } catch (err) {
             dispatch({ type: TOGGLE_LOAD });
-            setError(true);
+            dispatch({ type: TOGGLE_ERROR, value: true });
         }
     };
 
@@ -45,8 +45,9 @@ function Login() {
         try {
             await sendPassword({ variables: {email: state?.email}});
             setModal(true);
+            dispatch({ type: TOGGLE_ERROR, value: false });
         } catch (err) {
-            setError(true);
+            dispatch({ type: TOGGLE_ERROR, value: true });
         }
     };
 
@@ -69,20 +70,20 @@ function Login() {
                     <p className='header-font f600' style={{fontSize: "25px"}}>Welcome back!</p>
                     <p className='normal-font f300' style={{opacity: 0.7}}>We're so excited to see you again!</p>
                     <div className='input-container'>
-                        {!formError ? (
+                        {!state.error ? (
                             <label className='normal-font f500 login-label' style={{fontSize: "12px", opacity: 0.7}}>EMAIL</label>
                         ) : (
                             <label className='normal-font f500 login-label red-text' style={{fontSize: "12px", opacity: 0.7}}>EMAIL <i>- Login or password is invalid</i></label>
                         )}
-                        <input onChange={handleChange} type='email' name='email' className={'normal-font f300 ' + (!formError ? 'input' : 'red-input')}/>
+                        <input onChange={handleChange} type='email' name='email' className={'normal-font f300 ' + (!state.error ? 'input' : 'red-input')}/>
                     </div>
                     <div className='input-container'>
-                        {!formError ? (
+                        {!state.error ? (
                             <label className='normal-font f500 login-label' style={{fontSize: "12px", opacity: 0.7}}>PASSWORD</label>
                         ) : (
                             <label className='normal-font f500 login-label red-text' style={{fontSize: "12px", opacity: 0.7}}>PASSWORD <i>- Login or password is invalid</i></label>
                         )}
-                        <input onChange={handleChange} type='password' name='password' className={'normal-font f300 ' + (!formError ? 'input' : 'red-input')}/>
+                        <input onChange={handleChange} type='password' name='password' className={'normal-font f300 ' + (!state.error ? 'input' : 'red-input')}/>
                     </div>
                     <p onClick={forgotPassword} className='link f400 normal-font' style={{opacity: 1, fontSize: "14px", cursor: 'pointer'}}>Forgot your password?</p>
                     {state?.loading ? (

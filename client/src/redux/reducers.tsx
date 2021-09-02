@@ -21,7 +21,7 @@ export default function reducer (state = initalState, action) {
         case TOGGLE_ERROR:
             return { 
                 ...state,
-                error: !state.error
+                error: action.value
             };
         case UPDATE_FORM:
             let name = action.name;
