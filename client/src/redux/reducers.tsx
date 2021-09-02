@@ -5,6 +5,9 @@ const initalState = {
     email: '',
     username: '',
     password: '',
+    realMonth: '',
+    realDay: '',
+    realYear: '',
 };
 
 export default function reducer (state = initalState, action) {

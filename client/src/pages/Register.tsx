@@ -15,9 +15,8 @@ import { TOGGLE_LOAD, UPDATE_FORM } from '../redux/actions';
 function Register() {
     const dispatch = useDispatch();
     const state = useSelector((state: RootStateOrAny) => state);
-
+    console.log(state)
     const [disabled, setDisable] = useState(true);
-    const [dateState, setDateState] = useState({ realMonth: '', realDay: '', realYear: ''});
     const [clickState, setClickState] = useState({ mmActive: false, ddActive: false, yyActive: false});
     const [register] = useMutation(REGISTER);
 
@@ -35,7 +34,7 @@ function Register() {
         event.preventDefault();
         try {
             dispatch({ type: TOGGLE_LOAD });
-            const mutationResponse = await register({ variables: {email: state.email, username: state.username, password: state.password, birthday: `${dateState.realMonth} | ${dateState.realDay} | ${dateState.realYear}` }});
+            const mutationResponse = await register({ variables: {email: state.email, username: state.username, password: state.password, birthday: `${state.realMonth} | ${state.realDay} | ${state.realYear}` }});
             const token = await mutationResponse?.data?.register?.token;
             Auth.login(token);
             dispatch({ type: TOGGLE_LOAD });
@@ -46,19 +45,19 @@ function Register() {
     };
 
     const clickDob = (e:any) => {
-        const data = e.target.getAttribute("data-value");
-        const dateType = e.target.getAttribute("data-name");
-        setDateState({...dateState, [dateType]: data});
+        const value = e.target.getAttribute("data-value");
+        const name = e.target.getAttribute("data-name");
+        dispatch({ type: UPDATE_FORM, name, value});
     }
 
     // Use effect that disables the form submit button
     useEffect(() => {
-        if (state.email === '' || state.username === '' || state.password === '' || dateState.realDay === '' || dateState.realMonth === '' || dateState.realYear === '') {
+        if (state.email === '' || state.username === '' || state.password === '' || state.realDay === '' || state.realMonth === '' || state.realYear === '') {
             setDisable(true);
         } else {
             setDisable(false);
         }
-    }, [state, dateState])
+    }, [state])
 
     // Closes the selection menu when you click outside the container
     useEffect(() => {
@@ -106,7 +105,7 @@ function Register() {
                                         <p key={i} data-value={month} data-name='realMonth' onClick={clickDob}>{month}</p>
                                     ))}
                                 </section>
-                                <input readOnly defaultValue={dateState.realMonth} name='mmActive' onClick={handleClick} className='input dropdown-input normal-font f300' placeholder='Select' style={{cursor: 'default'}}/>
+                                <input readOnly defaultValue={state.realMonth} name='mmActive' onClick={handleClick} className='input dropdown-input normal-font f300' placeholder='Select' style={{cursor: 'default'}}/>
                             </section>
                             <section className='full-dropdown'>
                                 <img className='dropdown-icon' alt='Arrow' src={dropArrow}/>
@@ -115,7 +114,7 @@ function Register() {
                                         <p key={i} data-value={day} data-name='realDay' onClick={clickDob}>{day}</p>
                                     ))}
                                 </section>
-                                <input readOnly defaultValue={dateState.realDay} name='ddActive' onClick={handleClick} className='input dropdown-input  normal-font f300' placeholder='Select' style={{cursor: 'default'}}/>
+                                <input readOnly defaultValue={state.realDay} name='ddActive' onClick={handleClick} className='input dropdown-input  normal-font f300' placeholder='Select' style={{cursor: 'default'}}/>
                             </section>
                             <section className='full-dropdown'>
                                 <img className='dropdown-icon' alt='Arrow' src={dropArrow}/>
@@ -124,7 +123,7 @@ function Register() {
                                         <p key={i} data-value={item} data-name='realYear' onClick={clickDob}>{item}</p>
                                     ))}
                                 </section>
-                                <input readOnly defaultValue={dateState.realYear} name='yyActive' onClick={handleClick} className='input dropdown-input  normal-font f300' placeholder='Select' style={{cursor: 'default'}}/>
+                                <input readOnly defaultValue={state.realYear} name='yyActive' onClick={handleClick} className='input dropdown-input  normal-font f300' placeholder='Select' style={{cursor: 'default'}}/>
                             </section>
                         </div>
                     </div>
