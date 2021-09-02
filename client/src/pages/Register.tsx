@@ -80,19 +80,19 @@ function Register() {
                 <form onSubmit={handleFormSubmit} className='form-container' style={{position: 'relative', bottom: '13px'}}>
                     <p className='header-font f600' style={{fontSize: "25px", textAlign: 'center'}}>Create an account</p>
                     <div className='input-container'>
-                        <label className='normal-font f500 login-label' style={{fontSize: "12px", opacity: 0.7}}>EMAIL</label>
+                        <label className={'normal-font f500 login-label ' + (!state.error ? '' : 'red-text')} style={{fontSize: "12px", opacity: 0.7}}>EMAIL</label>
                         <input required onChange={handleChange} type='email' name='email' maxLength={30}  className={'normal-font f300 ' + (!state.error ? 'input' : 'red-input')}/>
                     </div>
                     <div className='input-container'>
-                        <label className='normal-font f500 login-label' style={{fontSize: "12px", opacity: 0.7}}>USERNAME</label>
+                        <label className={'normal-font f500 login-label ' + (!state.error ? '' : 'red-text')} style={{fontSize: "12px", opacity: 0.7}}>USERNAME</label>
                         <input required onChange={handleChange} type='name' maxLength={30} name='username' className={'normal-font f300 ' + (!state.error ? 'input' : 'red-input')}/>
                     </div>
                     <div className='input-container'>
-                        <label className='normal-font f500 login-label' style={{fontSize: "12px", opacity: 0.7}}>PASSWORD</label>
+                        <label className={'normal-font f500 login-label ' + (!state.error ? '' : 'red-text')} style={{fontSize: "12px", opacity: 0.7}}>PASSWORD</label>
                         <input required onChange={handleChange} type='password' name='password' className={'normal-font f300 ' + (!state.error ? 'input' : 'red-input')}/>
                     </div>
                     <div className='input-container'>
-                        <label className='normal-font f500 login-label' style={{fontSize: "12px", opacity: 0.7}}>DATE OF BIRTH</label>
+                        <label className={'normal-font f500 login-label ' + (!state.error ? '' : 'red-text')} style={{fontSize: "12px", opacity: 0.7}}>DATE OF BIRTH</label>
                         <div className='dropdown-container'>
                             <section className='full-dropdown'>
                                 <img className='dropdown-icon' alt='Arrow' src={dropArrow}/>
