@@ -10,15 +10,14 @@ import { useMutation } from '@apollo/client';
 import { REGISTER } from '../utils/mutations';
 import ThreeDotsWave from '../components/ThreeDotsWave';
 import { useDispatch, useSelector, RootStateOrAny } from 'react-redux';
-import { TOGGLE_LOAD, UPDATE_FORM } from '../redux/actions';
+import { TOGGLE_DISABLE, TOGGLE_ERROR, TOGGLE_LOAD, UPDATE_FORM } from '../redux/actions';
 
 function Register() {
     const dispatch = useDispatch();
     const state = useSelector((state: RootStateOrAny) => state);
-
-    const [disabled, setDisable] = useState(true);
-    const [clickState, setClickState] = useState({ mmActive: false, ddActive: false, yyActive: false});
     const [register] = useMutation(REGISTER);
+
+    const [clickState, setClickState] = useState({ mmActive: false, ddActive: false, yyActive: false});
 
     const handleClick = (e:any) =>  {
         const boxName = e.target.name;
@@ -28,6 +27,7 @@ function Register() {
     const handleChange = (event: any) => {
         const { name, value } = event.target;
         dispatch({ type: UPDATE_FORM, name, value});
+        dispatch({ type: TOGGLE_DISABLE, value: false });
       };
 
     const handleFormSubmit = async (event: any) => {
@@ -48,16 +48,12 @@ function Register() {
         const value = e.target.getAttribute("data-value");
         const name = e.target.getAttribute("data-name");
         dispatch({ type: UPDATE_FORM, name, value});
-    }
+    };
 
-    // Use effect that disables the form submit button
     useEffect(() => {
-        if (state.email === '' || state.username === '' || state.password === '' || state.realDay === '' || state.realMonth === '' || state.realYear === '') {
-            setDisable(true);
-        } else {
-            setDisable(false);
-        }
-    }, [state])
+        dispatch({ type: TOGGLE_DISABLE, value: true });
+        dispatch({ type: TOGGLE_ERROR, value: false });
+    }, [dispatch]);
 
     // Closes the selection menu when you click outside the container
     useEffect(() => {
@@ -85,15 +81,15 @@ function Register() {
                     <p className='header-font f600' style={{fontSize: "25px", textAlign: 'center'}}>Create an account</p>
                     <div className='input-container'>
                         <label className='normal-font f500 login-label' style={{fontSize: "12px", opacity: 0.7}}>EMAIL</label>
-                        <input onChange={handleChange} type='email' name='email' maxLength={30}  className='input normal-font f300'/>
+                        <input required onChange={handleChange} type='email' name='email' maxLength={30}  className='input normal-font f300'/>
                     </div>
                     <div className='input-container'>
                         <label className='normal-font f500 login-label' style={{fontSize: "12px", opacity: 0.7}}>USERNAME</label>
-                        <input onChange={handleChange} type='name' maxLength={30} name='username' className='input normal-font f300'/>
+                        <input required onChange={handleChange} type='name' maxLength={30} name='username' className='input normal-font f300'/>
                     </div>
                     <div className='input-container'>
                         <label className='normal-font f500 login-label' style={{fontSize: "12px", opacity: 0.7}}>PASSWORD</label>
-                        <input onChange={handleChange} type='password' name='password' className='input normal-font f300'/>
+                        <input required onChange={handleChange} type='password' name='password' className='input normal-font f300'/>
                     </div>
                     <div className='input-container'>
                         <label className='normal-font f500 login-label' style={{fontSize: "12px", opacity: 0.7}}>DATE OF BIRTH</label>
@@ -105,7 +101,7 @@ function Register() {
                                         <p key={i} data-value={month} data-name='realMonth' onClick={clickDob}>{month}</p>
                                     ))}
                                 </section>
-                                <input readOnly defaultValue={state.realMonth} name='mmActive' onClick={handleClick} className='input dropdown-input normal-font f300' placeholder='Select' style={{cursor: 'default'}}/>
+                                <input required readOnly defaultValue={state.realMonth} name='mmActive' onClick={handleClick} className='input dropdown-input normal-font f300' placeholder='Select' style={{cursor: 'default'}}/>
                             </section>
                             <section className='full-dropdown'>
                                 <img className='dropdown-icon' alt='Arrow' src={dropArrow}/>
@@ -114,7 +110,7 @@ function Register() {
                                         <p key={i} data-value={day} data-name='realDay' onClick={clickDob}>{day}</p>
                                     ))}
                                 </section>
-                                <input readOnly defaultValue={state.realDay} name='ddActive' onClick={handleClick} className='input dropdown-input  normal-font f300' placeholder='Select' style={{cursor: 'default'}}/>
+                                <input required readOnly defaultValue={state.realDay} name='ddActive' onClick={handleClick} className='input dropdown-input  normal-font f300' placeholder='Select' style={{cursor: 'default'}}/>
                             </section>
                             <section className='full-dropdown'>
                                 <img className='dropdown-icon' alt='Arrow' src={dropArrow}/>
@@ -123,14 +119,14 @@ function Register() {
                                         <p key={i} data-value={item} data-name='realYear' onClick={clickDob}>{item}</p>
                                     ))}
                                 </section>
-                                <input readOnly defaultValue={state.realYear} name='yyActive' onClick={handleClick} className='input dropdown-input  normal-font f300' placeholder='Select' style={{cursor: 'default'}}/>
+                                <input required readOnly defaultValue={state.realYear} name='yyActive' onClick={handleClick} className='input dropdown-input  normal-font f300' placeholder='Select' style={{cursor: 'default'}}/>
                             </section>
                         </div>
                     </div>
                     {state?.loading ? (
-                        <button disabled={disabled} className='form-button normal-font' style={{marginTop: '11px'}}><ThreeDotsWave/></button>
+                        <button disabled={state.disable} className='form-button normal-font' style={{marginTop: '11px'}}><ThreeDotsWave/></button>
                     ) : (
-                        <button disabled={disabled} className='form-button normal-font' style={{marginTop: '11px'}}>Continue</button>
+                        <button disabled={state.disable} className='form-button normal-font' style={{marginTop: '11px'}}>Continue</button>
                     )}
                     <Link className='link f400 normal-font' to='/login' style={{opacity: 1, fontSize: "14px"}}>Already have an account?</Link>
                     <p className='normal-font f300' style={{fontSize: "12px", opacity: 0.3, marginTop: '12px', lineHeight: '18px'}}>By registering, you agree to Discord's Terms of Service and Privacy Policy</p>

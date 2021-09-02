@@ -9,13 +9,12 @@ import Auth from '../utils/auth';
 import { LOGIN, SEND_PASSWORD } from '../utils/mutations';
 import ThreeDotsWave from '../components/ThreeDotsWave';
 import { useDispatch, useSelector, RootStateOrAny } from 'react-redux';
-import { TOGGLE_LOAD, UPDATE_FORM, TOGGLE_ERROR } from '../redux/actions';
+import { TOGGLE_LOAD, UPDATE_FORM, TOGGLE_ERROR, TOGGLE_DISABLE } from '../redux/actions';
 
 function Login() {
     const dispatch = useDispatch();
     const state = useSelector((state: RootStateOrAny) => state);
 
-    const [disabled, setDisable] = useState(true);
     const [modal, setModal] = useState(false);
     const [login] = useMutation(LOGIN);
     const [sendPassword] = useMutation(SEND_PASSWORD);
@@ -23,6 +22,7 @@ function Login() {
     const handleChange = (event: any) => {
         const { name, value } = event.target;
         dispatch({ type: UPDATE_FORM, name, value});
+        dispatch({ type: TOGGLE_DISABLE, value: false });
       };
 
     const handleFormSubmit = async (event: any) => {
@@ -52,13 +52,10 @@ function Login() {
     };
 
     useEffect(() => {
-        if (state.email === '' || state.password === '' ) {
-            setDisable(true);
-        } else {
-            setDisable(false);
-        }
-    }, [state])
-
+        dispatch({ type: TOGGLE_DISABLE, value: true });
+        dispatch({ type: TOGGLE_ERROR, value: false });
+    }, [dispatch]);
+   
     return (
         <div className='fullscreen'>
             <PasswordModal modal={modal} setModal={setModal} />
@@ -89,7 +86,7 @@ function Login() {
                     {state?.loading ? (
                         <button disabled={true} className='form-button normal-font' style={{marginTop: '10px'}}><ThreeDotsWave/></button>
                     ) : (
-                        <button disabled={disabled} className='form-button normal-font' style={{marginTop: '10px'}}>Login</button>
+                        <button disabled={state.disable} className='form-button normal-font' style={{marginTop: '10px'}}>Login</button>
                     )}
                     <p className='normal-font f300' style={{fontSize: "14px"}}><span style={{opacity: 0.3}}>Need an account? </span><Link className='link f400' to='/register'>Register</Link> </p>
                 </form>
