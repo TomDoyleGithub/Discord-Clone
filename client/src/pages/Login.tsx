@@ -28,7 +28,6 @@ function Login() {
 
     const handleFormSubmit = async (event: any) => {
         event.preventDefault();
-        console.log('Submit')
 
         try {
             dispatch({ type: TOGGLE_LOAD });

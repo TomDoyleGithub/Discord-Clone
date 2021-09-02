@@ -10,13 +10,13 @@ import { useMutation } from '@apollo/client';
 import { REGISTER } from '../utils/mutations';
 import ThreeDotsWave from '../components/ThreeDotsWave';
 import { useDispatch, useSelector, RootStateOrAny } from 'react-redux';
-import { TOGGLE_LOAD } from '../redux/actions';
+import { TOGGLE_LOAD, UPDATE_FORM } from '../redux/actions';
 
 function Register() {
     const dispatch = useDispatch();
     const state = useSelector((state: RootStateOrAny) => state);
+
     const [disabled, setDisable] = useState(true);
-    const [formState, setFormState] = useState({ email: '', username: '', password: ''});
     const [dateState, setDateState] = useState({ realMonth: '', realDay: '', realYear: ''});
     const [clickState, setClickState] = useState({ mmActive: false, ddActive: false, yyActive: false});
     const [register] = useMutation(REGISTER);
@@ -28,14 +28,14 @@ function Register() {
 
     const handleChange = (event: any) => {
         const { name, value } = event.target;
-        setFormState({...formState, [name]: value });
+        dispatch({ type: UPDATE_FORM, name, value});
       };
 
     const handleFormSubmit = async (event: any) => {
         event.preventDefault();
         try {
             dispatch({ type: TOGGLE_LOAD });
-            const mutationResponse = await register({ variables: {email: formState.email, username: formState.username, password: formState.password, birthday: `${dateState.realMonth} | ${dateState.realDay} | ${dateState.realYear}` }});
+            const mutationResponse = await register({ variables: {email: state.email, username: state.username, password: state.password, birthday: `${dateState.realMonth} | ${dateState.realDay} | ${dateState.realYear}` }});
             const token = await mutationResponse?.data?.register?.token;
             Auth.login(token);
             dispatch({ type: TOGGLE_LOAD });
@@ -53,12 +53,12 @@ function Register() {
 
     // Use effect that disables the form submit button
     useEffect(() => {
-        if (formState.email === '' || formState.username === '' || formState.password === '' || dateState.realDay === '' || dateState.realMonth === '' || dateState.realYear === '') {
+        if (state.email === '' || state.username === '' || state.password === '' || dateState.realDay === '' || dateState.realMonth === '' || dateState.realYear === '') {
             setDisable(true);
         } else {
             setDisable(false);
         }
-    }, [formState, dateState])
+    }, [state, dateState])
 
     // Closes the selection menu when you click outside the container
     useEffect(() => {
