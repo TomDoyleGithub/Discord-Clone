@@ -40,7 +40,7 @@ function Register() {
             dispatch({ type: TOGGLE_LOAD });
         } catch (err) {
             dispatch({ type: TOGGLE_LOAD });
-            console.log('Something went wrong...')
+            dispatch({ type: TOGGLE_ERROR, value: true });
         }
     };
 
@@ -81,15 +81,15 @@ function Register() {
                     <p className='header-font f600' style={{fontSize: "25px", textAlign: 'center'}}>Create an account</p>
                     <div className='input-container'>
                         <label className='normal-font f500 login-label' style={{fontSize: "12px", opacity: 0.7}}>EMAIL</label>
-                        <input required onChange={handleChange} type='email' name='email' maxLength={30}  className='input normal-font f300'/>
+                        <input required onChange={handleChange} type='email' name='email' maxLength={30}  className={'normal-font f300 ' + (!state.error ? 'input' : 'red-input')}/>
                     </div>
                     <div className='input-container'>
                         <label className='normal-font f500 login-label' style={{fontSize: "12px", opacity: 0.7}}>USERNAME</label>
-                        <input required onChange={handleChange} type='name' maxLength={30} name='username' className='input normal-font f300'/>
+                        <input required onChange={handleChange} type='name' maxLength={30} name='username' className={'normal-font f300 ' + (!state.error ? 'input' : 'red-input')}/>
                     </div>
                     <div className='input-container'>
                         <label className='normal-font f500 login-label' style={{fontSize: "12px", opacity: 0.7}}>PASSWORD</label>
-                        <input required onChange={handleChange} type='password' name='password' className='input normal-font f300'/>
+                        <input required onChange={handleChange} type='password' name='password' className={'normal-font f300 ' + (!state.error ? 'input' : 'red-input')}/>
                     </div>
                     <div className='input-container'>
                         <label className='normal-font f500 login-label' style={{fontSize: "12px", opacity: 0.7}}>DATE OF BIRTH</label>
@@ -101,7 +101,7 @@ function Register() {
                                         <p key={i} data-value={month} data-name='realMonth' onClick={clickDob}>{month}</p>
                                     ))}
                                 </section>
-                                <input required readOnly defaultValue={state.realMonth} name='mmActive' onClick={handleClick} className='input dropdown-input normal-font f300' placeholder='Select' style={{cursor: 'default'}}/>
+                                <input required readOnly defaultValue={state.realMonth} name='mmActive' onClick={handleClick}  className={'dropdown-input normal-font f300 ' + (!state.error ? 'input' : 'red-input')} placeholder='Select' style={{cursor: 'default'}}/>
                             </section>
                             <section className='full-dropdown'>
                                 <img className='dropdown-icon' alt='Arrow' src={dropArrow}/>
@@ -110,7 +110,7 @@ function Register() {
                                         <p key={i} data-value={day} data-name='realDay' onClick={clickDob}>{day}</p>
                                     ))}
                                 </section>
-                                <input required readOnly defaultValue={state.realDay} name='ddActive' onClick={handleClick} className='input dropdown-input  normal-font f300' placeholder='Select' style={{cursor: 'default'}}/>
+                                <input required readOnly defaultValue={state.realDay} name='ddActive' onClick={handleClick} className={'dropdown-input normal-font f300 ' + (!state.error ? 'input' : 'red-input')} placeholder='Select' style={{cursor: 'default'}}/>
                             </section>
                             <section className='full-dropdown'>
                                 <img className='dropdown-icon' alt='Arrow' src={dropArrow}/>
@@ -119,7 +119,7 @@ function Register() {
                                         <p key={i} data-value={item} data-name='realYear' onClick={clickDob}>{item}</p>
                                     ))}
                                 </section>
-                                <input required readOnly defaultValue={state.realYear} name='yyActive' onClick={handleClick} className='input dropdown-input  normal-font f300' placeholder='Select' style={{cursor: 'default'}}/>
+                                <input required readOnly defaultValue={state.realYear} name='yyActive' onClick={handleClick} className={'dropdown-input normal-font f300 ' + (!state.error ? 'input' : 'red-input')} placeholder='Select' style={{cursor: 'default'}}/>
                             </section>
                         </div>
                     </div>
