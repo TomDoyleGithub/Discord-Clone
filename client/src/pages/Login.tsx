@@ -9,21 +9,21 @@ import Auth from '../utils/auth';
 import { LOGIN, SEND_PASSWORD } from '../utils/mutations';
 import ThreeDotsWave from '../components/ThreeDotsWave';
 import { useDispatch, useSelector, RootStateOrAny } from 'react-redux';
-import { TOGGLE_LOAD } from '../redux/actions';
+import { TOGGLE_LOAD, UPDATE_FORM } from '../redux/actions';
 
 function Login() {
     const dispatch = useDispatch();
     const state = useSelector((state: RootStateOrAny) => state);
+
     const [disabled, setDisable] = useState(true);
     const [modal, setModal] = useState(false);
-    const [formState, setFormState] = useState({ email: '', password: '' });
     const [formError, setError ] = useState(false);
     const [login] = useMutation(LOGIN);
     const [sendPassword] = useMutation(SEND_PASSWORD);
 
     const handleChange = (event: any) => {
         const { name, value } = event.target;
-        setFormState({...formState, [name]: value });
+        dispatch({ type: UPDATE_FORM, name, value});
       };
 
     const handleFormSubmit = async (event: any) => {
@@ -32,7 +32,7 @@ function Login() {
 
         try {
             dispatch({ type: TOGGLE_LOAD });
-            const mutationResponse = await login({ variables: {email: formState?.email, password: formState?.password,}})
+            const mutationResponse = await login({ variables: {email: state?.email, password: state?.password,}})
             const token = await mutationResponse?.data?.login?.token;
             Auth.login(token)
             dispatch({ type: TOGGLE_LOAD });
@@ -44,7 +44,7 @@ function Login() {
 
     const forgotPassword = async () => {
         try {
-            await sendPassword({ variables: {email: formState?.email}});
+            await sendPassword({ variables: {email: state?.email}});
             setModal(true);
         } catch (err) {
             setError(true);
@@ -52,12 +52,12 @@ function Login() {
     };
 
     useEffect(() => {
-        if (formState.email === '' || formState.password === '' ) {
+        if (state.email === '' || state.password === '' ) {
             setDisable(true);
         } else {
             setDisable(false);
         }
-    }, [formState])
+    }, [state])
 
     return (
         <div className='fullscreen'>

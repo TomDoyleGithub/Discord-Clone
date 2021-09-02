@@ -1,7 +1,10 @@
-import { TOGGLE_LOAD } from './actions';
+import { TOGGLE_LOAD, UPDATE_FORM } from './actions';
 
 const initalState = {
     loading: false,
+    email: '',
+    username: '',
+    password: '',
 };
 
 export default function reducer (state = initalState, action) {
@@ -10,6 +13,12 @@ export default function reducer (state = initalState, action) {
             return { 
                 ...state, 
                 loading: !state.loading
+            };
+        case UPDATE_FORM:
+            let name = action.name;
+            return {
+                ...state,
+                [name]: action.value
             };
         default: 
             return state;
