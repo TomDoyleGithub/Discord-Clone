@@ -7,7 +7,7 @@ function ProtectedAuth({ component: Component, ...restOfProps }) {
       <Route
         {...restOfProps}
         render={(props:any) =>
-          !Auth.loggedIn() ? <Component {...props} /> : <Redirect to='/' />
+          !Auth.loggedIn() ? <Component {...props} /> : <Redirect to='/channels/@me' />
         }
       />
     );

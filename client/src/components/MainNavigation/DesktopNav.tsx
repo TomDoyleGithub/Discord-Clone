@@ -13,7 +13,7 @@ function DesktopNav() {
     }
     return (
         <div className='border left-side-nav-container'>
-            <NavLink exact activeClassName='active-discord' to='/' className={'nav-circle purple-back'}>
+            <NavLink exact activeClassName='active-discord' to='/channels/@me' className={'nav-circle purple-back'}>
                 <section className='white-strip'></section>
                 <div className='nav-speech-bubble normal-font f500'>
                     Home

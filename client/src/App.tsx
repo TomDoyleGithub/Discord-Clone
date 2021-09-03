@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Redirect, Route  } from 'react-router-dom';
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import './styles/reset.sass'
@@ -13,6 +13,7 @@ import ProtectedAuth from './components/ProtectedAuth';
 import DesktopNav from './components/MainNavigation/DesktopNav';
 import StoreProvider from './redux/GlobalState';
 import UserCard from './components/UserCard/UserCard';
+import Discovery from './pages/Discovery';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -42,7 +43,11 @@ function App() {
         <DesktopNav/>
         <UserCard/>
         <Switch>
-          <ProtectedRoute exact path='/' component={Home} />
+          <Route exact path="/">
+              <Redirect to="/channels/@me" />
+          </Route>
+          <ProtectedRoute exact path='/channels/@me' component={Home} />
+          <ProtectedRoute exact path='/discovery' component={Discovery} />
           <ProtectedAuth exact path='/login' component={Login} />
           <ProtectedAuth exact path='/reset-password/:id/:token' component={ResetPassword}/>
           <ProtectedAuth exact path='/register' component={Register} />
