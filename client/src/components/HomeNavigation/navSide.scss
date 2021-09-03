@@ -42,7 +42,6 @@ $light-letter: #72767c;
 }
 
 .friends-tab {
-  // background-color: rgba(255, 255, 255, 0.048);
   color: rgba(255, 255, 255, 0.452);
   column-gap: 16px;
   margin-top: 8px;
@@ -52,6 +51,13 @@ $light-letter: #72767c;
   @include flex-center;
   padding: 0px 13px;
   cursor: pointer;
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.034);
+    color: rgba(255, 255, 255, 0.795);
+    .friend-icon {
+      opacity: 0.8;
+    }
+  }
 }
 
 .friends-active {
@@ -59,6 +65,13 @@ $light-letter: #72767c;
   color: white;
   .friend-icon {
     opacity: 1;
+  }
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.048);
+    color: white;
+    .friend-icon {
+      opacity: 1;
+    }
   }
 }
 
