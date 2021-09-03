@@ -1,14 +1,12 @@
 import React from 'react'
 import './navSide.scss'
+import StartConversation from './StartConversation'
 
 function HomeNavigation() {
     return (
         <section className='home-nav-container'>
-            <div className='start-conversation-container'>
-                <div className='starty-container'>
-                    <p className='normal-font'>Find or start a conversation</p>
-                </div>
-            </div>
+            <StartConversation/>
+            <p>Hello</p>
         </section>
     )
 }
