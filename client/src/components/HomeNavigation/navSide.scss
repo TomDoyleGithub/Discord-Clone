@@ -40,3 +40,29 @@ $light-letter: #72767c;
   font-size: 13.5px;
   cursor: pointer;
 }
+
+.friends-tab {
+  // background-color: rgba(255, 255, 255, 0.048);
+  color: rgba(255, 255, 255, 0.452);
+  column-gap: 16px;
+  margin-top: 8px;
+  width: 92%;
+  height: 41px;
+  border-radius: 5px;
+  @include flex-center;
+  padding: 0px 13px;
+  cursor: pointer;
+}
+
+.friends-active {
+  background-color: rgba(255, 255, 255, 0.048);
+  color: white;
+  .friend-icon {
+    opacity: 1;
+  }
+}
+
+.friend-icon {
+  width: 20.5px;
+  opacity: 0.5;
+}
