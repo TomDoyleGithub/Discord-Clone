@@ -5,15 +5,18 @@ import { IoAddSharp, IoCompassSharp } from 'react-icons/io5';
 import { AiOutlineCaretRight } from 'react-icons/ai';
 import logo from '../../images/Discord-White.svg';
 import { NavLink } from 'react-router-dom';
+import { useSelector, RootStateOrAny } from 'react-redux';
 
 
 function DesktopNav() {
+    const state = useSelector((state: RootStateOrAny) => state);
+    const route = state?.homeRoute;
     if (!Auth.loggedIn()) {
         return <></>
     }
     return (
         <div className='border left-side-nav-container'>
-            <NavLink exact activeClassName='active-discord' to='/channels/@me' className={'nav-circle purple-back'}>
+            <NavLink exact activeClassName='active-discord' to={route} className={'nav-circle purple-back'}>
                 <section className='white-strip'></section>
                 <div className='nav-speech-bubble normal-font f500'>
                     Home

@@ -1,11 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './navSide.scss';
 import friend from '../../images/Friends.svg';
 import StartConversation from './StartConversation';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import Auth from '../../utils/auth';
+import { useDispatch } from 'react-redux';
+import { CHANGE_HOME_ROUTE } from '../../redux/actions';
 
 function HomeNavigation() {
+    const location = useLocation();
+    const dispatch = useDispatch();
+
+    const route = location?.pathname;
+    useEffect(() => {
+        dispatch({ type: CHANGE_HOME_ROUTE, route });
+    }, [route, dispatch]);
+
     if (!Auth.loggedIn()) {
         return <></>
     }
