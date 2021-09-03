@@ -86,3 +86,27 @@ $light-letter: #72767c;
   width: 22px;
   opacity: 0.5;
 }
+
+.dir-mes-container {
+  width: 85%;
+  height: auto;
+  color: $light-letter;
+  text-transform: uppercase;
+  cursor: default;
+  font-size: 12px;
+  margin-top: 20px;
+  filter: brightness(130%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &:hover {
+    p {
+      filter: brightness(130%);
+    }
+  }
+}
+
+.dir-plus-icon {
+  font-size: 15px;
+  cursor: pointer;
+}

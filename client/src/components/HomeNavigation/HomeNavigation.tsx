@@ -7,6 +7,7 @@ import { NavLink, useLocation } from 'react-router-dom';
 import Auth from '../../utils/auth';
 import { useDispatch } from 'react-redux';
 import { CHANGE_HOME_ROUTE } from '../../redux/actions';
+import { GoPlus } from 'react-icons/go';
 
 function HomeNavigation() {
     const location = useLocation();
@@ -31,6 +32,10 @@ function HomeNavigation() {
                 <img className='discover-icon' src={discovery} alt='Friend Icon'/>
                 <p className='normal-font'>Stage Discovery</p>
             </NavLink>
+            <div className='dir-mes-container normal-font f500'>
+                <p>Direct Messages</p>
+                <GoPlus className='dir-plus-icon'/>
+            </div>
         </section>
     )
 }
