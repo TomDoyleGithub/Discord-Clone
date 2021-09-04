@@ -1,6 +1,9 @@
 import React from 'react'
 import Auth from '../../utils/auth';
+import { HiCog } from 'react-icons/hi';
 import ProPic from '../StandardProPic/ProPic';
+import mic from '../../images/Mic-On.svg';
+import headset from '../../images/Head-on.svg';
 import './userCard.scss';
 
 function UserCard() {
@@ -17,6 +20,19 @@ function UserCard() {
             <div className='card-info-container' onClick={handleCopy}>
                 <p className='username header-font f700'>Punkinut</p>
                 <p className='user-code normal-font'>#4681</p>
+            </div>
+            <div className='user-icon-container'>
+                    
+                    
+                <div>
+                    <img src={mic} alt='Mic Icon' style={{width: '12px'}}/>
+                </div>
+                <div>
+                    <img src={headset} alt='Mic Icon' style={{width: '17px'}}/>
+                </div>
+                <div>
+                    <HiCog style={{fontSize: '21px', color: '#DCDDDF'}}/>
+                </div>
             </div>
         </section>
     )

@@ -33,3 +33,16 @@ $light-letter: #b8bbbe;
   position: relative;
   top: 2px;
 }
+
+.user-icon-container {
+  margin-left: 28px;
+  display: flex;
+  div {
+    height: 31px;
+    width: 31px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+}
