@@ -1,4 +1,12 @@
-import { TOGGLE_DISABLE, TOGGLE_ERROR, TOGGLE_LOAD, UPDATE_FORM, CHANGE_HOME_ROUTE } from './actions';
+import { 
+    TOGGLE_DISABLE, 
+    TOGGLE_ERROR, 
+    TOGGLE_LOAD, 
+    UPDATE_FORM, 
+    CHANGE_HOME_ROUTE,
+    UPDATE_MUTE,
+    UPDATE_DEAFEN 
+} from './actions';
 
 const initalState = {
     loading: false,
@@ -10,6 +18,8 @@ const initalState = {
     realMonth: '',
     realDay: '',
     realYear: '',
+    mute: false,
+    deafen: false,
     homeRoute: '/channels/@me'
 };
 
@@ -40,6 +50,16 @@ export default function reducer (state = initalState, action) {
             return {
                 ...state,
                 homeRoute: action.route
+            };
+        case UPDATE_MUTE:
+            return {
+                ...state,
+                mute: action.mute
+            };
+        case UPDATE_DEAFEN:
+            return {
+                ...state,
+                deafen: action.deafen
             };
         default: 
             return state;

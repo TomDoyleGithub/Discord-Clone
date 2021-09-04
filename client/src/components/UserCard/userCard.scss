@@ -44,5 +44,9 @@ $light-letter: #b8bbbe;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.075);
+      border-radius: 5px;
+    }
   }
 }
