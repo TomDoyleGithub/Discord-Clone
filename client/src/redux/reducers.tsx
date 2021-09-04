@@ -54,12 +54,14 @@ export default function reducer (state = initalState, action) {
         case UPDATE_MUTE:
             return {
                 ...state,
-                mute: action.mute
+                mute: !state.mute,
+                deafen: false
             };
         case UPDATE_DEAFEN:
             return {
                 ...state,
-                deafen: action.deafen
+                deafen: !state.deafen,
+                mute: true
             };
         default: 
             return state;
