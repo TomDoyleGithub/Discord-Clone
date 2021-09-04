@@ -33,6 +33,15 @@ import bcrypt from "bcrypt";
   
     next();
   });
+
+  userSchema.pre('save', async function (next) {
+    if (this.isNew || this.isModified('username')) {
+      const val = Math.floor(1000 + Math.random() * 9000);
+      (this as any).username = await (this as any).username + `#${val}`;
+    }
+  
+    next();
+  });
   
   userSchema.methods.isCorrectPassword = async function (password) {
     return bcrypt.compare(password, (this as any).password);
