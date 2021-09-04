@@ -2,6 +2,8 @@ $gray: #2e3136;
 $dark: #1d1e22;
 $dark-gray: #1f2225;
 $light-letter: #72767c;
+$black: #060607;
+$transition: all 120ms ease-in-out;
 
 @mixin flex-center {
   display: flex;
@@ -91,6 +93,7 @@ $light-letter: #72767c;
   width: 85%;
   height: auto;
   color: $light-letter;
+  position: relative;
   text-transform: uppercase;
   cursor: default;
   font-size: 12px;
@@ -106,7 +109,34 @@ $light-letter: #72767c;
   }
 }
 
+.dm-bubble {
+  position: absolute;
+  background-color: $black;
+  top: -43px;
+  padding: 10px;
+  border-radius: 5px;
+  text-transform: none;
+  font-size: 13px;
+  right: -35px;
+  filter: brightness(140%);
+  opacity: 0;
+  transition: $transition;
+  transform: scale(0.9);
+}
+
 .dir-plus-icon {
   font-size: 15px;
   cursor: pointer;
+  &:hover + .dm-bubble {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.dm-triangle {
+  position: absolute;
+  bottom: -9px;
+  right: 36px;
+  color: $black;
+  transform: rotate(90deg);
 }
