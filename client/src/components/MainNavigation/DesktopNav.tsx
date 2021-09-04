@@ -15,7 +15,7 @@ function DesktopNav() {
         return <></>
     }
     return (
-        <div className='border left-side-nav-container'>
+        <div className='left-side-nav-container'>
             <NavLink exact activeClassName='active-discord' to={route} className={'nav-circle purple-back'}>
                 <section className='white-strip'></section>
                 <div className='nav-speech-bubble normal-font f500'>

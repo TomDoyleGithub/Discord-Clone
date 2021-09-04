@@ -1,5 +1,6 @@
 import React from 'react'
 import Auth from '../../utils/auth';
+import ProPic from '../StandardProPic/ProPic';
 import './userCard.scss';
 
 function UserCard() {
@@ -8,7 +9,11 @@ function UserCard() {
     }
     return (
         <section className='usercard-container'>
-
+            <ProPic />
+            <div>
+                <p className='username'>Punkinut</p>
+                <p>#4681</p>
+            </div>
         </section>
     )
 }

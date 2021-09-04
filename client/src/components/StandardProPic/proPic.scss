@@ -1,0 +1,11 @@
+$gray: #757e8a;
+
+.pro-fake-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50px;
+  background-color: $gray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

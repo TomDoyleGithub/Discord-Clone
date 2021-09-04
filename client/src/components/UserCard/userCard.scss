@@ -3,10 +3,18 @@ $dark: #282b2f;
 .usercard-container {
   position: absolute;
   width: 240px;
-  height: 50px;
+  height: 53px;
   bottom: 0px;
   left: 70px;
   background-color: $dark;
-  padding: 0px 8px;
+  padding: 0px 9px;
   z-index: 10;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 5px;
+}
+
+.username {
+  color: white;
 }
