@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux';
 import { CHANGE_HOME_ROUTE } from '../../redux/actions';
 import { GoPlus } from 'react-icons/go';
 import { AiOutlineCaretRight } from 'react-icons/ai';
+import PlaceHolder from './PlaceHolder';
 
 function HomeNavigation() {
     const location = useLocation();
@@ -41,6 +42,7 @@ function HomeNavigation() {
                     <AiOutlineCaretRight className='dm-triangle'/>
                 </div>
             </div>
+            <PlaceHolder/>
         </section>
     )
 }

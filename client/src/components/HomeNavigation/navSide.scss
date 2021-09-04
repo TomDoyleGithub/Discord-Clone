@@ -140,3 +140,36 @@ $transition: all 120ms ease-in-out;
   color: $black;
   transform: rotate(90deg);
 }
+
+.no-message-container {
+  width: 100%;
+  height: 460px;
+  margin-top: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  row-gap: 11px;
+  transform: scaleY(-1);
+}
+
+.mini-fake-message {
+  display: flex;
+  flex-direction: row;
+  column-gap: 9px;
+  align-items: center;
+}
+
+.fake-pic {
+  width: 32px;
+  height: 32px;
+  border-radius: 50px;
+  background-color: rgba(255, 255, 255, 0.048);
+}
+
+.fake-message {
+  width: 145px;
+  height: 20px;
+  border-radius: 50px;
+  background-color: rgba(255, 255, 255, 0.048);
+}
