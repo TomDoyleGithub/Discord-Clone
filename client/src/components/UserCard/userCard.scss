@@ -1,5 +1,7 @@
 $dark: #282b2f;
 $light-letter: #b8bbbe;
+$black: #060607;
+$transition: all 120ms ease-in-out;
 
 .usercard-container {
   position: absolute;
@@ -24,6 +26,16 @@ $light-letter: #b8bbbe;
 .card-info-container {
   margin-left: 5px;
   cursor: pointer;
+  .user-bubble {
+    top: -28px !important;
+    right: 70px !important;
+  }
+  &:hover {
+    .user-bubble {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
 }
 
 .username {
@@ -40,6 +52,7 @@ $light-letter: #b8bbbe;
 
 .user-icon-container {
   margin-left: 28px;
+  position: relative;
   display: flex;
   div {
     height: 31px;
@@ -51,6 +64,38 @@ $light-letter: #b8bbbe;
     &:hover {
       background-color: rgba(255, 255, 255, 0.075);
       border-radius: 5px;
+      .user-bubble {
+        opacity: 1;
+        visibility: visible;
+      }
     }
   }
+}
+
+.user-bubble {
+  position: absolute;
+  background-color: $black;
+  color: $light-letter;
+  top: -40px;
+  visibility: hidden;
+  padding: 10px;
+  border-radius: 5px;
+  text-transform: none;
+  font-size: 14px;
+  filter: brightness(120%);
+  opacity: 0;
+  transition: $transition;
+  transform: scale(0.9);
+  z-index: 500;
+  &:hover {
+    opacity: 0 !important;
+    visibility: hidden !important;
+  }
+}
+
+.user-triangle {
+  position: absolute;
+  bottom: -9px;
+  color: $black;
+  transform: rotate(90deg);
 }
