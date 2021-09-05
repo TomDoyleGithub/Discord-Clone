@@ -10,6 +10,12 @@ const resolvers = {
         allUsers: async () => {
             return User.find();
           },
+        me: async (parent:any, args:any, context:any) => {
+            if (context.user) {
+                return User.findOne({ _id: context.user._id })
+              }
+              throw new AuthenticationError('Cannot find a user with this id!');
+            }
     },
     Mutation: {
         register: async (_:any, { email, username, password, birthday, propic }:any) => {

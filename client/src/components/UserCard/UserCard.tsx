@@ -10,14 +10,18 @@ import './userCard.scss';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { UPDATE_DEAFEN, UPDATE_MUTE } from '../../redux/actions';
 import { AiOutlineCaretRight } from 'react-icons/ai';
+import { useQuery } from '@apollo/client';
+import { GET_ME } from '../../utils/queries';
 
 function UserCard() {
+    const { data } = useQuery(GET_ME);
+    const me = data?.me || {};
+
     const dispatch = useDispatch();
     const { mute, deafen } = useSelector((state: RootStateOrAny) => state);
 
     const handleCopy = () => {
-        // This will copy the data when implemented
-        navigator.clipboard.writeText('Punkinut');
+        navigator.clipboard.writeText(me?.username);
     };
 
     const handleMute = () => {
@@ -36,8 +40,8 @@ function UserCard() {
             <ProPic />
             <div className='card-info-container' onClick={handleCopy}>
                 <section className='user-bubble normal-font f500'>Click to copy username<AiOutlineCaretRight className='user-triangle' style={{right: '80px'}}/></section>
-                <p className='username header-font f700'>Punkinut</p>
-                <p className='user-code normal-font'>#4681</p>
+                <p className='username header-font f700'>{me?.username?.slice(0, -5)}</p>
+                <p className='user-code normal-font'>{me?.username?.slice(Math.max(me?.username?.length - 5, 0))}</p>
             </div>
             <div className='user-icon-container'> 
                 <div onClick={handleMute}>
