@@ -22,6 +22,10 @@ import bcrypt from "bcrypt";
     birthday: {
       type: String,
       required: true
+    },
+    propic: {
+      type: String,
+      default: '#'
     }
   });
 

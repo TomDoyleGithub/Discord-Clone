@@ -6,6 +6,7 @@ const typeDefs = gql`
         email: String!
         username: String!
         birthday: String!
+        propic: String
     }
 
     type Auth {
@@ -18,7 +19,7 @@ const typeDefs = gql`
     }
 
     type Mutation {
-        register(email: String!, username: String!, password: String!, birthday: String!): Auth
+        register(email: String!, username: String!, password: String!, birthday: String!, propic: String): Auth
         login(email: String!, password: String!): Auth
         sendPassword(email: String!): User
         changePassword(id: String!, token: String!, password: String!): User
