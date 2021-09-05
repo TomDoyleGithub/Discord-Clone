@@ -3,6 +3,7 @@ $gray: #383c3c;
 $blue: #4eaaea;
 $white: #dcddde;
 $red: #ed4245;
+$black: #36393e;
 $slide: all 150ms ease;
 $graphie-font: graphie, sans-serif;
 $sans-font: davis-sans, sans-serif;
@@ -12,6 +13,10 @@ textarea:focus,
 select:focus {
   outline: none;
   animation: focus 500ms ease;
+}
+
+body {
+  background-color: $black;
 }
 
 .red-text {
