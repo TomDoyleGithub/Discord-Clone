@@ -52,7 +52,8 @@ $transition: all 120ms ease-in-out;
 
 .user-icon-container {
   margin-left: 28px;
-  position: relative;
+  position: absolute;
+  right: 8px;
   display: flex;
   div {
     height: 31px;

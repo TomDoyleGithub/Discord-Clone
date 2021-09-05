@@ -14,8 +14,10 @@ import { useQuery } from '@apollo/client';
 import { GET_ME } from '../../utils/queries';
 
 function UserCard() {
-    const { data } = useQuery(GET_ME);
+    const { data, loading } = useQuery(GET_ME);
     const me = data?.me || {};
+    const username = me?.username?.slice(0, -5);
+    console.log(`Loading: ${loading}`)
 
     const dispatch = useDispatch();
     const { mute, deafen } = useSelector((state: RootStateOrAny) => state);
@@ -40,7 +42,11 @@ function UserCard() {
             <ProPic />
             <div className='card-info-container' onClick={handleCopy}>
                 <section className='user-bubble normal-font f500'>Click to copy username<AiOutlineCaretRight className='user-triangle' style={{right: '80px'}}/></section>
-                <p className='username header-font f700'>{me?.username?.slice(0, -5)}</p>
+                { username?.length > 8 ? (
+                    <p className='username header-font f700'>{`${username?.slice(0, 9)}...`}</p>
+                ) : (
+                    <p className='username header-font f700'>{username}</p>
+                )}
                 <p className='user-code normal-font'>{me?.username?.slice(Math.max(me?.username?.length - 5, 0))}</p>
             </div>
             <div className='user-icon-container'> 
