@@ -12,15 +12,25 @@ import { CHANGE_LOADER, UPDATE_DEAFEN, UPDATE_MUTE } from '../../redux/actions';
 import { AiOutlineCaretRight } from 'react-icons/ai';
 import { useQuery } from '@apollo/client';
 import { GET_ME } from '../../utils/queries';
+import mute1 from '../../sounds/mute-1.mp3';
+import mute2 from '../../sounds/mute-2.mp3';
+import head1 from '../../sounds/head-1.mp3';
+import head2 from '../../sounds/head-2.mp3';
+import useSound from 'use-sound';
 
 function UserCard() {
+    const [playMute] = useSound(mute1);
+    const [playUnmute] = useSound(mute2);
+    const [playHead] = useSound(head1);
+    const [playUnhead] = useSound(head2);
+
+
     const { data, loading } = useQuery(GET_ME);
     const me = data?.me || {};
     const username = me?.username?.slice(0, -5);
-    console.log(`Loading: ${loading}`)
 
     const dispatch = useDispatch();
-    const { mute, deafen } = useSelector((state: RootStateOrAny) => state);
+    const { mute, deafen, largerLoader } = useSelector((state: RootStateOrAny) => state);
 
     const handleCopy = () => {
         navigator.clipboard.writeText(me?.username);
@@ -28,17 +38,27 @@ function UserCard() {
 
     const handleMute = () => {
         dispatch({ type: UPDATE_MUTE});
+        if (mute) {
+            playMute();
+        } else {
+            playUnmute();
+        };
     };
 
     const handleDeafen = () => {
         dispatch({ type: UPDATE_DEAFEN});
+        if (deafen) {
+            playHead();
+        } else {
+            playUnhead();
+        };
     };
 
     useEffect(() => {
         dispatch({ type: CHANGE_LOADER, userLoad: loading});
     }, [dispatch, loading])
 
-    if (!Auth.loggedIn()) {
+    if (!Auth.loggedIn() || largerLoader) {
         return <></>
     }
     return (
