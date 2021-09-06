@@ -123,3 +123,9 @@ $transition: all 120ms ease-in-out;
   color: $black;
   transform: rotate(90deg);
 }
+
+.pro-container {
+  &:hover {
+    opacity: 0.8;
+  }
+}

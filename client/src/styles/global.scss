@@ -1,8 +1,11 @@
 $purple: #5865f2;
 $gray: #383c3c;
+$light-gray: #757e8a;
 $blue: #4eaaea;
 $white: #dcddde;
 $red: #ed4245;
+$green: #3aa55d;
+$yellow: #faa81a;
 $black: #36393e;
 $slide: all 150ms ease;
 $graphie-font: graphie, sans-serif;
@@ -17,6 +20,32 @@ select:focus {
 
 body {
   background-color: $black;
+}
+
+.real-status {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  left: 28px;
+  top: 29px;
+  border: 3px solid #282b2f;
+  border-radius: 50%;
+}
+
+.online {
+  background-color: $green;
+}
+
+.idle {
+  background-color: $yellow;
+}
+
+.do-not-disturb {
+  background-color: $red;
+}
+
+.invisible {
+  background-color: $light-gray;
 }
 
 .red-text {

@@ -22,7 +22,8 @@ const initalState = {
     mute: false,
     deafen: false,
     homeRoute: '/channels/@me',
-    largerLoader: true
+    largerLoader: true,
+    status: 'online'
 };
 
 export default function reducer (state = initalState, action) {
