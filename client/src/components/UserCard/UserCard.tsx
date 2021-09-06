@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Auth from '../../utils/auth';
 import { HiCog } from 'react-icons/hi';
 import ProPic from '../StandardProPic/ProPic';
@@ -8,7 +8,7 @@ import headset from '../../images/Head-on.svg';
 import headsetOff from '../../images/Head-Off.svg';
 import './userCard.scss';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
-import { UPDATE_DEAFEN, UPDATE_MUTE } from '../../redux/actions';
+import { CHANGE_LOADER, UPDATE_DEAFEN, UPDATE_MUTE } from '../../redux/actions';
 import { AiOutlineCaretRight } from 'react-icons/ai';
 import { useQuery } from '@apollo/client';
 import { GET_ME } from '../../utils/queries';
@@ -33,6 +33,10 @@ function UserCard() {
     const handleDeafen = () => {
         dispatch({ type: UPDATE_DEAFEN});
     };
+
+    useEffect(() => {
+        dispatch({ type: CHANGE_LOADER, userLoad: loading});
+    }, [dispatch, loading])
 
     if (!Auth.loggedIn()) {
         return <></>

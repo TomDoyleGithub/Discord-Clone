@@ -5,7 +5,8 @@ import {
     UPDATE_FORM, 
     CHANGE_HOME_ROUTE,
     UPDATE_MUTE,
-    UPDATE_DEAFEN 
+    UPDATE_DEAFEN, 
+    CHANGE_LOADER
 } from './actions';
 
 const initalState = {
@@ -20,7 +21,8 @@ const initalState = {
     realYear: '',
     mute: false,
     deafen: false,
-    homeRoute: '/channels/@me'
+    homeRoute: '/channels/@me',
+    largerLoader: true
 };
 
 export default function reducer (state = initalState, action) {
@@ -62,6 +64,17 @@ export default function reducer (state = initalState, action) {
                 ...state,
                 deafen: !state.deafen,
                 mute: true
+            };
+        case CHANGE_LOADER:
+            if (action.userLoad) {
+                return {
+                    ...state,
+                    largerLoader: true
+                };
+            };
+            return {
+                ...state,
+                largerLoader: false
             };
         default: 
             return state;

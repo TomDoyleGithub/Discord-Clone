@@ -10,10 +10,18 @@
   justify-content: center;
   flex-direction: column;
   color: white;
+  visibility: visible;
+  opacity: 1;
+  transition: all 150ms ease-in-out;
 }
 
 .did-you-know {
   font-size: 12px;
   text-transform: uppercase;
   margin-top: 40px;
+}
+
+.hide {
+  visibility: none;
+  opacity: 0;
 }
