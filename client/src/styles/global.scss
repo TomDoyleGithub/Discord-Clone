@@ -30,6 +30,10 @@ body {
   top: 29px;
   border: 3px solid #282b2f;
   border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .online {
@@ -38,14 +42,37 @@ body {
 
 .idle {
   background-color: $yellow;
+  section {
+    background-color: #282b2f;
+    position: relative;
+    left: -3px;
+    top: -3px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
 }
 
 .do-not-disturb {
   background-color: $red;
+  section {
+    background-color: #282b2f;
+    width: 6px;
+    height: 3px;
+    position: absolute;
+    bottom: 3.5px;
+    border-radius: 1px;
+  }
 }
 
 .invisible {
   background-color: $light-gray;
+  section {
+    background-color: #282b2f;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+  }
 }
 
 .red-text {

@@ -69,8 +69,11 @@ function UserCard() {
     }
     return (
         <section className='usercard-container'>
-            <div className='pro-container'><ProPic /></div>
-            <Status/>
+
+            <div className='pro-container'>
+                <ProPic />
+                <Status/>
+            </div>
             <div className='card-info-container' onClick={handleCopy}>
                 <section className={ !showCopy ? 'user-bubble normal-font f500' : 'hide'}>Click to copy username<AiOutlineCaretRight className='user-triangle' style={{right: '80px'}}/></section>
                 <section className={ showCopy ? 'copy-bubble normal-font f500' : 'hide'}>Copied!<AiOutlineCaretRight className='user-triangle' style={{right: '30px', color: '#3aa55d'}}/></section>

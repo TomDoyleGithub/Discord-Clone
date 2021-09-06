@@ -7,15 +7,21 @@ function Status() {
         return <div className={`${status} real-status`}></div>
     } else if (status === 'idle') {
         return (
-            <div className={`${status} real-status`}></div>
+            <div className={`${status} real-status`}>
+                <section></section>
+            </div>
         )
     } else if (status === 'do-not-disturb') {
         return (
-            <div className={`${status} real-status`}></div>
+            <div className={`${status} real-status`}>
+                <section></section>
+            </div>
         )
     } else {
         return (
-            <div className={`${status} real-status`}></div>
+            <div className={`${status} real-status`}>
+                <section></section>
+            </div>
         )
     }
 }
