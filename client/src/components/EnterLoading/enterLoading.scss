@@ -1,0 +1,19 @@
+.enter-loading-container {
+  position: absolute;
+  z-index: 999999;
+  width: 100vw;
+  height: 100vh;
+  background-color: #303135;
+  top: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: white;
+}
+
+.did-you-know {
+  font-size: 12px;
+  text-transform: uppercase;
+  margin-top: 40px;
+}
