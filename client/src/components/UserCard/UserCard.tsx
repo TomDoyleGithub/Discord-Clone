@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Auth from '../../utils/auth';
 import { HiCog } from 'react-icons/hi';
 import ProPic from '../StandardProPic/ProPic';
@@ -23,6 +23,7 @@ function UserCard() {
     const [playUnmute] = useSound(mute2);
     const [playHead] = useSound(head1);
     const [playUnhead] = useSound(head2);
+    const [showCopy, setCopy] = useState(false);
 
 
     const { data, loading } = useQuery(GET_ME);
@@ -30,10 +31,14 @@ function UserCard() {
     const username = me?.username?.slice(0, -5);
 
     const dispatch = useDispatch();
-    const { mute, deafen, largerLoader } = useSelector((state: RootStateOrAny) => state);
+    const { mute, deafen } = useSelector((state: RootStateOrAny) => state);
 
     const handleCopy = () => {
         navigator.clipboard.writeText(me?.username);
+        setCopy(true);
+        setTimeout(function(){
+            setCopy(false);; 
+       }, 1000);
     };
 
     const handleMute = () => {
@@ -58,14 +63,15 @@ function UserCard() {
         dispatch({ type: CHANGE_LOADER, userLoad: loading});
     }, [dispatch, loading])
 
-    if (!Auth.loggedIn() || largerLoader) {
+    if (!Auth.loggedIn()) {
         return <></>
     }
     return (
         <section className='usercard-container'>
             <ProPic />
             <div className='card-info-container' onClick={handleCopy}>
-                <section className='user-bubble normal-font f500'>Click to copy username<AiOutlineCaretRight className='user-triangle' style={{right: '80px'}}/></section>
+                <section className={ !showCopy ? 'user-bubble normal-font f500' : 'hide'}>Click to copy username<AiOutlineCaretRight className='user-triangle' style={{right: '80px'}}/></section>
+                <section className={ showCopy ? 'copy-bubble normal-font f500' : 'hide'}>Copied!<AiOutlineCaretRight className='user-triangle' style={{right: '30px', color: '#3aa55d'}}/></section>
                 { username?.length > 8 ? (
                     <p className='username header-font f700'>{`${username?.slice(0, 9)}...`}</p>
                 ) : (

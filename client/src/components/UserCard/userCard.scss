@@ -1,6 +1,7 @@
 $dark: #282b2f;
 $light-letter: #b8bbbe;
 $black: #060607;
+$green: #3aa55d;
 $transition: all 120ms ease-in-out;
 
 .usercard-container {
@@ -92,6 +93,28 @@ $transition: all 120ms ease-in-out;
     opacity: 0 !important;
     visibility: hidden !important;
   }
+}
+
+.copy-bubble {
+  position: absolute;
+  background-color: $green;
+  color: white;
+  top: -28px;
+  left: 48px;
+  padding: 10px;
+  border-radius: 5px;
+  text-transform: none;
+  font-size: 14px;
+  visibility: visible;
+  opacity: 1;
+  transition: $transition;
+  transform: scale(0.9);
+  z-index: 500;
+}
+
+.hide {
+  visibility: hidden;
+  opacity: 0;
 }
 
 .user-triangle {
