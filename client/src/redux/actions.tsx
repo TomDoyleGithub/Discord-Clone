@@ -6,3 +6,4 @@ export const UPDATE_MUTE = 'UPDATE_MUTE';
 export const UPDATE_DEAFEN = 'UPDATE_DEAFEN';
 export const CHANGE_HOME_ROUTE = 'CHANGE_HOME_ROUTE';
 export const CHANGE_LOADER = 'CHANGE_LOADER';
+export const CHANGE_STATUS = 'CHANGE_STATUS';

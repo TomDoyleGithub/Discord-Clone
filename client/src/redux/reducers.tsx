@@ -6,7 +6,8 @@ import {
     CHANGE_HOME_ROUTE,
     UPDATE_MUTE,
     UPDATE_DEAFEN, 
-    CHANGE_LOADER
+    CHANGE_LOADER,
+    CHANGE_STATUS
 } from './actions';
 
 const initalState = {
@@ -76,6 +77,11 @@ export default function reducer (state = initalState, action) {
             return {
                 ...state,
                 largerLoader: false
+            };
+        case CHANGE_STATUS:
+            return {
+                ...state,
+                status: action.status
             };
         default: 
             return state;
