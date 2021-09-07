@@ -1,5 +1,6 @@
 $black: #18191c;
 $gray: #b8bbbe;
+$purple: #5865f2;
 
 .change-status-container {
   position: absolute;
@@ -10,15 +11,49 @@ $gray: #b8bbbe;
   padding: 8px;
   background-color: $black;
   color: $gray;
+  display: flex;
+  flex-direction: column;
+  row-gap: 7px;
 }
 
 .status-container {
+  cursor: pointer;
   width: 100%;
-  padding: 8px;
+  padding: 9px;
   border-radius: 3px;
-  border: 1px solid white;
+  position: relative;
+  div {
+    position: absolute;
+    top: 4px;
+    left: 2px;
+    border-color: $black;
+    section {
+      background-color: $black;
+    }
+  }
+  p {
+    padding-left: 20px;
+  }
+  &:hover {
+    background-color: $purple;
+    color: white;
+    div {
+      background-color: white;
+      border-color: $purple;
+      section {
+        background-color: $purple;
+      }
+    }
+  }
 }
 
 .status-word {
   font-size: 14px;
+}
+
+.line {
+  position: absolute;
+  width: 92%;
+  height: 1px;
+  opacity: 0.7;
 }

@@ -1,9 +1,9 @@
 import React from 'react'
 import { RootStateOrAny, useSelector } from 'react-redux';
-import Online from './StatusIcons/Online'
-import Idle from './StatusIcons/Idle'
-import Disturb from './StatusIcons/Disturb'
-import Invisible from './StatusIcons/Invisible'
+import Online from './StatusIcons/Online';
+import Idle from './StatusIcons/Idle';
+import Disturb from './StatusIcons/Disturb';
+import Invisible from './StatusIcons/Invisible';
 
 function Status({dataStatus}) {
     let status = '';
