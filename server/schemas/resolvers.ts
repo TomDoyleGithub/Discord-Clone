@@ -66,7 +66,10 @@ const resolvers = {
                 console.log('Invalid token');
                 return user;
             }
-        }
+        },
+        updateStatus: async (parent:any, { status }:any, context:any) => {
+            return User.findOneAndUpdate({ _id: context.user._id}, { status }, {new: true});
+        },
     },
 };
 
