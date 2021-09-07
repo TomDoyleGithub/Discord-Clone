@@ -18,8 +18,8 @@ const resolvers = {
             }
     },
     Mutation: {
-        register: async (_:any, { email, username, password, birthday, propic }:any) => {
-            const user = await User.create({  email, username, password, birthday, propic });
+        register: async (_:any, { email, username, password, birthday, propic, status }:any) => {
+            const user = await User.create({  email, username, password, birthday, propic, status });
             const token = authMiddleware.signToken(user);
             return { token, user };
         },

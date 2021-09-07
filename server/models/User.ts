@@ -26,6 +26,10 @@ import bcrypt from "bcrypt";
     propic: {
       type: String,
       default: '#'
+    },
+    status: {
+      type: String,
+      default: 'online'
     }
   });
 
