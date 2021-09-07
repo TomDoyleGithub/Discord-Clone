@@ -10,7 +10,7 @@ import headset from '../../images/Head-on.svg';
 import headsetOff from '../../images/Head-Off.svg';
 import './userCard.scss';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
-import { CHANGE_LOADER, UPDATE_DEAFEN, UPDATE_MUTE } from '../../redux/actions';
+import { CHANGE_LOADER, TOGGLE_STATUS_MODAL, UPDATE_DEAFEN, UPDATE_MUTE } from '../../redux/actions';
 import { AiOutlineCaretRight } from 'react-icons/ai';
 import { useQuery } from '@apollo/client';
 import { GET_ME } from '../../utils/queries';
@@ -62,6 +62,10 @@ function UserCard() {
         };
     };
 
+    const handleStatus = () => {
+        dispatch({ type: TOGGLE_STATUS_MODAL });
+    };
+
     useEffect(() => {
         dispatch({ type: CHANGE_LOADER, userLoad: loading});
     }, [dispatch, loading])
@@ -72,7 +76,7 @@ function UserCard() {
     return (
         <section className='usercard-container'>
             <ChangeStatus/>
-            <div className='pro-container'>
+            <div onClick={handleStatus} className='pro-container'>
                 <ProPic />
                 <Status dataStatus={status}/>
             </div>

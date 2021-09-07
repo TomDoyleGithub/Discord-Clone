@@ -7,7 +7,8 @@ import {
     UPDATE_MUTE,
     UPDATE_DEAFEN, 
     CHANGE_LOADER,
-    CHANGE_STATUS
+    CHANGE_STATUS,
+    TOGGLE_STATUS_MODAL
 } from './actions';
 
 const initalState = {
@@ -24,7 +25,8 @@ const initalState = {
     deafen: false,
     homeRoute: '/channels/@me',
     largerLoader: true,
-    status: ''
+    status: '',
+    statusModal: false
 };
 
 export default function reducer (state = initalState, action) {
@@ -83,6 +85,11 @@ export default function reducer (state = initalState, action) {
                 ...state,
                 status: action.status
             };
+        case TOGGLE_STATUS_MODAL:
+            return {
+                ...state,
+                statusModal: !state.statusModal
+            }
         default: 
             return state;
     };
