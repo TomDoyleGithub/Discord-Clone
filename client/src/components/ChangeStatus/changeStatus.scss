@@ -1,0 +1,24 @@
+$black: #18191c;
+$gray: #b8bbbe;
+
+.change-status-container {
+  position: absolute;
+  width: 220px;
+  height: 282px;
+  top: -288px;
+  border-radius: 5px;
+  padding: 8px;
+  background-color: $black;
+  color: $gray;
+}
+
+.status-container {
+  width: 100%;
+  padding: 8px;
+  border-radius: 3px;
+  border: 1px solid white;
+}
+
+.status-word {
+  font-size: 14px;
+}

@@ -3,6 +3,7 @@ import Status from '../Status'
 import Auth from '../../utils/auth';
 import { HiCog } from 'react-icons/hi';
 import ProPic from '../StandardProPic/ProPic';
+import ChangeStatus from '../ChangeStatus/ChangeStatus';
 import mic from '../../images/Mic-On.svg';
 import micOff from '../../images/Mic-Off.svg';
 import headset from '../../images/Head-on.svg';
@@ -70,7 +71,7 @@ function UserCard() {
     }
     return (
         <section className='usercard-container'>
-
+            <ChangeStatus/>
             <div className='pro-container'>
                 <ProPic />
                 <Status dataStatus={status}/>

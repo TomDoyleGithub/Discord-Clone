@@ -1,5 +1,9 @@
 import React from 'react'
 import { RootStateOrAny, useSelector } from 'react-redux';
+import Online from './StatusIcons/Online'
+import Idle from './StatusIcons/Idle'
+import Disturb from './StatusIcons/Disturb'
+import Invisible from './StatusIcons/Invisible'
 
 function Status({dataStatus}) {
     let status = '';
@@ -13,25 +17,13 @@ function Status({dataStatus}) {
     }
 
     if (status === 'online') {
-        return <div className={`${status} real-status`}></div>
+        return <Online/>
     } else if (status === 'idle') {
-        return (
-            <div className={`${status} real-status`}>
-                <section></section>
-            </div>
-        )
+        return <Idle/>
     } else if (status === 'do-not-disturb') {
-        return (
-            <div className={`${status} real-status`}>
-                <section></section>
-            </div>
-        )
+        return <Disturb/>
     } else {
-        return (
-            <div className={`${status} real-status`}>
-                <section></section>
-            </div>
-        )
+        return <Invisible/>
     }
 }
 
