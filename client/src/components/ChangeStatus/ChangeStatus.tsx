@@ -8,6 +8,7 @@ import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { CHANGE_STATUS, TOGGLE_STATUS_MODAL } from '../../redux/actions';
 import { useMutation } from '@apollo/client';
 import { STATUS_UPDATE } from '../../utils/mutations';
+import defaultEmoji from '../../images/emoji-default.svg';
 
 function ChangeStatus() {
     const dispatch = useDispatch();
@@ -61,6 +62,7 @@ function ChangeStatus() {
                 <p style={{fontSize: '12px', lineHeight: '0.9rem', paddingTop: '4px'}}>You will not appear online, but will have full access to all of Discord</p>
             </section>
             <section className='status-container'>
+                <img style={{width: '14px', position: 'absolute', left: '6px'}} alt='default-emoji-icon' src={defaultEmoji}/>
                 <p className='status-word'>Set a custom status</p>
             </section>
         </div>
