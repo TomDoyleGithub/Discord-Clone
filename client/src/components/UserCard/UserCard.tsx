@@ -30,6 +30,7 @@ function UserCard() {
     const { data, loading } = useQuery(GET_ME);
     const me = data?.me || {};
     const username = me?.username?.slice(0, -5);
+    const status = me?.status;
 
     const dispatch = useDispatch();
     const { mute, deafen } = useSelector((state: RootStateOrAny) => state);
@@ -72,7 +73,7 @@ function UserCard() {
 
             <div className='pro-container'>
                 <ProPic />
-                <Status/>
+                <Status dataStatus={status}/>
             </div>
             <div className='card-info-container' onClick={handleCopy}>
                 <section className={ !showCopy ? 'user-bubble normal-font f500' : 'hide'}>Click to copy username<AiOutlineCaretRight className='user-triangle' style={{right: '80px'}}/></section>
