@@ -51,9 +51,10 @@ $purple: #5865f2;
   font-size: 14px;
 }
 
-.line {
+.lineStat {
   position: absolute;
   width: 92%;
   height: 1px;
   opacity: 0.7;
+  background-color: rgba(255, 255, 255, 0.082);
 }

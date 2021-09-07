@@ -1,9 +1,8 @@
 import React from 'react'
 import './enterLoading.scss'
-import spinner from '../../images/spinner.gif';
 import { RootStateOrAny, useSelector } from 'react-redux';
 
-function EnterLoading() {
+function EnterLoading({spinner}) {
     const { largerLoader } = useSelector((state: RootStateOrAny) => state);
 
     return (

@@ -14,6 +14,8 @@ import DesktopNav from './components/MainNavigation/DesktopNav';
 import StoreProvider from './redux/GlobalState';
 import UserCard from './components/UserCard/UserCard';
 import Discovery from './pages/Discovery';
+import EnterLoading from './components/EnterLoading/EnterLoading';
+import spinner from './images/spinner.gif';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -42,6 +44,7 @@ function App() {
         <StoreProvider>
         <DesktopNav/>
         <UserCard/>
+        <EnterLoading spinner={spinner}/>
         <Switch>
           <Route exact path="/">
               <Redirect to="/channels/@me" />

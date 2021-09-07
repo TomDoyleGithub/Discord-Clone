@@ -22,8 +22,8 @@ function ChangeStatus() {
 
     return (
         <div className='change-status-container normal-font'>
-            <div className='line' style={{top: '43px'}}></div>
-            <div className='line' style={{bottom: '43px'}}></div>
+            <div className='lineStat' style={{top: '43px'}}></div>
+            <div className='lineStat' style={{bottom: '43px'}}></div>
             <section onClick={handleClick} data-value='online' className='status-container'>
                 <div><Online/></div>
                 <p className='status-word'>Online</p>
