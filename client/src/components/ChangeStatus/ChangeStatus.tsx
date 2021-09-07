@@ -6,14 +6,18 @@ import Disturb from '../StatusIcons/Disturb';
 import Invisible from '../StatusIcons/Invisible';
 import { useDispatch } from 'react-redux';
 import { CHANGE_STATUS } from '../../redux/actions';
+import { useMutation } from '@apollo/client';
+import { STATUS_UPDATE } from '../../utils/mutations';
 
 function ChangeStatus() {
     const dispatch = useDispatch();
+    const [updateStatus] = useMutation(STATUS_UPDATE);
 
     const handleClick = (e) => {
         const clickStatus = e.currentTarget.getAttribute('data-value');
         e.stopPropagation(); 
         dispatch({ type: CHANGE_STATUS, status: clickStatus });
+        updateStatus({ variables: {status: clickStatus}});
     };
 
     return (

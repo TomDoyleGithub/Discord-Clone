@@ -49,3 +49,12 @@ mutation changePassword ($id: String!, $token: String!, $password: String!) {
   }
 }
 `;
+
+export const STATUS_UPDATE = gql `
+mutation updateStatus ($status: String!) {
+  updateStatus(status: $status) {
+    _id
+    status
+  }
+}
+`;
