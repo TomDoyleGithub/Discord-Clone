@@ -3,7 +3,8 @@
     "start": "cd server && npm run start",
     "develop": "concurrently \"cd socket && npm start\" \"cd server && npm run watch\" \"cd client && npm start\"",
     "deploy":"git commit -am '...' && git push heroku main --force",
-    "heroku-postbuild":"cd client && npm install && npm run build && cd ../server && npm i"
+    "heroku-postbuild":"cd client && npm install && npm run build && cd ../server && npm i",
+    "hlogs" : "heroku logs --tail --app discord-punkinut --source app"
   },
   "devDependencies": {
     "concurrently": "^6.2.1"
