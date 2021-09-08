@@ -4,7 +4,7 @@
     "develop": "concurrently \"cd socket && npm start\" \"cd server && npm run watch\" \"cd client && npm start\"",
     "install": "cd server && npm i && cd ../client && npm i",
     "seed": "cd server && npm run seed",
-    "build": "cd client && npm run build"
+    "deploy":"git commit -am '...' && git push heroku main"
   },
   "devDependencies": {
     "concurrently": "^6.2.1"
