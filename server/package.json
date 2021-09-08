@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node dist/server",
     "watch": "nodemon",
+    "build":"tsc --init",
     "seed": "node seeders/seed.ts",
     "tsc:watch": "tsc --watch",
     "tsc": "tsc"
