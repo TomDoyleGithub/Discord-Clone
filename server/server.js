@@ -23,9 +23,14 @@ if (process.env.NODE_ENV === 'production') {
     app.use(express_1.default.static(path_1.default.join(__dirname, '../client/build')));
 }
 ;
+app.get("/",function(res){
+    return res.send("Hello world")
+})
+/*
 app.get('*', function (res) {
     res.sendFile(path_1.default.join(__dirname, '../client/build/index.html'));
 });
+*/
 connection_1.default.once('open', function () {
     app.listen(PORT, function () {
         console.log("\uD83C\uDF0D Now listening on localhost:" + PORT);
