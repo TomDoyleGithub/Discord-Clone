@@ -4,7 +4,7 @@
   "description": "Server side of Discord Clone",
   "main": "server.ts",
   "scripts": {
-    "start": "node server",
+    "start": "npm run tsc && node server",
     "watch": "nodemon",
     "seed": "node seeders/seed.ts",
     "tsc:watch": "tsc --watch",

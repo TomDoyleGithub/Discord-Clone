@@ -5,7 +5,7 @@
     "deploy":"git commit -am '...' && git push heroku main --force",
     "build:client":"cd client && npm install && npm run build",
     "heroku-postbuild:prod":"npm run build:client && cd ../server && npm i",
-    "heroku-postbuild":"cd server && npm i && tsc",
+    "heroku-postbuild":"cd server && npm i",
     "hlogs" : "heroku logs --tail --app discord-punkinut --source app"
   },
   "devDependencies": {
