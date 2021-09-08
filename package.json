@@ -6,7 +6,7 @@
     "build:client": "cd client && npm install && npm run build",
     "build:server": "cd server && npm install && npm run build",
     "heroku-postbuild:old": "npm run build:client && cd server && npm i",
-    "heroku-postbuild": "npm run build:server",
+    "heroku-postbuild": "npm run build:client && npm run build:server",
     "hlogs": "heroku logs --tail --app discord-punkinut --source app"
   },
   "devDependencies": {
