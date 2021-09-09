@@ -22,7 +22,8 @@ const sendMail = async (link:any, username:any, email:any) => {
                 clientId : CLIENT_ID,
                 clientSecret : CLIENT_SECRET,
                 refreshToken: REFRESH_TOKEN,
-                accessToken: accessToken
+                accessToken: accessToken,
+                access_type: 'offline'
             }
         });
 
@@ -39,9 +40,10 @@ const sendMail = async (link:any, username:any, email:any) => {
         };
 
         const result = await transport.sendMail(mailOptions);
+        console.log(result);
         return result;
     } catch (err) {
-        return(err)
+        console.log(err);
     }
 };
 

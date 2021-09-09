@@ -58,7 +58,7 @@ function Login() {
    
     return (
         <div className='fullscreen'>
-            <PasswordModal modal={modal} setModal={setModal} />
+            <PasswordModal modal={modal} setModal={setModal} email={state?.email}/>
             <img className='backdrop-img' src={backdrop} alt='Backdrop'/>
             <Fade bottom ssrFadeout>
             <section className='login-container'>
