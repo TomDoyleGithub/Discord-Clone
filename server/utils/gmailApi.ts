@@ -21,6 +21,7 @@ const sendMail = async (link:any, username:any, email:any) => {
             <a href='${link}'><button style="border: none; padding: 14px; border-radius: 5px; font-size: 14px; color: white; background-color: #5865F2;">Reset Password</button></a>
             `
         });
+        console.log(result);
         return result;
     } catch (err) {
         console.log(err);
