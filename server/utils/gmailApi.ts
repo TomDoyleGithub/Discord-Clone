@@ -11,7 +11,7 @@ const mailTransporter = nodemailer.createTransport(sgTransport({
 const sendMail = async (link:any, username:any, email:any) => {
     try {
         const result = await mailTransporter.sendMail({
-            setFrom: `"Discord" <heypunkinut@gmail.com>`,
+            from: `"Discord" <heypunkinut@gmail.com>`,
             to: email,
             replyTo: 'heypunkinut@gmail.com',
             subject: 'Password Reset Request for Discord',
