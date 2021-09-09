@@ -12,9 +12,6 @@ let basePath = '../';
 
 const app = express();
 
-const saServer = require('http').Server(app);
-const io = require('socket.io')(saServer);
-
 const PORT = process.env.PORT || 3001;
 const server = new ApolloServer({
     typeDefs,
@@ -44,8 +41,3 @@ db.once('open', () => {
         console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
     })
 });
-
-io.on("connection", (socket:any) => {
-    console.log('A user connected');
-    io.emit('Welcome', 'Socket server is working!')
-  });
