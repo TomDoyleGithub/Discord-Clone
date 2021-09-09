@@ -1,5 +1,4 @@
 import express from 'express';
-import * as socketio from "socket.io";
 
 import { ApolloServer } from 'apollo-server-express';
 import path from 'path';
@@ -13,13 +12,6 @@ const isProd = process.env.NODE_ENV === 'production';
 let basePath = '../';
 
 const app = express();
-
-let http = require("http").Server(app);
-let io = require("socket.io")(http, {
-    cors: {
-      origin: '*',
-    }
-  });
 
 const PORT = process.env.PORT || 3001;
 const server = new ApolloServer({
@@ -43,11 +35,6 @@ app.get('*', (req:any,res:any) => {
     console.log(req.query)
    return res.sendFile(path.join(__dirname, basePath + 'client/build/index.html'));
 });
-
-io.on("connection", function (socket:any) {
-    console.log('A user connected');
-    io.emit('Welcome', 'Socket server is working!')
-  });   
 
 db.once('open', () => {
     app.listen(PORT, () => {
