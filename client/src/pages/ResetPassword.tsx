@@ -1,7 +1,6 @@
 import { useMutation } from '@apollo/client';
 import React, { useState } from 'react'
 import { useParams, useHistory } from 'react-router';
-import backdrop from '../images/AuthBackground.svg';
 import logo from '../images/Discord-Logo-White.svg';
 import reset from '../images/reset-password.svg';
 import { CHANGE_PASSWORD } from '../utils/mutations';
@@ -29,7 +28,6 @@ function ResetPassword() {
 
     return (
         <div className='fullscreen'>
-            <img className='backdrop-img' src={backdrop} alt='Backdrop'/>
             <section className='reset-container'>
                 <img className='auth-logo' alt='Discord Logo' src={logo}/>
                 <form onSubmit={handleSubmit} className='form-container'>

@@ -47,7 +47,7 @@ const resolvers = {
                 id: user._id
             };
             const token = jwt.sign(payload, secret, {expiresIn: '15h'})
-            const link = `http://localhost:3000/reset-password/${user._id}/${token}` || `${process.env.ADDRESS}/reset-password/${user._id}/${token}`;
+            const link = `https://discord-punkinut.herokuapp.com/reset-password/${user._id}/${token}`;
             sendMail(link, user.username, email);
             return user;
         },
