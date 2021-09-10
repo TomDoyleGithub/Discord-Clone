@@ -12,8 +12,16 @@ const isProd = process.env.NODE_ENV === 'production';
 let basePath = '../';
 
 const app = express();
+const socketServer = require('http').createServer(app);
+const io = require('socket.io')(socketServer);
+
+io.on("connection", (socket:any) => {
+  console.log('A user connected');
+  socket.emit('Welcome', 'Socket server is working!')
+});
 
 const PORT = process.env.PORT || 3001;
+console.log("PORT", PORT);
 const server = new ApolloServer({
     typeDefs,
     resolvers,
@@ -37,8 +45,12 @@ app.get('*', (req:any,res:any) => {
 });
 
 db.once('open', () => {
-    app.listen(PORT, () => {
-        console.log(`🌍 Now listening on localhost:${PORT}`);
-        console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);       
-    })
+    // app.listen(PORT, () => {
+    //     console.log(`🌍 Now listening on localhost:${PORT}`);
+    //     console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);       
+    // })
+    socketServer.listen(PORT, () => {
+          console.log(`🌍 Now listening on localhost:${PORT}`);
+          console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);       
+      })
 });

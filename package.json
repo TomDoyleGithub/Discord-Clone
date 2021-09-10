@@ -1,14 +1,14 @@
 {
   "scripts": {
     "start": "cd server && npm run start",
-    "develop": "concurrently \"cd socket && npm start\" \"cd server && npm run watch\" \"cd client && npm start\"",
+    "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
     "deploy": "git add . && git commit -am '...' && git push heroku main --force",
     "build:client": "cd client && npm install && npm run build",
     "build:server": "cd server && npm install && npm run build",
     "heroku-postbuild:old": "npm run build:client && cd server && npm i",
     "heroku-postbuild": "npm run build:client && npm run build:server",
     "hlogs": "heroku logs --tail --app discord-punkinut --source app"
-  },
+  },  
   "devDependencies": {
     "concurrently": "^6.2.1",
     "typescript": "^4.4.2"

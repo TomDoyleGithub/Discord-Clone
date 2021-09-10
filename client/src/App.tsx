@@ -16,6 +16,12 @@ import UserCard from './components/UserCard/UserCard';
 import Discovery from './pages/Discovery';
 import EnterLoading from './components/EnterLoading/EnterLoading';
 import spinner from './images/spinner.gif';
+import socket from './utils/Socket';
+
+console.log(socket);
+
+// set this socket on context
+
 
 const httpLink = createHttpLink({
   uri: '/graphql',
