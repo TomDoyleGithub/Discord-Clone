@@ -1,5 +1,7 @@
 import express from 'express';
 
+import rootSocket from './socket/socket';
+
 import { ApolloServer } from 'apollo-server-express';
 import path from 'path';
 
@@ -14,11 +16,7 @@ let basePath = '../';
 const app = express();
 const socketServer = require('http').createServer(app);
 const io = require('socket.io')(socketServer);
-
-io.on("connection", (socket:any) => {
-  console.log('A user connected');
-  io.emit('Welcome', 'Socket server is working!')
-});
+rootSocket(io);
 
 const PORT = process.env.PORT || 3001;
 console.log("PORT", PORT);
