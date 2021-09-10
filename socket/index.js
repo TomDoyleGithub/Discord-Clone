@@ -6,6 +6,8 @@ const io = require("socket.io")(httpServer, {
   },
 });
 
+console.log('I exist!')
+
 io.on("connection", (socket) => {
   console.log('A user connected');
   io.emit('Welcome', 'Socket server is working!')
