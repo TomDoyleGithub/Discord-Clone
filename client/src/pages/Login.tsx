@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react'
 import Fade from 'react-reveal/Fade';
 import { Link } from 'react-router-dom'
 import PasswordModal from '../components/PasswordModal';
-import backdrop from '../images/AuthBackground.svg'
 import logo from '../images/Discord-Logo-White.svg'
 import Auth from '../utils/auth';
 import { LOGIN, SEND_PASSWORD } from '../utils/mutations';
@@ -59,7 +58,6 @@ function Login() {
     return (
         <div className='fullscreen'>
             <PasswordModal modal={modal} setModal={setModal} email={state?.email}/>
-            <img className='backdrop-img' src={backdrop} alt='Backdrop'/>
             <Fade bottom ssrFadeout>
             <section className='login-container'>
                 <img className='auth-logo' alt='Discord Logo' src={logo}/>

@@ -186,6 +186,10 @@ input:-webkit-autofill:active {
   color: white;
   overflow: hidden;
   position: relative;
+  background-image: url("../images/AuthBackground.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   @include flex-center;
 }
 
@@ -216,12 +220,10 @@ input:-webkit-autofill:active {
 }
 
 .backdrop-img {
-  flex-shrink: 0;
-  min-width: 101%;
-  min-height: 101%;
-  top: 0;
-  position: absolute;
-  z-index: 1;
+  background-image: url("../images/AuthBackground.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .form-container {
