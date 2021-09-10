@@ -17,7 +17,7 @@ const io = require('socket.io')(socketServer);
 
 io.on("connection", (socket:any) => {
   console.log('A user connected');
-  socket.emit('Welcome', 'Socket server is working!')
+  io.emit('Welcome', 'Socket server is working!')
 });
 
 const PORT = process.env.PORT || 3001;
@@ -45,10 +45,6 @@ app.get('*', (req:any,res:any) => {
 });
 
 db.once('open', () => {
-    // app.listen(PORT, () => {
-    //     console.log(`🌍 Now listening on localhost:${PORT}`);
-    //     console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);       
-    // })
     socketServer.listen(PORT, () => {
           console.log(`🌍 Now listening on localhost:${PORT}`);
           console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);       

@@ -16,11 +16,13 @@ import UserCard from './components/UserCard/UserCard';
 import Discovery from './pages/Discovery';
 import EnterLoading from './components/EnterLoading/EnterLoading';
 import spinner from './images/spinner.gif';
-import socket from './utils/Socket';
+import { io } from "socket.io-client";
 
-console.log(socket);
+const socket = io();
 
-// set this socket on context
+socket.on('Welcome', message => {
+  console.log(message)
+});
 
 
 const httpLink = createHttpLink({
