@@ -19,8 +19,17 @@ import mute2 from '../../sounds/mute-2.mp3';
 import head1 from '../../sounds/head-1.mp3';
 import head2 from '../../sounds/head-2.mp3';
 import useSound from 'use-sound';
+import { io } from "socket.io-client";
 
 function UserCard() {
+    // Basic Socket Connection
+    useEffect(() => {
+        const socket = io();
+        socket.on('Welcome', message => {
+            console.log(message)
+          });
+    }, [])
+
     const [playMute] = useSound(mute1);
     const [playUnmute] = useSound(mute2);
     const [playHead] = useSound(head1);

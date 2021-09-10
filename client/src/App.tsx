@@ -16,14 +16,6 @@ import UserCard from './components/UserCard/UserCard';
 import Discovery from './pages/Discovery';
 import EnterLoading from './components/EnterLoading/EnterLoading';
 import spinner from './images/spinner.gif';
-import { io } from "socket.io-client";
-
-const socket = io();
-
-socket.on('Welcome', message => {
-  console.log(message)
-});
-
 
 const httpLink = createHttpLink({
   uri: '/graphql',
