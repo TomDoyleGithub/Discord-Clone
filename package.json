@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "cd server && npm run start",
+    "start": "concurrently \" cd server && npm run start\" \"cd socket && npm run start\"",
     "develop": "concurrently \"cd socket && npm start\" \"cd server && npm run watch\" \"cd client && npm start\"",
     "deploy": "git add . && git commit -am '...' && git push heroku main --force",
     "build:client": "cd client && npm install && npm run build",
