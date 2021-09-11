@@ -16,17 +16,17 @@ function Status({dataStatus}) {
     const handleOnIdle = event => {
         if (status === 'online') {
             dispatch({ type: CHANGE_STATUS, status: 'idle' });
-        }
-      }
+        };
+      };
     
     const handleOnActive = event => {
         if (dataStatus === 'online') {
             dispatch({ type: CHANGE_STATUS, status: 'online' });
-        }
-    }
+        };
+    };
       
     useIdleTimer({
-      timeout: 5000,
+      timeout: 120000,
       onIdle: handleOnIdle,
       onActive: handleOnActive,
       debounce: 500
