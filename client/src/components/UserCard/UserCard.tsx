@@ -30,6 +30,7 @@ function UserCard() {
 
 
     const { data, loading } = useQuery(GET_ME);
+
     const me = data?.me || {};
     const username = me?.username?.slice(0, -5);
     const userId = me?._id;
@@ -47,6 +48,22 @@ function UserCard() {
             console.log(message)
           });
     }, [socket])
+
+    useEffect(() => {
+        if (userId) {
+            upSocket?.current?.on('SendOffline', id => {
+                console.log(`${id} went offline!`)
+              });
+        }
+    }, [userId])
+
+    useEffect(() => {
+        if (userId) {
+            upSocket?.current?.on('SendOnline', id => {
+                console.log(`${id} went Online!`)
+              });
+        }
+        }, [userId])
 
     useEffect(() => {
         if (userId) {
