@@ -7,13 +7,11 @@ io.on("connection", (socket:any) => {
   socket.on('login', (data:any) => {
     console.log(data.userId + ' connected');
     users[socket.id] = data.userId;
-    io.emit('SendOnline', users[socket.id]);
   });
 
   // Disconnecting from socket
   socket.on('disconnect', () => {
     console.log(users[socket.id] + ' disconnected');
-    io.emit('SendOffline', users[socket.id]);
     delete users[socket.id];
   });
 });

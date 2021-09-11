@@ -51,22 +51,6 @@ function UserCard() {
 
     useEffect(() => {
         if (userId) {
-            upSocket?.current?.on('SendOffline', id => {
-                console.log(`${id} went offline!`)
-              });
-        }
-    }, [userId])
-
-    useEffect(() => {
-        if (userId) {
-            upSocket?.current?.on('SendOnline', id => {
-                console.log(`${id} went Online!`)
-              });
-        }
-        }, [userId])
-
-    useEffect(() => {
-        if (userId) {
             upSocket?.current?.emit('login',{ userId });
         }
     }, [userId]);
