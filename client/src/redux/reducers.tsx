@@ -11,6 +11,8 @@ import {
     TOGGLE_STATUS_MODAL
 } from './actions';
 
+import { io } from "socket.io-client";
+
 const initalState = {
     loading: false,
     error: false,
@@ -26,7 +28,8 @@ const initalState = {
     homeRoute: '/channels/@me',
     largerLoader: true,
     status: '',
-    statusModal: false
+    statusModal: false,
+    socket: io()
 };
 
 export default function reducer (state = initalState, action) {
