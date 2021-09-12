@@ -21,7 +21,6 @@ import head2 from '../../sounds/head-2.mp3';
 import useSound from 'use-sound';
 
 function UserCard() {
-
     const [playMute] = useSound(mute1);
     const [playUnmute] = useSound(mute2);
     const [playHead] = useSound(head1);

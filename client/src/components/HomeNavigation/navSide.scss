@@ -150,6 +150,7 @@ $transition: all 120ms ease-in-out;
   flex-direction: column;
   justify-content: flex-end;
   row-gap: 11px;
+  overflow: hidden;
   transform: scaleY(-1);
 }
 
