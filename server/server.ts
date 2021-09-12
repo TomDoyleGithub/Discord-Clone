@@ -16,7 +16,7 @@ let basePath = '../';
 const app = express();
 const socketServer = require('http').createServer(app);
 const io = require('socket.io')(socketServer);
-rootSocket(io);
+rootSocket(io, app);
 
 const PORT = process.env.PORT || 3001;
 const server = new ApolloServer({

@@ -26,6 +26,7 @@
     "googleapis": "^84.0.0",
     "graphql": "^15.5.1",
     "jsonwebtoken": "^8.5.1",
+    "mongojs": "^3.1.0",
     "mongoose": "^5.13.8",
     "nodemailer": "^6.6.3",
     "nodemailer-sendgrid-transport": "^0.2.0",

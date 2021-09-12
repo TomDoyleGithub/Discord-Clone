@@ -1,4 +1,8 @@
-const rootSocket = (io: any) => {
+const mongojs = require('mongojs');
+
+const newDb = mongojs('discorddb', ['users']);
+
+const rootSocket = (io: any, app:any) => {
 const users:any = {};
 io.on("connection", (socket:any) => {
   io.emit('Welcome', 'Socket server is working!')
@@ -11,7 +15,9 @@ io.on("connection", (socket:any) => {
 
   // Disconnecting from socket
   socket.on('disconnect', () => {
+    const thisId = users[socket.id];
     console.log(users[socket.id] + ' disconnected');
+    newDb.users.update({_id: mongojs.ObjectId(thisId)}, {$set: { status: 'offline'}})
     delete users[socket.id];
   });
 });
