@@ -15,9 +15,12 @@ io.on("connection", (socket:any) => {
   socket.on('disconnect', async () => {
     const thisId = users[socket.id];
     console.log(users[socket.id] + ' disconnected');
-    try { 
-      await User.findOneAndUpdate({ _id: thisId}, { status: 'offline' }, {new: true})
-      console.log('Success')
+    try {
+      const user = await User.findOne({ _id: thisId });
+      if (user?.status === 'online') {
+        await User.findOneAndUpdate({ _id: thisId}, { status: 'realOffline' }, {new: true})
+        console.log('Success')
+      }
     } catch (err) {
       console.log(err)
     }
