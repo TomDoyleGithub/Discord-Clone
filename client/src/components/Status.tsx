@@ -24,6 +24,10 @@ function Status({dataStatus}) {
             dispatch({ type: CHANGE_STATUS, status: 'online' });
         };
     };
+
+    // useEffect(() => {
+    //     dispatch({ type: CHANGE_STATUS, status: 'online' });
+    // }, [dispatch])
       
     useIdleTimer({
       timeout: 120000,
