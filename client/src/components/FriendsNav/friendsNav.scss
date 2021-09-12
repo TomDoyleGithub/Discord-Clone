@@ -4,6 +4,7 @@
   top: 0px;
   width: 100%;
   height: 50px;
+  overflow: hidden;
 }
 
 .friend-choice {
@@ -11,4 +12,41 @@
   width: 606px;
   position: relative;
   left: 311px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: white;
+  padding-left: 18px;
+  cursor: default;
+}
+
+.upper-line {
+  height: 50%;
+  width: 1px;
+  background-color: white;
+  opacity: 0.1;
+  margin-left: 15px;
+}
+
+.select-friend-nav {
+  padding: 5px 8px;
+  color: #b8bbbe !important;
+  cursor: pointer;
+  //   background-color: rgba(255, 255, 255, 0.062);
+  border-radius: 5px;
+  margin-left: 16px;
+  &:hover {
+    filter: brightness(120%);
+    background-color: rgba(255, 255, 255, 0.02);
+  }
+}
+
+.add-friend {
+  background-color: #3aa55d;
+  color: white !important;
+  &:hover {
+    background-color: #3aa55d;
+    color: white !important;
+    filter: brightness(100%);
+  }
 }
