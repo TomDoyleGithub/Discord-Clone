@@ -5,6 +5,7 @@ import playWumpus from '../../images/Play-Wumpus.svg'
 import leafWumpus from '../../images/Leaf-Wumpus.svg'
 import blockWumpus from '../../images/Block-Wumpus.svg'
 import { CHANGE_FRIEND_NAV } from '../../redux/actions';
+import SearchFriend from '../SearchFriend/SearchFriend';
 
 function NoOneDisplay() {
     const dispatch = useDispatch();
@@ -44,6 +45,7 @@ function NoOneDisplay() {
     } else if (friendsNav === 'add-friend') {
         return (
             <article>
+                <SearchFriend/>
                 <img style={{marginTop: '150px'}} src={playWumpus} alt='Play Wumpus'/>
                 <p className='wumpus-text normal-font f300'>Wumpus is waiting on friends. You don’t have to though!</p>
             </article>

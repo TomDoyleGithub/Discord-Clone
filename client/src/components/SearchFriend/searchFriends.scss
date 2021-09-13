@@ -1,0 +1,44 @@
+.search-friend-container {
+  position: absolute;
+  border-bottom: 1.5px solid #1d1e224d;
+  top: 50px;
+  left: 0px;
+  width: 100%;
+  height: 156px;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.sub-friend-container {
+  height: 100%;
+  width: 606px;
+  position: relative;
+  left: 311px;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  padding-left: 30px;
+  padding-top: 16px;
+  cursor: default;
+}
+
+.header-add-friend {
+  text-transform: uppercase;
+  font-size: 15px;
+}
+
+.subby-add-friend {
+  margin-top: 16px;
+  font-size: 14px;
+  color: #dcddde;
+}
+
+.add-friend-input {
+  background-color: #303338;
+  padding: 17px;
+  margin-top: 20px;
+  border-radius: 8px;
+  border: 1px solid #232427;
+  caret-color: #dcddde;
+  color: #dcddde;
+}

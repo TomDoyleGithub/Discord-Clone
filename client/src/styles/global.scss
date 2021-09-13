@@ -11,6 +11,12 @@ $slide: all 150ms ease;
 $graphie-font: graphie, sans-serif;
 $sans-font: davis-sans, sans-serif;
 
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #4f545c;
+  opacity: 1; /* Firefox */
+}
+
 input:focus,
 textarea:focus,
 select:focus {
