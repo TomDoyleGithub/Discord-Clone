@@ -8,7 +8,8 @@ import {
     UPDATE_DEAFEN, 
     CHANGE_LOADER,
     CHANGE_STATUS,
-    TOGGLE_STATUS_MODAL
+    TOGGLE_STATUS_MODAL,
+    CHANGE_FRIEND_NAV
 } from './actions';
 
 import { io } from "socket.io-client";
@@ -29,7 +30,8 @@ const initalState = {
     largerLoader: true,
     status: '',
     statusModal: false,
-    socket: io()
+    socket: io(),
+    friendsNav: 'online'
 };
 
 export default function reducer (state = initalState, action) {
@@ -92,7 +94,12 @@ export default function reducer (state = initalState, action) {
             return {
                 ...state,
                 statusModal: !state.statusModal
-            }
+            };
+        case CHANGE_FRIEND_NAV:
+            return {
+                ...state,
+                friendsNav: action.friendsNav
+            };
         default: 
             return state;
     };

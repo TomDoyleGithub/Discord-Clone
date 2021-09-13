@@ -32,7 +32,6 @@
   padding: 5px 8px;
   color: #b8bbbe !important;
   cursor: pointer;
-  //   background-color: rgba(255, 255, 255, 0.062);
   border-radius: 5px;
   margin-left: 16px;
   &:hover {
@@ -41,12 +40,27 @@
   }
 }
 
+.friend-nav-active {
+  background-color: rgba(255, 255, 255, 0.062) !important;
+  color: white !important;
+}
+
+.add-friend-active {
+  background-color: rgba(255, 255, 255, 0) !important;
+  color: #3aa55d !important;
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.02) !important;
+  }
+}
+
+.non-active {
+  color: white !important;
+}
+
 .add-friend {
   background-color: #3aa55d;
-  color: white !important;
   &:hover {
     background-color: #3aa55d;
-    color: white !important;
     filter: brightness(100%);
   }
 }
