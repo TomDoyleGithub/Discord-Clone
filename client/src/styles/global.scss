@@ -369,13 +369,21 @@ input:-webkit-autofill:active {
   overflow: hidden;
   @include flex-center;
   article {
-    margin-left: 311px;
+    margin-left: 306px;
     margin-right: 350px;
     margin-top: 50px;
+    @include flex-center;
+    flex-direction: column;
+    cursor: default;
+    color: #72767c;
   }
   img {
     margin-bottom: 48px;
   }
+}
+
+.wumpus-text {
+  margin: auto;
 }
 
 @media screen and (max-width: 1200px) {
