@@ -41,6 +41,13 @@ function NoOneDisplay() {
                 <p className='wumpus-text normal-font f300'>You can't unblock the Wumpus.</p>
             </article>
         )
+    } else if (friendsNav === 'add-friend') {
+        return (
+            <article>
+                <img style={{marginTop: '150px'}} src={playWumpus} alt='Play Wumpus'/>
+                <p className='wumpus-text normal-font f300'>Wumpus is waiting on friends. You don’t have to though!</p>
+            </article>
+        )
     }
     return <></>
 }
