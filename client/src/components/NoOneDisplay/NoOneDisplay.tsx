@@ -1,12 +1,17 @@
 import React from 'react'
-import { RootStateOrAny, useSelector } from 'react-redux';
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import sleepWumpus from '../../images/Sleep-Wumpus.svg'
 import playWumpus from '../../images/Play-Wumpus.svg'
 import leafWumpus from '../../images/Leaf-Wumpus.svg'
 import blockWumpus from '../../images/Block-Wumpus.svg'
+import { CHANGE_FRIEND_NAV } from '../../redux/actions';
 
 function NoOneDisplay() {
+    const dispatch = useDispatch();
     const { friendsNav } = useSelector((state: RootStateOrAny) => state);
+    const handleClick = () => {
+        dispatch({ type: CHANGE_FRIEND_NAV, friendsNav: 'add-friend' });
+    };
     if (friendsNav === 'online') {
         return (
             <article>
@@ -19,6 +24,7 @@ function NoOneDisplay() {
             <article>
                 <img src={playWumpus} alt='Play Wumpus'/>
                 <p className='wumpus-text normal-font f300'>Wumpus is waiting on friends. You don’t have to though!</p>
+                <div onClick={handleClick}><p className='normal-font'>Add Friend</p></div>
             </article>
         )
     } else if (friendsNav === 'pending') {

@@ -377,6 +377,19 @@ input:-webkit-autofill:active {
     cursor: default;
     color: #72767c;
   }
+  div {
+    background-color: $purple;
+    color: white;
+    padding: 12px 15px;
+    font-size: 14px;
+    border-radius: 3px;
+    margin-top: 22px;
+    cursor: pointer;
+    transition: all 100ms ease-in-out;
+    &:hover {
+      background-color: #4752cf;
+    }
+  }
   img {
     margin-bottom: 48px;
   }
