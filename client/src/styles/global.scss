@@ -360,6 +360,32 @@ input:-webkit-autofill:active {
   display: none;
 }
 
+.main-hm-container {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  overflow: hidden;
+  @include flex-center;
+  article {
+    margin-left: 311px;
+    margin-right: 350px;
+    margin-top: 50px;
+  }
+  img {
+    margin-bottom: 48px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .main-hm-container {
+    article {
+      margin-right: 0px;
+    }
+  }
+}
+
 @media screen and (max-width: 485px) {
   .register-container,
   .login-container,
