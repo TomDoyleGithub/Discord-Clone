@@ -7,6 +7,16 @@ export const GET_ME = gql`
         username
         propic
         status
+        friends {
+            _id
+            user {
+              _id
+              username
+              propic
+              status
+            }
+            status
+          }
         }
     }
 `;

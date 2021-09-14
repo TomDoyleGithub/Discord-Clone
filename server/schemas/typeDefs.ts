@@ -8,6 +8,13 @@ const typeDefs = gql`
         birthday: String!
         propic: String
         status: String
+        friends: [friend]
+    }
+
+    type friend {
+        _id: ID!
+        user: User
+        status: Int
     }
 
     type Auth {

@@ -8,11 +8,23 @@ import sendMail from '../utils/gmailApi';
 const resolvers = {
     Query : {
         allUsers: async () => {
-            return User.find();
+            return User.find().populate({
+                path: 'friends',
+                populate: {
+                    path: 'user',
+                    model: 'User'
+                  } 
+            });
           },
         me: async (parent:any, args:any, context:any) => {
             if (context.user) {
-                return User.findOne({ _id: context.user._id })
+                return User.findOne({ _id: context.user._id }).populate({
+                    path: 'friends',
+                    populate: {
+                        path: 'user',
+                        model: 'User'
+                      } 
+                });
               }
               throw new AuthenticationError('Cannot find a user with this id!');
             }
@@ -69,6 +81,23 @@ const resolvers = {
         },
         updateStatus: async (parent:any, { status }:any, context:any) => {
             return User.findOneAndUpdate({ _id: context.user._id}, { status }, {new: true});
+        },
+        sendFriend: async (_:any, { id }:any, context:any) => {
+            const user1 = await User.findOneAndUpdate({ _id: context.user._id }, { $push: {friends: { user: id, status: 1 }} }, {new: true}).populate({
+                path: 'friends',
+                populate: {
+                    path: 'user',
+                    model: 'User'
+                  } 
+            });
+            const user2 = await User.findOneAndUpdate({ _id: id }, { $push: {friends: { user: context.user_id, status: 2 }} }, {new: true}).populate({
+                path: 'friends',
+                populate: {
+                    path: 'user',
+                    model: 'User'
+                  } 
+            });
+            return [user1, user2];
         }
     },
 };
