@@ -33,7 +33,7 @@ const typeDefs = gql`
         sendPassword(email: String!): User
         changePassword(id: String!, token: String!, password: String!): User
         updateStatus(status: String!): User
-        sendFriend(id: String!): [User]
+        sendFriend(username: String!): [User]
     }
 `;
 
