@@ -30,8 +30,7 @@ import bcrypt from "bcrypt";
     status: {
       type: String,
       default: 'online'
-    },
-    friends: [{ type: Schema.Types.ObjectId, ref: 'Friends'}]
+    }
   });
 
   userSchema.pre('save', async function (next) {

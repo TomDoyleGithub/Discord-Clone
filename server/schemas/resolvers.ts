@@ -1,5 +1,5 @@
 import { AuthenticationError } from 'apollo-server-express';
-import { User, Friends } from '../models';
+import { User } from '../models';
 import jwt from 'jsonwebtoken';
 import bcrypt from "bcrypt";
 import authMiddleware from '../utils/auth';
@@ -12,14 +12,14 @@ const resolvers = {
           },
         me: async (parent:any, args:any, context:any) => {
             if (context.user) {
-                return User.findOne({ _id: context.user._id }).populate('friends')
+                return User.findOne({ _id: context.user._id })
               }
               throw new AuthenticationError('Cannot find a user with this id!');
             }
     },
     Mutation: {
-        register: async (_:any, { email, username, password, birthday, propic, status, friends }:any) => {
-            const user = await User.create({  email, username, password, birthday, propic, status, friends });
+        register: async (_:any, { email, username, password, birthday, propic, status }:any) => {
+            const user = await User.create({  email, username, password, birthday, propic, status });
             const token = authMiddleware.signToken(user);
             return { token, user };
         },
@@ -69,27 +69,6 @@ const resolvers = {
         },
         updateStatus: async (parent:any, { status }:any, context:any) => {
             return User.findOneAndUpdate({ _id: context.user._id}, { status }, {new: true});
-        },
-        sendFriend : async (parent:any, { id }:any, context:any) => {
-            const docA = await Friends.findOneAndUpdate(
-                { requester: context.user._id, recipient: id },
-                { $set: { status: 1 }},
-                { upsert: true, new: true }
-            )
-            const docB = await Friends.findOneAndUpdate(
-                { recipient: context.user._id, requester: id },
-                { $set: { status: 2 }},
-                { upsert: true, new: true }
-            )
-            const updateUserA = await User.findOneAndUpdate(
-                { _id: context.user._id },
-                { $push: { friends: docA._id }}
-            )
-            const updateUserB = await User.findOneAndUpdate(
-                { _id: id },
-                { $push: { friends: docB._id }}
-            )
-            return [updateUserA, updateUserB]
         }
     },
 };
