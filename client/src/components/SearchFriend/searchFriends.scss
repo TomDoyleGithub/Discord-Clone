@@ -42,13 +42,33 @@
   min-width: 100px;
 }
 
+.send-friend-button {
+  padding: 8px 15px;
+  position: absolute;
+  right: 408px;
+  bottom: 30px;
+  color: white;
+  font-size: 13px;
+  background-color: #5865f2;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 1200px) {
   .sub-friend-container {
     padding-right: 33px;
   }
+
+  .send-friend-button {
+    right: 50px;
+  }
 }
 
 @media screen and (max-width: 770px) {
+  .send-friend-button {
+    right: 198px;
+  }
+
   .search-friend-container {
     overflow: hidden;
   }
