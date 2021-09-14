@@ -1,5 +1,5 @@
 import { AuthenticationError } from 'apollo-server-express';
-import { User } from '../models';
+import { User, Friends } from '../models';
 import jwt from 'jsonwebtoken';
 import bcrypt from "bcrypt";
 import authMiddleware from '../utils/auth';
@@ -12,7 +12,7 @@ const resolvers = {
           },
         me: async (parent:any, args:any, context:any) => {
             if (context.user) {
-                return User.findOne({ _id: context.user._id })
+                return User.findOne({ _id: context.user._id }).populate('friends')
               }
               throw new AuthenticationError('Cannot find a user with this id!');
             }
@@ -70,6 +70,27 @@ const resolvers = {
         updateStatus: async (parent:any, { status }:any, context:any) => {
             return User.findOneAndUpdate({ _id: context.user._id}, { status }, {new: true});
         },
+        sendFriend : async (parent:any, { id }:any, context:any) => {
+            const docA = await Friends.findOneAndUpdate(
+                { requester: context.user._id, recipient: id },
+                { $set: { status: 1 }},
+                { upsert: true, new: true }
+            )
+            const docB = await Friends.findOneAndUpdate(
+                { recipient: context.user._id, requester: id },
+                { $set: { status: 2 }},
+                { upsert: true, new: true }
+            )
+            const updateUserA = await User.findOneAndUpdate(
+                { _id: context.user._id },
+                { $push: { friends: docA._id }}
+            )
+            const updateUserB = await User.findOneAndUpdate(
+                { _id: id },
+                { $push: { friends: docB._id }}
+            )
+            return [updateUserA, updateUserB]
+        }
     },
 };
 

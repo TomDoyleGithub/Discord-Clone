@@ -12,6 +12,7 @@ const typeDefs = gql`
     }
 
     type Friends {
+        _id: ID!
         requester: User
         recipient: User
         status: Int
@@ -33,6 +34,7 @@ const typeDefs = gql`
         sendPassword(email: String!): User
         changePassword(id: String!, token: String!, password: String!): User
         updateStatus(status: String!): User
+        sendFriend(id: String!): [User]
     }
 `;
 
