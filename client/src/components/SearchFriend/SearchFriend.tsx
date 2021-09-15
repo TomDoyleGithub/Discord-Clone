@@ -8,6 +8,7 @@ function SearchFriend() {
     const [username, setUsername ] = useState('');
     const [disable, setDisable] = useState(true);
     const [error, setError] = useState(false);
+    const [success, setSuccess] = useState(false);
     const [sendRequest] = useMutation(SEND_FRIEND);
 
     const handleChange = (event:any) => {
@@ -24,10 +25,12 @@ function SearchFriend() {
         e.preventDefault();
         try {
             await sendRequest({ variables: { username }});
-            setUsername('');
+            setSuccess(true);
             setError(false);
+            setUsername('');
             console.log('Request Sent!')
         } catch (err) {
+            setSuccess(false);
             setError(true);
             console.log('User does not exist!')
         }
@@ -38,7 +41,11 @@ function SearchFriend() {
             <section className='sub-friend-container'>
                 <p className='normal-font f600 header-add-friend'>Add Friend</p>
                 {!error ? (
-                    <p className='normal-font subby-add-friend'>You can add a friend with their Discord Tag. It's cAsE sEnSitIvE!</p>
+                    success ? (
+                        <p className='normal-font subby-add-friend green-text'>Success! Your friend request was sent.</p>
+                    ) : (
+                        <p className='normal-font subby-add-friend'>You can add a friend with their Discord Tag. It's cAsE sEnSitIvE!</p>
+                    )
                 ) : (
                     <p className='normal-font subby-add-friend red-text'>Hm, didn't work. Double check that the capitalization, spelling, any spaces, and numbers are correct.</p>
                 )}
