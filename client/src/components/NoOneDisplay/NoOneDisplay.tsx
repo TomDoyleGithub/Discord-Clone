@@ -1,19 +1,34 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import sleepWumpus from '../../images/Sleep-Wumpus.svg'
 import playWumpus from '../../images/Play-Wumpus.svg'
 import leafWumpus from '../../images/Leaf-Wumpus.svg'
 import blockWumpus from '../../images/Block-Wumpus.svg'
-import { CHANGE_FRIEND_NAV } from '../../redux/actions';
+import { CHANGE_FRIEND_NAV, CHANGE_LOADER } from '../../redux/actions';
 import SearchFriend from '../SearchFriend/SearchFriend';
+import { GET_FRIENDS } from '../../utils/queries';
+import { useQuery } from '@apollo/client';
 
 function NoOneDisplay() {
+    const { data, loading } = useQuery(GET_FRIENDS);
+    const allFriends = data?.getFriends?.friends || {};
+    console.log(allFriends);
+
     const dispatch = useDispatch();
     const { friendsNav } = useSelector((state: RootStateOrAny) => state);
     const handleClick = () => {
         dispatch({ type: CHANGE_FRIEND_NAV, friendsNav: 'add-friend' });
     };
-    if (friendsNav === 'online') {
+
+    useEffect(() => {
+        dispatch({ type: CHANGE_LOADER, userLoad: loading});
+    }, [dispatch, loading]);
+
+    if (loading) {
+        return (
+            <></>
+        )
+    } else if (friendsNav === 'online') {
         return (
             <article>
                 <img src={sleepWumpus} alt='Asleep Wumpus'/>

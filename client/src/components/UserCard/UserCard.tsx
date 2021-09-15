@@ -88,7 +88,7 @@ function UserCard() {
 
     useEffect(() => {
         dispatch({ type: CHANGE_LOADER, userLoad: loading});
-    }, [dispatch, loading])
+    }, [dispatch, loading]);
 
     if (!Auth.loggedIn()) {
         return <></>

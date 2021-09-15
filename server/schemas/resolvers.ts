@@ -27,7 +27,16 @@ const resolvers = {
                 });
               }
               throw new AuthenticationError('Cannot find a user with this id!');
-            }
+            },
+        getFriends: async (parent:any, args:any, context:any) => {
+            return User.findOne({ _id: context.user._id }).select('friends').populate({
+                path: 'friends',
+                populate: {
+                    path: 'user',
+                    model: 'User'
+                  } 
+            });
+        }
     },
     Mutation: {
         register: async (_:any, { email, username, password, birthday, propic, status }:any) => {

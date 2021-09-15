@@ -20,3 +20,21 @@ export const GET_ME = gql`
         }
     }
 `;
+
+export const GET_FRIENDS = gql `
+    query getFriends {
+      getFriends {
+        _id
+        friends {
+          _id
+          user {
+            _id
+            username
+            propic
+            status
+          }
+          status
+        }
+      }
+    }
+`;
