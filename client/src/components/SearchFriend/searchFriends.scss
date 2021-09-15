@@ -54,6 +54,17 @@
   cursor: pointer;
 }
 
+.disable-friend-button {
+  cursor: no-drop !important;
+  filter: brightness(80%);
+  opacity: 0.8;
+}
+
+.red-text {
+  color: #ed4245;
+  white-space: nowrap;
+}
+
 @media screen and (max-width: 1200px) {
   .sub-friend-container {
     padding-right: 33px;

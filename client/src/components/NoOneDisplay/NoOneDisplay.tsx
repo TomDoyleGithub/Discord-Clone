@@ -34,9 +34,13 @@ function NoOneDisplay() {
             <PlayWumpus/>
         )
     } else if (friendsNav === 'pending') {
-        return (
-            <LeafWumpus/>
-        )
+        if (allFriends[0] !== undefined && allFriends?.filter(e => e?.status === 1)) {
+            return (
+                <p>Data</p>
+            )
+        } else {
+            return <LeafWumpus/>
+        }
     } else if (friendsNav === 'blocked') {
         return (
             <BlockWumpus/>
