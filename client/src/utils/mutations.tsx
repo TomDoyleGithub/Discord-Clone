@@ -58,3 +58,22 @@ mutation updateStatus ($status: String!) {
   }
 }
 `;
+
+export const SEND_FRIEND = gql `
+mutation sendFriend ($username: String!) {
+  sendFriend(username: $username) {
+    _id
+    username
+    friends {
+      _id
+			user {
+        _id
+        username
+        propic
+        status
+      }
+      status
+    }
+    }
+  }
+`;
