@@ -17,8 +17,9 @@ function NoOneDisplay() {
     const dispatch = useDispatch();
     const { friendsNav } = useSelector((state: RootStateOrAny) => state);
 
-    const pending = allFriends?.some(e => e?.status === 1 || e?.status === 2)
-    const pendingLength = allFriends?.filter(e => e?.status === 1 || e?.status === 2).length
+    const pending = allFriends?.some(e => e?.status === 1 || e?.status === 2);
+    const pendingResults = allFriends?.filter(e => e?.status === 1 || e?.status === 2);
+    const pendingLength = allFriends?.filter(e => e?.status === 1 || e?.status === 2).length;
 
     useEffect(() => {
         dispatch({ type: CHANGE_LOADER, userLoad: loading});
@@ -42,7 +43,12 @@ function NoOneDisplay() {
                 <section className='friend-card-container'>
                     <section className='sub-friend-card-container'>
                         <p className='pending-label normal-font f500'>Pending — {pendingLength}</p>
-
+                        {pendingResults.map((user) => (
+                            <section key={user._id}>
+                                <p>{user.user.username}</p>
+                                <p>{user.user.status}</p>
+                            </section>
+                        ))}
                     <section className='pending-card'></section>
                     </section>
                 </section>
