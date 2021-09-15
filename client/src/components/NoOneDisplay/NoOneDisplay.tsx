@@ -8,14 +8,17 @@ import FriendWumpus from '../WumpusDisplay/FriendWumpus';
 import { CHANGE_LOADER } from '../../redux/actions';
 import { GET_FRIENDS } from '../../utils/queries';
 import { useQuery } from '@apollo/client';
+import './noOneDisplay.scss'
 
 function NoOneDisplay() {
     const { data, loading } = useQuery(GET_FRIENDS);
-    const allFriends = data?.getFriends?.friends || {};
-    console.log(allFriends);
+    const allFriends = data?.getFriends?.friends || [];
 
     const dispatch = useDispatch();
     const { friendsNav } = useSelector((state: RootStateOrAny) => state);
+
+    const pending = allFriends?.some(e => e?.status === 1 || e?.status === 2)
+    const pendingLength = allFriends?.filter(e => e?.status === 1 || e?.status === 2).length
 
     useEffect(() => {
         dispatch({ type: CHANGE_LOADER, userLoad: loading});
@@ -34,9 +37,15 @@ function NoOneDisplay() {
             <PlayWumpus/>
         )
     } else if (friendsNav === 'pending') {
-        if (allFriends[0] !== undefined && allFriends?.filter(e => e?.status === 1)) {
+        if (pending) {
             return (
-                <p>Data</p>
+                <section className='friend-card-container'>
+                    <section className='sub-friend-card-container'>
+                        <p className='pending-label normal-font f500'>Pending — {pendingLength}</p>
+
+                    <section className='pending-card'></section>
+                    </section>
+                </section>
             )
         } else {
             return <LeafWumpus/>

@@ -52,6 +52,10 @@
   background-color: #5865f2;
   border-radius: 3px;
   cursor: pointer;
+  transition: all 100ms ease-in-out;
+  &:hover {
+    filter: brightness(90%) !important;
+  }
 }
 
 .disable-friend-button {

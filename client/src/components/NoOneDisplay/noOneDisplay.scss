@@ -1,0 +1,27 @@
+.friend-card-container {
+  width: 100%;
+  height: 100%;
+}
+
+.sub-friend-card-container {
+  width: auto;
+  margin-right: 30px;
+  height: 100px;
+  margin-left: 311px;
+  margin-top: 50px;
+  padding-top: 25px;
+  padding-left: 30px;
+}
+
+.pending-label {
+  color: #b8bbbe;
+  text-transform: uppercase;
+  font-size: 12.5px;
+}
+
+.pending-underline {
+  height: 1px;
+  width: 100px;
+  margin-top: 10px;
+  background-color: white;
+}
