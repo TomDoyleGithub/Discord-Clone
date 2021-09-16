@@ -40,7 +40,7 @@ io.on("connection", (socket:any) => {
         console.log(err)
       }
     } else {
-       await User.findOneAndUpdate({ _id: user._id }, { $push: {friends: { user: thisId, status: 2 }} }, {new: true});
+       await User.findOneAndUpdate({ _id: user._id }, { $addToSet: {friends: { user: thisId, status: 2 }} }, {new: true});
        console.log('The user is not online the request was not sent.')
     }
   });

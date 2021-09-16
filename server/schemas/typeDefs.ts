@@ -12,7 +12,6 @@ const typeDefs = gql`
     }
 
     type friend {
-        _id: ID!
         user: User
         status: Int
     }

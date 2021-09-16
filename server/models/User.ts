@@ -33,6 +33,7 @@ import bcrypt from "bcrypt";
     },
     friends: [
       {
+        '_id': false,
          user: {
            type: Schema.Types.ObjectId,
            ref: 'users',

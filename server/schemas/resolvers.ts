@@ -94,7 +94,7 @@ const resolvers = {
         sendFriend: async (_:any, { username }:any, context:any) => {
             const defaultUser = await User.findOne({username});
             const id = defaultUser._id;
-            const user = await User.findOneAndUpdate({ _id: context.user._id }, { $push: {friends: { user: id, status: 1 }} }, {new: true}).populate({
+            const user = await User.findOneAndUpdate({ _id: context.user._id }, { $addToSet: {friends: { user: id, status: 1 }} }, {new: true}).populate({
                 path: 'friends',
                 populate: {
                     path: 'user',
@@ -105,7 +105,7 @@ const resolvers = {
         },
         getFriend: async (_:any, { id }:any, context:any) => {
             try {
-                const user = await User.findOneAndUpdate({ _id: context.user._id }, { $push: {friends: { user: id, status: 2 }} }, {new: true}).populate({
+                const user = await User.findOneAndUpdate({ _id: context.user._id }, { $addToSet: {friends: { user: id, status: 2 }} }, {new: true}).populate({
                     path: 'friends',
                     populate: {
                         path: 'user',

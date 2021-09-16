@@ -8,7 +8,6 @@ export const GET_ME = gql`
         propic
         status
         friends {
-            _id
             user {
               _id
               username
@@ -26,7 +25,6 @@ export const GET_FRIENDS = gql `
       getFriends {
         _id
         friends {
-          _id
           user {
             _id
             username

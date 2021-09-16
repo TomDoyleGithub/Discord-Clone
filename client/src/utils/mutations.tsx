@@ -65,7 +65,6 @@ mutation sendFriend ($username: String!) {
     _id
     username
     friends {
-      _id
 			user {
         _id
         username
@@ -84,7 +83,6 @@ mutation getFriend ($id: String!) {
     _id
     username
     friends {
-      _id
 			user {
         _id
         username
