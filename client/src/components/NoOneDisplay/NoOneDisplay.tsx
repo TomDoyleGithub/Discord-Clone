@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import AsleepWumpus from '../WumpusDisplay/AsleepWumpus';
 import PlayWumpus from '../WumpusDisplay/PlayWumpus';
@@ -11,11 +11,25 @@ import { useQuery } from '@apollo/client';
 import './noOneDisplay.scss'
 
 function NoOneDisplay() {
+    const [allFriends, setFriends]:any = useState([]);
     const { data, loading } = useQuery(GET_FRIENDS);
-    const allFriends = data?.getFriends?.friends || [];
 
     const dispatch = useDispatch();
-    const { friendsNav } = useSelector((state: RootStateOrAny) => state);
+    const { friendsNav, socket } = useSelector((state: RootStateOrAny) => state);
+    const upSocket = useRef(socket);
+
+    useEffect(() => {
+        const allFriends = data?.getFriends?.friends || [];
+        setFriends(allFriends)
+    }, [data?.getFriends?.friends ])
+
+    useEffect(() => {
+        upSocket?.current?.on('getRequest', (data) => {
+            setFriends(data?.friends);
+        })
+    }, [])
+
+    console.log(allFriends);
 
     const pending = allFriends?.some(e => e?.status === 1 || e?.status === 2);
     const pendingResults = allFriends?.filter(e => e?.status === 1 || e?.status === 2);

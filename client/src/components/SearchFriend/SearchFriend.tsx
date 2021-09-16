@@ -6,9 +6,6 @@ import './searchFriends.scss'
 
 function SearchFriend() {
     const { socket } = useSelector((state: RootStateOrAny) => state);
-
-
-    // BASIC SOCKET
     const upSocket = useRef(socket);
 
     const [username, setUsername ] = useState('');
