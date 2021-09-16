@@ -34,11 +34,9 @@ function SearchFriend() {
             setSuccess(true);
             setError(false);
             setUsername('');
-            console.log('Request Sent!')
         } catch (err) {
             setSuccess(false);
             setError(true);
-            console.log('User does not exist!')
         }
     };
 

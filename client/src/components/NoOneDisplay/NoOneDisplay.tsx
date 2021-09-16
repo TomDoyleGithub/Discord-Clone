@@ -25,12 +25,9 @@ function NoOneDisplay() {
     useEffect(() => {
         upSocket?.current?.on('getRequest', (data) => {
             const id = data?.id
-            console.log(id)
             getRequest({ variables: { id }});
         })
     }, [getRequest]);
-
-    console.log(allFriends);
 
     const pending = allFriends?.some(e => e?.status === 1 || e?.status === 2);
     const pendingResults = allFriends?.filter(e => e?.status === 1 || e?.status === 2);
