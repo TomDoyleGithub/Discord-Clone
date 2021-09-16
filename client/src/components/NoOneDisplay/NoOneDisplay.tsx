@@ -8,6 +8,7 @@ import FriendWumpus from '../WumpusDisplay/FriendWumpus';
 import { CHANGE_LOADER } from '../../redux/actions';
 import { GET_FRIENDS } from '../../utils/queries';
 import { useQuery } from '@apollo/client';
+import PendingPage from './PendingPage';
 import './noOneDisplay.scss'
 
 function NoOneDisplay() {
@@ -44,40 +45,19 @@ function NoOneDisplay() {
             <></>
         )
     } else if (friendsNav === 'online') {
-        return (
-            <AsleepWumpus/>
-        )
+        return <AsleepWumpus/>
     } else if (friendsNav === 'all') {
-        return (
-            <PlayWumpus/>
-        )
+        return <PlayWumpus/>
     } else if (friendsNav === 'pending') {
         if (pending) {
-            return (
-                <section className='friend-card-container'>
-                    <section className='sub-friend-card-container'>
-                        <p className='pending-label normal-font f500'>Pending — {pendingLength}</p>
-                        {pendingResults.map((user) => (
-                            <section key={user._id}>
-                                <p>{user.user.username}</p>
-                                <p>{user.status}</p>
-                            </section>
-                        ))}
-                    <section className='pending-card'></section>
-                    </section>
-                </section>
-            )
+            return <PendingPage pendingLength={pendingLength} pendingResults={pendingResults}/>
         } else {
             return <LeafWumpus/>
         }
     } else if (friendsNav === 'blocked') {
-        return (
-            <BlockWumpus/>
-        )
+        return <BlockWumpus/>
     } else if (friendsNav === 'add-friend') {
-        return (
-            <FriendWumpus/>
-        )
+        return <FriendWumpus/>
     }
     return <></>
 }
