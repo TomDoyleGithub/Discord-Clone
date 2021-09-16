@@ -22,7 +22,6 @@ io.on("connection", (socket:any) => {
       userId: data.userId,
       username: data.username
     })
-    console.log(users)
   });
 
   socket.on("sendRequest", async ({ username }:any) => {

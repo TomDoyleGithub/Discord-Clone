@@ -60,7 +60,7 @@ function NoOneDisplay() {
                         {pendingResults.map((user) => (
                             <section key={user._id}>
                                 <p>{user.user.username}</p>
-                                <p>{user.user.status}</p>
+                                <p>{user.status}</p>
                             </section>
                         ))}
                     <section className='pending-card'></section>
