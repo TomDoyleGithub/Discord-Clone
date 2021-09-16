@@ -26,7 +26,13 @@ io.on("connection", (socket:any) => {
   });
 
   socket.on("sendRequest", async ({ username }:any) => {
-    const user  = await User.findOne({ username });
+    const user  = await User.findOne({ username }).populate({
+      path: 'friends',
+      populate: {
+          path: 'user',
+          model: 'User'
+        } 
+  });
     const newUser = await users.find((user:any) => user?.username === username);
     const userSend = await newUser?.socketId;
     if (userSend) {
