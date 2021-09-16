@@ -1,9 +1,15 @@
 import { useMutation } from '@apollo/client';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+import { RootStateOrAny, useSelector } from 'react-redux';
 import { SEND_FRIEND } from '../../utils/mutations';
 import './searchFriends.scss'
 
 function SearchFriend() {
+    const { socket } = useSelector((state: RootStateOrAny) => state);
+
+
+    // BASIC SOCKET
+    const upSocket = useRef(socket);
 
     const [username, setUsername ] = useState('');
     const [disable, setDisable] = useState(true);
@@ -25,6 +31,9 @@ function SearchFriend() {
         e.preventDefault();
         try {
             await sendRequest({ variables: { username }});
+            upSocket.current.emit("sendRequest", {
+                username
+              });
             setSuccess(true);
             setError(false);
             setUsername('');
