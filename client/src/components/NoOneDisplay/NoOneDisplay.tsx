@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import AsleepWumpus from '../WumpusDisplay/AsleepWumpus';
 import PlayWumpus from '../WumpusDisplay/PlayWumpus';
@@ -7,28 +7,28 @@ import BlockWumpus from '../WumpusDisplay/BlockWumpus';
 import FriendWumpus from '../WumpusDisplay/FriendWumpus';
 import { CHANGE_LOADER } from '../../redux/actions';
 import { GET_FRIENDS } from '../../utils/queries';
-import { useQuery } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import PendingPage from './PendingPage';
 import './noOneDisplay.scss'
+import { GET_FRIEND_REQUEST } from '../../utils/mutations';
 
 function NoOneDisplay() {
-    const [allFriends, setFriends]:any = useState([]);
     const { data, loading } = useQuery(GET_FRIENDS);
+    const [getRequest] = useMutation(GET_FRIEND_REQUEST);
+    const allFriends = data?.getFriends?.friends || [];
 
     const dispatch = useDispatch();
     const { friendsNav, socket } = useSelector((state: RootStateOrAny) => state);
     const upSocket = useRef(socket);
 
-    useEffect(() => {
-        const allFriends = data?.getFriends?.friends || [];
-        setFriends(allFriends)
-    }, [data?.getFriends?.friends ])
 
     useEffect(() => {
         upSocket?.current?.on('getRequest', (data) => {
-            setFriends(data?.friends);
+            const id = data?.id
+            console.log(id)
+            getRequest({ variables: { id }});
         })
-    }, [])
+    }, [getRequest]);
 
     console.log(allFriends);
 

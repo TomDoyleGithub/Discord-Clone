@@ -25,25 +25,21 @@ io.on("connection", (socket:any) => {
   });
 
   socket.on("sendRequest", async ({ username }:any) => {
-    const user  = await User.findOne({ username }).populate({
-      path: 'friends',
-      populate: {
-          path: 'user',
-          model: 'User'
-        } 
-  });
+    const user  = await User.findOne({ username })
+    const thisId = getSocketUser(socket.id)?.userId;
     const newUser = await users.find((user:any) => user?.username === username);
     const userSend = await newUser?.socketId;
     if (userSend) {
       try {
         io.to(userSend).emit("getRequest", {
-          friends: user.friends
+          id: thisId
         });
         console.log('User is online and the request was sent.')
       } catch (err) {
         console.log(err)
       }
     } else {
+       await User.findOneAndUpdate({ _id: user._id }, { $push: {friends: { user: thisId, status: 2 }} }, {new: true});
       console.log('The user is not online the request was not sent.')
     }
   });

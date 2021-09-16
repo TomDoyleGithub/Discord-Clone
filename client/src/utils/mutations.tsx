@@ -77,3 +77,22 @@ mutation sendFriend ($username: String!) {
     }
   }
 `;
+
+export const GET_FRIEND_REQUEST = gql `
+mutation getFriend ($id: String!) {
+  getFriend(id: $id) {
+    _id
+    username
+    friends {
+      _id
+			user {
+        _id
+        username
+        propic
+        status
+      }
+      status
+    }
+    }
+  }
+`;

@@ -94,21 +94,28 @@ const resolvers = {
         sendFriend: async (_:any, { username }:any, context:any) => {
             const defaultUser = await User.findOne({username});
             const id = defaultUser._id;
-            const user1 = await User.findOneAndUpdate({ _id: context.user._id }, { $push: {friends: { user: id, status: 1 }} }, {new: true}).populate({
+            const user = await User.findOneAndUpdate({ _id: context.user._id }, { $push: {friends: { user: id, status: 1 }} }, {new: true}).populate({
                 path: 'friends',
                 populate: {
                     path: 'user',
                     model: 'User'
                   } 
             });
-            const user2 = await User.findOneAndUpdate({ _id: id }, { $push: {friends: { user: context.user._id, status: 2 }} }, {new: true}).populate({
-                path: 'friends',
-                populate: {
-                    path: 'user',
-                    model: 'User'
-                  } 
-            });
-            return [user1, user2];
+            return user;
+        },
+        getFriend: async (_:any, { id }:any, context:any) => {
+            try {
+                const user = await User.findOneAndUpdate({ _id: context.user._id }, { $push: {friends: { user: id, status: 2 }} }, {new: true}).populate({
+                    path: 'friends',
+                    populate: {
+                        path: 'user',
+                        model: 'User'
+                      } 
+                });
+                return user;
+            } catch (err) {
+                console.log(err)
+            }
         }
     },
 };
