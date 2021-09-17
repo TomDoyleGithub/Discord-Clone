@@ -94,3 +94,21 @@ mutation getFriend ($id: String!) {
     }
   }
 `;
+
+export const ACCEPT_FRIEND = gql `
+mutation acceptFriend ($id: String!) {
+  acceptFriend(id: $id) {
+    _id
+    username
+    friends {
+			user {
+        _id
+        username
+        propic
+        status
+      }
+      status
+    }
+    }
+  }
+`;
