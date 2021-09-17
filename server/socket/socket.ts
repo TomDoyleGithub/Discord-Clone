@@ -45,6 +45,24 @@ io.on("connection", (socket:any) => {
     }
   });
 
+  socket.on('sendAccept', async ({ id }:any) => {
+    const user  = await User.findOne({ _id: id })
+    const newUser = await users.find((user:any) => user?.userId === id);
+    const thisId = await getSocketUser(socket.id)?.userId;
+    const userSend = await newUser?.socketId;
+    if (userSend) {
+      try {
+        io.to(userSend).emit('getAccept', {
+          id: thisId
+        });
+      } catch (err) {
+        console.log(err)
+      }
+    } else {
+      await User.findOneAndUpdate({ _id: user._id, friends: {$elemMatch: {user: thisId}}}, {$set: {'friends.$.status': 3}},{new: true});
+    }
+  })
+
   // Disconnecting from socket
   socket.on('disconnect', async () => {
     const thisId = getSocketUser(socket.id)?.userId;

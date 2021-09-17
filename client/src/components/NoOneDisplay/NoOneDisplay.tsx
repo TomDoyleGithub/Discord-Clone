@@ -10,11 +10,12 @@ import { GET_FRIENDS } from '../../utils/queries';
 import { useMutation, useQuery } from '@apollo/client';
 import PendingPage from './PendingPage';
 import './noOneDisplay.scss'
-import { GET_FRIEND_REQUEST } from '../../utils/mutations';
+import { ACCEPT_FRIEND, GET_FRIEND_REQUEST } from '../../utils/mutations';
 
 function NoOneDisplay() {
     const { data, loading } = useQuery(GET_FRIENDS);
     const [getRequest] = useMutation(GET_FRIEND_REQUEST);
+    const [acceptRequest] = useMutation(ACCEPT_FRIEND);
     const allFriends = data?.getFriends?.friends || [];
 
     const dispatch = useDispatch();
@@ -28,6 +29,13 @@ function NoOneDisplay() {
             getRequest({ variables: { id }});
         })
     }, [getRequest]);
+
+    useEffect(() => {
+        upSocket?.current?.on('getAccept', (data) => {
+            const id = data?.id
+            acceptRequest({ variables: { id }});
+        })
+    }, [acceptRequest]);
 
     const pending = allFriends?.some(e => e?.status === 1 || e?.status === 2);
     const pendingResults = allFriends?.filter(e => e?.status === 1 || e?.status === 2);
