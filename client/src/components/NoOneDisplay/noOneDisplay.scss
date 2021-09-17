@@ -1,4 +1,6 @@
 $gray: #b8bbbe;
+$red: #ed4245;
+$green: #3aa55d;
 
 .friend-card-container {
   width: 100%;
@@ -99,16 +101,61 @@ $gray: #b8bbbe;
     width: 35px;
     height: 35px;
     display: flex;
+    position: relative;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
     background-color: rgba(0, 0, 0, 0.212);
+    &:hover {
+      .pending-tick {
+        color: $green;
+      }
+      .pending-cross {
+        color: $red;
+      }
+    }
   }
 }
 
 .pending-icon {
   color: $gray;
   font-size: 20px;
+}
+
+.pending-tooltip {
+  position: absolute;
+  padding: 10px;
+  top: -40px;
+  left: -12px;
+  background-color: black;
+  color: $gray;
+  font-size: 13px;
+  border-radius: 5px;
+  transition: 100ms ease-in-out;
+}
+
+.ticky-one-accept,
+.ticky-two-ignore {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.ticky-one {
+  &:hover {
+    .ticky-one-accept {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+
+.ticky-two {
+  &:hover {
+    .ticky-two-ignore {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
 }
 
 @media screen and (max-width: 1200px) {

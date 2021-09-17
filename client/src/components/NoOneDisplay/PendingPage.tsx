@@ -29,15 +29,17 @@ function PendingPage({ pendingLength, pendingResults }) {
                             )}
                             </section>
                             <section className='choose-request-container'>
-                            {user.status === 1 ? (
-                                <section>
-                                    <IoCheckmarkSharp className='pending-icon'/>
+                            {user.status !== 1 ? (
+                                <section className='ticky-one'>
+                                    <aside className='pending-tooltip normal-font f500 ticky-one-accept'>Accept</aside>
+                                    <IoCheckmarkSharp className='pending-icon pending-tick'/>
                                 </section>
                             ) : (
                                 <></>
                             )}
-                                <section>
-                                    <IoCloseSharp className='pending-icon'/>
+                                <section className='ticky-two'>
+                                    <aside className='pending-tooltip normal-font f500 ticky-two-ignore'>Ignore</aside>
+                                    <IoCloseSharp className='pending-icon pending-cross'/>
                                 </section>
                             </section>
                         </section>
