@@ -98,9 +98,17 @@ $gray: #b8bbbe;
   section {
     width: 35px;
     height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 50%;
     background-color: rgba(0, 0, 0, 0.212);
   }
+}
+
+.pending-icon {
+  color: $gray;
+  font-size: 20px;
 }
 
 @media screen and (max-width: 1200px) {
