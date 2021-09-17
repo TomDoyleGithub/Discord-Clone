@@ -116,6 +116,22 @@ const resolvers = {
             } catch (err) {
                 console.log(err)
             }
+        },
+        acceptFriend: async (_:any, { id }:any, context:any) => {
+            try {
+                const user = await User.findOneAndUpdate({ _id: context.user._id, friends: {$elemMatch: {user: id}} }, 
+                    {$set: {'friends.$.status': 3}},
+                    {new: true}).populate({
+                    path: 'friends',
+                    populate: {
+                        path: 'user',
+                        model: 'User'
+                      } 
+                });
+                return user
+            } catch (err) {
+                console.log(err)
+            }
         }
     },
 };

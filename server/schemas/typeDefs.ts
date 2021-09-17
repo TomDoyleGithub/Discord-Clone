@@ -35,6 +35,7 @@ const typeDefs = gql`
         updateStatus(status: String!): User
         sendFriend(username: String!): User
         getFriend(id: String!): User
+        acceptFriend(id: String!): User
     }
 `;
 
