@@ -138,6 +138,10 @@ $green: #3aa55d;
 .ticky-two-ignore {
   opacity: 0;
   visibility: hidden;
+  &:hover {
+    opacity: 0 !important;
+    visibility: hidden !important;
+  }
 }
 
 .ticky-one {
