@@ -10,7 +10,7 @@ function PlayWumpus() {
     };
     return (
         <article>
-        <img src={playWumpus} alt='Play Wumpus'/>
+        <img className='wumpo' src={playWumpus} alt='Play Wumpus'/>
             <p className='wumpus-text normal-font f300'>Wumpus is waiting on friends. You don’t have to though!</p>
             <div onClick={handleClick}><p className='normal-font'>Add Friend</p></div>
         </article>

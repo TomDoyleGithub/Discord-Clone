@@ -72,12 +72,12 @@ body {
 }
 
 .invisible {
-  background-color: $light-gray;
+  background-color: $light-gray !important;
   section {
-    background-color: #282b2f;
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
+    background-color: #282b2f !important;
+    width: 4px !important;
+    height: 4px !important;
+    border-radius: 50% !important;
   }
 }
 
@@ -396,7 +396,7 @@ input:-webkit-autofill:active {
       background-color: #4752cf;
     }
   }
-  img {
+  .wumpo {
     margin-bottom: 48px;
   }
 }

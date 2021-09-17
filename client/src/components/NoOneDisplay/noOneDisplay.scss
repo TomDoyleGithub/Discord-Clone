@@ -1,3 +1,5 @@
+$gray: #b8bbbe;
+
 .friend-card-container {
   width: 100%;
   height: 100%;
@@ -24,4 +26,56 @@
   width: 100px;
   margin-top: 10px;
   background-color: white;
+}
+
+.pendly-card {
+  border-top: 1px solid rgba(255, 255, 255, 0.075);
+  margin-top: 10px;
+  padding: 15px 10px;
+  display: flex;
+  position: relative;
+  right: 10px;
+  background-blend-mode: multiply;
+  column-gap: 13px;
+  cursor: pointer;
+  &:hover {
+    border-top: 1px solid rgba(255, 255, 255, 0);
+    background-color: rgba(255, 255, 255, 0.021);
+    border-radius: 10px;
+    .request-card-code {
+      opacity: 1;
+    }
+  }
+  section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+
+.request-card-username {
+  color: white;
+}
+
+.request-card-code {
+  color: $gray;
+  font-size: 13px;
+  opacity: 0;
+}
+
+.request-card-subby {
+  color: $gray;
+  font-size: 11px;
+}
+
+.request-status {
+  top: 33px;
+  left: 30px;
+}
+
+.real-status {
+  .hole-dot {
+    position: relative;
+    top: 3px;
+  }
 }

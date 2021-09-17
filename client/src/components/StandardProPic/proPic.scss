@@ -1,12 +1,12 @@
 $gray: #757e8a;
 
 .pro-fake-circle {
-  width: 32px;
-  height: 32px;
-  border-radius: 50px;
-  background-color: $gray;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 50px !important;
+  background-color: $gray !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
   cursor: pointer;
 }

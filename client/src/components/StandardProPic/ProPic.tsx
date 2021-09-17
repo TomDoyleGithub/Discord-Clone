@@ -4,9 +4,9 @@ import logo from '../../images/Discord-White.svg';
 
 function ProPic() {
     return (
-        <div className='pro-fake-circle'>
+        <section className='pro-fake-circle'>
             <img alt='Discord Icon' src={logo} style={{width: '20px'}}/>
-        </div>
+        </section>
     )
 }
 
