@@ -7,7 +7,7 @@ $gray: #b8bbbe;
 
 .sub-friend-card-container {
   width: auto;
-  margin-right: 30px;
+  margin-right: 375px;
   height: 100px;
   margin-left: 311px;
   margin-top: 50px;
@@ -45,6 +45,11 @@ $gray: #b8bbbe;
     .request-card-code {
       opacity: 1;
     }
+    .choose-request-container {
+      section {
+        background-color: rgba(0, 0, 0, 0.479);
+      }
+    }
   }
   section {
     display: flex;
@@ -77,5 +82,29 @@ $gray: #b8bbbe;
   .hole-dot {
     position: relative;
     top: 3px;
+  }
+}
+
+.choose-request-container {
+  position: absolute;
+  right: 0px;
+  padding: 13px;
+  top: 0px;
+  height: 100%;
+  display: flex !important;
+  flex-direction: row !important;
+  column-gap: 10px;
+  align-items: center;
+  section {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.212);
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .sub-friend-card-container {
+    margin-right: 30px;
   }
 }

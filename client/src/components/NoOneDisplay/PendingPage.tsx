@@ -23,6 +23,14 @@ function PendingPage({ pendingLength, pendingResults }) {
                             </p>
                             <p className='normal-font request-card-subby'>Outgoing Friend Request</p>
                             </section>
+                            <section className='choose-request-container'>
+                                <section>
+
+                                </section>
+                                <section>
+                                    
+                                </section>
+                            </section>
                         </section>
                     ) : (
                         <section className='pendly-card' key={user.user._id}>
@@ -39,6 +47,11 @@ function PendingPage({ pendingLength, pendingResults }) {
                                 <span className='normal-font request-card-code'>{user.user.username.slice(Math.max(user.user.username?.length - 5, 0))}</span>
                             </p>
                             <p className='normal-font request-card-subby'>Incoming Friend Request</p>
+                            </section>
+                            <section className='choose-request-container'>
+                                <section>
+
+                                </section>
                             </section>
                         </section>
                     )
