@@ -32,6 +32,8 @@ function NoOneDisplay() {
     const pending = allFriends?.some(e => e?.status === 1 || e?.status === 2);
     const pendingResults = allFriends?.filter(e => e?.status === 1 || e?.status === 2);
     const pendingLength = allFriends?.filter(e => e?.status === 1 || e?.status === 2).length;
+    const acceptedFriends = allFriends?.some(e => e?.status === 3);
+
 
     useEffect(() => {
         dispatch({ type: CHANGE_LOADER, userLoad: loading});
@@ -44,7 +46,11 @@ function NoOneDisplay() {
     } else if (friendsNav === 'online') {
         return <AsleepWumpus/>
     } else if (friendsNav === 'all') {
-        return <PlayWumpus/>
+        if (acceptedFriends) {
+            return <p>You Have Friends</p>
+        } else {
+            return <PlayWumpus/>
+        }
     } else if (friendsNav === 'pending') {
         if (pending) {
             return <PendingPage pendingLength={pendingLength} pendingResults={pendingResults}/>
