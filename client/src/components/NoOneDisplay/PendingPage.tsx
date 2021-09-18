@@ -2,22 +2,32 @@ import React, { useRef } from 'react'
 import ProPic from '../StandardProPic/ProPic';
 import { IoCheckmarkSharp, IoCloseSharp } from "react-icons/io5";
 import { useMutation } from '@apollo/client';
-import { ACCEPT_FRIEND } from '../../utils/mutations';
+import { ACCEPT_FRIEND, REMOVE_FRIEND } from '../../utils/mutations';
 import { RootStateOrAny, useSelector } from 'react-redux';
 
 function PendingPage({ pendingLength, pendingResults }) {
     const { socket } = useSelector((state: RootStateOrAny) => state);
     const upSocket = useRef(socket);
     const [acceptRequest] = useMutation(ACCEPT_FRIEND);
+    const [removeFriend] = useMutation(REMOVE_FRIEND);
+
     const handleClick = async (e) => {
-        const id = await e.currentTarget.getAttribute('data-value');
-        try {
-            await acceptRequest({ variables: { id }});
-            upSocket.current.emit("sendAccept", {
+        const className = e.currentTarget.getAttribute('class');
+        const id = e.currentTarget.getAttribute('data-value');
+        if (className === 'ticky-one') {
+            try {
+                await acceptRequest({ variables: { id }});
+                upSocket.current.emit("sendAccept", {
+                    id
+                  });
+            } catch (err) {
+                console.log(err)
+            }
+        } else {
+            await removeFriend({ variables: { id }});
+            upSocket.current.emit("ignoreRequest", {
                 id
               });
-        } catch (err) {
-            console.log(err)
         }
     };
 
@@ -55,7 +65,7 @@ function PendingPage({ pendingLength, pendingResults }) {
                             ) : (
                                 <></>
                             )}
-                                <section data-value={user.user._id}  className='ticky-two'>
+                                <section onClick={handleClick} data-value={user.user._id} className='ticky-two'>
                                     <aside className='pending-tooltip normal-font f500 ticky-two-ignore'>Ignore</aside>
                                     <IoCloseSharp className='pending-icon pending-cross'/>
                                 </section>
