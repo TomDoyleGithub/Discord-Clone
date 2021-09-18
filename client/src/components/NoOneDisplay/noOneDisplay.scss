@@ -75,6 +75,11 @@ $green: #3aa55d;
   font-size: 11px;
 }
 
+.friend-card-subby {
+  color: $gray;
+  font-size: 12px;
+}
+
 .request-status {
   top: 33px;
   left: 30px;
@@ -120,6 +125,11 @@ $green: #3aa55d;
 .pending-icon {
   color: $gray;
   font-size: 20px;
+}
+
+.message-friend-icon {
+  color: $gray;
+  font-size: 17px;
 }
 
 .pending-tooltip {

@@ -48,9 +48,10 @@ function NoOneDisplay() {
 
     const pending = allFriends?.some(e => e?.status === 1 || e?.status === 2);
     const pendingResults = allFriends?.filter(e => e?.status === 1 || e?.status === 2);
-    const pendingLength = allFriends?.filter(e => e?.status === 1 || e?.status === 2).length;
+    const pendingLength = pendingResults.length;
     const acceptedFriends = allFriends?.some(e => e?.status === 3);
-    const allLength = allFriends?.filter(e => e?.status === 3).length;
+    const allResults = allFriends?.filter(e => e?.status === 3);
+    const allLength = allResults?.length;
 
 
     useEffect(() => {
@@ -65,7 +66,7 @@ function NoOneDisplay() {
         return <AsleepWumpus/>
     } else if (friendsNav === 'all') {
         if (acceptedFriends) {
-            return <AllFriends allLength={allLength}/>
+            return <AllFriends allLength={allLength} allResults={allResults} />
         } else {
             return <PlayWumpus/>
         }
