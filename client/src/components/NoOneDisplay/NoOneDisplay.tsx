@@ -9,6 +9,7 @@ import { CHANGE_LOADER } from '../../redux/actions';
 import { GET_FRIENDS } from '../../utils/queries';
 import { useMutation, useQuery } from '@apollo/client';
 import PendingPage from './PendingPage';
+import AllFriends from './AllFriends';
 import './noOneDisplay.scss'
 import { ACCEPT_FRIEND, GET_FRIEND_REQUEST, REMOVE_FRIEND } from '../../utils/mutations';
 
@@ -49,6 +50,7 @@ function NoOneDisplay() {
     const pendingResults = allFriends?.filter(e => e?.status === 1 || e?.status === 2);
     const pendingLength = allFriends?.filter(e => e?.status === 1 || e?.status === 2).length;
     const acceptedFriends = allFriends?.some(e => e?.status === 3);
+    const allLength = allFriends?.filter(e => e?.status === 3).length;
 
 
     useEffect(() => {
@@ -63,7 +65,7 @@ function NoOneDisplay() {
         return <AsleepWumpus/>
     } else if (friendsNav === 'all') {
         if (acceptedFriends) {
-            return <p>You Have Friends</p>
+            return <AllFriends allLength={allLength}/>
         } else {
             return <PlayWumpus/>
         }
