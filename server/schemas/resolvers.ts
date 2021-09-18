@@ -93,7 +93,10 @@ const resolvers = {
         },
         sendFriend: async (_:any, { username }:any, context:any) => {
             const defaultUser = await User.findOne({username});
-            const id = defaultUser._id;
+            const id = await defaultUser._id;
+            if (id == context.user._id) {
+                throw 'You cannot add yourself as a friend!'
+            }
             const user = await User.findOneAndUpdate({ _id: context.user._id }, { $addToSet: {friends: { user: id, status: 1 }} }, {new: true}).populate({
                 path: 'friends',
                 populate: {
