@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import ProPic from '../StandardProPic/ProPic';
+import CardUser from './CardUser';
 import { IoCheckmarkSharp, IoCloseSharp } from "react-icons/io5";
 import { useMutation } from '@apollo/client';
 import { ACCEPT_FRIEND, REMOVE_FRIEND } from '../../utils/mutations';
@@ -38,24 +38,7 @@ function PendingPage({ pendingLength, pendingResults }) {
                 {pendingResults.map((user) => (
                     
                         <section className='pendly-card' key={user.user._id}>
-                            <section>
-                                <ProPic />
-                                <section className='invisible real-status request-status'>
-                                    <section className='hole-dot'></section>
-                                </section>
-                            </section>
-                            
-                            <section>
-                            <p>
-                                <span className='request-card-username header-font f700'>{user.user.username.slice(0, -5)}</span>
-                                <span className='normal-font request-card-code'>{user.user.username.slice(Math.max(user.user.username?.length - 5, 0))}</span>
-                            </p>
-                            {user.status === 1 ? (
-                                <p className='normal-font request-card-subby'>Outgoing Friend Request</p>
-                            ) : (
-                                <p className='normal-font request-card-subby'>Incoming Friend Request</p>
-                            )}
-                            </section>
+                            <CardUser user={user} pageType={'pending'}/>
                             <section className='choose-request-container'>
                             {user.status !== 1 ? (
                                 <section onClick={handleClick} data-value={user.user._id} className='ticky-one'>
