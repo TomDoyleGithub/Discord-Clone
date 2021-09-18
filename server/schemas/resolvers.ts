@@ -135,7 +135,7 @@ const resolvers = {
         },
         removeFriend: async (_:any, { id }:any, context:any) => {
             try {
-                const user = await User.findOneAndUpdate({ _id: "614024ee4594b5784244d7b2" }, { $pull: {friends: { user: id }} }, {new: true}).populate({
+                const user = await User.findOneAndUpdate({ _id: context.user._id }, { $pull: {friends: { user: id }} }, {new: true}).populate({
                     path: 'friends',
                     populate: {
                         path: 'user',

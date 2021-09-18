@@ -63,6 +63,24 @@ io.on("connection", (socket:any) => {
     }
   })
 
+  socket.on('ignoreRequest', async ({ id }:any) => {
+    const user  = await User.findOne({ _id: id })
+    const newUser = await users.find((user:any) => user?.userId === id);
+    const thisId = await getSocketUser(socket.id)?.userId;
+    const userSend = await newUser?.socketId;
+    if (userSend) {
+      try {
+        io.to(userSend).emit('getIgnore', {
+          id: thisId
+        });
+      } catch (err) {
+        console.log(err)
+      }
+    } else {
+      await User.findOneAndUpdate({ _id: user._id }, { $pull: {friends: { user: thisId }} }, {new: true})
+    }
+  })
+
   // Disconnecting from socket
   socket.on('disconnect', async () => {
     const thisId = getSocketUser(socket.id)?.userId;
