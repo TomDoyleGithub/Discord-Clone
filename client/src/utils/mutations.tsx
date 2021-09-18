@@ -112,3 +112,21 @@ mutation acceptFriend ($id: String!) {
     }
   }
 `;
+
+export const REMOVE_FRIEND = gql `
+mutation removeFriend ($id: String!) {
+	removeFriend(id: $id) {
+    _id
+    username
+    friends {
+			user {
+        _id
+        username
+        propic
+        status
+      }
+      status
+    }
+    }
+  }
+`;
