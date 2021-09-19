@@ -1,7 +1,7 @@
 import React from 'react'
 import CardUser from './CardUser';
+import ContactIcons from './ContactIcons';
 
-import { IoChatbox, IoEllipsisVerticalSharp } from "react-icons/io5";
 
 function AllFriends({allLength, allResults}) {
     return (
@@ -11,18 +11,7 @@ function AllFriends({allLength, allResults}) {
                 {allResults.map((user) => (
                     <section className='pendly-card' key={user.user._id}>
                         <CardUser user={user} pageType={'all'}/>
-
-                        <section className='choose-request-container'>
-                            <section data-value={user.user._id} className='ticky-one'>
-                                <aside className='pending-tooltip normal-font f500 ticky-one-accept'>Message</aside>
-                                <IoChatbox className='message-friend-icon'/>
-                            </section>
-                            <section data-value={user.user._id} className='ticky-two'>
-                                <aside className='pending-tooltip normal-font f500 ticky-two-ignore'>More</aside>
-                                <IoEllipsisVerticalSharp className='message-friend-icon' />
-                            </section>
-                            
-                        </section>
+                        <ContactIcons user={user}/>
                     </section>
             ))}
             </section>
