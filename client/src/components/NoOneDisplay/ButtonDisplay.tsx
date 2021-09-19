@@ -1,4 +1,5 @@
 import React from 'react'
+import WordStatus from './WordStatus';
 
 function ButtonDisplay({user, pageType}) {
     if (pageType === 'pending') {
@@ -13,7 +14,7 @@ function ButtonDisplay({user, pageType}) {
         )
     } else if (pageType === 'all') {
         return (
-            <p className='normal-font friend-card-subby'>Offline</p>
+            <WordStatus status={user.user.status} />
         )
     }
     return (
