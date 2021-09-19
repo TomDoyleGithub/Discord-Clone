@@ -21,7 +21,8 @@ io.on("connection", (socket:any) => {
       socketId: socket.id, 
       userId: data.userId,
       username: data.username
-    })
+    });
+    io.emit('getUsers', users);
   });
 
   socket.on("sendRequest", async ({ username }:any) => {
@@ -94,7 +95,8 @@ io.on("connection", (socket:any) => {
     } catch (err) {
       console.log(err)
     }
-    removeUser(socket.id);
+    await removeUser(socket.id);
+    io.emit('getUsers', users);
     }
   });
 });

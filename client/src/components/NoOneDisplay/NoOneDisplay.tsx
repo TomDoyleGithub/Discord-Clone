@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import AsleepWumpus from '../WumpusDisplay/AsleepWumpus';
 import PlayWumpus from '../WumpusDisplay/PlayWumpus';
@@ -19,6 +19,10 @@ function NoOneDisplay() {
     const [acceptRequest] = useMutation(ACCEPT_FRIEND);
     const [removeFriend] = useMutation(REMOVE_FRIEND);
     const allFriends = data?.getFriends?.friends || [];
+
+    let onlineFriends;
+
+    const [onlineUsers, setOnlineUsers]:any = useState();
 
     const dispatch = useDispatch();
     const { friendsNav, socket } = useSelector((state: RootStateOrAny) => state);
@@ -46,6 +50,12 @@ function NoOneDisplay() {
         })
     }, [removeFriend]);
 
+    useEffect(() => {
+        upSocket?.current?.on('getUsers', (data) => {
+            setOnlineUsers(data)
+        })
+    }, []);
+
     const pending = allFriends?.some(e => e?.status === 1 || e?.status === 2);
     const pendingResults = allFriends?.filter(e => e?.status === 1 || e?.status === 2);
     const pendingLength = pendingResults.length;
@@ -53,6 +63,26 @@ function NoOneDisplay() {
     const allResults = allFriends?.filter(e => e?.status === 3);
     const allLength = allResults?.length;
 
+
+    if (onlineUsers) {
+        let onlineIds = onlineUsers.map(e => e.userId)
+        let friendIds = allResults.map(e => e.user._id);
+        const intersection = onlineIds.filter(element => friendIds.includes(element));
+        if (intersection[0] !== undefined) {
+            intersection.forEach((id) => {
+                onlineFriends = allResults.filter(element => element.user._id === id)
+            })
+        }
+    };
+
+    useEffect(() => {
+        if (onlineFriends) {
+            console.log(onlineFriends)
+        } else {
+            console.log('No Friends Online')
+        }
+    }, [onlineFriends]);
+        
 
     useEffect(() => {
         dispatch({ type: CHANGE_LOADER, userLoad: loading});
@@ -63,6 +93,9 @@ function NoOneDisplay() {
             <></>
         )
     } else if (friendsNav === 'online') {
+        if (onlineFriends) {
+            return <p>Friends Online</p>
+        }
         return <AsleepWumpus/>
     } else if (friendsNav === 'all') {
         if (acceptedFriends) {
