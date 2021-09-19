@@ -1,15 +1,14 @@
 import React from 'react'
 import ProPic from '../StandardProPic/ProPic';
 import ButtonDisplay from './ButtonDisplay';
+import StatusIcon from './StatusIcon';
 
 function CardUser({user, pageType}) {
     return (
         <>
             <section>
                 <ProPic />
-                <section className='invisible real-status request-status'>
-                    <section className='hole-dot'></section>
-                </section>
+                <StatusIcon status={user.user.status}/>
             </section>
             <section>
             <p>

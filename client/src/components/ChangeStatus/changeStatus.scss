@@ -38,11 +38,12 @@ $purple: #5865f2;
   &:hover {
     background-color: $purple;
     color: white;
-    div {
-      background-color: white;
-      border-color: $purple;
+    div,
+    .invisible {
+      background-color: white !important;
+      border-color: $purple !important;
       section {
-        background-color: $purple;
+        background-color: $purple !important;
       }
     }
   }

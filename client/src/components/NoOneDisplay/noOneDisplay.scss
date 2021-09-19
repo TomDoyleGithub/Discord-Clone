@@ -172,6 +172,20 @@ $green: #3aa55d;
   }
 }
 
+.minor-adjustment {
+  top: 32px;
+  left: 30px;
+  border-color: #36393e !important;
+  section {
+    background-color: #36393e;
+  }
+}
+
+.idle-section {
+  top: -1.8px !important;
+  left: -3px !important;
+}
+
 @media screen and (max-width: 1200px) {
   .sub-friend-card-container {
     margin-right: 30px;
