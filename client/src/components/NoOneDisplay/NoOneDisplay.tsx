@@ -10,6 +10,7 @@ import { GET_FRIENDS } from '../../utils/queries';
 import { useMutation, useQuery } from '@apollo/client';
 import PendingPage from './PendingPage';
 import AllFriends from './AllFriends';
+import OnlineFriends from './OnlineFriends';
 import './noOneDisplay.scss'
 import { ACCEPT_FRIEND, GET_FRIEND_REQUEST, REMOVE_FRIEND } from '../../utils/mutations';
 
@@ -94,7 +95,7 @@ function NoOneDisplay() {
         )
     } else if (friendsNav === 'online') {
         if (onlineFriends) {
-            return <p>Friends Online</p>
+            return <OnlineFriends onlineFriends={onlineFriends}/>
         }
         return <AsleepWumpus/>
     } else if (friendsNav === 'all') {
