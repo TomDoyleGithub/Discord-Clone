@@ -1,6 +1,12 @@
 import React from 'react'
 
-function StatusIcon({status}) {
+function StatusIcon({id, status}) {
+    // This console logs the id's of the user on the page
+    // console.log(id) HERE HERE HERE
+    // Other console log in NoOneDisplay line 69
+    // Find the members userId against this ID in the socket online user
+    // If it exists set the status as the socket status
+    // Else do the code below
     if (status === 'online') {
         return (
             <section className= 'online real-status minor-adjustment'></section>

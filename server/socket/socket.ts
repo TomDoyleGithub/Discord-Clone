@@ -3,8 +3,8 @@ import { User } from '../models';
 const rootSocket = (io: any) => {
 let users:any = [];
 
-const removeUser = (socketId:any) => {
-  users = users.filter((user:any) => user.socketId !== socketId);
+const removeUser = async (socketId:any) => {
+  users = await users.filter((user:any) => user.socketId !== socketId);
 };
 
 const getSocketUser = (internalSocket:any) => {
@@ -15,14 +15,16 @@ io.on("connection", (socket:any) => {
   io.emit('Welcome', 'Socket server is working!')
 
   // Connection to socket
-  socket.on('login', (data:any) => {
+  socket.on('login', async (data:any) => {
     console.log(data.userId + ' connected');
-    users.push({
+    await removeUser(socket.id);
+    await users.push({
       socketId: socket.id, 
       userId: data.userId,
-      username: data.username
+      username: data.username,
+      status: data.status
     });
-    io.emit('getUsers', users);
+    await io.emit('getUsers', users);
   });
 
   socket.on("sendRequest", async ({ username }:any) => {

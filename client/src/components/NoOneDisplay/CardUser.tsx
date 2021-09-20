@@ -8,7 +8,7 @@ function CardUser({user, pageType}) {
         <>
             <section>
                 <ProPic />
-                <StatusIcon status={user.user.status}/>
+                <StatusIcon id={user.user._id} status={user.user.status}/>
             </section>
             <section>
             <p>

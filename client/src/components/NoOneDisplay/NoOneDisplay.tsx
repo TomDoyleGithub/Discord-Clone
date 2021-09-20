@@ -66,6 +66,7 @@ function NoOneDisplay() {
 
 
     if (onlineUsers) {
+        // console.log(onlineUsers) HERE HERE HERE
         const intersection = onlineUsers.map(e => e.userId).filter(element => allResults.map(e => e.user._id).includes(element));
         if (intersection[0] !== undefined) {
             intersection.forEach((id) => {
