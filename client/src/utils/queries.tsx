@@ -36,3 +36,11 @@ export const GET_FRIENDS = gql `
       }
     }
 `;
+
+export const ONE_USER = gql `
+query oneUser ($username: String!) {
+  oneUser (username: $username) {
+    _id
+  }
+}
+`;

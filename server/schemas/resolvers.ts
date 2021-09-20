@@ -36,6 +36,9 @@ const resolvers = {
                     model: 'User'
                   } 
             });
+        },
+        oneUser: async(_:any, { username }:any) => {
+            return User.findOne({ username })
         }
     },
     Mutation: {

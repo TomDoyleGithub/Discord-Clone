@@ -25,6 +25,7 @@ const typeDefs = gql`
         allUsers: [User]
         me: User
         getFriends: User
+        oneUser (username: String!): User
     }
 
     type Mutation {

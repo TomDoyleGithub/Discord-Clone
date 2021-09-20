@@ -1,18 +1,25 @@
-import { useMutation } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import React, { useEffect, useRef, useState } from 'react'
 import { RootStateOrAny, useSelector } from 'react-redux';
-import { SEND_FRIEND } from '../../utils/mutations';
+import { ACCEPT_FRIEND, SEND_FRIEND } from '../../utils/mutations';
+import { ONE_USER } from '../../utils/queries';
 import './searchFriends.scss'
 
 function SearchFriend({friends}) {
     const { socket } = useSelector((state: RootStateOrAny) => state);
     const upSocket = useRef(socket);
 
+
     const [username, setUsername ] = useState('');
     const [disable, setDisable] = useState(true);
     const [error, setError] = useState(false);
     const [success, setSuccess] = useState(false);
     const [sendRequest] = useMutation(SEND_FRIEND);
+    const [acceptRequest] = useMutation(ACCEPT_FRIEND);
+
+    const { data } = useQuery(ONE_USER, {
+        variables: {username}
+    });
 
     const handleChange = (event:any) => {
         const { value } = event.target;
@@ -26,16 +33,19 @@ function SearchFriend({friends}) {
 
     const handleFormSubmit = async (e) => {
         await e.preventDefault();
-        if (friends.some(e => e.user.username === username)) {
+        if (friends.some(e => e.user.username === username && e.status === 3)) {
             setSuccess(false);
             setError(true);
+          } else if (friends.some(e => e.user.username === username && e.status === 2)) {
+            await acceptRequest({ variables: { id: data?.oneUser?._id }});
+            await upSocket.current.emit("sendAccept", { id: data?.oneUser?._id });
+            setSuccess(true);
+            setError(false);
+            setUsername('');
           } else {
-            console.log('They DONT MATCH')
             try {
             await sendRequest({ variables: { username }});
-            await upSocket.current.emit("sendRequest", {
-                username
-              });
+            await upSocket.current.emit("sendRequest", { username });
             setSuccess(true);
             setError(false);
             setUsername('');
