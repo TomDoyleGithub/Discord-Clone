@@ -1,23 +1,22 @@
 import React from 'react'
 
-function StatusIcon({id, status}) {
-    // This console logs the id's of the user on the page
-    // console.log(id) HERE HERE HERE
-    // Other console log in NoOneDisplay line 69
-    // Find the members userId against this ID in the socket online user
-    // If it exists set the status as the socket status
-    // Else do the code below
-    if (status === 'online') {
+function StatusIcon({id, status, onlineUsers}) {
+    let realStatus = status;
+    var ownerData = onlineUsers.filter(function(user) {
+        return user.userId ===id;
+    });
+    realStatus = ownerData[0]?.status;
+    if (realStatus === 'online') {
         return (
             <section className= 'online real-status minor-adjustment'></section>
         )
-    } else if (status === 'idle') {
+    } else if (realStatus === 'idle') {
         return (
             <section className='idle real-status minor-adjustment'>
                 <section className='idle-section'></section>
             </section>
         )
-    } else if (status === 'do-not-disturb') {
+    } else if (realStatus === 'do-not-disturb') {
         return (
             <section className='do-not-disturb real-status minor-adjustment'>
                 <section></section>

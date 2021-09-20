@@ -3,12 +3,12 @@ import ProPic from '../StandardProPic/ProPic';
 import ButtonDisplay from './ButtonDisplay';
 import StatusIcon from './StatusIcon';
 
-function CardUser({user, pageType}) {
+function CardUser({onlineUsers, user, pageType}) {
     return (
         <>
             <section>
                 <ProPic />
-                <StatusIcon id={user.user._id} status={user.user.status}/>
+                <StatusIcon onlineUsers={onlineUsers} id={user.user._id} status={user.user.status}/>
             </section>
             <section>
             <p>

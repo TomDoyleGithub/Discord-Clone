@@ -66,7 +66,6 @@ function NoOneDisplay() {
 
 
     if (onlineUsers) {
-        // console.log(onlineUsers) HERE HERE HERE
         const intersection = onlineUsers.map(e => e.userId).filter(element => allResults.map(e => e.user._id).includes(element));
         if (intersection[0] !== undefined) {
             intersection.forEach((id) => {
@@ -85,18 +84,18 @@ function NoOneDisplay() {
         )
     } else if (friendsNav === 'online') {
         if (onlineFriends) {
-            return <OnlineFriends onlineFriends={onlineFriends}/>
+            return <OnlineFriends onlineUsers={onlineUsers} onlineFriends={onlineFriends}/>
         }
         return <AsleepWumpus/>
     } else if (friendsNav === 'all') {
         if (acceptedFriends) {
-            return <AllFriends allLength={allLength} allResults={allResults} />
+            return <AllFriends onlineUsers={onlineUsers} allLength={allLength} allResults={allResults} />
         } else {
             return <PlayWumpus/>
         }
     } else if (friendsNav === 'pending') {
         if (pending) {
-            return <PendingPage pendingLength={pendingLength} pendingResults={pendingResults}/>
+            return <PendingPage onlineUsers={onlineUsers} pendingLength={pendingLength} pendingResults={pendingResults}/>
         } else {
             return <LeafWumpus/>
         }

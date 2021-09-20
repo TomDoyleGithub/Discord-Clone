@@ -5,7 +5,7 @@ import { useMutation } from '@apollo/client';
 import { ACCEPT_FRIEND, REMOVE_FRIEND } from '../../utils/mutations';
 import { RootStateOrAny, useSelector } from 'react-redux';
 
-function PendingPage({ pendingLength, pendingResults }) {
+function PendingPage({onlineUsers, pendingLength, pendingResults }) {
     const { socket } = useSelector((state: RootStateOrAny) => state);
     const upSocket = useRef(socket);
     const [acceptRequest] = useMutation(ACCEPT_FRIEND);
@@ -38,7 +38,7 @@ function PendingPage({ pendingLength, pendingResults }) {
                 {pendingResults.map((user) => (
                     
                         <section className='pendly-card' key={user.user._id}>
-                            <CardUser user={user} pageType={'pending'}/>
+                            <CardUser onlineUsers={onlineUsers} user={user} pageType={'pending'}/>
                             <section className='choose-request-container'>
                             {user.status !== 1 ? (
                                 <section onClick={handleClick} data-value={user.user._id} className='ticky-one'>
