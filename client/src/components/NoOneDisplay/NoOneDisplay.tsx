@@ -102,7 +102,7 @@ function NoOneDisplay() {
     } else if (friendsNav === 'blocked') {
         return <BlockWumpus/>
     } else if (friendsNav === 'add-friend') {
-        return <FriendWumpus/>
+        return <FriendWumpus friends={allFriends}/>
     }
     return <></>
 }

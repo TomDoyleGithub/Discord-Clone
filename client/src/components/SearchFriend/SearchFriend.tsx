@@ -4,7 +4,7 @@ import { RootStateOrAny, useSelector } from 'react-redux';
 import { SEND_FRIEND } from '../../utils/mutations';
 import './searchFriends.scss'
 
-function SearchFriend() {
+function SearchFriend({friends}) {
     const { socket } = useSelector((state: RootStateOrAny) => state);
     const upSocket = useRef(socket);
 
@@ -25,19 +25,25 @@ function SearchFriend() {
     }, [username])
 
     const handleFormSubmit = async (e) => {
-        e.preventDefault();
-        try {
+        await e.preventDefault();
+        if (friends.some(e => e.user.username === username)) {
+            setSuccess(false);
+            setError(true);
+          } else {
+            console.log('They DONT MATCH')
+            try {
             await sendRequest({ variables: { username }});
-            upSocket.current.emit("sendRequest", {
+            await upSocket.current.emit("sendRequest", {
                 username
               });
             setSuccess(true);
             setError(false);
             setUsername('');
-        } catch (err) {
-            setSuccess(false);
-            setError(true);
-        }
+            } catch (err) {
+                setSuccess(false);
+                setError(true);
+            }
+      } 
     };
 
     return (
