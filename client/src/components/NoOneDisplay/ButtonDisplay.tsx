@@ -1,7 +1,7 @@
 import React from 'react'
 import WordStatus from './WordStatus';
 
-function ButtonDisplay({user, pageType}) {
+function ButtonDisplay({user, pageType, onlineUsers}) {
     if (pageType === 'pending') {
         return (
             <>
@@ -14,7 +14,7 @@ function ButtonDisplay({user, pageType}) {
         )
     } else if (pageType === 'all') {
         return (
-            <WordStatus status={user.user.status} />
+            <WordStatus onlineUsers={onlineUsers} id={user.user._id} status={user.user.status} />
         )
     }
     return (
