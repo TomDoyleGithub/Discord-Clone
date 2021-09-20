@@ -66,25 +66,14 @@ function NoOneDisplay() {
 
 
     if (onlineUsers) {
-        let onlineIds = onlineUsers.map(e => e.userId)
-        let friendIds = allResults.map(e => e.user._id);
-        const intersection = onlineIds.filter(element => friendIds.includes(element));
+        const intersection = onlineUsers.map(e => e.userId).filter(element => allResults.map(e => e.user._id).includes(element));
         if (intersection[0] !== undefined) {
             intersection.forEach((id) => {
                 onlineFriends = allResults.filter(element => element.user._id === id)
-            })
-        }
+            });
+        };
     };
-
-    useEffect(() => {
-        if (onlineFriends) {
-            console.log(onlineFriends)
-        } else {
-            console.log('No Friends Online')
-        }
-    }, [onlineFriends]);
         
-
     useEffect(() => {
         dispatch({ type: CHANGE_LOADER, userLoad: loading});
     }, [dispatch, loading]);
