@@ -19,12 +19,14 @@ function Status({dataStatus}) {
     const handleOnIdle = event => {
         if (status === 'online') {
             dispatch({ type: CHANGE_STATUS, status: 'idle' });
+            updateStatus({ variables: {status: 'idle'}});
         };
       };
     
     const handleOnActive = event => {
-        if (dataStatus === 'online') {
+        if (status === 'idle') {
             dispatch({ type: CHANGE_STATUS, status: 'online' });
+            updateStatus({ variables: {status: 'online'}});
         };
     };
       
