@@ -2,10 +2,12 @@ import React from 'react'
 
 function StatusIcon({id, status, onlineUsers}) {
     let realStatus = status;
-    var ownerData = onlineUsers.filter(function(user) {
-        return user.userId === id;
-    });
-    realStatus = ownerData[0]?.status;
+    if (onlineUsers) {
+        var ownerData = onlineUsers?.filter(function(user) {
+            return user.userId === id;
+        });
+        realStatus = ownerData[0]?.status;
+    }
     if (realStatus === 'online') {
         return (
             <section className= 'online real-status minor-adjustment'></section>
