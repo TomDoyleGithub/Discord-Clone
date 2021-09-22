@@ -61,6 +61,18 @@ $green: #3aa55d;
     flex-direction: column;
     justify-content: space-between;
   }
+  animation-duration: 100ms;
+  animation-name: keycard;
+}
+
+@keyframes keycard {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .request-card-username {
