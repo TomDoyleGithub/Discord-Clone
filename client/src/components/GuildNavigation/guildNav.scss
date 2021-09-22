@@ -14,7 +14,7 @@ $purple: #5865f2;
 }
 
 .friends-tab {
-  color: rgba(255, 255, 255, 0.452);
+  color: #b8bbbe;
   grid-column-gap: 16px;
   column-gap: 16px;
   width: 92%;
@@ -28,11 +28,14 @@ $purple: #5865f2;
 }
 
 .guild-tab {
-  margin-bottom: 2px;
+  margin-bottom: 3px;
 }
 
-.compass-icon {
-  font-size: 25px;
+.guild-icon {
+  width: 24px;
+  filter: invert(92%) sepia(0%) saturate(7435%) hue-rotate(337deg)
+    brightness(109%) contrast(48%);
+  color: rgb(255, 255, 255);
 }
 
 .discover-header {
@@ -47,6 +50,10 @@ $purple: #5865f2;
   background-color: $purple;
   color: white;
   cursor: default !important;
+  .guild-icon {
+    filter: invert(100%) sepia(0%) saturate(7496%) hue-rotate(330deg)
+      brightness(98%) contrast(104%);
+  }
   &:hover {
     background-color: $purple !important;
     color: white !important;
