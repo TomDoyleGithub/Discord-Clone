@@ -1,4 +1,5 @@
 $gray: #2e3136;
+$purple: #5865f2;
 
 .guild-nav-container {
   position: absolute;
@@ -26,6 +27,10 @@ $gray: #2e3136;
   margin: 0px auto;
 }
 
+.guild-tab {
+  margin-bottom: 2px;
+}
+
 .compass-icon {
   font-size: 25px;
 }
@@ -36,4 +41,14 @@ $gray: #2e3136;
   padding-left: 17px;
   padding-top: 17px;
   padding-bottom: 20px;
+}
+
+.discover-nav-active {
+  background-color: $purple;
+  color: white;
+  cursor: default !important;
+  &:hover {
+    background-color: $purple !important;
+    color: white !important;
+  }
 }

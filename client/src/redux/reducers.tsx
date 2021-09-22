@@ -9,7 +9,8 @@ import {
     CHANGE_LOADER,
     CHANGE_STATUS,
     TOGGLE_STATUS_MODAL,
-    CHANGE_FRIEND_NAV
+    CHANGE_FRIEND_NAV,
+    CHANGE_GUILD_NAV
 } from './actions';
 
 import { io } from "socket.io-client";
@@ -31,7 +32,8 @@ const initalState = {
     status: '',
     statusModal: false,
     socket: io(),
-    friendsNav: 'online'
+    friendsNav: 'online',
+    guildNav: 'Home'
 };
 
 export default function reducer (state = initalState, action) {
@@ -99,6 +101,11 @@ export default function reducer (state = initalState, action) {
             return {
                 ...state,
                 friendsNav: action.friendsNav
+            };
+        case CHANGE_GUILD_NAV:
+            return {
+                ...state,
+                guildNav: action.guildNav
             };
         default: 
             return state;
