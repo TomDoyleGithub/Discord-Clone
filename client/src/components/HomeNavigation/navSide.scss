@@ -64,7 +64,7 @@ $transition: all 120ms ease-in-out;
 
 .friends-active {
   background-color: rgba(255, 255, 255, 0.048);
-  color: white;
+  color: white !important;
   .friend-icon,
   .discover-icon {
     opacity: 1;
