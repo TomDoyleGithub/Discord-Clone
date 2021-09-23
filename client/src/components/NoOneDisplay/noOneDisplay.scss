@@ -208,6 +208,14 @@ $purple: #5865f2;
   height: 130px !important;
   row-gap: 4px !important;
   font-size: 14px;
+  z-index: 500000;
+}
+
+.card-settings-show {
+  visibility: visible;
+}
+
+.hidey-time {
   visibility: hidden;
 }
 
@@ -251,5 +259,9 @@ $purple: #5865f2;
 @media screen and (max-width: 1200px) {
   .sub-friend-card-container {
     margin-right: 30px;
+  }
+
+  .card-settings {
+    left: -190px;
   }
 }
