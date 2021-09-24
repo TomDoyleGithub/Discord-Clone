@@ -1,11 +1,13 @@
 import React from 'react'
+import { useDispatch } from 'react-redux';
+import { TOGGLE_FULL_MODAL } from '../../../redux/actions';
 
 function CardModal({id, username, state}) {
+    const dispatch = useDispatch();
     const handleClick = () => {
         console.log(`ID: ${id}`);
         console.log(`USERNAME: ${username}`);
-        // Create A Delete Modal file in then root component directory
-        // Activate Modal State Here So That It Displays
+        dispatch({ type: TOGGLE_FULL_MODAL, showModal: true});
         // Send these to a modal redux display state so that the modal can show the username and what ID to user
     };
     return (

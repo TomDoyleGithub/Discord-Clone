@@ -87,11 +87,15 @@ body {
 }
 
 .show {
-  display: flex !important;
+  visibility: visible;
+  opacity: 1;
 }
 
 .hide {
-  display: none !important;
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: 0px;
 }
 
 * {
@@ -250,6 +254,7 @@ input:-webkit-autofill:active {
   align-items: center;
   position: absolute;
   background-color: rgba(0, 0, 0, 0.788);
+  transition: all 150ms ease;
 }
 
 .password-send {

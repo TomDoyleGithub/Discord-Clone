@@ -102,7 +102,7 @@ export default function reducer (state = initalState, action) {
         case TOGGLE_FULL_MODAL:
             return {
                 ...state,
-                showScreenModal: !state.showScreenModal
+                showScreenModal: action.showModal
             };
         case CHANGE_FRIEND_NAV:
             return {
