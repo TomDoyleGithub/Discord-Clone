@@ -11,7 +11,8 @@ import {
     TOGGLE_STATUS_MODAL,
     CHANGE_FRIEND_NAV,
     CHANGE_GUILD_NAV,
-    TOGGLE_FULL_MODAL
+    TOGGLE_FULL_MODAL,
+    MODAL_USER
 } from './actions';
 
 import { io } from "socket.io-client";
@@ -35,7 +36,9 @@ const initalState = {
     socket: io(),
     friendsNav: 'online',
     guildNav: 'Home',
-    showScreenModal: false
+    showScreenModal: false,
+    modalUsername: '',
+    modalId: ''
 };
 
 export default function reducer (state = initalState, action) {
@@ -113,6 +116,12 @@ export default function reducer (state = initalState, action) {
             return {
                 ...state,
                 guildNav: action.guildNav
+            };
+        case MODAL_USER:
+            return {
+                ...state,
+                modalUsername: action.modalUsername,
+                modalId: action.modalId
             };
         default: 
             return state;
