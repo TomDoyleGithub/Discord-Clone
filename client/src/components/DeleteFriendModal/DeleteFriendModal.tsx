@@ -1,8 +1,10 @@
 import React from 'react'
+import { RootStateOrAny, useSelector } from 'react-redux';
 
 function DeleteFriendModal() {
+    const { showScreenModal } = useSelector((state: RootStateOrAny) => state);
     return (
-        <div className='modal-container '>
+        <div className={'modal-container ' + (showScreenModal ? 'show' : 'hide')}>
         <section className='password-send'>
             <p className='header-font f600' style={{fontSize: "22px", color: 'white'}}>Remove 'Punkinut'</p>
             <p className='normal-font f300' style={{paddingTop: '20px', color: '#dcddde'}}>Are you sure you want to permanently remove  <strong>Punkinut</strong> from your friends?</p>
