@@ -30,7 +30,7 @@ function ContactIcons({user}) {
             <section onClick={handleClick} onMouseLeave={handleHover}  data-value={user.user._id} className={'ticky-two ' + (!thisState ? 'active-ticky' : '')}>
                 <aside className={'pending-tooltip normal-font f500 ticky-two-ignore ' + (thisState ? 'hiiiides' : '')}>More</aside>
                 <IoEllipsisVerticalSharp className='message-friend-icon' />
-                <CardModal state={thisState}/>
+                <CardModal state={thisState} id={user.user._id} username={user.user.username}/>
             </section>
         </section>
     )
