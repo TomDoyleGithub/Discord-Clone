@@ -7,7 +7,6 @@ function CardModal({id, username, state}) {
     const handleClick = () => {
         dispatch({ type: TOGGLE_FULL_MODAL, showModal: true});
         dispatch({ type: MODAL_USER, modalUsername: username, modalId: id});
-        // Send these to a modal redux display state so that the modal can show the username and what ID to user
     };
     return (
         <section  className={'card-settings normal-font ' + (state === '' ? 'hidey-time' : 'card-settings-show')}>
