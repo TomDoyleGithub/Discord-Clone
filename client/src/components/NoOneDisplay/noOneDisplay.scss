@@ -189,9 +189,14 @@ $purple: #5865f2;
   }
 }
 
-.ticky-one,
-.ticky-two {
+.ticky-one {
   position: relative;
+  &:active {
+    background-color: rgba(255, 255, 255, 0.075) !important;
+  }
+}
+
+.active-ticky {
   &:active {
     background-color: rgba(255, 255, 255, 0.075) !important;
   }
@@ -217,6 +222,10 @@ $purple: #5865f2;
 
 .hidey-time {
   visibility: hidden;
+}
+
+.hiiiides {
+  display: none;
 }
 
 .mini-sub-card-modal {
