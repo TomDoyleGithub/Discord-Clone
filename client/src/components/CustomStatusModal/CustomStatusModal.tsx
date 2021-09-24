@@ -1,10 +1,15 @@
 import React from 'react'
-import { RootStateOrAny, useSelector } from 'react-redux';
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
+import { TOGGLE_CUSTOM_STATUS } from '../../redux/actions';
 
 function CustomStatusModal() {
-    const { showScreenModal  } = useSelector((state: RootStateOrAny) => state);
+    const dispatch = useDispatch();
+    const hideModal = () => {
+        dispatch({ type: TOGGLE_CUSTOM_STATUS, showModal: false});
+    };
+    const { customStatusModal  } = useSelector((state: RootStateOrAny) => state);
     return (
-        <div className={'modal-container ' + (showScreenModal ? 'show' : 'hide')}>
+        <div onClick={hideModal} className={'modal-container ' + (customStatusModal ? 'show' : 'hide')}>
             
         </div>
     )

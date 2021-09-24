@@ -22,8 +22,12 @@ function DeleteFriendModal() {
         dispatch({ type: MODAL_USER, modalUsername: '', modalId: ''});
     };
 
+    const hideModal = () => {
+        dispatch({ type: TOGGLE_FULL_MODAL, showModal: false});
+    };
+
     return (
-        <div className={'modal-container ' + (showScreenModal ? 'show' : 'hide')}>
+        <div onClick={hideModal} className={'modal-container ' + (showScreenModal ? 'show' : 'hide')}>
         <section className='password-send'>
             <p className='header-font f600' style={{fontSize: "22px", color: 'white'}}>Remove '{modalUsername.slice(0, -5)}'</p>
             <p className='normal-font f300' style={{paddingTop: '20px', color: '#dcddde'}}>Are you sure you want to permanently remove  <strong>{modalUsername.slice(0, -5)}</strong> from your friends?</p>

@@ -5,7 +5,7 @@ import Idle from '../StatusIcons/Idle';
 import Disturb from '../StatusIcons/Disturb';
 import Invisible from '../StatusIcons/Invisible';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
-import { CHANGE_STATUS, TOGGLE_STATUS_MODAL } from '../../redux/actions';
+import { CHANGE_STATUS, TOGGLE_CUSTOM_STATUS, TOGGLE_STATUS_MODAL } from '../../redux/actions';
 import { useMutation } from '@apollo/client';
 import { STATUS_UPDATE } from '../../utils/mutations';
 import defaultEmoji from '../../images/emoji-default.svg';
@@ -21,6 +21,10 @@ function ChangeStatus() {
         dispatch({ type: TOGGLE_STATUS_MODAL });
         dispatch({ type: CHANGE_STATUS, status: clickStatus });
         updateStatus({ variables: {status: clickStatus}});
+    };
+
+    const customClick = () => {
+        dispatch({ type: TOGGLE_CUSTOM_STATUS, customStatusModal: true});
     };
 
 
@@ -61,7 +65,7 @@ function ChangeStatus() {
                 <p className='status-word'>Invisible</p>
                 <p style={{fontSize: '12px', lineHeight: '0.9rem', paddingTop: '4px'}}>You will not appear online, but will have full access to all of Discord</p>
             </section>
-            <section className='status-container'>
+            <section onClick={customClick} className='status-container'>
                 <img style={{width: '14px', position: 'absolute', left: '6px'}} alt='default-emoji-icon' src={defaultEmoji}/>
                 <p className='status-word'>Set a custom status</p>
             </section>
