@@ -10,7 +10,7 @@
   flex-direction: column;
   position: absolute;
   top: -60px;
-  z-index: 9999999;
+  z-index: 98989898;
 }
 
 .set-status-title {
@@ -19,6 +19,17 @@
   font-size: 20px;
   word-spacing: 0.1px;
   letter-spacing: 0.1px;
+}
+
+.custom-status-cross {
+  float: right;
+  font-size: 32px;
+  color: #777a7e;
+  position: relative;
+  bottom: 5px;
+  left: 5px;
+  cursor: pointer;
+  z-index: 9999999999;
 }
 
 @media screen and (max-height: 580px) {

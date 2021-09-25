@@ -3,7 +3,7 @@ import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { TOGGLE_CUSTOM_STATUS } from '../../redux/actions';
 import Wumpus from '../../images/Status-Wumpus.svg'
 import './statusModal.scss'
-
+import { IoCloseOutline } from "react-icons/io5";
 function CustomStatusModal() {
     const dispatch = useDispatch();
     const hideModal = (e) => {
@@ -19,6 +19,7 @@ function CustomStatusModal() {
                     <img className='staty-wumpus' src={Wumpus} alt='Happy Wumpus'/>
                     <p className='set-status-title normal-font f500'>Set a custom a status</p>
                 </section>
+                <IoCloseOutline onClick={hideModal} className='custom-status-cross'/>
             </section>
         </div>
     )
