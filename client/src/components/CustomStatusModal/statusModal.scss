@@ -1,0 +1,28 @@
+.custom-send {
+  height: 450px !important;
+  overflow: visible !important;
+}
+
+.head-wumpus-container {
+  padding: 0px 100px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  top: -60px;
+  z-index: 9999999;
+}
+
+.set-status-title {
+  margin-top: 10px;
+  color: white;
+  font-size: 20px;
+  word-spacing: 0.1px;
+  letter-spacing: 0.1px;
+}
+
+@media screen and (max-height: 580px) {
+  .custom-send {
+    height: 75vh !important;
+  }
+} ;
