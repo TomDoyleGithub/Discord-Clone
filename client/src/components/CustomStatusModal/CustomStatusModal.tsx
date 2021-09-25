@@ -20,6 +20,10 @@ function CustomStatusModal() {
                     <p className='set-status-title normal-font f500'>Set a custom a status</p>
                 </section>
                 <IoCloseOutline onClick={hideModal} className='custom-status-cross'/>
+                <section className='custom-status-form-container'>
+                    <p onClick={hideModal} className='status-form-button-container normal-font'>Cancel</p>
+                    <p onClick={hideModal} className='status-form-button-container normal-font purple-status-button-custom'>Save</p>
+                </section>
             </section>
         </div>
     )

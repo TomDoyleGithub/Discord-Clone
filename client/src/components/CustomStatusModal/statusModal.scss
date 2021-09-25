@@ -32,6 +32,36 @@
   z-index: 9999999999;
 }
 
+.custom-status-form-container {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  border-radius: 0px 0px 5px 5px;
+  width: 100%;
+  height: 70px;
+  padding: 16px;
+  background-color: #2e3136;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.status-form-button-container {
+  width: 96px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.purple-status-button-custom {
+  background-color: #5765f2;
+  border-radius: 3px;
+}
+
 @media screen and (max-height: 580px) {
   .custom-send {
     height: 75vh !important;
