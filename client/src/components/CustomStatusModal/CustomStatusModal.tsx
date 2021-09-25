@@ -20,6 +20,14 @@ function CustomStatusModal() {
                     <p className='set-status-title normal-font f500'>Set a custom a status</p>
                 </section>
                 <IoCloseOutline onClick={hideModal} className='custom-status-cross'/>
+                <section className='cus-status-for'>
+                    <section className='input-container'>
+                            <label className='normal-font f500 status-label'>What's cookin', woolywowo?</label>
+                            <div className='fake-input-status'>
+                                <input type='name' name='CustomStatus' maxLength={30} placeholder='Support has arrived'  className='normal-font f300 real-input-status'/>
+                            </div>
+                    </section>
+                </section>
                 <section className='custom-status-form-container'>
                     <p onClick={hideModal} className='status-form-button-container normal-font'>Cancel</p>
                     <p onClick={hideModal} className='status-form-button-container normal-font purple-status-button-custom'>Save</p>

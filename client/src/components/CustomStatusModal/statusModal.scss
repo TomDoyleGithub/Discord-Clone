@@ -55,6 +55,40 @@
   color: white;
   font-size: 14px;
   cursor: pointer;
+  transition: all 100ms ease;
+  &:hover {
+    filter: brightness(85%);
+  }
+}
+
+.cus-status-for {
+  margin-top: 78px;
+  height: 282px;
+  overflow: scroll;
+}
+
+.status-label {
+  color: #b8bbbe;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.fake-input-status {
+  border: 1px solid #232427;
+  background-color: #303338;
+  height: 40px;
+  border-radius: 3px;
+  margin-top: 8px;
+  position: relative;
+}
+
+.real-input-status {
+  background-color: rgba(255, 255, 255, 0);
+  height: 100%;
+  margin-left: 40px;
+  width: 300px;
+  caret-color: white;
+  color: #dcddde;
 }
 
 .purple-status-button-custom {
