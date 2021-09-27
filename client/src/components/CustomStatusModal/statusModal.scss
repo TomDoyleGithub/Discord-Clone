@@ -43,7 +43,7 @@
   background-color: #2e3136;
   display: flex;
   align-items: center;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .status-form-button-container {
@@ -94,6 +94,20 @@
 .purple-status-button-custom {
   background-color: #5765f2;
   border-radius: 3px;
+}
+
+.select-emoji {
+  cursor: pointer;
+  width: 24px;
+  position: absolute;
+  left: 6px;
+  top: 6px;
+  transition: all 100ms ease-in-out;
+  filter: grayscale(100%);
+  &:hover {
+    filter: grayscale(0%);
+    transform: scale(1.1);
+  }
 }
 
 @media screen and (max-height: 580px) {
