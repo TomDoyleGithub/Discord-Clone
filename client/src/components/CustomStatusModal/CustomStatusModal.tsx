@@ -5,7 +5,7 @@ import Wumpus from '../../images/Status-Wumpus.svg'
 import './statusModal.scss'
 import { IoCloseOutline } from "react-icons/io5";
 import { emojiArr } from '../../utils/emojiArr';
-import { IoCloseCircle } from "react-icons/io5";
+import { IoCloseCircle, IoChevronDownSharp } from "react-icons/io5";
 
 function CustomStatusModal() {
     const [realChoice, setEmoji] = useState('0px 0px');
@@ -44,11 +44,26 @@ function CustomStatusModal() {
                 <IoCloseOutline onClick={hideModal} className='custom-status-cross'/>
                 <section className='cus-status-for'>
                     <section className='input-container'>
+
                             <label className='normal-font f500 status-label'>What's cookin', woolywowo?</label>
                             <div className='fake-input-status'>
                                 <div onMouseEnter={changeEmoji} className='emoji-sprite' style={{backgroundPosition: realChoice}}></div>
                                 {input !== '' ? <IoCloseCircle className='clear-input' onClick={clearInput}/> : <></>}
                                 <input value={input} onChange={handleChange} type='name' name='CustomStatus' maxLength={30} placeholder='Support has arrived'  className='normal-font f300 real-input-status'/>
+                            </div>
+
+                            <label className='normal-font f500 status-label'>Clear After</label>
+                            <div className='fake-input-status' style={{cursor: 'pointer'}}>
+                                <p className='expire-choice normal-font'>Today</p>
+                                <IoChevronDownSharp className='custon-dropdown-arrow' />
+                            </div>
+
+                            <div style={{borderBottom: '1px solid #424549', marginBottom: '10px'}}></div>
+
+                            <label className='normal-font f500 status-label'>Status</label>
+                            <div className='fake-input-status' style={{cursor: 'pointer'}}>
+                                <p className='expire-choice normal-font'>Online</p>
+                                <IoChevronDownSharp className='custon-dropdown-arrow' />
                             </div>
                     </section>
                 </section>

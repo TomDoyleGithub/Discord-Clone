@@ -63,7 +63,7 @@
 
 .cus-status-for {
   margin-top: 78px;
-  height: 282px;
+  height: 65%;
   overflow: scroll;
 }
 
@@ -80,6 +80,7 @@
   border-radius: 3px;
   margin-top: 8px;
   position: relative;
+  margin-bottom: 18px;
 }
 
 .real-input-status {
@@ -135,6 +136,21 @@
   opacity: 0.4;
   cursor: pointer;
   color: #dcddde;
+}
+
+.expire-choice {
+  color: #dcddde;
+  position: absolute;
+  top: 9px;
+  left: 14px;
+}
+
+.custon-dropdown-arrow {
+  color: #dcddde;
+  position: absolute;
+  right: 10px;
+  top: 11px;
+  font-size: 18px;
 }
 
 @media screen and (max-height: 580px) {
