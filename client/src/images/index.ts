@@ -1,0 +1,20 @@
+import e1 from './emojis/e1.svg';
+import e2 from './emojis/e2.svg';
+import e3 from './emojis/e3.svg';
+import e4 from './emojis/e4.svg';
+import e5 from './emojis/e5.svg';
+import e6 from './emojis/e6.svg';
+import e7 from './emojis/e7.svg';
+import e8 from './emojis/e8.svg';
+import e9 from './emojis/e9.svg';
+import e10 from './emojis/e10.svg';
+import e11 from './emojis/e11.svg';
+import e12 from './emojis/e12.svg';
+import e13 from './emojis/e13.svg';
+import e14 from './emojis/e14.svg';
+import e15 from './emojis/e15.svg';
+import e16 from './emojis/e16.svg';
+import e17 from './emojis/e17.svg';
+import e18 from './emojis/e18.svg';
+
+export { e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, e14, e15, e16, e17, e18 };

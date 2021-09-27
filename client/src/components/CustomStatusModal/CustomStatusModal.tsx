@@ -5,24 +5,7 @@ import Wumpus from '../../images/Status-Wumpus.svg'
 import './statusModal.scss'
 import { IoCloseOutline } from "react-icons/io5";
 import defaultEmoji from '../../images/emoji-default.svg';
-import e1 from '../../images/emojis/e1.svg';
-import e2 from '../../images/emojis/e2.svg';
-import e3 from '../../images/emojis/e3.svg';
-import e4 from '../../images/emojis/e4.svg';
-import e5 from '../../images/emojis/e5.svg';
-import e6 from '../../images/emojis/e6.svg';
-import e7 from '../../images/emojis/e7.svg';
-import e8 from '../../images/emojis/e8.svg';
-import e9 from '../../images/emojis/e9.svg';
-import e10 from '../../images/emojis/e10.svg';
-import e11 from '../../images/emojis/e11.svg';
-import e12 from '../../images/emojis/e12.svg';
-import e13 from '../../images/emojis/e13.svg';
-import e14 from '../../images/emojis/e14.svg';
-import e15 from '../../images/emojis/e15.svg';
-import e16 from '../../images/emojis/e16.svg';
-import e17 from '../../images/emojis/e17.svg';
-import e18 from '../../images/emojis/e18.svg';
+import { e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, e14, e15, e16, e17, e18 } from '../../images'
 
 function CustomStatusModal() {
     const [realChoice, setEmoji] = useState(defaultEmoji)
