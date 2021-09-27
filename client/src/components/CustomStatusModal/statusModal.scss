@@ -127,6 +127,16 @@
   }
 }
 
+.clear-input {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  font-size: 20px;
+  opacity: 0.4;
+  cursor: pointer;
+  color: #dcddde;
+}
+
 @media screen and (max-height: 580px) {
   .custom-send {
     height: 75vh !important;

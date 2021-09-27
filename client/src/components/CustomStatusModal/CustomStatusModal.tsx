@@ -5,9 +5,13 @@ import Wumpus from '../../images/Status-Wumpus.svg'
 import './statusModal.scss'
 import { IoCloseOutline } from "react-icons/io5";
 import { emojiArr } from '../../utils/emojiArr';
+import { IoCloseCircle } from "react-icons/io5";
 
 function CustomStatusModal() {
-    const [realChoice, setEmoji] = useState('0px 0px')
+    const [realChoice, setEmoji] = useState('0px 0px');
+    const [input, setInput] = useState('');
+
+
     const dispatch = useDispatch();
     const hideModal = (e) => {
         if(e.target === e.currentTarget) {
@@ -19,6 +23,15 @@ function CustomStatusModal() {
     const changeEmoji = () => {
         const random = Math.floor(Math.random() * emojiArr.length);
         setEmoji(emojiArr[random])
+    };
+
+    const handleChange = (event: any) => {
+        const val = event.target.value
+        setInput(val)
+    };
+
+    const clearInput = () => {
+        setInput('')
     };
 
     return (
@@ -34,7 +47,8 @@ function CustomStatusModal() {
                             <label className='normal-font f500 status-label'>What's cookin', woolywowo?</label>
                             <div className='fake-input-status'>
                                 <div onMouseEnter={changeEmoji} className='emoji-sprite' style={{backgroundPosition: realChoice}}></div>
-                                <input type='name' name='CustomStatus' maxLength={30} placeholder='Support has arrived'  className='normal-font f300 real-input-status'/>
+                                {input !== '' ? <IoCloseCircle className='clear-input' onClick={clearInput}/> : <></>}
+                                <input value={input} onChange={handleChange} type='name' name='CustomStatus' maxLength={30} placeholder='Support has arrived'  className='normal-font f300 real-input-status'/>
                             </div>
                     </section>
                 </section>
