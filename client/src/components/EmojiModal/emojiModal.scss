@@ -1,0 +1,13 @@
+// Will have to change position depending where the user activates the modal
+.general-emoji-container {
+  background-color: #2e3136;
+  position: absolute;
+  width: 424px;
+  height: 424px;
+  top: 20px;
+  left: 60%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  border-radius: 5px;
+  z-index: 999999999999;
+}

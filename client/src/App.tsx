@@ -16,7 +16,8 @@ import UserCard from './components/UserCard/UserCard';
 import Discovery from './pages/Discovery';
 import GuildDiscovery from './pages/Guild-Discovery';
 import EnterLoading from './components/EnterLoading/EnterLoading';
-import CustomStatusModal from './components/CustomStatusModal/CustomStatusModal'
+import CustomStatusModal from './components/CustomStatusModal/CustomStatusModal';
+import EmojiModal from './components/EmojiModal/EmojiModal';
 import spinner from './images/spinner.gif';
 
 const httpLink = createHttpLink({
@@ -59,6 +60,7 @@ function App() {
         <DesktopNav/>
         <UserCard/>
         <CustomStatusModal/>
+        <EmojiModal/>
         <EnterLoading spinner={spinner}/>
         <Switch>
           <Route exact path="/">

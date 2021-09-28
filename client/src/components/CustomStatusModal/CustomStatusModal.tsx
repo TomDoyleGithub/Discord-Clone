@@ -16,6 +16,7 @@ function CustomStatusModal() {
     const hideModal = (e) => {
         if(e.target === e.currentTarget) {
             dispatch({ type: TOGGLE_CUSTOM_STATUS, showModal: false});
+            dispatch({ type: SET_EMOJI_MODAL, emojiModal: false});
          }
     };
     const { customStatusModal, emojiModal} = useSelector((state: RootStateOrAny) => state);
