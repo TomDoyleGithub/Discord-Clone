@@ -13,7 +13,8 @@ import {
     CHANGE_GUILD_NAV,
     TOGGLE_FULL_MODAL,
     MODAL_USER,
-    TOGGLE_CUSTOM_STATUS
+    TOGGLE_CUSTOM_STATUS,
+    SET_EMOJI_MODAL
 } from './actions';
 
 import { io } from "socket.io-client";
@@ -40,7 +41,8 @@ const initalState = {
     showScreenModal: false,
     modalUsername: '',
     modalId: '',
-    customStatusModal: false
+    customStatusModal: false,
+    emojiModal: false
 };
 
 export default function reducer (state = initalState, action) {
@@ -129,6 +131,11 @@ export default function reducer (state = initalState, action) {
                 ...state,
                 modalUsername: action.modalUsername,
                 modalId: action.modalId
+            };
+        case SET_EMOJI_MODAL:
+            return {
+                ...state,
+                emojiModal: action.emojiModal
             };
         default: 
             return state;
