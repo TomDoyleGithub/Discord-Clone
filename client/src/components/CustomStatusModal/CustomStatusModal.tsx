@@ -21,8 +21,10 @@ function CustomStatusModal() {
     const { customStatusModal, emojiModal} = useSelector((state: RootStateOrAny) => state);
 
     const changeEmoji = () => {
-        const random = Math.floor(Math.random() * emojiArr.length);
-        setEmoji(emojiArr[random])
+        if (emojiModal === false) {
+            const random = Math.floor(Math.random() * emojiArr.length);
+            setEmoji(emojiArr[random])
+        }
     };
 
     const handleChange = (event: any) => {
@@ -56,7 +58,7 @@ function CustomStatusModal() {
 
                             <label className='normal-font f500 status-label'>What's cookin', woolywowo?</label>
                             <div className='fake-input-status'>
-                                <div onMouseEnter={changeEmoji} onClick={openEmoji} className='emoji-sprite' style={{backgroundPosition: realChoice}}></div>
+                                <div onMouseEnter={changeEmoji} onClick={openEmoji} className={'emoji-sprite ' + (emojiModal ? 'emoji-active' : '')} style={{backgroundPosition: realChoice}}></div>
                                 {input !== '' ? <IoCloseCircle className='clear-input' onClick={clearInput}/> : <></>}
                                 <input value={input} onChange={handleChange} type='name' name='CustomStatus' maxLength={30} placeholder='Support has arrived'  className='normal-font f300 real-input-status'/>
                             </div>
