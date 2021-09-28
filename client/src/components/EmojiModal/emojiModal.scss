@@ -4,10 +4,56 @@
   position: absolute;
   width: 424px;
   height: 424px;
-  top: 20px;
+  top: 10px;
   left: 60%;
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
   border-radius: 5px;
   z-index: 999999999999;
+  overflow: hidden;
+}
+
+.emoji-search {
+  border-bottom: 1px solid #1f2225;
+  height: 58px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.emoji-search-fake-input {
+  height: 32px;
+  width: 400px;
+  background-color: #1f2225;
+  border-radius: 3px;
+}
+
+.emoji-search-input {
+  width: 90%;
+  height: 100%;
+  padding-left: 10px;
+  background-color: #1f222500;
+  caret-color: #dcddde;
+  color: #dcddde;
+}
+
+.emoji-search-icon {
+  color: #dcddde6e;
+  position: absolute;
+  top: 18px;
+  right: 25px;
+  font-size: 20px;
+}
+
+.emoji-close-icon {
+  color: #dcdddec7;
+  position: absolute;
+  top: 17px;
+  right: 25px;
+  font-size: 24px;
+  cursor: pointer;
+  &:hover {
+    color: #dcddded7;
+  }
 }

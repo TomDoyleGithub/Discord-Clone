@@ -61,7 +61,7 @@ function CustomStatusModal() {
                             <div className='fake-input-status'>
                                 <div onMouseEnter={changeEmoji} onClick={openEmoji} className={'emoji-sprite ' + (emojiModal ? 'emoji-active' : '')} style={{backgroundPosition: realChoice}}></div>
                                 {input !== '' ? <IoCloseCircle className='clear-input' onClick={clearInput}/> : <></>}
-                                <input value={input} onChange={handleChange} type='name' name='CustomStatus' maxLength={30} placeholder='Support has arrived'  className='normal-font f300 real-input-status'/>
+                                <input value={input} onChange={handleChange} type='name' name='CustomStatus' maxLength={30} placeholder='Support has arrived'  className='normal-font f300 real-input-status' autoFocus />
                             </div>
 
                             <label className='normal-font f500 status-label'>Clear After</label>
