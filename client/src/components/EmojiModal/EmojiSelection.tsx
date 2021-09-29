@@ -15,7 +15,6 @@ function EmojiSelection() {
 
     // Click event which decides which toggle state to change depending on the data value attribute
     const handleClick = (e) => {
-        console.log('HERE')
         const type = e.currentTarget.getAttribute('data-value');
         switch (type) {
             case 'people':
@@ -47,28 +46,28 @@ function EmojiSelection() {
 
     return (
         <section className='emoji-selection'>
-        <div className='sticky-time' data-value='people' onClick={handleClick}><CateLabel icon={cate1} type={'People'}/></div>
+        <div className='sticky-time' data-value='people' onClick={handleClick}><CateLabel state={people} icon={cate1} type={'People'}/></div>
         {people ? <section className='offical-emoji-selection'></section> : <></>}
 
-        <div className='sticky-time' data-value='nature' onClick={handleClick}><CateLabel icon={cate2} type={'Nature'}/></div>
+        <div className='sticky-time' data-value='nature' onClick={handleClick}><CateLabel state={nature} icon={cate2} type={'Nature'}/></div>
         {nature ? <section className='offical-emoji-selection'></section> : <></>}
 
-        <div className='sticky-time' data-value='food' onClick={handleClick}><CateLabel icon={cate3} type={'Food'}/></div>
+        <div className='sticky-time' data-value='food' onClick={handleClick}><CateLabel state={food} icon={cate3} type={'Food'}/></div>
         {food ? <section className='offical-emoji-selection'></section> : <></>}
 
-        <div className='sticky-time' data-value='activities' onClick={handleClick}><CateLabel icon={cate4} type={'Activities'}/></div>
+        <div className='sticky-time' data-value='activities' onClick={handleClick}><CateLabel state={activities} icon={cate4} type={'Activities'}/></div>
         {activities ? <section className='offical-emoji-selection'></section> : <></>}
 
-        <div className='sticky-time' data-value='travel' onClick={handleClick}><CateLabel icon={cate5} type={'Travel'}/></div>
+        <div className='sticky-time' data-value='travel' onClick={handleClick}><CateLabel state={travel} icon={cate5} type={'Travel'}/></div>
         {travel ? <section className='offical-emoji-selection'></section> : <></>}
 
-        <div className='sticky-time' data-value='objects' onClick={handleClick}><CateLabel icon={cate6} type={'Objects'}/></div>
+        <div className='sticky-time' data-value='objects' onClick={handleClick}><CateLabel state={objects} icon={cate6} type={'Objects'}/></div>
         {objects ? <section className='offical-emoji-selection'></section> : <></>}
 
-        <div className='sticky-time' data-value='symbols' onClick={handleClick}><CateLabel icon={cate7} type={'Symbols'}/></div>
+        <div className='sticky-time' data-value='symbols' onClick={handleClick}><CateLabel state={symbols} icon={cate7} type={'Symbols'}/></div>
         {symbols ? <section className='offical-emoji-selection'></section> : <></>}
 
-        <div className='sticky-time' data-value='flags' onClick={handleClick}><CateLabel icon={cate8} type={'Flags'}/></div>
+        <div className='sticky-time' data-value='flags' onClick={handleClick}><CateLabel state={flags} icon={cate8} type={'Flags'}/></div>
         {flags ? <section className='offical-emoji-selection'></section> : <></>}
     </section>
     )

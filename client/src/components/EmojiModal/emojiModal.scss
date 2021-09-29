@@ -132,12 +132,14 @@
   margin-left: 5px;
   text-transform: uppercase;
   color: #b8bbbe;
+  user-select: none;
 }
 
 .emoji-chevron {
   font-size: 13px;
   margin-left: 10px;
   color: #b8bbbe;
+  transition: all 200ms ease;
 }
 
 .offical-emoji-selection {
@@ -148,4 +150,8 @@
 .sticky-time {
   position: sticky;
   top: 0px;
+}
+
+.chevron-tilt {
+  transform: rotate(-90deg);
 }
