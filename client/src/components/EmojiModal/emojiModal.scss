@@ -92,3 +92,50 @@
   filter: invert(83%) sepia(8%) saturate(96%) hue-rotate(169deg) brightness(89%)
     contrast(91%);
 }
+
+.small-cate-icon {
+  width: 15px;
+  height: 15px;
+  filter: invert(83%) sepia(8%) saturate(96%) hue-rotate(169deg) brightness(89%)
+    contrast(91%);
+}
+
+.emoji-selection {
+  width: 376px;
+  height: 366px;
+  float: right;
+  overflow: scroll;
+}
+
+.emoji-cate-conatiner {
+  position: sticky;
+  top: 0px;
+  height: 32px;
+  background-color: #2e3136;
+}
+
+.cate-clickable {
+  height: 100%;
+  max-width: 120px;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: all 200ms ease;
+  &:hover {
+    filter: brightness(150%);
+  }
+}
+
+.cate-title {
+  font-size: 11px;
+  margin-left: 5px;
+  text-transform: uppercase;
+  color: #b8bbbe;
+}
+
+.emoji-chevron {
+  font-size: 13px;
+  margin-left: 10px;
+  color: #b8bbbe;
+}

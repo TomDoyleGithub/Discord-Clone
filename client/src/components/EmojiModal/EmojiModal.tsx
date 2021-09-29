@@ -3,6 +3,7 @@ import { RootStateOrAny, useSelector } from 'react-redux';
 import './emojiModal.scss';
 import { IoSearch, IoCloseSharp } from "react-icons/io5";
 import EmojiCategory from './EmojiCategory'
+import EmojiSelection from './EmojiSelection'
 
 
 function EmojiModal() {
@@ -27,6 +28,7 @@ function EmojiModal() {
                     </section>
                 </section>
                 <EmojiCategory/>
+                <EmojiSelection/>
             </section>
         )
     } else {
