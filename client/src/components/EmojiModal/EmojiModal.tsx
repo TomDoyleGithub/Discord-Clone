@@ -22,12 +22,11 @@ function EmojiModal() {
                 <section className='emoji-search'>
                     <section className='emoji-search-fake-input'>
                         <input onChange={handleChange} value={searchEmoji} className='emoji-search-input normal-font f300' placeholder='Find the perfect emoji' autoFocus></input>
-                        {searchEmoji === '' ? (
-                            <IoSearch className='emoji-search-icon'/>
-                        ) : (
-                            <IoCloseSharp onClick={clearInput} className='emoji-close-icon'/>
-                        )}
+                        {searchEmoji === '' ? <IoSearch className='emoji-search-icon'/> : <IoCloseSharp onClick={clearInput} className='emoji-close-icon'/>}
                     </section>
+                </section>
+                <section className='emoji-category'>
+                    
                 </section>
             </section>
         )
