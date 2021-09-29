@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { cate1, cate2, cate3, cate4, cate5, cate6, cate7, cate8 } from '../../images/images';
-import CateLabel from './CateLabel'
+import CateLabel from './CateLabel';
+import OfficialEmojiSelect from './OfficialEmojiSelect';
 
 function EmojiSelection() {
     // Toggle states for emoji categories
@@ -46,29 +47,29 @@ function EmojiSelection() {
 
     return (
         <section className='emoji-selection'>
-        <div className='sticky-time' data-value='people' onClick={handleClick}><CateLabel state={people} icon={cate1} type={'People'}/></div>
-        {people ? <section className='offical-emoji-selection'></section> : <></>}
+        <div className='sticky-time people' data-value='people' onClick={handleClick}><CateLabel state={people} icon={cate1} type={'People'}/></div>
+        {people ? <OfficialEmojiSelect type={'people'} /> : <></>}
 
         <div className='sticky-time' data-value='nature' onClick={handleClick}><CateLabel state={nature} icon={cate2} type={'Nature'}/></div>
-        {nature ? <section className='offical-emoji-selection'></section> : <></>}
+        {nature ? <OfficialEmojiSelect type={'nature'} /> : <></>}
 
         <div className='sticky-time' data-value='food' onClick={handleClick}><CateLabel state={food} icon={cate3} type={'Food'}/></div>
-        {food ? <section className='offical-emoji-selection'></section> : <></>}
+        {food ? <OfficialEmojiSelect type={'food'} />  : <></>}
 
         <div className='sticky-time' data-value='activities' onClick={handleClick}><CateLabel state={activities} icon={cate4} type={'Activities'}/></div>
-        {activities ? <section className='offical-emoji-selection'></section> : <></>}
+        {activities ? <OfficialEmojiSelect type={'activities'} />  : <></>}
 
         <div className='sticky-time' data-value='travel' onClick={handleClick}><CateLabel state={travel} icon={cate5} type={'Travel'}/></div>
-        {travel ? <section className='offical-emoji-selection'></section> : <></>}
+        {travel ? <OfficialEmojiSelect type={'travel'} /> : <></>}
 
         <div className='sticky-time' data-value='objects' onClick={handleClick}><CateLabel state={objects} icon={cate6} type={'Objects'}/></div>
-        {objects ? <section className='offical-emoji-selection'></section> : <></>}
+        {objects ? <OfficialEmojiSelect type={'objects'} />  : <></>}
 
         <div className='sticky-time' data-value='symbols' onClick={handleClick}><CateLabel state={symbols} icon={cate7} type={'Symbols'}/></div>
-        {symbols ? <section className='offical-emoji-selection'></section> : <></>}
+        {symbols ? <OfficialEmojiSelect type={'symbols'} />  : <></>}
 
         <div className='sticky-time' data-value='flags' onClick={handleClick}><CateLabel state={flags} icon={cate8} type={'Flags'}/></div>
-        {flags ? <section className='offical-emoji-selection'></section> : <></>}
+        {flags ? <OfficialEmojiSelect type={'flags'} />  : <></>}
     </section>
     )
 }

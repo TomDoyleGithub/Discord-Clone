@@ -105,6 +105,7 @@
   height: 366px;
   float: right;
   overflow: scroll;
+  padding-bottom: 48px;
 }
 
 .emoji-cate-conatiner {
@@ -143,8 +144,10 @@
 }
 
 .offical-emoji-selection {
-  border: 1px solid white;
-  height: 400px;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 8px;
 }
 
 .sticky-time {
@@ -154,4 +157,25 @@
 
 .chevron-tilt {
   transform: rotate(-90deg);
+}
+
+.single-emoji {
+  background-image: url("../../images/emojis/common-emoji.png");
+  width: 32px;
+  height: 32px;
+  background-size: 1340px;
+  background-position: 0px 0px;
+}
+
+.single-emoji-container {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 4px;
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.185);
+  }
 }
