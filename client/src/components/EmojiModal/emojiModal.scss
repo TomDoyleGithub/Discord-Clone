@@ -63,4 +63,32 @@
   width: 48px;
   height: 366px;
   background-color: #1f2225;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cate-icon-container {
+  border-radius: 3px;
+  margin-top: 7px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.048);
+    .cate-icon {
+      filter: invert(83%) sepia(8%) saturate(96%) hue-rotate(169deg)
+        brightness(100%) contrast(91%);
+    }
+  }
+}
+
+.cate-icon {
+  width: 25px;
+  height: 25px;
+  filter: invert(83%) sepia(8%) saturate(96%) hue-rotate(169deg) brightness(89%)
+    contrast(91%);
 }

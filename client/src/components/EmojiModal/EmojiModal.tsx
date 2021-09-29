@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { RootStateOrAny, useSelector } from 'react-redux';
 import './emojiModal.scss';
 import { IoSearch, IoCloseSharp } from "react-icons/io5";
+import EmojiCategory from './EmojiCategory'
 
 
 function EmojiModal() {
@@ -25,9 +26,7 @@ function EmojiModal() {
                         {searchEmoji === '' ? <IoSearch className='emoji-search-icon'/> : <IoCloseSharp onClick={clearInput} className='emoji-close-icon'/>}
                     </section>
                 </section>
-                <section className='emoji-category'>
-                    
-                </section>
+                <EmojiCategory/>
             </section>
         )
     } else {
