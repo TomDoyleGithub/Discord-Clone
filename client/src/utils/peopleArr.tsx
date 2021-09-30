@@ -25,5 +25,14 @@ export const peopleArr = [
     {dim: '-733.8px 0px', name: ':stuck_out_tongue:'},
     {dim: '-765.7px 0px', name: ':stuck_out_tongue_closed_eyes:'},
     {dim: '-797.5px 0px', name: ':stuck_out_tongue_winking_eye:'},
-    {dim: '-829.5px 0px', name: ':zany_face:'}
+    {dim: '-829.5px 0px', name: ':zany_face:'},
+    {dim: '-861.3px 0px', name: ':face_with_raised_eyebrow:'},
+    {dim: '-893.3px 0px', name: ':face_with_monocle:'},
+    {dim: '-925.3px 0px', name: ':nerd: :nerd_face:'},
+    {dim: '-957px 0px', name: ':sunglasses:'},
+    {dim: '-989px 0px', name: ':star_struck:'},
+    {dim: '-1020.95px 0px', name: ':partying_face:'},
+    {dim: '-1052.5px 0px', name: ':smirk:'},
+    {dim: '-1084.8px 0px', name: ':unamused:'},
+    {dim: '-1116.5px 0px', name: ':disappointed:'},
 ];
