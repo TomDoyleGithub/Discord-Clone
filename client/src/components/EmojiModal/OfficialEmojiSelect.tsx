@@ -1,13 +1,18 @@
 import React from 'react'
+import PeopleEmojis from './PeopleEmojis'
 
 function OfficialEmojiSelect({ type }) {
     // Depending on the type, you will return a different series of emoji
     // These emoji lists may also need to be in a seperate component
-    return (
-        <section className='offical-emoji-selection'>
-            <div className='single-emoji-container'><div className='single-emoji'></div></div>
-        </section> 
-    )
+    if (type === 'people') {
+        return (
+            <section className='offical-emoji-selection'>
+                <PeopleEmojis/>
+            </section> 
+        )
+    } else {
+        return <></>
+    }
 }
 
 export default OfficialEmojiSelect
