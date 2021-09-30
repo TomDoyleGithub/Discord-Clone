@@ -1,6 +1,9 @@
 import React from 'react'
+import { useDispatch } from 'react-redux';
+import { SET_EMOJI_PLACEHOLDER } from '../../redux/actions';
 
 function PeopleEmojis() {
+    const dispatch = useDispatch();
     const peopleArr = [
     {dim: '0.1px 0px', name: ':grinning'}, 
     {dim: '-31.9px 0px', name: ':smiley:'},
@@ -24,6 +27,7 @@ function PeopleEmojis() {
 
     const handleHover = (e) => {
         const name = e.currentTarget.getAttribute('data-value');
+        dispatch({ type: SET_EMOJI_PLACEHOLDER, emojiPlaceholder: name });
     };
 
     return (

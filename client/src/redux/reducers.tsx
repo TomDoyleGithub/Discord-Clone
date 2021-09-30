@@ -14,7 +14,8 @@ import {
     TOGGLE_FULL_MODAL,
     MODAL_USER,
     TOGGLE_CUSTOM_STATUS,
-    SET_EMOJI_MODAL
+    SET_EMOJI_MODAL,
+    SET_EMOJI_PLACEHOLDER
 } from './actions';
 
 import { io } from "socket.io-client";
@@ -42,7 +43,8 @@ const initalState = {
     modalUsername: '',
     modalId: '',
     customStatusModal: false,
-    emojiModal: false
+    emojiModal: false,
+    emojiPlaceholder: 'Find the perfect emoji'
 };
 
 export default function reducer (state = initalState, action) {
@@ -136,6 +138,11 @@ export default function reducer (state = initalState, action) {
             return {
                 ...state,
                 emojiModal: action.emojiModal
+            };
+        case SET_EMOJI_PLACEHOLDER:
+            return {
+                ...state,
+                emojiPlaceholder: action.emojiPlaceholder
             };
         default: 
             return state;

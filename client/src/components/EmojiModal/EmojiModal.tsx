@@ -8,6 +8,7 @@ import EmojiSelection from './EmojiSelection'
 
 function EmojiModal() {
     const [searchEmoji, setSearch] = useState('');
+    const { emojiPlaceholder } = useSelector((state: RootStateOrAny) => state);
 
     const handleChange = (e) => {
         setSearch(e.target.value)
@@ -23,7 +24,7 @@ function EmojiModal() {
             <section className='general-emoji-container'>
                 <section className='emoji-search'>
                     <section className='emoji-search-fake-input'>
-                        <input onChange={handleChange} value={searchEmoji} className='emoji-search-input normal-font f300' placeholder='Find the perfect emoji' autoFocus></input>
+                        <input onChange={handleChange} value={searchEmoji} className='emoji-search-input normal-font f300' placeholder={emojiPlaceholder} autoFocus></input>
                         {searchEmoji === '' ? <IoSearch className='emoji-search-icon'/> : <IoCloseSharp onClick={clearInput} className='emoji-close-icon'/>}
                     </section>
                 </section>
