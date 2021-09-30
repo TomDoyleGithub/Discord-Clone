@@ -16,5 +16,14 @@ export const peopleArr = [
     {dim: '-446.8px 0px', name: ':relieved:'}, 
     {dim: '-478.5px 0px', name: ':smiling_face_with_tear:'}, 
     {dim: '-510.5px 0px', name: ':heart_eyes:'}, 
-    {dim: '-542.4px 0px', name: ':smiling_face_with_3_hearts:'} 
+    {dim: '-542.4px 0px', name: ':smiling_face_with_3_hearts:'},
+    {dim: '-574.2px 0px', name: ':kissing_heart:'},
+    {dim: '-606.2px 0px', name: ':kissing:'},
+    {dim: '-638px 0px', name: ':kissing_smiling_eyes:'},
+    {dim: '-670px 0px', name: ':kissing_closed_eyes:'},
+    {dim: '-702px 0px', name: ':yum:'},
+    {dim: '-733.8px 0px', name: ':stuck_out_tongue:'},
+    {dim: '-765.7px 0px', name: ':stuck_out_tongue_closed_eyes:'},
+    {dim: '-797.5px 0px', name: ':stuck_out_tongue_winking_eye:'},
+    {dim: '-829.5px 0px', name: ':zany_face:'}
 ];
