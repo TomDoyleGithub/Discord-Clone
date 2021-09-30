@@ -123,6 +123,7 @@
   align-items: center;
   cursor: pointer;
   transition: all 200ms ease;
+  user-select: none;
   &:hover {
     filter: brightness(150%);
   }
