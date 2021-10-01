@@ -5,6 +5,7 @@ import { peopleArr } from '../../utils/emojiArrays/peopleArr';
 import { natureArr } from '../../utils/emojiArrays/natureArr';
 import { foodArr } from '../../utils/emojiArrays/foodArr';
 import { activityArr } from '../../utils/emojiArrays/activityArr';
+import { travelArr } from '../../utils/emojiArrays/travelArr';
 
 function ListEmojis({ type }) {
     const dispatch = useDispatch();
@@ -37,7 +38,13 @@ function ListEmojis({ type }) {
                 {activityArr.map((emoji) => (<div key={emoji.dim} onMouseEnter={handleHover} data-value={emoji.name} className='single-emoji-container'><div className='single-emoji' style={{backgroundPosition: emoji.dim}}></div></div>))}
             </>
         )
-    }  else {
+    }  else if (type === 'travel') {
+        return (
+            <>
+                {travelArr.map((emoji) => (<div key={emoji.dim} onMouseEnter={handleHover} data-value={emoji.name} className='single-emoji-container'><div className='single-emoji' style={{backgroundPosition: emoji.dim}}></div></div>))}
+            </>
+        )
+    }   else {
         return <></>
     }
 }
