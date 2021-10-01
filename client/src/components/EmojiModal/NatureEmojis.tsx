@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
 import { SET_EMOJI_PLACEHOLDER } from '../../redux/actions';
-import { natureArr } from '../../utils/natureArr'
+import { natureArr } from '../../utils/emojiArrays/natureArr'
 
 function NatureEmojis() {
     const dispatch = useDispatch();

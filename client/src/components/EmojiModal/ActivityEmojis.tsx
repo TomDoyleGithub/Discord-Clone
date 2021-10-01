@@ -1,9 +1,9 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
 import { SET_EMOJI_PLACEHOLDER } from '../../redux/actions';
-import { peopleArr } from '../../utils/emojiArrays/peopleArr'
+import { activityArr } from '../../utils/emojiArrays/activityArr'
 
-function PeopleEmojis() {
+function ActivityEmojis() {
     const dispatch = useDispatch();
 
     const handleHover = (e) => {
@@ -13,9 +13,9 @@ function PeopleEmojis() {
 
     return (
         <>
-            {peopleArr.map((emoji) => (<div key={emoji.dim} onMouseEnter={handleHover} data-value={emoji.name} className='single-emoji-container'><div className='single-emoji' style={{backgroundPosition: emoji.dim}}></div></div>))}
+            {activityArr.map((emoji) => (<div key={emoji.dim} onMouseEnter={handleHover} data-value={emoji.name} className='single-emoji-container'><div className='single-emoji' style={{backgroundPosition: emoji.dim}}></div></div>))}
         </>
     )
 }
 
-export default PeopleEmojis
+export default ActivityEmojis

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
 import { SET_EMOJI_PLACEHOLDER } from '../../redux/actions';
-import { foodArr } from '../../utils/foodArr'
+import { foodArr } from '../../utils/emojiArrays/foodArr'
 
 function FoodEmojis() {
     const dispatch = useDispatch();
