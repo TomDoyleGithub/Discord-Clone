@@ -129,11 +129,4 @@ export const travelArr = [
     {dim: '-1020.95px -542.5px', name: ':hushed:'},
     {dim: '-1053px -542.5px', name: ':frowning:'},
     {dim: '-1084.8px -542.5px', name: ':anguished:'}
-    // {dim: '-1116.5px -542.5px', name: ':open_mouth:'},
-    // {dim: '-1148.5px -542.5px', name: ':astonished:'},
-    // {dim: '-1180.5px -542.5px', name: ':sleeping:'},
-    // {dim: '-1212.5px -542.5px', name: ':drooling_face: :drool:'},
-    // {dim: '-1244.3px -542.5px', name: ':sleepy:'},
-    // {dim: '-1276px -542.5px', name: ':dizzy_face:'},
-    // {dim: '-1308px -542.5px', name: ':face_with_spiral_eyes:'}
 ];
