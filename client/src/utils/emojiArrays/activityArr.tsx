@@ -73,12 +73,4 @@ export const activityArr = [
     {dim: '-989px -446.65px', name: ':rolling_eyes: :face_with_rolling_eyes:'},
     {dim: '-1020.95px -446.65px', name: ':hushed:'},
     {dim: '-1053px -446.65px', name: ':frowning:'}
-    // {dim: '-1084.8px -446.65px', name: ':anguished:'},
-    // {dim: '-1116.5px -446.65px', name: ':open_mouth:'},
-    // {dim: '-1148.5px -446.65px', name: ':astonished:'},
-    // {dim: '-1180.5px -446.65px', name: ':sleeping:'},
-    // {dim: '-1212.5px -446.65px', name: ':drooling_face: :drool:'},
-    // {dim: '-1244.3px -446.65px', name: ':sleepy:'},
-    // {dim: '-1276px -446.65px', name: ':dizzy_face:'},
-    // {dim: '-1308px -446.65px', name: ':face_with_spiral_eyes:'},
 ];
