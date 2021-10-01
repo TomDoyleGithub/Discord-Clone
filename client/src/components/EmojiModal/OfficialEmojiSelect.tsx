@@ -1,6 +1,7 @@
 import React from 'react'
 import PeopleEmojis from './PeopleEmojis'
 import NatureEmojis from './NatureEmojis'
+import FoodEmojis from './FoodEmojis'
 
 function OfficialEmojiSelect({ type }) {
     if (type === 'people') {
@@ -13,6 +14,12 @@ function OfficialEmojiSelect({ type }) {
         return (
             <section className='offical-emoji-selection'>
                 <NatureEmojis/>
+            </section> 
+        )
+    }  else if (type === 'food') {
+        return (
+            <section className='offical-emoji-selection'>
+                <FoodEmojis/>
             </section> 
         )
     } else {
