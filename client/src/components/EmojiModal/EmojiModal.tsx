@@ -1,36 +1,32 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { RootStateOrAny, useSelector } from 'react-redux';
 import './emojiModal.scss';
-import { IoSearch, IoCloseSharp } from "react-icons/io5";
-import EmojiCategory from './EmojiCategory'
-import EmojiSelection from './EmojiSelection'
+import 'emoji-mart/css/emoji-mart.css'
+import { Picker } from 'emoji-mart'
 
 
 function EmojiModal() {
-    const [searchEmoji, setSearch] = useState('');
-    const { emojiPlaceholder } = useSelector((state: RootStateOrAny) => state);
-
-    const handleChange = (e) => {
-        setSearch(e.target.value)
-    };
-
-    const clearInput = () => {
-        setSearch('')
+    const handleClick = (emoji, event) => {
+        const nativeEmoji = emoji.native;
+        console.log(nativeEmoji);
     };
 
     const { emojiModal} = useSelector((state: RootStateOrAny) => state);
     if (emojiModal === true) {
         return (
-            <section className='general-emoji-container'>
-                <section className='emoji-search'>
-                    <section className='emoji-search-fake-input'>
-                        <input onChange={handleChange} value={searchEmoji} className='emoji-search-input normal-font f300' placeholder={emojiPlaceholder} autoFocus></input>
-                        {searchEmoji === '' ? <IoSearch className='emoji-search-icon'/> : <IoCloseSharp onClick={clearInput} className='emoji-close-icon'/>}
-                    </section>
-                </section>
-                <EmojiCategory/>
-                <EmojiSelection/>
-            </section>
+            <>
+            <Picker
+            onClick={handleClick} 
+            set='twitter' 
+            theme='dark'
+            style={{ 
+                position: 'absolute', 
+                top: '20px', 
+                right: '20px',
+                zIndex: '9999999999999'
+            }} 
+            />
+            </>
         )
     } else {
         return <></>
