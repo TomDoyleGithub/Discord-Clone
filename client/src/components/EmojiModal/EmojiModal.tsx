@@ -17,7 +17,9 @@ function EmojiModal() {
             <>
             <Picker
             onClick={handleClick} 
-            set='twitter' 
+            set='twitter'
+            emojiSize={33}
+            title={''} 
             theme='dark'
             style={{ 
                 position: 'absolute', 
