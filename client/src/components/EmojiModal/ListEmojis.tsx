@@ -8,6 +8,7 @@ import { activityArr } from '../../utils/emojiArrays/activityArr';
 import { travelArr } from '../../utils/emojiArrays/travelArr';
 import { objectsArr } from '../../utils/emojiArrays/objectsArr';
 import { symbolsArr } from '../../utils/emojiArrays/symbolsArr';
+import { flagsArr } from '../../utils/emojiArrays/flagsArr';
 
 function ListEmojis({ type }) {
     const dispatch = useDispatch();
@@ -30,6 +31,8 @@ function ListEmojis({ type }) {
         return  <>{objectsArr.map((emoji) => (<div key={emoji.dim} onMouseEnter={handleHover} data-value={emoji.name} className='single-emoji-container'><div className='single-emoji' style={{backgroundPosition: emoji.dim}}></div></div>))}</>
     } else if (type === 'symbols') {
         return <>{symbolsArr.map((emoji) => (<div key={emoji.dim} onMouseEnter={handleHover} data-value={emoji.name} className='single-emoji-container'><div className='single-emoji' style={{backgroundPosition: emoji.dim}}></div></div>))}</>
+    } else if (type === 'flags') {
+        return <>{flagsArr.map((emoji) => (<div key={emoji.dim} onMouseEnter={handleHover} data-value={emoji.name} className='single-emoji-container'><div className='single-emoji' style={{backgroundPosition: emoji.dim}}></div></div>))}</>
     } else {
         return <></>
     }

@@ -328,17 +328,4 @@ export const symbolsArr = [
     {dim: '-829.5px -957px', name: ':lying_face: :lying:'},
     {dim: '-861.3px -957px', name: ':no_mouth:'},
     {dim: '-893.3px -957px', name: ':neutral_face:'}
-    // {dim: '-925.3px -957px', name: ':expressionless'},
-    // {dim: '-957px -957px', name: ':grimacing:'},
-    // {dim: '-989px -957px', name: ':rolling_eyes: :face_with_rolling_eyes:'},
-    // {dim: '-1020.95px -957px', name: ':hushed:'},
-    // {dim: '-1053px -957px', name: ':frowning:'},
-    // {dim: '-1084.8px -957px', name: ':anguished:'},
-    // {dim: '-1116.5px -957px', name: ':open_mouth:'},
-    // {dim: '-1148.5px -957px', name: ':astonished:'},
-    // {dim: '-1180.5px -957px', name: ':sleeping:'},
-    // {dim: '-1212.5px -957px', name: ':drooling_face: :drool:'},
-    // {dim: '-1244.3px -957px', name: ':sleepy:'},
-    // {dim: '-1276px -957px', name: ':dizzy_face:'},
-    // {dim: '-1308px -957px', name: ':face_with_spiral_eyes:'},
 ];
