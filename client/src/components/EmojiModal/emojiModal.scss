@@ -182,12 +182,34 @@
 
 .emoji-mart {
   border: none !important;
+  background-color: #2e3136 !important;
+}
+
+.emoji-mart-dark .emoji-mart-category-label span {
+  background-color: #2e3136 !important;
+}
+
+.emoji-mart-preview {
+  background-color: #282b2f !important;
+}
+
+.emoji-mart-bar {
+  border: none !important;
+  background-color: #1f2225 !important;
+}
+
+.emoji-mart-preview-name {
+  display: none !important;
+}
+
+.emoji-mart-preview-emoticon {
+  display: none !important;
 }
 
 .emoji-mart-emoji {
   cursor: pointer;
   &:hover {
-    background-color: rgba(255, 255, 255, 0.137) !important;
+    background-color: rgba(255, 255, 255, 0.096) !important;
     border-radius: 3px;
   }
   span {
