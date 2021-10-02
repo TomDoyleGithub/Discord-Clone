@@ -206,6 +206,15 @@
   display: none !important;
 }
 
+.emoji-mart-search {
+  input {
+    border: none !important;
+    background-color: #1f2225 !important;
+    padding: 10px !important;
+    font-size: 14px !important;
+  }
+}
+
 .emoji-mart-emoji {
   cursor: pointer;
   &:hover {
