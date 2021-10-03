@@ -1,19 +1,20 @@
 import React from 'react'
-import { RootStateOrAny, useSelector } from 'react-redux';
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import './emojiModal.scss';
 import 'emoji-mart/css/emoji-mart.css'
 import { Picker } from 'emoji-mart'
+import { SET_EMOJI_MODAL } from '../../redux/actions';
 
 
 function EmojiModal() {
+    const dispatch = useDispatch();
     const handleClick = (emoji, event) => {
         const nativeEmoji = emoji.native;
-        // let x = event.pageX;
-        // let y = event.pageY;
+        dispatch({ type: SET_EMOJI_MODAL, emojiModal: false});
         console.log(nativeEmoji);
     };
 
-    const { emojiModal} = useSelector((state: RootStateOrAny) => state);
+    const { emojiModal, emojiLeft, emojiTop } = useSelector((state: RootStateOrAny) => state);
     if (emojiModal === true) {
         return (
             <>
@@ -25,8 +26,8 @@ function EmojiModal() {
             theme='dark'
             style={{ 
                 position: 'absolute', 
-                top: '20px', 
-                right: '20px',
+                left: emojiLeft + 20,
+                top: emojiTop - 200, 
                 zIndex: '9999999999999'
             }} 
             />

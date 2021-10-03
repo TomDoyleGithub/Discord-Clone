@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
-import { SET_EMOJI_MODAL, TOGGLE_CUSTOM_STATUS } from '../../redux/actions';
+import { SET_EMOJI_MODAL, TOGGLE_CUSTOM_STATUS, UPDATE_EMOJI_POSITION } from '../../redux/actions';
 import Wumpus from '../../images/Status-Wumpus.svg'
 import './statusModal.scss'
 import { IoCloseOutline } from "react-icons/io5";
@@ -10,6 +10,7 @@ import { IoCloseCircle, IoChevronDownSharp } from "react-icons/io5";
 function CustomStatusModal() {
     const [realChoice, setEmoji] = useState('0px 0px');
     const [input, setInput] = useState('');
+
 
 
     const dispatch = useDispatch();
@@ -37,11 +38,12 @@ function CustomStatusModal() {
         setInput('')
     };
 
-    const openEmoji = () => {
+    const openEmoji = (e) => {
         if (emojiModal === true) {
             dispatch({ type: SET_EMOJI_MODAL, emojiModal: false});
         } else {
             dispatch({ type: SET_EMOJI_MODAL, emojiModal: true});
+            dispatch({ type: UPDATE_EMOJI_POSITION, left: e.pageX, top: e.pageY});
         }
         
     };
