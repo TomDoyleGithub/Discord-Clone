@@ -8,6 +8,8 @@ import { Picker } from 'emoji-mart'
 function EmojiModal() {
     const handleClick = (emoji, event) => {
         const nativeEmoji = emoji.native;
+        // let x = event.pageX;
+        // let y = event.pageY;
         console.log(nativeEmoji);
     };
 
