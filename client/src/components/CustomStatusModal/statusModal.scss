@@ -188,6 +188,13 @@
 
 .status-dropdown-choice {
   padding: 13px;
+  display: flex;
+  img {
+    height: 15px;
+    position: relative;
+    right: 6px;
+    bottom: 3px;
+  }
   &:hover {
     background-color: #282b2f;
   }

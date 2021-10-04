@@ -24,5 +24,9 @@ import cate5 from './emojis/cate5.svg';
 import cate6 from './emojis/cate6.svg';
 import cate7 from './emojis/cate7.svg';
 import cate8 from './emojis/cate8.svg';
+import online from './status/Online.svg';
+import idle from './status/Idle.svg';
+import doNotDisturb from './status/Do-Not-Disturb.svg';
+import invisible from './status/Invisible.svg';
 
-export { e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, e14, e15, e16, e17, e18, cate1, cate2, cate3, cate4, cate5, cate6, cate7, cate8 };
+export { e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, e14, e15, e16, e17, e18, cate1, cate2, cate3, cate4, cate5, cate6, cate7, cate8, online, idle, doNotDisturb, invisible };
