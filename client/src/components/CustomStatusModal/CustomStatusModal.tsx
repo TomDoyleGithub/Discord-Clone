@@ -36,7 +36,8 @@ function CustomStatusModal() {
     };
 
     const clearInput = () => {
-        setInput('')
+        setInput('');
+        dispatch({ type: CUSTOM_EMOJI_CHOICE, emoji: ''});
     };
 
     const openEmoji = (e) => {
@@ -67,7 +68,7 @@ function CustomStatusModal() {
                                 ) : (
                                     <p onClick={openEmoji} className='chosen-custom-emoji'>{emoji(emojiChoice)}</p>
                                 )}
-                                {input !== '' ? <IoCloseCircle className='clear-input' onClick={clearInput}/> : <></>}
+                                {input !== ''  || emojiChoice !== '' ? <IoCloseCircle className='clear-input' onClick={clearInput}/> : <></>}
                                 <input value={input} onChange={handleChange} type='name' name='CustomStatus' maxLength={30} placeholder='Support has arrived'  className='normal-font f300 real-input-status' autoFocus/>
                             </div>
 
