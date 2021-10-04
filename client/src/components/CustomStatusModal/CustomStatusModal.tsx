@@ -25,8 +25,10 @@ function CustomStatusModal() {
         const topPosition = e.currentTarget.getBoundingClientRect().bottom;
         dispatch({ type: UPDATE_EMOJI_POSITION, left: leftPosition, top: topPosition});
         if (type === 'date') {
+            setStatusDrop(false)
             setExpireDrop(!expireDropdown)
         } else {
+            setExpireDrop(false)
             setStatusDrop(!statusDropdown)
         }
     };
@@ -71,6 +73,7 @@ function CustomStatusModal() {
     return (
         <div onClick={hideModal} className={'modal-container ' + (customStatusModal ? 'show' : 'hide')}>
             <div data-value='date' onClick={handleDropdown} >{expireDropdown ? <ExpireDropdown/> : <></>}</div>
+            <div data-value='status' onClick={handleDropdown}>{statusDropdown ? <StatusDropdown/> : <></>}</div>
             <section className='password-send custom-send'>
                 <section className='head-wumpus-container'>
                     <img className='staty-wumpus' src={Wumpus} alt='Happy Wumpus'/>
@@ -103,7 +106,6 @@ function CustomStatusModal() {
                             <div data-value='status' onClick={handleDropdown} className='fake-input-status' style={{cursor: 'pointer'}}>
                                 <p className='expire-choice normal-font'>Online</p>
                                 <IoChevronDownSharp className={'custon-dropdown-arrow ' + (statusDropdown ? 'flip-chevron' : '')} />
-                                {statusDropdown ? <StatusDropdown/> : <></>}
                             </div>
                     </section>
                 </section>
