@@ -21,6 +21,9 @@ function CustomStatusModal() {
 
     const handleDropdown = (e) => {
         const type = e.currentTarget.getAttribute('data-value');
+        const leftPosition = e.currentTarget.getBoundingClientRect().left;
+        const topPosition = e.currentTarget.getBoundingClientRect().bottom;
+        dispatch({ type: UPDATE_EMOJI_POSITION, left: leftPosition, top: topPosition});
         if (type === 'date') {
             setExpireDrop(!expireDropdown)
         } else {
@@ -67,6 +70,7 @@ function CustomStatusModal() {
 
     return (
         <div onClick={hideModal} className={'modal-container ' + (customStatusModal ? 'show' : 'hide')}>
+            <div data-value='date' onClick={handleDropdown} >{expireDropdown ? <ExpireDropdown/> : <></>}</div>
             <section className='password-send custom-send'>
                 <section className='head-wumpus-container'>
                     <img className='staty-wumpus' src={Wumpus} alt='Happy Wumpus'/>
@@ -75,7 +79,6 @@ function CustomStatusModal() {
                 <IoCloseOutline onClick={hideModal} className='custom-status-cross'/>
                 <section className='cus-status-for'>
                     <section className='input-container'>
-
                             <label className='normal-font f500 status-label'>What's cookin', woolywowo?</label>
                             <div className='fake-input-status'>
                                 {!emojiChoice ? (
@@ -92,7 +95,6 @@ function CustomStatusModal() {
                             <div data-value='date' onClick={handleDropdown} className='fake-input-status' style={{cursor: 'pointer'}}>
                                 <p className='expire-choice normal-font'>Today</p>
                                 <IoChevronDownSharp className={'custon-dropdown-arrow ' + (expireDropdown ? 'flip-chevron' : '')} />
-                                {expireDropdown ? <ExpireDropdown/> : <></>}
                             </div>
 
                             <div style={{borderBottom: '1px solid #424549', marginBottom: '10px'}}></div>

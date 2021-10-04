@@ -172,6 +172,27 @@
   transform: rotate(180deg);
 }
 
+.status-dropdown-container {
+  border: 1px solid #232427;
+  background-color: #303338;
+  color: #dcddde;
+  position: absolute;
+  width: 401px;
+  height: auto;
+  border-radius: 0px 0px 3px 3px;
+  display: flex;
+  flex-direction: column;
+  z-index: 999999999999;
+  cursor: pointer;
+}
+
+.status-dropdown-choice {
+  padding: 13px;
+  &:hover {
+    background-color: #282b2f;
+  }
+}
+
 @media screen and (max-height: 580px) {
   .custom-send {
     height: 75vh !important;
