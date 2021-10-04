@@ -3,7 +3,7 @@ import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import './emojiModal.scss';
 import 'emoji-mart/css/emoji-mart.css'
 import { Picker } from 'emoji-mart'
-import { SET_EMOJI_MODAL } from '../../redux/actions';
+import { CUSTOM_EMOJI_CHOICE, SET_EMOJI_MODAL } from '../../redux/actions';
 
 
 function EmojiModal() {
@@ -11,7 +11,7 @@ function EmojiModal() {
     const handleClick = (emoji, event) => {
         const nativeEmoji = emoji.native;
         dispatch({ type: SET_EMOJI_MODAL, emojiModal: false});
-        console.log(nativeEmoji);
+        dispatch({ type: CUSTOM_EMOJI_CHOICE, emoji: nativeEmoji});
     };
 
     const { emojiModal, emojiLeft, emojiTop } = useSelector((state: RootStateOrAny) => state);

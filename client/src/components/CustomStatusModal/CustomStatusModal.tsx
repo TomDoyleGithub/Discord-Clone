@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
-import { SET_EMOJI_MODAL, TOGGLE_CUSTOM_STATUS, UPDATE_EMOJI_POSITION } from '../../redux/actions';
+import { CUSTOM_EMOJI_CHOICE, SET_EMOJI_MODAL, TOGGLE_CUSTOM_STATUS, UPDATE_EMOJI_POSITION } from '../../redux/actions';
 import Wumpus from '../../images/Status-Wumpus.svg'
 import './statusModal.scss'
 import { IoCloseOutline } from "react-icons/io5";
 import { emojiArr } from '../../utils/emojiArr';
 import { IoCloseCircle, IoChevronDownSharp } from "react-icons/io5";
+import emoji from 'react-easy-emoji';
 
 function CustomStatusModal() {
     const [realChoice, setEmoji] = useState('0px 0px');
     const [input, setInput] = useState('');
-
 
 
     const dispatch = useDispatch();
@@ -18,9 +18,10 @@ function CustomStatusModal() {
         if(e.target === e.currentTarget) {
             dispatch({ type: TOGGLE_CUSTOM_STATUS, showModal: false});
             dispatch({ type: SET_EMOJI_MODAL, emojiModal: false});
+            dispatch({ type: CUSTOM_EMOJI_CHOICE, emoji: ''});
          }
     };
-    const { customStatusModal, emojiModal} = useSelector((state: RootStateOrAny) => state);
+    const { customStatusModal, emojiModal, emojiChoice } = useSelector((state: RootStateOrAny) => state);
 
     const changeEmoji = () => {
         if (emojiModal === false) {
@@ -61,9 +62,13 @@ function CustomStatusModal() {
 
                             <label className='normal-font f500 status-label'>What's cookin', woolywowo?</label>
                             <div className='fake-input-status'>
-                                <div onMouseEnter={changeEmoji} onClick={openEmoji} className={'emoji-sprite ' + (emojiModal ? 'emoji-active' : '')} style={{backgroundPosition: realChoice}}></div>
+                                {!emojiChoice ? (
+                                    <div onMouseEnter={changeEmoji} onClick={openEmoji} className={'emoji-sprite ' + (emojiModal ? 'emoji-active' : '')} style={{backgroundPosition: realChoice}}></div>
+                                ) : (
+                                    <p onClick={openEmoji} className='chosen-custom-emoji'>{emoji(emojiChoice)}</p>
+                                )}
                                 {input !== '' ? <IoCloseCircle className='clear-input' onClick={clearInput}/> : <></>}
-                                <input value={input} onChange={handleChange} type='name' name='CustomStatus' maxLength={30} placeholder='Support has arrived'  className='normal-font f300 real-input-status' autoFocus />
+                                <input value={input} onChange={handleChange} type='name' name='CustomStatus' maxLength={30} placeholder='Support has arrived'  className='normal-font f300 real-input-status' autoFocus/>
                             </div>
 
                             <label className='normal-font f500 status-label'>Clear After</label>
