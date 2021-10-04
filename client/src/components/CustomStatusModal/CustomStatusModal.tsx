@@ -7,21 +7,36 @@ import { IoCloseOutline } from "react-icons/io5";
 import { emojiArr } from '../../utils/emojiArr';
 import { IoCloseCircle, IoChevronDownSharp } from "react-icons/io5";
 import emoji from 'react-easy-emoji';
+import ExpireDropdown from './Dropdowns/ExpireDropdown';
+import StatusDropdown from './Dropdowns/StatusDropdown';
 
 function CustomStatusModal() {
+    const dispatch = useDispatch();
+    const { customStatusModal, emojiModal, emojiChoice } = useSelector((state: RootStateOrAny) => state);
+    
     const [realChoice, setEmoji] = useState('0px 0px');
     const [input, setInput] = useState('');
+    const [expireDropdown, setExpireDrop] = useState(false);
+    const [statusDropdown, setStatusDrop] = useState(false);
 
+    const handleDropdown = (e) => {
+        const type = e.currentTarget.getAttribute('data-value');
+        if (type === 'date') {
+            setExpireDrop(!expireDropdown)
+        } else {
+            setStatusDrop(!statusDropdown)
+        }
+    };
 
-    const dispatch = useDispatch();
     const hideModal = (e) => {
         if(e.target === e.currentTarget) {
             dispatch({ type: TOGGLE_CUSTOM_STATUS, showModal: false});
             dispatch({ type: SET_EMOJI_MODAL, emojiModal: false});
             dispatch({ type: CUSTOM_EMOJI_CHOICE, emoji: ''});
+            setExpireDrop(false);
+            setStatusDrop(false);
          }
     };
-    const { customStatusModal, emojiModal, emojiChoice } = useSelector((state: RootStateOrAny) => state);
 
     const changeEmoji = () => {
         if (emojiModal === false) {
@@ -73,17 +88,20 @@ function CustomStatusModal() {
                             </div>
 
                             <label className='normal-font f500 status-label'>Clear After</label>
-                            <div className='fake-input-status' style={{cursor: 'pointer'}}>
+
+                            <div data-value='date' onClick={handleDropdown} className='fake-input-status' style={{cursor: 'pointer'}}>
                                 <p className='expire-choice normal-font'>Today</p>
                                 <IoChevronDownSharp className='custon-dropdown-arrow' />
+                                {expireDropdown ? <ExpireDropdown/> : <></>}
                             </div>
 
                             <div style={{borderBottom: '1px solid #424549', marginBottom: '10px'}}></div>
 
                             <label className='normal-font f500 status-label'>Status</label>
-                            <div className='fake-input-status' style={{cursor: 'pointer'}}>
+                            <div data-value='status' onClick={handleDropdown} className='fake-input-status' style={{cursor: 'pointer'}}>
                                 <p className='expire-choice normal-font'>Online</p>
                                 <IoChevronDownSharp className='custon-dropdown-arrow' />
+                                {statusDropdown ? <StatusDropdown/> : <></>}
                             </div>
                     </section>
                 </section>
