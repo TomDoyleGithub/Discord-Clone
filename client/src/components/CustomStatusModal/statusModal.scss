@@ -81,6 +81,7 @@
   margin-top: 8px;
   position: relative;
   margin-bottom: 18px;
+  user-select: none;
 }
 
 .real-input-status {
@@ -165,6 +166,10 @@
   right: 10px;
   top: 11px;
   font-size: 18px;
+}
+
+.flip-chevron {
+  transform: rotate(180deg);
 }
 
 @media screen and (max-height: 580px) {

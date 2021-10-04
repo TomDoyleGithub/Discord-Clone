@@ -13,7 +13,7 @@ import StatusDropdown from './Dropdowns/StatusDropdown';
 function CustomStatusModal() {
     const dispatch = useDispatch();
     const { customStatusModal, emojiModal, emojiChoice } = useSelector((state: RootStateOrAny) => state);
-    
+
     const [realChoice, setEmoji] = useState('0px 0px');
     const [input, setInput] = useState('');
     const [expireDropdown, setExpireDrop] = useState(false);
@@ -91,7 +91,7 @@ function CustomStatusModal() {
 
                             <div data-value='date' onClick={handleDropdown} className='fake-input-status' style={{cursor: 'pointer'}}>
                                 <p className='expire-choice normal-font'>Today</p>
-                                <IoChevronDownSharp className='custon-dropdown-arrow' />
+                                <IoChevronDownSharp className={'custon-dropdown-arrow ' + (expireDropdown ? 'flip-chevron' : '')} />
                                 {expireDropdown ? <ExpireDropdown/> : <></>}
                             </div>
 
@@ -100,7 +100,7 @@ function CustomStatusModal() {
                             <label className='normal-font f500 status-label'>Status</label>
                             <div data-value='status' onClick={handleDropdown} className='fake-input-status' style={{cursor: 'pointer'}}>
                                 <p className='expire-choice normal-font'>Online</p>
-                                <IoChevronDownSharp className='custon-dropdown-arrow' />
+                                <IoChevronDownSharp className={'custon-dropdown-arrow ' + (statusDropdown ? 'flip-chevron' : '')} />
                                 {statusDropdown ? <StatusDropdown/> : <></>}
                             </div>
                     </section>
