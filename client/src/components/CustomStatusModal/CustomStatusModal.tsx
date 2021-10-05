@@ -119,7 +119,7 @@ function CustomStatusModal() {
 
                             <label className='normal-font f500 status-label'>Status</label>
                             <div data-value='status' onClick={handleDropdown} className='fake-input-status' style={{cursor: 'pointer'}}>
-                                <p className='expire-choice normal-font'>{realStatus}</p>
+                                <p className='expire-choice normal-font'>{realStatus?.replace(/-/g, ' ')}</p>
                                 <IoChevronDownSharp className={'custon-dropdown-arrow ' + (statusDropdown ? 'flip-chevron' : '')} />
                             </div>
                     </section>

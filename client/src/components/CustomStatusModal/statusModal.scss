@@ -190,6 +190,7 @@
 .status-dropdown-choice {
   padding: 13px;
   display: flex;
+  position: relative;
   img {
     height: 15px;
     position: relative;
@@ -199,6 +200,26 @@
   &:hover {
     background-color: #282b2f;
   }
+}
+
+.dropdown-active {
+  background-color: #1f2225;
+  &:hover {
+    background-color: #1f2225 !important;
+  }
+  .dropdown-check {
+    visibility: visible;
+  }
+}
+
+.dropdown-check {
+  filter: invert(44%) sepia(46%) saturate(5533%) hue-rotate(222deg)
+    brightness(94%) contrast(101%);
+  position: absolute !important;
+  right: 15px !important;
+  height: 20px !important;
+  top: 10px;
+  visibility: hidden;
 }
 
 @media screen and (max-height: 580px) {
