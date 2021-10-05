@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
-import { CHANGE_STATUS, CUSTOM_EMOJI_CHOICE, SET_EMOJI_MODAL, SET_STATUS_DROOPDOWN, TOGGLE_CUSTOM_STATUS, UPDATE_EMOJI_POSITION } from '../../redux/actions';
+import { CHANGE_STATUS, CUSTOM_EMOJI_CHOICE, SET_EMOJI_MODAL, SET_EXPIRE_DROPDOWN, SET_STATUS_DROOPDOWN, TOGGLE_CUSTOM_STATUS, UPDATE_EMOJI_POSITION } from '../../redux/actions';
 import Wumpus from '../../images/Status-Wumpus.svg'
 import './statusModal.scss'
 import { IoCloseOutline } from "react-icons/io5";
@@ -15,7 +15,7 @@ import { STATUS_UPDATE } from '../../utils/mutations';
 
 function CustomStatusModal() {
     const dispatch = useDispatch();
-    const { customStatusModal, emojiModal, emojiChoice, status, dropdownStatus } = useSelector((state: RootStateOrAny) => state);
+    const { customStatusModal, emojiModal, emojiChoice, status, dropdownStatus, dropdownExpire } = useSelector((state: RootStateOrAny) => state);
     const { data } = useQuery(GET_ME);
     const [updateStatus] = useMutation(STATUS_UPDATE);
 
@@ -54,6 +54,7 @@ function CustomStatusModal() {
             dispatch({ type: CUSTOM_EMOJI_CHOICE, emoji: ''});
             setTimeout(function () {
                 dispatch({ type: SET_STATUS_DROOPDOWN, status: '' });
+                dispatch({ type: SET_EXPIRE_DROPDOWN, expire: 'Today' });
             }, 1000); 
             setExpireDrop(false);
             setStatusDrop(false);
@@ -124,7 +125,7 @@ function CustomStatusModal() {
                             <label className='normal-font f500 status-label'>Clear After</label>
 
                             <div data-value='date' onClick={handleDropdown} className='fake-input-status' style={{cursor: 'pointer'}}>
-                                <p className='expire-choice normal-font'>Today</p>
+                                <p className='expire-choice normal-font'>{dropdownExpire}</p>
                                 <IoChevronDownSharp className={'custon-dropdown-arrow ' + (expireDropdown ? 'flip-chevron' : '')} />
                             </div>
 
