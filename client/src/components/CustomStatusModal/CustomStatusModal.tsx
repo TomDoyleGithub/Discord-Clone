@@ -12,6 +12,7 @@ import StatusDropdown from './Dropdowns/StatusDropdown';
 import { useMutation, useQuery } from '@apollo/client';
 import { GET_ME } from '../../utils/queries';
 import { STATUS_UPDATE } from '../../utils/mutations';
+import { expireFunction } from '../../utils/ExpireFunctions';
 
 function CustomStatusModal() {
     const dispatch = useDispatch();
@@ -58,11 +59,19 @@ function CustomStatusModal() {
             }, 1000); 
             setExpireDrop(false);
             setStatusDrop(false);
+            setInput('');
          }
     };
 
     const submitModal = (e) => {
         hideModal(e);
+        const customStatus = `${emojiChoice} ${input}`;
+        if (customStatus !== ' ') {
+            // Send to Database
+            console.log(customStatus);
+            console.log(expireFunction(dropdownExpire))
+        }
+        // Conditional to update literal status
         if (realStatus !== data?.me?.status) {
             console.log('Update Status Database')
             dispatch({ type: CHANGE_STATUS, status: realStatus });
