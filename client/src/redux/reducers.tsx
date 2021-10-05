@@ -17,7 +17,8 @@ import {
     SET_EMOJI_MODAL,
     SET_EMOJI_PLACEHOLDER,
     UPDATE_EMOJI_POSITION,
-    CUSTOM_EMOJI_CHOICE
+    CUSTOM_EMOJI_CHOICE,
+    SET_STATUS_DROOPDOWN
 } from './actions';
 
 import { io } from "socket.io-client";
@@ -49,7 +50,8 @@ const initalState = {
     emojiPlaceholder: 'Find the perfect emoji',
     emojiLeft: 20,
     emojiTop: 0,
-    emojiChoice: ''
+    emojiChoice: '',
+    dropdownStatus: ''
 };
 
 export default function reducer (state = initalState, action) {
@@ -159,6 +161,11 @@ export default function reducer (state = initalState, action) {
             return {
                 ...state,
                 emojiChoice: action.emoji
+            }
+        case SET_STATUS_DROOPDOWN:
+            return {
+                ...state,
+                dropdownStatus: action.status
             }
         default: 
             return state;

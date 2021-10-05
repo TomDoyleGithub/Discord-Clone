@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
-import { CUSTOM_EMOJI_CHOICE, SET_EMOJI_MODAL, TOGGLE_CUSTOM_STATUS, UPDATE_EMOJI_POSITION } from '../../redux/actions';
+import { CUSTOM_EMOJI_CHOICE, SET_EMOJI_MODAL, SET_STATUS_DROOPDOWN, TOGGLE_CUSTOM_STATUS, UPDATE_EMOJI_POSITION } from '../../redux/actions';
 import Wumpus from '../../images/Status-Wumpus.svg'
 import './statusModal.scss'
 import { IoCloseOutline } from "react-icons/io5";
@@ -14,11 +14,13 @@ import { GET_ME } from '../../utils/queries';
 
 function CustomStatusModal() {
     const dispatch = useDispatch();
-    const { customStatusModal, emojiModal, emojiChoice, status } = useSelector((state: RootStateOrAny) => state);
+    const { customStatusModal, emojiModal, emojiChoice, status, dropdownStatus } = useSelector((state: RootStateOrAny) => state);
     const { data } = useQuery(GET_ME);
 
     let realStatus;
-    if (status === '') {
+    if (dropdownStatus !== '') {
+        realStatus = dropdownStatus
+    } else if (status === '') {
         realStatus = data?.me?.status
     } else {
         realStatus = status
@@ -48,6 +50,9 @@ function CustomStatusModal() {
             dispatch({ type: TOGGLE_CUSTOM_STATUS, showModal: false});
             dispatch({ type: SET_EMOJI_MODAL, emojiModal: false});
             dispatch({ type: CUSTOM_EMOJI_CHOICE, emoji: ''});
+            setTimeout(function () {
+                dispatch({ type: SET_STATUS_DROOPDOWN, status: '' });
+            }, 1000); 
             setExpireDrop(false);
             setStatusDrop(false);
          }
@@ -83,7 +88,7 @@ function CustomStatusModal() {
     return (
         <div onClick={hideModal} className={'modal-container ' + (customStatusModal ? 'show' : 'hide')}>
             <div data-value='date' onClick={handleDropdown} >{expireDropdown ? <ExpireDropdown/> : <></>}</div>
-            <div data-value='status' onClick={handleDropdown}>{statusDropdown ? <StatusDropdown/> : <></>}</div>
+            <div data-value='status' onClick={handleDropdown}>{statusDropdown ? <StatusDropdown status={realStatus}/> : <></>}</div>
             <section className='password-send custom-send'>
                 <section className='head-wumpus-container'>
                     <img className='staty-wumpus' src={Wumpus} alt='Happy Wumpus'/>
