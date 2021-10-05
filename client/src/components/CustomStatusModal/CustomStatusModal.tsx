@@ -37,10 +37,10 @@ function CustomStatusModal() {
         const topPosition = e.currentTarget.getBoundingClientRect().bottom;
         dispatch({ type: UPDATE_EMOJI_POSITION, left: leftPosition, top: topPosition});
         if (type === 'date') {
-            setStatusDrop(false)
+            setStatusDrop(false);
             setExpireDrop(!expireDropdown)
         } else {
-            setExpireDrop(false)
+            setExpireDrop(false);
             setStatusDrop(!statusDropdown)
         }
     };
@@ -76,6 +76,8 @@ function CustomStatusModal() {
     };
 
     const openEmoji = (e) => {
+        setStatusDrop(false);
+        setExpireDrop(false);
         if (emojiModal === true) {
             dispatch({ type: SET_EMOJI_MODAL, emojiModal: false});
         } else {
