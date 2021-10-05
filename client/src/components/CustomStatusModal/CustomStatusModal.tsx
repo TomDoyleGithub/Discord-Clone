@@ -9,10 +9,20 @@ import { IoCloseCircle, IoChevronDownSharp } from "react-icons/io5";
 import emoji from 'react-easy-emoji';
 import ExpireDropdown from './Dropdowns/ExpireDropdown';
 import StatusDropdown from './Dropdowns/StatusDropdown';
+import { useQuery } from '@apollo/client';
+import { GET_ME } from '../../utils/queries';
 
 function CustomStatusModal() {
     const dispatch = useDispatch();
-    const { customStatusModal, emojiModal, emojiChoice } = useSelector((state: RootStateOrAny) => state);
+    const { customStatusModal, emojiModal, emojiChoice, status } = useSelector((state: RootStateOrAny) => state);
+    const { data } = useQuery(GET_ME);
+
+    let realStatus;
+    if (status === '') {
+        realStatus = data?.me?.status
+    } else {
+        realStatus = status
+    }
 
     const [realChoice, setEmoji] = useState('0px 0px');
     const [input, setInput] = useState('');
@@ -104,7 +114,7 @@ function CustomStatusModal() {
 
                             <label className='normal-font f500 status-label'>Status</label>
                             <div data-value='status' onClick={handleDropdown} className='fake-input-status' style={{cursor: 'pointer'}}>
-                                <p className='expire-choice normal-font'>Online</p>
+                                <p className='expire-choice normal-font'>{realStatus}</p>
                                 <IoChevronDownSharp className={'custon-dropdown-arrow ' + (statusDropdown ? 'flip-chevron' : '')} />
                             </div>
                     </section>
