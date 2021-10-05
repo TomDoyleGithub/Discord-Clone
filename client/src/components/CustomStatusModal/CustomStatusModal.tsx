@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
-import { CUSTOM_EMOJI_CHOICE, SET_EMOJI_MODAL, SET_STATUS_DROOPDOWN, TOGGLE_CUSTOM_STATUS, UPDATE_EMOJI_POSITION } from '../../redux/actions';
+import { CHANGE_STATUS, CUSTOM_EMOJI_CHOICE, SET_EMOJI_MODAL, SET_STATUS_DROOPDOWN, TOGGLE_CUSTOM_STATUS, UPDATE_EMOJI_POSITION } from '../../redux/actions';
 import Wumpus from '../../images/Status-Wumpus.svg'
 import './statusModal.scss'
 import { IoCloseOutline } from "react-icons/io5";
@@ -9,13 +9,15 @@ import { IoCloseCircle, IoChevronDownSharp } from "react-icons/io5";
 import emoji from 'react-easy-emoji';
 import ExpireDropdown from './Dropdowns/ExpireDropdown';
 import StatusDropdown from './Dropdowns/StatusDropdown';
-import { useQuery } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import { GET_ME } from '../../utils/queries';
+import { STATUS_UPDATE } from '../../utils/mutations';
 
 function CustomStatusModal() {
     const dispatch = useDispatch();
     const { customStatusModal, emojiModal, emojiChoice, status, dropdownStatus } = useSelector((state: RootStateOrAny) => state);
     const { data } = useQuery(GET_ME);
+    const [updateStatus] = useMutation(STATUS_UPDATE);
 
     let realStatus;
     if (dropdownStatus !== '') {
@@ -56,6 +58,15 @@ function CustomStatusModal() {
             setExpireDrop(false);
             setStatusDrop(false);
          }
+    };
+
+    const submitModal = (e) => {
+        hideModal(e);
+        if (realStatus !== data?.me?.status) {
+            console.log('Update Status Database')
+            dispatch({ type: CHANGE_STATUS, status: realStatus });
+            updateStatus({ variables: {status: realStatus}});
+        }
     };
 
     const changeEmoji = () => {
@@ -128,7 +139,7 @@ function CustomStatusModal() {
                 </section>
                 <section className='custom-status-form-container'>
                     <p onClick={hideModal} className='status-form-button-container normal-font'>Cancel</p>
-                    <p onClick={hideModal} className='status-form-button-container normal-font purple-status-button-custom'>Save</p>
+                    <p onClick={submitModal} className='status-form-button-container normal-font purple-status-button-custom'>Save</p>
                 </section>
             </section>
         </div>
