@@ -75,7 +75,7 @@ function ChangeStatus({ customStatus }) {
                     </>
                 ) : (
                     <>
-                    <span style={{width: '14px', position: 'absolute', left: '2px', bottom: '7px'}}>{emoji(`${items?.[0]}`)}</span>
+                    <span style={{width: '14px', position: 'absolute', left: '3px', bottom: '7px'}}>{emoji(`${items?.[0]}`)}</span>
                     <p className='status-word'>{items?.[1]}</p>
                 </>
                 )}
