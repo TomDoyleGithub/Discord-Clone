@@ -130,3 +130,14 @@ mutation removeFriend ($id: String!) {
     }
   }
 `;
+
+export const CUSTOM_STATUS = gql `
+mutation customStatus ($customStatus: String!, $expireDate: String!) {
+  customStatus(customStatus: $customStatus, expireDate: $expireDate) {
+    _id
+    username
+    customStatus
+    expireDate
+  }
+}
+`;

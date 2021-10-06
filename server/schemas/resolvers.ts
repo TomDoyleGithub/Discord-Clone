@@ -42,8 +42,8 @@ const resolvers = {
         }
     },
     Mutation: {
-        register: async (_:any, { email, username, password, birthday, propic, status }:any) => {
-            const user = await User.create({  email, username, password, birthday, propic, status });
+        register: async (_:any, { email, username, password, birthday, propic, status, customStatus, expireDate }:any) => {
+            const user = await User.create({  email, username, password, birthday, propic, status, customStatus, expireDate });
             const token = authMiddleware.signToken(user);
             return { token, user };
         },
@@ -148,6 +148,14 @@ const resolvers = {
                         model: 'User'
                       } 
                 });
+                return user;
+            } catch (err) {
+                console.log(err)
+            }
+        },
+        customStatus: async (_:any, { customStatus, expireDate }:any, context:any) => {
+            try {
+                const user = await User.findOneAndUpdate({ _id: context.user._id }, {customStatus, expireDate}, {new: true});
                 return user;
             } catch (err) {
                 console.log(err)

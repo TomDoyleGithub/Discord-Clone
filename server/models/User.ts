@@ -31,6 +31,11 @@ import bcrypt from "bcrypt";
       type: String,
       default: 'online'
     },
+    customStatus: {
+      type: String,
+      default: '',
+    },
+    expireDate: String,
     friends: [
       {
         '_id': false,

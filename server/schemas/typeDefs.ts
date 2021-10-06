@@ -8,6 +8,8 @@ const typeDefs = gql`
         birthday: String!
         propic: String
         status: String
+        customStatus: String
+        expireDate: String
         friends: [friend]
     }
 
@@ -38,6 +40,7 @@ const typeDefs = gql`
         getFriend(id: String!): User
         acceptFriend(id: String!): User
         removeFriend(id: String!): User
+        customStatus(customStatus: String!, expireDate: String!): User
     }
 `;
 

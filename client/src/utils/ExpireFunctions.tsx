@@ -11,6 +11,6 @@ export const expireFunction = (time) => {
         case '30 minutes':
             return today.setHours( today.getHours() + 0.5 );
         default:
-            return "Don't clear"
+            return 0
       };
 };

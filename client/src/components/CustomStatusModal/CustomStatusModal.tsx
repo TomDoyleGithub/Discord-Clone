@@ -11,7 +11,7 @@ import ExpireDropdown from './Dropdowns/ExpireDropdown';
 import StatusDropdown from './Dropdowns/StatusDropdown';
 import { useMutation, useQuery } from '@apollo/client';
 import { GET_ME } from '../../utils/queries';
-import { STATUS_UPDATE } from '../../utils/mutations';
+import { CUSTOM_STATUS, STATUS_UPDATE } from '../../utils/mutations';
 import { expireFunction } from '../../utils/ExpireFunctions';
 
 function CustomStatusModal() {
@@ -19,6 +19,7 @@ function CustomStatusModal() {
     const { customStatusModal, emojiModal, emojiChoice, status, dropdownStatus, dropdownExpire } = useSelector((state: RootStateOrAny) => state);
     const { data } = useQuery(GET_ME);
     const [updateStatus] = useMutation(STATUS_UPDATE);
+    const [customStatusMut] = useMutation(CUSTOM_STATUS)
 
     let realStatus;
     if (dropdownStatus !== '') {
@@ -63,17 +64,15 @@ function CustomStatusModal() {
          }
     };
 
-    const submitModal = (e) => {
+    const submitModal = async (e) => {
         hideModal(e);
         const customStatus = `${emojiChoice} ${input}`;
         if (customStatus !== ' ') {
-            // Send to Database
-            console.log(customStatus);
-            console.log(expireFunction(dropdownExpire))
+            const expireDate = expireFunction(dropdownExpire).toString();
+            customStatusMut({ variables: {customStatus, expireDate}})
         }
         // Conditional to update literal status
         if (realStatus !== data?.me?.status) {
-            console.log('Update Status Database')
             dispatch({ type: CHANGE_STATUS, status: realStatus });
             updateStatus({ variables: {status: realStatus}});
         }

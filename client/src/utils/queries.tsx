@@ -7,12 +7,16 @@ export const GET_ME = gql`
         username
         propic
         status
+        customStatus
+        expireDate
         friends {
             user {
               _id
               username
               propic
               status
+              customStatus
+              expireDate
             }
             status
           }
@@ -30,6 +34,8 @@ export const GET_FRIENDS = gql `
             username
             propic
             status
+            customStatus
+            expireDate
           }
           status
         }
