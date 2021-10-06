@@ -7,7 +7,7 @@ import Invisible from '../StatusIcons/Invisible';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { CHANGE_STATUS, TOGGLE_CUSTOM_STATUS, TOGGLE_STATUS_MODAL } from '../../redux/actions';
 import { useMutation } from '@apollo/client';
-import { STATUS_UPDATE } from '../../utils/mutations';
+import { CUSTOM_STATUS, STATUS_UPDATE } from '../../utils/mutations';
 import defaultEmoji from '../../images/emoji-default.svg';
 import emoji from 'react-easy-emoji';
 import { IoCloseCircleSharp } from "react-icons/io5";
@@ -17,6 +17,7 @@ function ChangeStatus({ customStatus }) {
     const dispatch = useDispatch();
     const { statusModal } = useSelector((state: RootStateOrAny) => state);
     const [updateStatus] = useMutation(STATUS_UPDATE);
+    const [customStatusMut] = useMutation(CUSTOM_STATUS);
 
     const handleClick = (e) => {
         const clickStatus = e.currentTarget.getAttribute('data-value');
@@ -30,6 +31,10 @@ function ChangeStatus({ customStatus }) {
         dispatch({ type: TOGGLE_CUSTOM_STATUS, customStatusModal: true});
     };
 
+    const clearStatus = () => {
+        customStatusMut({ variables: {customStatus: '', expireDate: ''}});
+        dispatch({ type: TOGGLE_STATUS_MODAL });
+    };
 
     useEffect(() => {
         const pageStatusEvent = () => {
@@ -84,7 +89,7 @@ function ChangeStatus({ customStatus }) {
                     ) : (
                         <section className='status-word'>{items?.[1]}</section>
                     ) }
-                    <IoCloseCircleSharp style={{fontSize: '18px', position: 'absolute', right: '6px', bottom: '7px'}}/>
+                    <IoCloseCircleSharp data-value='cancel' onClick={clearStatus} style={{fontSize: '18px', position: 'absolute', right: '6px', bottom: '7px'}}/>
                 </>
                 )}
             </section>

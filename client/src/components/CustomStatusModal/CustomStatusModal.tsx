@@ -19,9 +19,7 @@ function CustomStatusModal() {
     const { customStatusModal, emojiModal, emojiChoice, status, dropdownStatus, dropdownExpire } = useSelector((state: RootStateOrAny) => state);
     const { data } = useQuery(GET_ME);
     const [updateStatus] = useMutation(STATUS_UPDATE);
-    const [customStatusMut] = useMutation(CUSTOM_STATUS)
-    // const customStatus = data?.me?.customStatus;
-    // const items = customStatus?.split('~');
+    const [customStatusMut] = useMutation(CUSTOM_STATUS);
 
     let realStatus;
     if (dropdownStatus !== '') {
