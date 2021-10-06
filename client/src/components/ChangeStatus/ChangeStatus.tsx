@@ -9,8 +9,10 @@ import { CHANGE_STATUS, TOGGLE_CUSTOM_STATUS, TOGGLE_STATUS_MODAL } from '../../
 import { useMutation } from '@apollo/client';
 import { STATUS_UPDATE } from '../../utils/mutations';
 import defaultEmoji from '../../images/emoji-default.svg';
+import emoji from 'react-easy-emoji';
 
-function ChangeStatus() {
+function ChangeStatus({ customStatus }) {
+    const items = customStatus?.split('~');
     const dispatch = useDispatch();
     const { statusModal } = useSelector((state: RootStateOrAny) => state);
     const [updateStatus] = useMutation(STATUS_UPDATE);
@@ -66,8 +68,17 @@ function ChangeStatus() {
                 <p style={{fontSize: '12px', lineHeight: '0.9rem', paddingTop: '4px'}}>You will not appear online, but will have full access to all of Discord</p>
             </section>
             <section onClick={customClick} className='status-container'>
-                <img style={{width: '14px', position: 'absolute', left: '6px'}} alt='default-emoji-icon' src={defaultEmoji}/>
-                <p className='status-word'>Set a custom status</p>
+                {customStatus === '' ? (
+                    <>
+                        <img style={{width: '14px', position: 'absolute', left: '6px'}} alt='default-emoji-icon' src={defaultEmoji}/>
+                        <p className='status-word'>Set a custom status</p>
+                    </>
+                ) : (
+                    <>
+                    <span style={{width: '14px', position: 'absolute', left: '2px', bottom: '7px'}}>{emoji(`${items?.[0]}`)}</span>
+                    <p className='status-word'>{items?.[1]}</p>
+                </>
+                )}
             </section>
         </div>
     )

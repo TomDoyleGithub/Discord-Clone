@@ -66,12 +66,12 @@ function CustomStatusModal() {
 
     const submitModal = async (e) => {
         hideModal(e);
-        const customStatus = `${emojiChoice} ${input}`;
+        const customStatus = `${emojiChoice}~${input}`;
         if (customStatus !== ' ') {
             const expireDate = expireFunction(dropdownExpire).toString();
             customStatusMut({ variables: {customStatus, expireDate}})
         }
-        // Conditional to update literal status
+
         if (realStatus !== data?.me?.status) {
             dispatch({ type: CHANGE_STATUS, status: realStatus });
             updateStatus({ variables: {status: realStatus}});

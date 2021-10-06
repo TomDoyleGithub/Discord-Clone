@@ -34,6 +34,7 @@ function UserCard() {
     const username = me?.username?.slice(0, -5);
     const userId = me?._id;
     const status = me?.status;
+    const customStatus = me?.customStatus;
 
     const dispatch = useDispatch();
     const { mute, deafen, socket } = useSelector((state: RootStateOrAny) => state);
@@ -95,7 +96,7 @@ function UserCard() {
     }
     return (
         <section className='usercard-container'>
-            <ChangeStatus/>
+            <ChangeStatus customStatus={customStatus} />
             <div onClick={handleStatus} className='pro-container'>
                 <ProPic />
                 <Status dataStatus={status}/>
