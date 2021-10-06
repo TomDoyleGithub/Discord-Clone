@@ -51,6 +51,12 @@ $purple: #5865f2;
 
 .status-word {
   font-size: 14px;
+  overflow: hidden;
+  width: 170px !important;
+}
+
+.custom-stas {
+  height: 32px;
 }
 
 .lineStat {

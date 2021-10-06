@@ -20,6 +20,8 @@ function CustomStatusModal() {
     const { data } = useQuery(GET_ME);
     const [updateStatus] = useMutation(STATUS_UPDATE);
     const [customStatusMut] = useMutation(CUSTOM_STATUS)
+    // const customStatus = data?.me?.customStatus;
+    // const items = customStatus?.split('~');
 
     let realStatus;
     if (dropdownStatus !== '') {
@@ -69,7 +71,7 @@ function CustomStatusModal() {
         const customStatus = `${emojiChoice}~${input}`;
         if (customStatus !== ' ') {
             const expireDate = expireFunction(dropdownExpire).toString();
-            customStatusMut({ variables: {customStatus, expireDate}})
+            customStatusMut({ variables: {customStatus, expireDate}});
         }
 
         if (realStatus !== data?.me?.status) {

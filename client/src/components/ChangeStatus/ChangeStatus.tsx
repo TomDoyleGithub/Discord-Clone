@@ -10,6 +10,7 @@ import { useMutation } from '@apollo/client';
 import { STATUS_UPDATE } from '../../utils/mutations';
 import defaultEmoji from '../../images/emoji-default.svg';
 import emoji from 'react-easy-emoji';
+import { IoCloseCircleSharp } from "react-icons/io5";
 
 function ChangeStatus({ customStatus }) {
     const items = customStatus?.split('~');
@@ -67,16 +68,23 @@ function ChangeStatus({ customStatus }) {
                 <p className='status-word'>Invisible</p>
                 <p style={{fontSize: '12px', lineHeight: '0.9rem', paddingTop: '4px'}}>You will not appear online, but will have full access to all of Discord</p>
             </section>
-            <section onClick={customClick} className='status-container'>
-                {customStatus === '' ? (
+            <section onClick={customClick} className='status-container custom-stas'>
+                {customStatus === '' || customStatus === '~' ? (
                     <>
                         <img style={{width: '14px', position: 'absolute', left: '6px'}} alt='default-emoji-icon' src={defaultEmoji}/>
                         <p className='status-word'>Set a custom status</p>
                     </>
                 ) : (
                     <>
-                    <span style={{width: '14px', position: 'absolute', left: '3px', bottom: '7px'}}>{emoji(`${items?.[0]}`)}</span>
-                    <p className='status-word'>{items?.[1]}</p>
+                    {items?.[0] ? (
+                        <>
+                        <span style={{width: '14px', position: 'absolute', left: '3px', bottom: '7px'}}>{emoji(`${items?.[0]}`)}</span>
+                        {items?.[1] ? <p className='status-word'>{items?.[1]}</p> : <p className='status-word'>Edit Custom Status</p>}
+                        </> 
+                    ) : (
+                        <section className='status-word'>{items?.[1]}</section>
+                    ) }
+                    <IoCloseCircleSharp style={{fontSize: '18px', position: 'absolute', right: '6px', bottom: '7px'}}/>
                 </>
                 )}
             </section>
