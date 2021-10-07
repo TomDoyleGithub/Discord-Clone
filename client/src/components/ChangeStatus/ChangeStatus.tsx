@@ -9,8 +9,8 @@ import { CHANGE_STATUS, TOGGLE_CUSTOM_STATUS, TOGGLE_STATUS_MODAL } from '../../
 import { useMutation } from '@apollo/client';
 import { CUSTOM_STATUS, STATUS_UPDATE } from '../../utils/mutations';
 import defaultEmoji from '../../images/emoji-default.svg';
+import cross from '../../images/Blunt-Cross.svg';
 import emoji from 'react-easy-emoji';
-import { IoCloseCircleSharp } from "react-icons/io5";
 
 function ChangeStatus({ customStatus }) {
     const items = customStatus?.split('~');
@@ -27,8 +27,11 @@ function ChangeStatus({ customStatus }) {
         updateStatus({ variables: {status: clickStatus}});
     };
 
-    const customClick = () => {
-        dispatch({ type: TOGGLE_CUSTOM_STATUS, customStatusModal: true});
+    const customClick = (e) => {
+        const type = e.target.getAttribute('data-value');
+        if (type !== 'cancel') {
+            dispatch({ type: TOGGLE_CUSTOM_STATUS, customStatusModal: true});
+        }
     };
 
     const clearStatus = () => {
@@ -89,7 +92,7 @@ function ChangeStatus({ customStatus }) {
                     ) : (
                         <section className='status-word'>{items?.[1]}</section>
                     ) }
-                    <IoCloseCircleSharp data-value='cancel' onClick={clearStatus} style={{fontSize: '18px', position: 'absolute', right: '6px', bottom: '7px'}}/>
+                    <img src={cross} className='blunt-cross' data-value='cancel' onClick={clearStatus} alt='Cross Icon'/>
                 </>
                 )}
             </section>
