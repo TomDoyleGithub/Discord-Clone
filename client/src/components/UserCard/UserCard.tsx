@@ -19,6 +19,7 @@ import mute2 from '../../sounds/mute-2.mp3';
 import head1 from '../../sounds/head-1.mp3';
 import head2 from '../../sounds/head-2.mp3';
 import useSound from 'use-sound';
+import emoji from 'react-easy-emoji';
 
 function UserCard() {
     const [playMute] = useSound(mute1);
@@ -109,7 +110,14 @@ function UserCard() {
                 ) : (
                     <p className='username header-font f700'>{username}</p>
                 )}
-                <p className='user-code normal-font'>{me?.username?.slice(Math.max(me?.username?.length - 5, 0))}</p>
+                {customStatus === '' || customStatus === '~' ? (
+                    <p className='user-code normal-font'>{me?.username?.slice(Math.max(me?.username?.length - 5, 0))}</p>
+                ) : (
+                    <div className='custom-status-usercard'>
+                        <p className='user-code normal-font'>{emoji(`${customStatus?.replace(/~/g, ' ')}`)}</p>
+                        <p className='user-code normal-font'>{me?.username?.slice(Math.max(me?.username?.length - 5, 0))}</p>
+                    </div>
+                )}
             </div>
             <div className='user-icon-container'> 
                 <div onClick={handleMute}>

@@ -22,6 +22,15 @@ $transition: all 120ms ease-in-out;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  &:hover {
+    .custom-status-usercard {
+      height: 13px;
+      p {
+        position: relative;
+        top: -17px;
+      }
+    }
+  }
 }
 
 .card-info-container {
@@ -127,5 +136,20 @@ $transition: all 120ms ease-in-out;
 .pro-container {
   &:hover {
     opacity: 0.8;
+  }
+}
+
+.custom-status-usercard {
+  overflow: hidden;
+  height: 14px;
+  width: 80px;
+  white-space: nowrap;
+  position: relative;
+  top: 1.5px;
+  p {
+    position: relative;
+    top: 0px;
+    margin-bottom: 5px;
+    transition: all 200ms ease-in-out;
   }
 }
