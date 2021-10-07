@@ -22,7 +22,8 @@ io.on("connection", (socket:any) => {
       socketId: socket.id, 
       userId: data.userId,
       username: data.username,
-      status: data.status
+      status: data.status,
+      customStatus: data.customStatus
     });
     await io.emit('getUsers', users);
   });

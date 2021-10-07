@@ -52,9 +52,9 @@ function UserCard() {
 
     useEffect(() => {
         if (userId) {
-            upSocket?.current?.emit('login',{ userId, username: me?.username, status: me?.status });
+            upSocket?.current?.emit('login',{ userId, username: me?.username, status: me?.status, customStatus: me?.customStatus });
         }
-    }, [userId, me?.username, me?.status]);
+    }, [userId, me?.username, me?.status, me?.customStatus ]);
     // BASIC SOCKET
     
 

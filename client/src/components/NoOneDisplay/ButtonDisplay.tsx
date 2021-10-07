@@ -14,7 +14,7 @@ function ButtonDisplay({user, pageType, onlineUsers}) {
         )
     } else if (pageType === 'all') {
         return (
-            <WordStatus onlineUsers={onlineUsers} id={user.user._id} status={user.user.status} />
+            <WordStatus onlineUsers={onlineUsers} id={user.user._id} status={user.user.status} customStatus={user.user.customStatus} />
         )
     }
     return (
