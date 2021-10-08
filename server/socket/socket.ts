@@ -3,8 +3,8 @@ import { User } from '../models';
 const rootSocket = (io: any) => {
 let users:any = [];
 
-const removeUser = async (socketId:any) => {
-  users = await users.filter((user:any) => user.socketId !== socketId);
+const removeUser = async (userId:any) => {
+  users = await users.filter((user:any) => user.userId !== userId);
 };
 
 const getSocketUser = (internalSocket:any) => {
@@ -17,7 +17,7 @@ io.on("connection", (socket:any) => {
   // Connection to socket
   socket.on('login', async (data:any) => {
     console.log(data.userId + ' connected');
-    await removeUser(socket.id);
+    await removeUser(data.userId);
     await users.push({
       socketId: socket.id, 
       userId: data.userId,
@@ -98,8 +98,11 @@ io.on("connection", (socket:any) => {
     } catch (err) {
       console.log(err)
     }
-    await removeUser(socket.id);
-    // io.emit('getUsers', users);
+    // Instead of removing a user, find that user and send their status to realOffline if it was online
+    if (getSocketUser(socket.id).status === 'online') {
+      getSocketUser(socket.id).status = 'offline'
+    }
+    io.emit('getUsers', users);
     }
   });
 });
