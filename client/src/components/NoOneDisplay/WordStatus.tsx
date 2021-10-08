@@ -5,13 +5,12 @@ function WordStatus({status, onlineUsers, id, customStatus}) {
     let realStatus = status;
     let custStatus = customStatus;
 
-
     if (onlineUsers) {
         var ownerData = onlineUsers?.filter(function(user) {
             return user.userId === id;
         });
-        realStatus = ownerData[0]?.status;
         if (ownerData[0] !== undefined) {
+            realStatus = ownerData[0]?.status;
             custStatus = ownerData[0]?.customStatus;
         }
     };

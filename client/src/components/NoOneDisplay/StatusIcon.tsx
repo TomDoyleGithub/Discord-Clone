@@ -6,8 +6,11 @@ function StatusIcon({id, status, onlineUsers}) {
         var ownerData = onlineUsers?.filter(function(user) {
             return user.userId === id;
         });
-        realStatus = ownerData[0]?.status;
+        if (ownerData[0] !== undefined) {
+            realStatus = ownerData[0]?.status;
+        }
     }
+
     if (realStatus === 'online') {
         return (
             <section className= 'online real-status minor-adjustment'></section>

@@ -99,7 +99,7 @@ io.on("connection", (socket:any) => {
       console.log(err)
     }
     await removeUser(socket.id);
-    io.emit('getUsers', users);
+    // io.emit('getUsers', users);
     }
   });
 });
