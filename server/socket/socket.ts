@@ -7,6 +7,10 @@ const removeUser = async (userId:any) => {
   users = await users.filter((user:any) => user.userId !== userId);
 };
 
+const removeOffline = async () => {
+  users = await users.filter((user:any) => user.status !== 'realOffline');
+};
+
 const getSocketUser = (internalSocket:any) => {
   return users.find((user:any) => user.socketId === internalSocket)
 };
@@ -18,6 +22,7 @@ io.on("connection", (socket:any) => {
   socket.on('login', async (data:any) => {
     console.log(data.userId + ' connected');
     await removeUser(data.userId);
+    await removeOffline();
     await users.push({
       socketId: socket.id, 
       userId: data.userId,
@@ -100,7 +105,7 @@ io.on("connection", (socket:any) => {
     }
     // Instead of removing a user, find that user and send their status to realOffline if it was online
     if (getSocketUser(socket.id).status === 'online') {
-      getSocketUser(socket.id).status = 'offline'
+      getSocketUser(socket.id).status = 'realOffline'
     }
     io.emit('getUsers', users);
     }
