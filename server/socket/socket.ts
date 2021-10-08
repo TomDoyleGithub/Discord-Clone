@@ -1,12 +1,15 @@
 import { User } from '../models';
 
 const rootSocket = (io: any) => {
+// Pool of online users
 let users:any = [];
 
+// Removes duplicate users
 const removeUser = async (userId:any) => {
   users = await users.filter((user:any) => user.userId !== userId);
 };
 
+// Removes any real offline users
 const removeOffline = async () => {
   users = await users.filter((user:any) => user.status !== 'realOffline');
 };
@@ -16,7 +19,6 @@ const getSocketUser = (internalSocket:any) => {
 };
 
 io.on("connection", (socket:any) => {
-  io.emit('Welcome', 'Socket server is working!')
 
   // Connection to socket
   socket.on('login', async (data:any) => {

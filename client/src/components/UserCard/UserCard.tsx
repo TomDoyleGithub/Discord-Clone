@@ -45,12 +45,6 @@ function UserCard() {
     const upSocket = useRef(socket);
 
     useEffect(() => {
-        upSocket?.current?.on('Welcome', message => {
-            console.log(message)
-          });
-    }, [socket])
-
-    useEffect(() => {
         if (userId) {
             upSocket?.current?.emit('login',{ userId, username: me?.username, status: me?.status, customStatus: me?.customStatus });
         }
