@@ -4,7 +4,6 @@ import ContactIcons from './ContactIcons';
 
 
 function AllFriends({onlineUsers, onlineFriends}) {
-    console.log(onlineUsers)
     return (
         <section className='friend-card-container'>
             <section className='sub-friend-card-container'>
