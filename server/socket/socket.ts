@@ -109,6 +109,7 @@ io.on("connection", (socket:any) => {
     if (getSocketUser(socket.id).status === 'online') {
       getSocketUser(socket.id).status = 'realOffline'
     }
+    // FOR THE ONLINE FEATURE YOU NEED TO RELY ON SOCKET POOLING, MAYBE CREATE A SEPERATE POOL TO SEE IF USERS A REALLY ONLINE
     io.emit('getUsers', users);
     }
   });
