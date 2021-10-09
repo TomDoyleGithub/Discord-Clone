@@ -66,7 +66,8 @@ function NoOneDisplay() {
 
 
     if (onlineUsers) {
-        const intersection = onlineUsers.map(e => e.userId).filter(element => allResults.map(e => e.user._id).includes(element));
+        const newUsers = onlineUsers?.filter(element => element?.status !== 'realOffline')
+        const intersection = newUsers.map(e => e.userId).filter(element => allResults.map(e => e.user._id).includes(element));
         if (intersection[0] !== undefined) {
             intersection.forEach((id) => {
                 onlineFriends = allResults.filter(element => element.user._id === id)
@@ -77,6 +78,8 @@ function NoOneDisplay() {
     useEffect(() => {
         dispatch({ type: CHANGE_LOADER, userLoad: loading});
     }, [dispatch, loading]);
+
+    // console.log(onlineUsers?.filter(element => element?.status !== 'realOffline'))
 
     if (loading) {
         return (
