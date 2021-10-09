@@ -66,6 +66,7 @@ function NoOneDisplay() {
 
 
     if (onlineUsers) {
+        // Just need to add more advanced statuses to make this work!
         const newUsers = onlineUsers?.filter(element => element?.status !== 'realOffline' && element?.status !== 'invisible')
         const intersection = newUsers.map(e => e.userId).filter(element => allResults.map(e => e.user._id).includes(element));
         if (intersection[0] !== undefined) {
@@ -78,8 +79,6 @@ function NoOneDisplay() {
     useEffect(() => {
         dispatch({ type: CHANGE_LOADER, userLoad: loading});
     }, [dispatch, loading]);
-
-    // console.log(onlineUsers?.filter(element => element?.status !== 'realOffline'))
 
     if (loading) {
         return (
