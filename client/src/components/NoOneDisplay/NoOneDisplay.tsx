@@ -66,10 +66,9 @@ function NoOneDisplay() {
 
 
     if (onlineUsers) {
-        // First fix the online tab to show multiple users without ruining the all friends page
-        // Then figure out how to live update if they really go offline
-        // const newUsers = onlineUsers?.filter(element => element?.status !== 'realOffline' && element?.status !== 'invisible' && element?.status !== 'realIdle' && element?.status !== 'realDisturb');
-        const intersection = onlineUsers.map(e => e.userId).filter(element => allResults.map(e => e.user._id).includes(element));
+
+        const newUsers = onlineUsers?.filter(element => element?.status !== 'realOffline' && element?.status !== 'invisible' && element?.status !== 'realIdle' && element?.status !== 'realDisturb');
+        const intersection = newUsers.map(e => e.userId).filter(element => allResults.map(e => e.user._id).includes(element));
         if (intersection[0] !== undefined) {
             intersection.forEach((id) => {
                 onlineFriends = allResults.filter(element => element.user._id === id);
