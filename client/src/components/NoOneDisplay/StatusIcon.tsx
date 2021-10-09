@@ -15,13 +15,13 @@ function StatusIcon({id, status, onlineUsers}) {
         return (
             <section className= 'online real-status minor-adjustment'></section>
         )
-    } else if (realStatus === 'idle') {
+    } else if (realStatus === 'idle' || realStatus === 'realIdle') {
         return (
             <section className='idle real-status minor-adjustment'>
                 <section className='idle-section'></section>
             </section>
         )
-    } else if (realStatus === 'do-not-disturb') {
+    } else if (realStatus === 'do-not-disturb' || realStatus === 'realDisturb') {
         return (
             <section className='do-not-disturb real-status minor-adjustment'>
                 <section></section>

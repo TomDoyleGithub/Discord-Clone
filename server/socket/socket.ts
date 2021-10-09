@@ -105,11 +105,14 @@ io.on("connection", (socket:any) => {
     } catch (err) {
       console.log(err)
     }
-    // Instead of removing a user, find that user and send their status to realOffline if it was online
+    // Here change the status if idle and do-not-disturb
     if (getSocketUser(socket.id).status === 'online') {
       getSocketUser(socket.id).status = 'realOffline'
+    } else if (getSocketUser(socket.id).status === 'idle') {
+      getSocketUser(socket.id).status = 'realIdle'
+    } else if (getSocketUser(socket.id).status === 'do-not-disturb') {
+      getSocketUser(socket.id).status = 'realDisturb'
     }
-    // FOR THE ONLINE FEATURE YOU NEED TO RELY ON SOCKET POOLING, MAYBE CREATE A SEPERATE POOL TO SEE IF USERS A REALLY ONLINE
     io.emit('getUsers', users);
     }
   });
