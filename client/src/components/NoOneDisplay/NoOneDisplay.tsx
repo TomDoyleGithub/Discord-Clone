@@ -21,7 +21,7 @@ function NoOneDisplay() {
     const [removeFriend] = useMutation(REMOVE_FRIEND);
     const allFriends = data?.getFriends?.friends || [];
 
-    let onlineFriends;
+    let onlineFriends:any = [];
 
     const [onlineUsers, setOnlineUsers]:any = useState();
 
@@ -71,10 +71,12 @@ function NoOneDisplay() {
         const intersection = newUsers.map(e => e.userId).filter(element => allResults.map(e => e.user._id).includes(element));
         if (intersection[0] !== undefined) {
             intersection.forEach((id) => {
-                onlineFriends = allResults.filter(element => element.user._id === id);
+                const test = allResults.filter(element => element.user._id === id);
+                onlineFriends.push(test[0])
             });
         };
     };
+
         
     useEffect(() => {
         dispatch({ type: CHANGE_LOADER, userLoad: loading});
@@ -85,7 +87,7 @@ function NoOneDisplay() {
             <></>
         )
     } else if (friendsNav === 'online') {
-        if (onlineFriends) {
+        if (onlineFriends[0] !== undefined) {
             return <OnlineFriends onlineUsers={onlineUsers} onlineFriends={onlineFriends}/>
         }
         return <AsleepWumpus/>
