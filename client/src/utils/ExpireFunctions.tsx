@@ -1,5 +1,5 @@
 export const expireFunction = (time) => {
-    const today = new Date()
+    const today = new Date();
     switch(time) {
         case 'Today':
           const tomorrow = new Date(today)

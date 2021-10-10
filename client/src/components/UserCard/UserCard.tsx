@@ -12,7 +12,7 @@ import './userCard.scss';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { CHANGE_LOADER, TOGGLE_STATUS_MODAL, UPDATE_DEAFEN, UPDATE_MUTE } from '../../redux/actions';
 import { AiOutlineCaretRight } from 'react-icons/ai';
-import { useQuery } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import { GET_ME } from '../../utils/queries';
 import mute1 from '../../sounds/mute-1.mp3';
 import mute2 from '../../sounds/mute-2.mp3';
@@ -20,6 +20,7 @@ import head1 from '../../sounds/head-1.mp3';
 import head2 from '../../sounds/head-2.mp3';
 import useSound from 'use-sound';
 import emoji from 'react-easy-emoji';
+import { CUSTOM_STATUS } from '../../utils/mutations';
 
 function UserCard() {
     const [playMute] = useSound(mute1);
@@ -30,12 +31,23 @@ function UserCard() {
 
 
     const { data, loading } = useQuery(GET_ME);
+    const [customStatusMut] = useMutation(CUSTOM_STATUS);
 
     const me = data?.me || {};
     const username = me?.username?.slice(0, -5);
     const userId = me?._id;
     const status = me?.status;
     const customStatus = me?.customStatus;
+    const expireDate = parseInt(me?.expireDate);
+    const today = new Date();
+    const todayHours = today.setHours( today.getHours());
+
+    // Clears the custom status on the users set expiry date
+    useEffect(() => {
+        if (expireDate < todayHours) {
+            customStatusMut({ variables: {customStatus: '', expireDate: ''}});
+        }
+    }, [expireDate, todayHours, customStatusMut, customStatus]);
 
     const dispatch = useDispatch();
     const { mute, deafen, socket } = useSelector((state: RootStateOrAny) => state);
@@ -86,7 +98,7 @@ function UserCard() {
         dispatch({ type: CHANGE_LOADER, userLoad: loading});
     }, [dispatch, loading]);
 
-    if (!Auth.loggedIn()) {
+    if (!Auth.loggedIn() || loading) {
         return <></>
     }
     return (
