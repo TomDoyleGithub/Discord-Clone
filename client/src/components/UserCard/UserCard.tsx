@@ -44,7 +44,9 @@ function UserCard() {
 
     // Clears the custom status on the users set expiry date
     useEffect(() => {
-        if (expireDate < todayHours) {
+        if (expireDate === 0) {
+            console.log()
+        } else if (expireDate < todayHours) {
             customStatusMut({ variables: {customStatus: '', expireDate: ''}});
         }
     }, [expireDate, todayHours, customStatusMut, customStatus]);
