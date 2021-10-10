@@ -9,7 +9,7 @@ export const expireFunction = (time) => {
         case '1 hour':
             return today.setHours( today.getHours() + 1 );
         case '30 minutes':
-            return today.setHours( today.getHours() + 0.5 );
+            return today.setHours( today.getMinutes() + 30 );
         default:
             return 0
       };
