@@ -26,6 +26,7 @@ import { handleDeafen } from './CardFunctions/handleDeafen';
 import { handleCopy } from './CardFunctions/handleCopy';
 import UserDisplay from './Operators/UserDisplay';
 import AudioChoice from './Operators/AudioChoice';
+import HeadsetChoice from './Operators/HeadsetChoice';
 
 
 function UserCard() {
@@ -108,17 +109,7 @@ function UserCard() {
                     <AudioChoice mute={mute} mic={mic} micOff={micOff}/>
                 </div>
                 <div onClick={() => handleDeafen(dispatch, deafen, playHead, playUnhead, UPDATE_DEAFEN)}>
-                    {!deafen ? (
-                        <>
-                        <section className='user-bubble normal-font f500'>Deafen<AiOutlineCaretRight className='user-triangle' style={{right: '26px'}}/></section>
-                        <img src={headset} alt='Mic Icon' style={{width: '17px'}}/>
-                        </>
-                    ) : (
-                        <>
-                        <section className='user-bubble normal-font f500'>Undeafen<AiOutlineCaretRight className='user-triangle' style={{right: '34px'}}/></section>
-                        <img src={headsetOff} alt='Mic Icon' style={{width: '17px'}}/>
-                        </>
-                    )}
+                    <HeadsetChoice deafen={deafen} headset={headset} headsetOff={headsetOff} />
                 </div>
                 <div>
                     <HiCog style={{fontSize: '21px', color: '#DCDDDF'}}/>
