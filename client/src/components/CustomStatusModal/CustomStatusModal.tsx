@@ -9,15 +9,13 @@ import { IoCloseCircle, IoChevronDownSharp } from "react-icons/io5";
 import emoji from 'react-easy-emoji';
 import ExpireDropdown from './Dropdowns/ExpireDropdown';
 import StatusDropdown from './Dropdowns/StatusDropdown';
-import { useMutation, useQuery } from '@apollo/client';
-import { GET_ME } from '../../utils/queries';
+import { useMutation } from '@apollo/client';
 import { CUSTOM_STATUS, STATUS_UPDATE } from '../../utils/mutations';
 import { expireFunction } from '../../utils/ExpireFunctions';
 
 function CustomStatusModal() {
     const dispatch = useDispatch();
-    const { customStatusModal, emojiModal, emojiChoice, status, dropdownStatus, dropdownExpire } = useSelector((state: RootStateOrAny) => state);
-    const { data } = useQuery(GET_ME);
+    const { customStatusModal, emojiModal, emojiChoice, status, dropdownStatus, dropdownExpire, userData: data } = useSelector((state: RootStateOrAny) => state);
     const [updateStatus] = useMutation(STATUS_UPDATE);
     const [customStatusMut] = useMutation(CUSTOM_STATUS);
 
