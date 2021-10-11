@@ -19,12 +19,12 @@ import mute2 from '../../sounds/mute-2.mp3';
 import head1 from '../../sounds/head-1.mp3';
 import head2 from '../../sounds/head-2.mp3';
 import useSound from 'use-sound';
-import emoji from 'react-easy-emoji';
 import { CUSTOM_STATUS } from '../../utils/mutations';
 import { handleStatus } from './CardFunctions/handleStatus';
 import { handleMute } from './CardFunctions/handleMute';
 import { handleDeafen } from './CardFunctions/handleDeafen';
 import { handleCopy } from './CardFunctions/handleCopy';
+import UserDisplay from './Operators/UserDisplay'
 
 
 function UserCard() {
@@ -95,23 +95,13 @@ function UserCard() {
                 <ProPic />
                 <Status dataStatus={status}/>
             </div>
+
             <div className='card-info-container' onClick={() => handleCopy(me, setCopy)}>
                 <section className={ !showCopy ? 'user-bubble normal-font f500' : 'hide'}>Click to copy username<AiOutlineCaretRight className='user-triangle' style={{right: '80px'}}/></section>
                 <section className={ showCopy ? 'copy-bubble normal-font f500' : 'hide'}>Copied!<AiOutlineCaretRight className='user-triangle' style={{right: '30px', color: '#3aa55d'}}/></section>
-                { username?.length > 8 ? (
-                    <p className='username header-font f700'>{`${username?.slice(0, 9)}...`}</p>
-                ) : (
-                    <p className='username header-font f700'>{username}</p>
-                )}
-                {customStatus === '' || customStatus === '~' ? (
-                    <p className='user-code normal-font'>{me?.username?.slice(Math.max(me?.username?.length - 5, 0))}</p>
-                ) : (
-                    <div className='custom-status-usercard'>
-                        <p className='user-code normal-font'>{emoji(`${customStatus?.replace(/~/g, ' ')}`)}</p>
-                        <p className='user-code normal-font'>{me?.username?.slice(Math.max(me?.username?.length - 5, 0))}</p>
-                    </div>
-                )}
+                <UserDisplay username={username} customStatus={customStatus} me={me}/>
             </div>
+            
             <div className='user-icon-container'> 
                 <div onClick={() => handleMute(dispatch, mute, playMute, playUnmute, UPDATE_MUTE)}>
                     {!mute ? (
