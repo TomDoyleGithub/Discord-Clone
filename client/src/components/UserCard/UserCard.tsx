@@ -24,6 +24,7 @@ import { CUSTOM_STATUS } from '../../utils/mutations';
 import { handleStatus } from './CardFunctions/handleStatus';
 import { handleMute } from './CardFunctions/handleMute';
 import { handleDeafen } from './CardFunctions/handleDeafen';
+import { handleCopy } from './CardFunctions/handleCopy';
 
 
 function UserCard() {
@@ -75,15 +76,6 @@ function UserCard() {
         }
     }, [userId, me?.username, me?.status, me?.customStatus ]);
     
-
-    const handleCopy = () => {
-        navigator.clipboard.writeText(me?.username);
-        setCopy(true);
-        setTimeout(function(){
-            setCopy(false);; 
-       }, 1000);
-    };
-
     useEffect(() => {
         dispatch({ type: CHANGE_LOADER, userLoad: loading});
     }, [dispatch, loading]);
@@ -98,7 +90,7 @@ function UserCard() {
                 <ProPic />
                 <Status dataStatus={status}/>
             </div>
-            <div className='card-info-container' onClick={handleCopy}>
+            <div className='card-info-container' onClick={() => handleCopy(me, setCopy)}>
                 <section className={ !showCopy ? 'user-bubble normal-font f500' : 'hide'}>Click to copy username<AiOutlineCaretRight className='user-triangle' style={{right: '80px'}}/></section>
                 <section className={ showCopy ? 'copy-bubble normal-font f500' : 'hide'}>Copied!<AiOutlineCaretRight className='user-triangle' style={{right: '30px', color: '#3aa55d'}}/></section>
                 { username?.length > 8 ? (
