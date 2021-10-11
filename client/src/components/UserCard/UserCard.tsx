@@ -22,18 +22,26 @@ import useSound from 'use-sound';
 import emoji from 'react-easy-emoji';
 import { CUSTOM_STATUS } from '../../utils/mutations';
 import { handleStatus } from './CardFunctions/handleStatus';
-import { handleMute } from './CardFunctions/handleMute'
+import { handleMute } from './CardFunctions/handleMute';
+import { handleDeafen } from './CardFunctions/handleDeafen';
+
 
 function UserCard() {
+    // States that pertain to this file
     const [playMute] = useSound(mute1);
     const [playUnmute] = useSound(mute2);
     const [playHead] = useSound(head1);
     const [playUnhead] = useSound(head2);
     const [showCopy, setCopy] = useState(false);
 
-
+    // Query that gets the all the data from the logged in user
     const { data, loading } = useQuery(GET_ME);
     const [customStatusMut] = useMutation(CUSTOM_STATUS);
+
+    // Below gets the redux states and sets up the dispatch along with the socket reference
+    const dispatch = useDispatch();
+    const { mute, deafen, socket } = useSelector((state: RootStateOrAny) => state);
+    const upSocket = useRef(socket);
 
     const me = data?.me || {};
     const username = me?.username?.slice(0, -5);
@@ -53,19 +61,19 @@ function UserCard() {
         }
     }, [expireDate, todayHours, customStatusMut, customStatus]);
 
-    const dispatch = useDispatch();
-    const { mute, deafen, socket } = useSelector((state: RootStateOrAny) => state);
 
-
-    // BASIC SOCKET
-    const upSocket = useRef(socket);
-
+    // The first initial socket connection the fires off when a user logs in which transfers the data
     useEffect(() => {
         if (userId) {
-            upSocket?.current?.emit('login',{ userId, username: me?.username, status: me?.status, customStatus: me?.customStatus });
+            upSocket?.current?.emit('login',
+            { 
+                userId, 
+                username: me?.username, 
+                status: me?.status, 
+                customStatus: me?.customStatus 
+            });
         }
     }, [userId, me?.username, me?.status, me?.customStatus ]);
-    // BASIC SOCKET
     
 
     const handleCopy = () => {
@@ -74,15 +82,6 @@ function UserCard() {
         setTimeout(function(){
             setCopy(false);; 
        }, 1000);
-    };
-
-    const handleDeafen = () => {
-        dispatch({ type: UPDATE_DEAFEN});
-        if (deafen) {
-            playHead();
-        } else {
-            playUnhead();
-        };
     };
 
     useEffect(() => {
@@ -130,7 +129,7 @@ function UserCard() {
                         </>
                     )}
                 </div>
-                <div onClick={handleDeafen}>
+                <div onClick={() => handleDeafen(dispatch, deafen, playHead, playUnhead, UPDATE_DEAFEN)}>
                     {!deafen ? (
                         <>
                         <section className='user-bubble normal-font f500'>Deafen<AiOutlineCaretRight className='user-triangle' style={{right: '26px'}}/></section>
