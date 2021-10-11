@@ -21,6 +21,7 @@ import head2 from '../../sounds/head-2.mp3';
 import useSound from 'use-sound';
 import emoji from 'react-easy-emoji';
 import { CUSTOM_STATUS } from '../../utils/mutations';
+import { handleStatus } from './CardFunctions/handleStatus'
 
 function UserCard() {
     const [playMute] = useSound(mute1);
@@ -92,10 +93,6 @@ function UserCard() {
         };
     };
 
-    const handleStatus = () => {
-        dispatch({ type: TOGGLE_STATUS_MODAL });
-    };
-
     useEffect(() => {
         dispatch({ type: CHANGE_LOADER, userLoad: loading});
     }, [dispatch, loading]);
@@ -106,7 +103,7 @@ function UserCard() {
     return (
         <section className='usercard-container'>
             <ChangeStatus customStatus={customStatus} />
-            <div onClick={handleStatus} className='pro-container'>
+            <div onClick={() => handleStatus(dispatch, TOGGLE_STATUS_MODAL)} className='pro-container'>
                 <ProPic />
                 <Status dataStatus={status}/>
             </div>
