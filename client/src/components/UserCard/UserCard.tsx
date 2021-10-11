@@ -21,7 +21,8 @@ import head2 from '../../sounds/head-2.mp3';
 import useSound from 'use-sound';
 import emoji from 'react-easy-emoji';
 import { CUSTOM_STATUS } from '../../utils/mutations';
-import { handleStatus } from './CardFunctions/handleStatus'
+import { handleStatus } from './CardFunctions/handleStatus';
+import { handleMute } from './CardFunctions/handleMute'
 
 function UserCard() {
     const [playMute] = useSound(mute1);
@@ -75,15 +76,6 @@ function UserCard() {
        }, 1000);
     };
 
-    const handleMute = () => {
-        dispatch({ type: UPDATE_MUTE});
-        if (mute) {
-            playMute();
-        } else {
-            playUnmute();
-        };
-    };
-
     const handleDeafen = () => {
         dispatch({ type: UPDATE_DEAFEN});
         if (deafen) {
@@ -125,7 +117,7 @@ function UserCard() {
                 )}
             </div>
             <div className='user-icon-container'> 
-                <div onClick={handleMute}>
+                <div onClick={() => handleMute(dispatch, mute, playMute, playUnmute, UPDATE_MUTE)}>
                     {!mute ? (
                         <>
                         <section className='user-bubble normal-font f500'>Mute<AiOutlineCaretRight className='user-triangle' style={{right: '20px'}}/></section>
