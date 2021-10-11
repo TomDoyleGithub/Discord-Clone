@@ -24,7 +24,8 @@ import { handleStatus } from './CardFunctions/handleStatus';
 import { handleMute } from './CardFunctions/handleMute';
 import { handleDeafen } from './CardFunctions/handleDeafen';
 import { handleCopy } from './CardFunctions/handleCopy';
-import UserDisplay from './Operators/UserDisplay'
+import UserDisplay from './Operators/UserDisplay';
+import AudioChoice from './Operators/AudioChoice';
 
 
 function UserCard() {
@@ -101,20 +102,10 @@ function UserCard() {
                 <section className={ showCopy ? 'copy-bubble normal-font f500' : 'hide'}>Copied!<AiOutlineCaretRight className='user-triangle' style={{right: '30px', color: '#3aa55d'}}/></section>
                 <UserDisplay username={username} customStatus={customStatus} me={me}/>
             </div>
-            
+
             <div className='user-icon-container'> 
                 <div onClick={() => handleMute(dispatch, mute, playMute, playUnmute, UPDATE_MUTE)}>
-                    {!mute ? (
-                        <>
-                        <section className='user-bubble normal-font f500'>Mute<AiOutlineCaretRight className='user-triangle' style={{right: '20px'}}/></section>
-                        <img src={mic} alt='Mic Icon' style={{width: '12px'}}/>
-                        </>
-                    ) : (
-                        <>
-                        <section className='user-bubble normal-font f500'>Unmute<AiOutlineCaretRight className='user-triangle' style={{right: '28px'}}/></section>
-                        <img src={micOff} alt='Mic Icon' style={{width: '15px', position: 'relative', left: '0.45px'}}/>
-                        </>
-                    )}
+                    <AudioChoice mute={mute} mic={mic} micOff={micOff}/>
                 </div>
                 <div onClick={() => handleDeafen(dispatch, deafen, playHead, playUnhead, UPDATE_DEAFEN)}>
                     {!deafen ? (
