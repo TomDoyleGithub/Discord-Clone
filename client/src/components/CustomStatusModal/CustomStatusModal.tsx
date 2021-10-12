@@ -10,6 +10,7 @@ import emoji from 'react-easy-emoji';
 import { useMutation } from '@apollo/client';
 import { STATUS_UPDATE } from '../../utils/mutations';
 import { expireFunction } from '../../utils/ExpireFunctions';
+// Below import event functions such as onClick and onChange
 import { handleDrop } from './EventFunctions/handleDrop';
 import { hideModal } from './EventFunctions/hideModal';
 import { changeEmoji } from './EventFunctions/changeEmoji';
@@ -17,6 +18,7 @@ import { openEmoji } from './EventFunctions/openEmoji';
 import { handleChange } from './EventFunctions/handleChange';
 import { clearInput } from './EventFunctions/clearInput';
 import { submitModal } from './EventFunctions/submitModal';
+// Below import the current JSX components
 import DropSelection from './Components/DropSelection';
 import CustomHeader  from './Components/CustomHeader';
 
@@ -26,6 +28,7 @@ function CustomStatusModal() {
     // CONVERT BELOW TO REDUX
     const [updateStatus] = useMutation(STATUS_UPDATE);
 
+    // This controls what status the dropdown menus display
     let realStatus;
     if (dropdownStatus !== '') {
         realStatus = dropdownStatus
@@ -35,6 +38,7 @@ function CustomStatusModal() {
         realStatus = status
     }
 
+    // Common states that pertain to this component
     const [realChoice, setEmoji] = useState('0px 0px');
     const [input, setInput] = useState('');
     const [expireDropdown, setExpireDrop] = useState(false);
@@ -42,12 +46,14 @@ function CustomStatusModal() {
 
     return (
         <div onClick={(e) => hideModal(e, dispatch, setExpireDrop, setStatusDrop, setInput, TOGGLE_CUSTOM_STATUS, SET_EMOJI_MODAL, CUSTOM_EMOJI_CHOICE, SET_STATUS_DROOPDOWN, SET_EXPIRE_DROPDOWN)} className={'modal-container ' + (customStatusModal ? 'show' : 'hide')}>
+            {/* These are the dropdown menus that appear */}
             <DropSelection setStatusDrop={setStatusDrop} setExpireDrop={setExpireDrop} expireDropdown={expireDropdown} statusDropdown={statusDropdown} realStatus={realStatus}/>
 
             <section className='password-send custom-send'>
+                {/* This is the styling on top of the custom status modal */}
                 <CustomHeader Wumpus={Wumpus} />
                 <IoCloseOutline onClick={(e) => hideModal(e, dispatch, setExpireDrop, setStatusDrop, setInput, TOGGLE_CUSTOM_STATUS, SET_EMOJI_MODAL, CUSTOM_EMOJI_CHOICE, SET_STATUS_DROOPDOWN, SET_EXPIRE_DROPDOWN)}  className='custom-status-cross'/>
-                
+
                 <section className='cus-status-for'>
                     <section className='input-container'>
                             <label className='normal-font f500 status-label'>What's cookin', woolywowo?</label>
