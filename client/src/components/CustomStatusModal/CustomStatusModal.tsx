@@ -16,6 +16,8 @@ import { handleDrop } from './EventFunctions/handleDrop';
 import { hideModal } from './EventFunctions/hideModal';
 import { changeEmoji } from './EventFunctions/changeEmoji';
 import { openEmoji } from './EventFunctions/openEmoji';
+import { handleChange } from './EventFunctions/handleChange';
+import { clearInput } from './EventFunctions/clearInput';
 
 function CustomStatusModal() {
     const dispatch = useDispatch();
@@ -51,16 +53,6 @@ function CustomStatusModal() {
         }
     };
 
-    const handleChange = (event: any) => {
-        const val = event.target.value
-        setInput(val)
-    };
-
-    const clearInput = () => {
-        setInput('');
-        dispatch({ type: CUSTOM_EMOJI_CHOICE, emoji: ''});
-    };
-
     return (
         <div onClick={(e) => hideModal(e, dispatch, setExpireDrop, setStatusDrop, setInput, TOGGLE_CUSTOM_STATUS, SET_EMOJI_MODAL, CUSTOM_EMOJI_CHOICE, SET_STATUS_DROOPDOWN, SET_EXPIRE_DROPDOWN)} className={'modal-container ' + (customStatusModal ? 'show' : 'hide')}>
             <div data-value='date' onClick={(e) => handleDrop(e, dispatch, UPDATE_EMOJI_POSITION, setStatusDrop, setExpireDrop, expireDropdown, statusDropdown)} >{expireDropdown ? <ExpireDropdown/> : <></>}</div>
@@ -80,8 +72,8 @@ function CustomStatusModal() {
                                 ) : (
                                     <p onClick={(e) => openEmoji(e, setStatusDrop, setExpireDrop, dispatch, emojiModal, SET_EMOJI_MODAL, UPDATE_EMOJI_POSITION)} className='chosen-custom-emoji'>{emoji(emojiChoice)}</p>
                                 )}
-                                {input !== ''  || emojiChoice !== '' ? <IoCloseCircle className='clear-input' onClick={clearInput}/> : <></>}
-                                <input autoComplete="off" value={input} onChange={handleChange} name='CustomStatus' maxLength={30} placeholder='Support has arrived'  className='normal-font f300 real-input-status' autoFocus/>
+                                {input !== ''  || emojiChoice !== '' ? <IoCloseCircle className='clear-input' onClick={() => clearInput(setInput, dispatch, CUSTOM_EMOJI_CHOICE)}/> : <></>}
+                                <input autoComplete="off" value={input} onChange={(e) => handleChange(e, setInput)} name='CustomStatus' maxLength={30} placeholder='Support has arrived'  className='normal-font f300 real-input-status' autoFocus/>
                             </div>
 
                             <label className='normal-font f500 status-label'>Clear After</label>
