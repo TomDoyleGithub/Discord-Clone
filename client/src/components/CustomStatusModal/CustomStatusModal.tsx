@@ -15,6 +15,7 @@ import { expireFunction } from '../../utils/ExpireFunctions';
 import { handleDrop } from './EventFunctions/handleDrop';
 import { hideModal } from './EventFunctions/hideModal';
 import { changeEmoji } from './EventFunctions/changeEmoji';
+import { openEmoji } from './EventFunctions/openEmoji';
 
 function CustomStatusModal() {
     const dispatch = useDispatch();
@@ -60,18 +61,6 @@ function CustomStatusModal() {
         dispatch({ type: CUSTOM_EMOJI_CHOICE, emoji: ''});
     };
 
-    const openEmoji = (e) => {
-        setStatusDrop(false);
-        setExpireDrop(false);
-        if (emojiModal === true) {
-            dispatch({ type: SET_EMOJI_MODAL, emojiModal: false});
-        } else {
-            dispatch({ type: SET_EMOJI_MODAL, emojiModal: true});
-            dispatch({ type: UPDATE_EMOJI_POSITION, left: e.pageX, top: e.pageY});
-        }
-        
-    };
-
     return (
         <div onClick={(e) => hideModal(e, dispatch, setExpireDrop, setStatusDrop, setInput, TOGGLE_CUSTOM_STATUS, SET_EMOJI_MODAL, CUSTOM_EMOJI_CHOICE, SET_STATUS_DROOPDOWN, SET_EXPIRE_DROPDOWN)} className={'modal-container ' + (customStatusModal ? 'show' : 'hide')}>
             <div data-value='date' onClick={(e) => handleDrop(e, dispatch, UPDATE_EMOJI_POSITION, setStatusDrop, setExpireDrop, expireDropdown, statusDropdown)} >{expireDropdown ? <ExpireDropdown/> : <></>}</div>
@@ -87,9 +76,9 @@ function CustomStatusModal() {
                             <label className='normal-font f500 status-label'>What's cookin', woolywowo?</label>
                             <div className='fake-input-status'>
                                 {!emojiChoice ? (
-                                    <div onMouseEnter={() => changeEmoji(emojiModal, emojiArr, setEmoji)} onClick={openEmoji} className={'emoji-sprite ' + (emojiModal ? 'emoji-active' : '')} style={{backgroundPosition: realChoice}}></div>
+                                    <div onMouseEnter={() => changeEmoji(emojiModal, emojiArr, setEmoji)} onClick={(e) => openEmoji(e, setStatusDrop, setExpireDrop, dispatch, emojiModal, SET_EMOJI_MODAL, UPDATE_EMOJI_POSITION)} className={'emoji-sprite ' + (emojiModal ? 'emoji-active' : '')} style={{backgroundPosition: realChoice}}></div>
                                 ) : (
-                                    <p onClick={openEmoji} className='chosen-custom-emoji'>{emoji(emojiChoice)}</p>
+                                    <p onClick={(e) => openEmoji(e, setStatusDrop, setExpireDrop, dispatch, emojiModal, SET_EMOJI_MODAL, UPDATE_EMOJI_POSITION)} className='chosen-custom-emoji'>{emoji(emojiChoice)}</p>
                                 )}
                                 {input !== ''  || emojiChoice !== '' ? <IoCloseCircle className='clear-input' onClick={clearInput}/> : <></>}
                                 <input autoComplete="off" value={input} onChange={handleChange} name='CustomStatus' maxLength={30} placeholder='Support has arrived'  className='normal-font f300 real-input-status' autoFocus/>
