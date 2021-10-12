@@ -7,8 +7,6 @@ import { IoCloseOutline } from "react-icons/io5";
 import { emojiArr } from '../../utils/emojiArr';
 import { IoCloseCircle, IoChevronDownSharp } from "react-icons/io5";
 import emoji from 'react-easy-emoji';
-import ExpireDropdown from './Dropdowns/ExpireDropdown';
-import StatusDropdown from './Dropdowns/StatusDropdown';
 import { useMutation } from '@apollo/client';
 import { STATUS_UPDATE } from '../../utils/mutations';
 import { expireFunction } from '../../utils/ExpireFunctions';
@@ -19,6 +17,7 @@ import { openEmoji } from './EventFunctions/openEmoji';
 import { handleChange } from './EventFunctions/handleChange';
 import { clearInput } from './EventFunctions/clearInput';
 import { submitModal } from './EventFunctions/submitModal';
+import DropSelection from './Components/DropSelection';
 
 function CustomStatusModal() {
     const dispatch = useDispatch();
@@ -42,13 +41,16 @@ function CustomStatusModal() {
 
     return (
         <div onClick={(e) => hideModal(e, dispatch, setExpireDrop, setStatusDrop, setInput, TOGGLE_CUSTOM_STATUS, SET_EMOJI_MODAL, CUSTOM_EMOJI_CHOICE, SET_STATUS_DROOPDOWN, SET_EXPIRE_DROPDOWN)} className={'modal-container ' + (customStatusModal ? 'show' : 'hide')}>
-            <div data-value='date' onClick={(e) => handleDrop(e, dispatch, UPDATE_EMOJI_POSITION, setStatusDrop, setExpireDrop, expireDropdown, statusDropdown)} >{expireDropdown ? <ExpireDropdown/> : <></>}</div>
-            <div data-value='status' onClick={(e) => handleDrop(e, dispatch, UPDATE_EMOJI_POSITION, setStatusDrop, setExpireDrop, expireDropdown, statusDropdown)}>{statusDropdown ? <StatusDropdown status={realStatus}/> : <></>}</div>
+
+            <DropSelection setStatusDrop={setStatusDrop} setExpireDrop={setExpireDrop} expireDropdown={expireDropdown} statusDropdown={statusDropdown} realStatus={realStatus}/>
+
             <section className='password-send custom-send'>
+
                 <section className='head-wumpus-container'>
                     <img className='staty-wumpus' src={Wumpus} alt='Happy Wumpus'/>
                     <p className='set-status-title normal-font f500'>Set a custom a status</p>
                 </section>
+                
                 <IoCloseOutline onClick={(e) => hideModal(e, dispatch, setExpireDrop, setStatusDrop, setInput, TOGGLE_CUSTOM_STATUS, SET_EMOJI_MODAL, CUSTOM_EMOJI_CHOICE, SET_STATUS_DROOPDOWN, SET_EXPIRE_DROPDOWN)}  className='custom-status-cross'/>
                 <section className='cus-status-for'>
                     <section className='input-container'>
