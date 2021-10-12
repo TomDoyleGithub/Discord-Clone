@@ -7,7 +7,7 @@ import Invisible from '../StatusIcons/Invisible';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { CHANGE_STATUS, TOGGLE_CUSTOM_STATUS, TOGGLE_STATUS_MODAL } from '../../redux/actions';
 import { useMutation } from '@apollo/client';
-import { CUSTOM_STATUS, STATUS_UPDATE } from '../../utils/mutations';
+import { STATUS_UPDATE } from '../../utils/mutations';
 import defaultEmoji from '../../images/emoji-default.svg';
 import cross from '../../images/Blunt-Cross.svg';
 import emoji from 'react-easy-emoji';
@@ -15,9 +15,8 @@ import emoji from 'react-easy-emoji';
 function ChangeStatus({ customStatus }) {
     const items = customStatus?.split('~');
     const dispatch = useDispatch();
-    const { statusModal } = useSelector((state: RootStateOrAny) => state);
+    const { statusModal, customStatusMut } = useSelector((state: RootStateOrAny) => state);
     const [updateStatus] = useMutation(STATUS_UPDATE);
-    const [customStatusMut] = useMutation(CUSTOM_STATUS);
 
     const handleClick = (e) => {
         const clickStatus = e.currentTarget.getAttribute('data-value');

@@ -10,7 +10,7 @@ import headset from '../../images/Head-on.svg';
 import headsetOff from '../../images/Head-Off.svg';
 import './userCard.scss';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
-import { CHANGE_LOADER, SET_USERDATA, TOGGLE_STATUS_MODAL, UPDATE_DEAFEN, UPDATE_MUTE } from '../../redux/actions';
+import { CHANGE_LOADER, SET_STATUS_MUTATION, SET_USERDATA, TOGGLE_STATUS_MODAL, UPDATE_DEAFEN, UPDATE_MUTE } from '../../redux/actions';
 import { AiOutlineCaretRight } from 'react-icons/ai';
 import { useMutation, useQuery } from '@apollo/client';
 import { GET_ME } from '../../utils/queries';
@@ -45,7 +45,12 @@ function UserCard() {
     // Passes user data to redux so that we don't have to keep calling the same query throughout the application
     useEffect (() => {
         dispatch({ type: SET_USERDATA, data, loading});
-    }, [data, dispatch, loading])
+    }, [data, dispatch, loading]);
+
+    // Passes the mutation into redux
+    useEffect(() => {
+        dispatch({ type: SET_STATUS_MUTATION, customStatusMut});
+    }, [customStatusMut, dispatch])
 
     // Below gets the redux states and sets up the dispatch along with the socket reference
     const { mute, deafen, socket } = useSelector((state: RootStateOrAny) => state);

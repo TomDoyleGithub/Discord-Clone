@@ -20,7 +20,8 @@ import {
     CUSTOM_EMOJI_CHOICE,
     SET_STATUS_DROOPDOWN,
     SET_EXPIRE_DROPDOWN,
-    SET_USERDATA
+    SET_USERDATA,
+    SET_STATUS_MUTATION
 } from './actions';
 
 import { io } from "socket.io-client";
@@ -56,7 +57,8 @@ const initalState = {
     dropdownStatus: '',
     dropdownExpire: 'Today',
     userData: {},
-    dataLoading: true
+    dataLoading: true,
+    customStatusMut: {}
 };
 
 export default function reducer (state = initalState, action) {
@@ -66,6 +68,11 @@ export default function reducer (state = initalState, action) {
                 ...state, 
                 userData: action.data,
                 dataLoading: action.loading
+            };
+        case SET_STATUS_MUTATION:
+            return { 
+                ...state, 
+                customStatusMut: action.customStatusMut
             };
         case TOGGLE_LOAD:
             return { 
