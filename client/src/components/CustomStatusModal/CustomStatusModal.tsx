@@ -18,6 +18,7 @@ import { changeEmoji } from './EventFunctions/changeEmoji';
 import { openEmoji } from './EventFunctions/openEmoji';
 import { handleChange } from './EventFunctions/handleChange';
 import { clearInput } from './EventFunctions/clearInput';
+import { submitModal } from './EventFunctions/submitModal';
 
 function CustomStatusModal() {
     const dispatch = useDispatch();
@@ -38,20 +39,6 @@ function CustomStatusModal() {
     const [input, setInput] = useState('');
     const [expireDropdown, setExpireDrop] = useState(false);
     const [statusDropdown, setStatusDrop] = useState(false);
-
-    const submitModal = async (e) => {
-        hideModal(e, dispatch, setExpireDrop, setStatusDrop, setInput, TOGGLE_CUSTOM_STATUS, SET_EMOJI_MODAL, CUSTOM_EMOJI_CHOICE, SET_STATUS_DROOPDOWN, SET_EXPIRE_DROPDOWN);
-        const customStatus = `${emojiChoice}~${input}`;
-        if (customStatus !== ' ') {
-            const expireDate = expireFunction(dropdownExpire).toString();
-            customStatusMut({ variables: {customStatus, expireDate}});
-        }
-
-        if (realStatus !== data?.me?.status) {
-            dispatch({ type: CHANGE_STATUS, status: realStatus });
-            updateStatus({ variables: {status: realStatus}});
-        }
-    };
 
     return (
         <div onClick={(e) => hideModal(e, dispatch, setExpireDrop, setStatusDrop, setInput, TOGGLE_CUSTOM_STATUS, SET_EMOJI_MODAL, CUSTOM_EMOJI_CHOICE, SET_STATUS_DROOPDOWN, SET_EXPIRE_DROPDOWN)} className={'modal-container ' + (customStatusModal ? 'show' : 'hide')}>
@@ -77,7 +64,6 @@ function CustomStatusModal() {
                             </div>
 
                             <label className='normal-font f500 status-label'>Clear After</label>
-
                             <div data-value='date' onClick={(e) => handleDrop(e, dispatch, UPDATE_EMOJI_POSITION, setStatusDrop, setExpireDrop, expireDropdown, statusDropdown)} className='fake-input-status' style={{cursor: 'pointer'}}>
                                 <p className='expire-choice normal-font'>{dropdownExpire}</p>
                                 <IoChevronDownSharp className={'custon-dropdown-arrow ' + (expireDropdown ? 'flip-chevron' : '')} />
@@ -94,7 +80,7 @@ function CustomStatusModal() {
                 </section>
                 <section className='custom-status-form-container'>
                     <p onClick={(e) => hideModal(e, dispatch, setExpireDrop, setStatusDrop, setInput, TOGGLE_CUSTOM_STATUS, SET_EMOJI_MODAL, CUSTOM_EMOJI_CHOICE, SET_STATUS_DROOPDOWN, SET_EXPIRE_DROPDOWN)}  className='status-form-button-container normal-font'>Cancel</p>
-                    <p onClick={submitModal} className='status-form-button-container normal-font purple-status-button-custom'>Save</p>
+                    <p onClick={(e) => submitModal(e, hideModal, dispatch, setExpireDrop, setStatusDrop, setInput, TOGGLE_CUSTOM_STATUS, SET_EMOJI_MODAL, CUSTOM_EMOJI_CHOICE, SET_STATUS_DROOPDOWN, SET_EXPIRE_DROPDOWN, emojiChoice, input, expireFunction, dropdownExpire, customStatusMut, realStatus, data, CHANGE_STATUS, updateStatus)} className='status-form-button-container normal-font purple-status-button-custom'>Save</p>
                 </section>
             </section>
         </div>
