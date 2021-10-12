@@ -14,6 +14,7 @@ import { STATUS_UPDATE } from '../../utils/mutations';
 import { expireFunction } from '../../utils/ExpireFunctions';
 import { handleDrop } from './EventFunctions/handleDrop';
 import { hideModal } from './EventFunctions/hideModal';
+import { changeEmoji } from './EventFunctions/changeEmoji';
 
 function CustomStatusModal() {
     const dispatch = useDispatch();
@@ -35,7 +36,6 @@ function CustomStatusModal() {
     const [expireDropdown, setExpireDrop] = useState(false);
     const [statusDropdown, setStatusDrop] = useState(false);
 
-
     const submitModal = async (e) => {
         hideModal(e, dispatch, setExpireDrop, setStatusDrop, setInput, TOGGLE_CUSTOM_STATUS, SET_EMOJI_MODAL, CUSTOM_EMOJI_CHOICE, SET_STATUS_DROOPDOWN, SET_EXPIRE_DROPDOWN);
         const customStatus = `${emojiChoice}~${input}`;
@@ -47,13 +47,6 @@ function CustomStatusModal() {
         if (realStatus !== data?.me?.status) {
             dispatch({ type: CHANGE_STATUS, status: realStatus });
             updateStatus({ variables: {status: realStatus}});
-        }
-    };
-
-    const changeEmoji = () => {
-        if (emojiModal === false) {
-            const random = Math.floor(Math.random() * emojiArr.length);
-            setEmoji(emojiArr[random])
         }
     };
 
@@ -94,7 +87,7 @@ function CustomStatusModal() {
                             <label className='normal-font f500 status-label'>What's cookin', woolywowo?</label>
                             <div className='fake-input-status'>
                                 {!emojiChoice ? (
-                                    <div onMouseEnter={changeEmoji} onClick={openEmoji} className={'emoji-sprite ' + (emojiModal ? 'emoji-active' : '')} style={{backgroundPosition: realChoice}}></div>
+                                    <div onMouseEnter={() => changeEmoji(emojiModal, emojiArr, setEmoji)} onClick={openEmoji} className={'emoji-sprite ' + (emojiModal ? 'emoji-active' : '')} style={{backgroundPosition: realChoice}}></div>
                                 ) : (
                                     <p onClick={openEmoji} className='chosen-custom-emoji'>{emoji(emojiChoice)}</p>
                                 )}
