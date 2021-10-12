@@ -12,10 +12,12 @@ import StatusDropdown from './Dropdowns/StatusDropdown';
 import { useMutation } from '@apollo/client';
 import { STATUS_UPDATE } from '../../utils/mutations';
 import { expireFunction } from '../../utils/ExpireFunctions';
+import { handleDrop } from './EventFunctions/handleDrop';
 
 function CustomStatusModal() {
     const dispatch = useDispatch();
     const { customStatusModal, emojiModal, emojiChoice, status, dropdownStatus, dropdownExpire, userData: data, customStatusMut } = useSelector((state: RootStateOrAny) => state);
+    // CONVERT BELOW TO REDUX
     const [updateStatus] = useMutation(STATUS_UPDATE);
 
     let realStatus;
@@ -31,20 +33,6 @@ function CustomStatusModal() {
     const [input, setInput] = useState('');
     const [expireDropdown, setExpireDrop] = useState(false);
     const [statusDropdown, setStatusDrop] = useState(false);
-
-    const handleDropdown = (e) => {
-        const type = e.currentTarget.getAttribute('data-value');
-        const leftPosition = e.currentTarget.getBoundingClientRect().left;
-        const topPosition = e.currentTarget.getBoundingClientRect().bottom;
-        dispatch({ type: UPDATE_EMOJI_POSITION, left: leftPosition, top: topPosition});
-        if (type === 'date') {
-            setStatusDrop(false);
-            setExpireDrop(!expireDropdown)
-        } else {
-            setExpireDrop(false);
-            setStatusDrop(!statusDropdown)
-        }
-    };
 
     const hideModal = (e) => {
         if(e.target === e.currentTarget) {
@@ -106,8 +94,8 @@ function CustomStatusModal() {
 
     return (
         <div onClick={hideModal} className={'modal-container ' + (customStatusModal ? 'show' : 'hide')}>
-            <div data-value='date' onClick={handleDropdown} >{expireDropdown ? <ExpireDropdown/> : <></>}</div>
-            <div data-value='status' onClick={handleDropdown}>{statusDropdown ? <StatusDropdown status={realStatus}/> : <></>}</div>
+            <div data-value='date' onClick={(e) => handleDrop(e, dispatch, UPDATE_EMOJI_POSITION, setStatusDrop, setExpireDrop, expireDropdown, statusDropdown)} >{expireDropdown ? <ExpireDropdown/> : <></>}</div>
+            <div data-value='status' onClick={(e) => handleDrop(e, dispatch, UPDATE_EMOJI_POSITION, setStatusDrop, setExpireDrop, expireDropdown, statusDropdown)}>{statusDropdown ? <StatusDropdown status={realStatus}/> : <></>}</div>
             <section className='password-send custom-send'>
                 <section className='head-wumpus-container'>
                     <img className='staty-wumpus' src={Wumpus} alt='Happy Wumpus'/>
@@ -129,7 +117,7 @@ function CustomStatusModal() {
 
                             <label className='normal-font f500 status-label'>Clear After</label>
 
-                            <div data-value='date' onClick={handleDropdown} className='fake-input-status' style={{cursor: 'pointer'}}>
+                            <div data-value='date' onClick={(e) => handleDrop(e, dispatch, UPDATE_EMOJI_POSITION, setStatusDrop, setExpireDrop, expireDropdown, statusDropdown)} className='fake-input-status' style={{cursor: 'pointer'}}>
                                 <p className='expire-choice normal-font'>{dropdownExpire}</p>
                                 <IoChevronDownSharp className={'custon-dropdown-arrow ' + (expireDropdown ? 'flip-chevron' : '')} />
                             </div>
@@ -137,7 +125,7 @@ function CustomStatusModal() {
                             <div style={{borderBottom: '1px solid #424549', marginBottom: '10px'}}></div>
 
                             <label className='normal-font f500 status-label'>Status</label>
-                            <div data-value='status' onClick={handleDropdown} className='fake-input-status' style={{cursor: 'pointer'}}>
+                            <div data-value='status' onClick={(e) => handleDrop(e, dispatch, UPDATE_EMOJI_POSITION, setStatusDrop, setExpireDrop, expireDropdown, statusDropdown)} className='fake-input-status' style={{cursor: 'pointer'}}>
                                 <p className='expire-choice normal-font'>{realStatus?.replace(/-/g, ' ')}</p>
                                 <IoChevronDownSharp className={'custon-dropdown-arrow ' + (statusDropdown ? 'flip-chevron' : '')} />
                             </div>
