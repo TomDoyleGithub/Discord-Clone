@@ -18,6 +18,7 @@ import { handleChange } from './EventFunctions/handleChange';
 import { clearInput } from './EventFunctions/clearInput';
 import { submitModal } from './EventFunctions/submitModal';
 import DropSelection from './Components/DropSelection';
+import CustomHeader  from './Components/CustomHeader';
 
 function CustomStatusModal() {
     const dispatch = useDispatch();
@@ -41,17 +42,12 @@ function CustomStatusModal() {
 
     return (
         <div onClick={(e) => hideModal(e, dispatch, setExpireDrop, setStatusDrop, setInput, TOGGLE_CUSTOM_STATUS, SET_EMOJI_MODAL, CUSTOM_EMOJI_CHOICE, SET_STATUS_DROOPDOWN, SET_EXPIRE_DROPDOWN)} className={'modal-container ' + (customStatusModal ? 'show' : 'hide')}>
-
             <DropSelection setStatusDrop={setStatusDrop} setExpireDrop={setExpireDrop} expireDropdown={expireDropdown} statusDropdown={statusDropdown} realStatus={realStatus}/>
 
             <section className='password-send custom-send'>
-
-                <section className='head-wumpus-container'>
-                    <img className='staty-wumpus' src={Wumpus} alt='Happy Wumpus'/>
-                    <p className='set-status-title normal-font f500'>Set a custom a status</p>
-                </section>
-                
+                <CustomHeader Wumpus={Wumpus} />
                 <IoCloseOutline onClick={(e) => hideModal(e, dispatch, setExpireDrop, setStatusDrop, setInput, TOGGLE_CUSTOM_STATUS, SET_EMOJI_MODAL, CUSTOM_EMOJI_CHOICE, SET_STATUS_DROOPDOWN, SET_EXPIRE_DROPDOWN)}  className='custom-status-cross'/>
+                
                 <section className='cus-status-for'>
                     <section className='input-container'>
                             <label className='normal-font f500 status-label'>What's cookin', woolywowo?</label>
