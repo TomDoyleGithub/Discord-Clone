@@ -13,6 +13,7 @@ import { useMutation } from '@apollo/client';
 import { STATUS_UPDATE } from '../../utils/mutations';
 import { expireFunction } from '../../utils/ExpireFunctions';
 import { handleDrop } from './EventFunctions/handleDrop';
+import { hideModal } from './EventFunctions/hideModal';
 
 function CustomStatusModal() {
     const dispatch = useDispatch();
@@ -34,23 +35,9 @@ function CustomStatusModal() {
     const [expireDropdown, setExpireDrop] = useState(false);
     const [statusDropdown, setStatusDrop] = useState(false);
 
-    const hideModal = (e) => {
-        if(e.target === e.currentTarget) {
-            dispatch({ type: TOGGLE_CUSTOM_STATUS, showModal: false});
-            dispatch({ type: SET_EMOJI_MODAL, emojiModal: false});
-            dispatch({ type: CUSTOM_EMOJI_CHOICE, emoji: ''});
-            setTimeout(function () {
-                dispatch({ type: SET_STATUS_DROOPDOWN, status: '' });
-                dispatch({ type: SET_EXPIRE_DROPDOWN, expire: 'Today' });
-            }, 1000); 
-            setExpireDrop(false);
-            setStatusDrop(false);
-            setInput('');
-         }
-    };
 
     const submitModal = async (e) => {
-        hideModal(e);
+        hideModal(e, dispatch, setExpireDrop, setStatusDrop, setInput, TOGGLE_CUSTOM_STATUS, SET_EMOJI_MODAL, CUSTOM_EMOJI_CHOICE, SET_STATUS_DROOPDOWN, SET_EXPIRE_DROPDOWN);
         const customStatus = `${emojiChoice}~${input}`;
         if (customStatus !== ' ') {
             const expireDate = expireFunction(dropdownExpire).toString();
@@ -93,7 +80,7 @@ function CustomStatusModal() {
     };
 
     return (
-        <div onClick={hideModal} className={'modal-container ' + (customStatusModal ? 'show' : 'hide')}>
+        <div onClick={(e) => hideModal(e, dispatch, setExpireDrop, setStatusDrop, setInput, TOGGLE_CUSTOM_STATUS, SET_EMOJI_MODAL, CUSTOM_EMOJI_CHOICE, SET_STATUS_DROOPDOWN, SET_EXPIRE_DROPDOWN)} className={'modal-container ' + (customStatusModal ? 'show' : 'hide')}>
             <div data-value='date' onClick={(e) => handleDrop(e, dispatch, UPDATE_EMOJI_POSITION, setStatusDrop, setExpireDrop, expireDropdown, statusDropdown)} >{expireDropdown ? <ExpireDropdown/> : <></>}</div>
             <div data-value='status' onClick={(e) => handleDrop(e, dispatch, UPDATE_EMOJI_POSITION, setStatusDrop, setExpireDrop, expireDropdown, statusDropdown)}>{statusDropdown ? <StatusDropdown status={realStatus}/> : <></>}</div>
             <section className='password-send custom-send'>
@@ -101,7 +88,7 @@ function CustomStatusModal() {
                     <img className='staty-wumpus' src={Wumpus} alt='Happy Wumpus'/>
                     <p className='set-status-title normal-font f500'>Set a custom a status</p>
                 </section>
-                <IoCloseOutline onClick={hideModal} className='custom-status-cross'/>
+                <IoCloseOutline onClick={(e) => hideModal(e, dispatch, setExpireDrop, setStatusDrop, setInput, TOGGLE_CUSTOM_STATUS, SET_EMOJI_MODAL, CUSTOM_EMOJI_CHOICE, SET_STATUS_DROOPDOWN, SET_EXPIRE_DROPDOWN)}  className='custom-status-cross'/>
                 <section className='cus-status-for'>
                     <section className='input-container'>
                             <label className='normal-font f500 status-label'>What's cookin', woolywowo?</label>
@@ -132,7 +119,7 @@ function CustomStatusModal() {
                     </section>
                 </section>
                 <section className='custom-status-form-container'>
-                    <p onClick={hideModal} className='status-form-button-container normal-font'>Cancel</p>
+                    <p onClick={(e) => hideModal(e, dispatch, setExpireDrop, setStatusDrop, setInput, TOGGLE_CUSTOM_STATUS, SET_EMOJI_MODAL, CUSTOM_EMOJI_CHOICE, SET_STATUS_DROOPDOWN, SET_EXPIRE_DROPDOWN)}  className='status-form-button-container normal-font'>Cancel</p>
                     <p onClick={submitModal} className='status-form-button-container normal-font purple-status-button-custom'>Save</p>
                 </section>
             </section>
