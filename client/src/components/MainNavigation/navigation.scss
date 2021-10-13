@@ -19,6 +19,15 @@ $transition: all 120ms ease-in-out;
   z-index: 500;
 }
 
+.main-notify {
+  position: absolute !important;
+  bottom: -4px !important;
+  right: -4px !important;
+  color: white !important;
+  border: 4px solid $dark-gray;
+  border-radius: 50%;
+}
+
 .speech-triangle {
   position: absolute;
   left: -9px;
@@ -27,6 +36,7 @@ $transition: all 120ms ease-in-out;
 }
 
 .active-discord {
+  position: relative !important;
   background-color: $purple !important;
   border-radius: 18px !important;
   img {
@@ -99,6 +109,7 @@ $transition: all 120ms ease-in-out;
 }
 
 .purple-back {
+  position: relative !important;
   &:hover {
     background-color: $purple;
   }

@@ -3,6 +3,7 @@ import './friendsNav.scss'
 import friend from '../../images/Friends.svg';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { CHANGE_FRIEND_NAV } from '../../redux/actions';
+// import Notification from '../Notification/Notification';
 
 function FriendsNav() {
     const dispatch = useDispatch();

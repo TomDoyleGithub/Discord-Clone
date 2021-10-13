@@ -6,6 +6,7 @@ import { AiOutlineCaretRight } from 'react-icons/ai';
 import logo from '../../images/Discord-White.svg';
 import { NavLink } from 'react-router-dom';
 import { useSelector, RootStateOrAny } from 'react-redux';
+// import Notification from '../Notification/Notification';
 
 
 function DesktopNav() {
@@ -23,6 +24,7 @@ function DesktopNav() {
                     <AiOutlineCaretRight className='speech-triangle'/>
                 </div>
                 <img className='white-logo' alt='Discord Logo' src={logo}/>
+                {/* <div className='main-notify'><Notification/></div> */}
             </NavLink>
             <div className='line'>
 
