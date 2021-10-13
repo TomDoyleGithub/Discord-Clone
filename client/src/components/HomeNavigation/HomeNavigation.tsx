@@ -9,6 +9,7 @@ import { CHANGE_HOME_ROUTE } from '../../redux/actions';
 import { GoPlus } from 'react-icons/go';
 import { AiOutlineCaretRight } from 'react-icons/ai';
 import PlaceHolder from './PlaceHolder';
+// import Notification from '../Notification/Notification';
 
 function HomeNavigation() {
     const location = useLocation();
@@ -28,6 +29,7 @@ function HomeNavigation() {
             <NavLink to='/channels/@me' activeClassName='friends-active' className='friends-tab' style={{ marginTop: '8px'}}>
                 <img className='friend-icon' src={friend} alt='Friend Icon'/>
                 <p className='normal-font'>Friends</p>
+                {/* <div className='friend-notify'><Notification/></div> */}
             </NavLink>
             <div className='dir-mes-container normal-font f500'>
                 <p>Direct Messages</p>

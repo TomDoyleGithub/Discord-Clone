@@ -10,6 +10,11 @@ $transition: all 120ms ease-in-out;
   align-items: center;
 }
 
+.friend-notify {
+  position: absolute;
+  right: 10px;
+}
+
 .home-nav-container {
   position: absolute;
   top: 0px;
@@ -48,6 +53,7 @@ $transition: all 120ms ease-in-out;
   column-gap: 16px;
   width: 92%;
   height: 41px;
+  position: relative;
   border-radius: 5px;
   @include flex-center;
   padding: 0px 13px;

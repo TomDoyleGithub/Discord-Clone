@@ -1,0 +1,13 @@
+$red: #ed4245;
+
+.notification {
+  background-color: $red;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  position: relative;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
