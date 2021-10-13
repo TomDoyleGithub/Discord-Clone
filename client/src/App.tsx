@@ -13,7 +13,6 @@ import ProtectedAuth from './components/ProtectedAuth';
 import DesktopNav from './components/MainNavigation/DesktopNav';
 import StoreProvider from './redux/GlobalState';
 import UserCard from './components/UserCard/UserCard';
-import Discovery from './pages/Discovery';
 import GuildDiscovery from './pages/Guild-Discovery';
 import EnterLoading from './components/EnterLoading/EnterLoading';
 import CustomStatusModal from './components/CustomStatusModal/CustomStatusModal';
@@ -67,7 +66,6 @@ function App() {
               <Redirect to="/channels/@me" />
           </Route>
           <ProtectedRoute exact path='/channels/@me' component={Home} />
-          <ProtectedRoute exact path='/discovery' component={Discovery} />
           <ProtectedRoute exact path='/guild-discovery' component={GuildDiscovery} />
           <ProtectedAuth exact path='/login' component={Login} />
           <ProtectedAuth exact path='/reset-password/:id/:token' component={ResetPassword}/>

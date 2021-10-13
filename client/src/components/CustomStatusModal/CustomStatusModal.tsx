@@ -54,6 +54,7 @@ function CustomStatusModal() {
                 <CustomHeader Wumpus={Wumpus} />
                 <IoCloseOutline onClick={(e) => hideModal(e, dispatch, setExpireDrop, setStatusDrop, setInput, TOGGLE_CUSTOM_STATUS, SET_EMOJI_MODAL, CUSTOM_EMOJI_CHOICE, SET_STATUS_DROOPDOWN, SET_EXPIRE_DROPDOWN)}  className='custom-status-cross'/>
 
+                {/* CLEAN UP BELOW */}
                 <section className='cus-status-for'>
                     <section className='input-container'>
                             <label className='normal-font f500 status-label'>What's cookin', woolywowo?</label>
