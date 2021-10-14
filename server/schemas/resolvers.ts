@@ -118,7 +118,6 @@ const resolvers = {
                         model: 'User'
                       } 
                 });
-                await User.findOneAndUpdate({ _id: context.user._id }, { $inc: {friendNotifactions: 1}}, {new: true});
                 return user;
             } catch (err) {
                 console.log(err)
@@ -157,6 +156,14 @@ const resolvers = {
         customStatus: async (_:any, { customStatus, expireDate }:any, context:any) => {
             try {
                 const user = await User.findOneAndUpdate({ _id: context.user._id }, {customStatus, expireDate}, {new: true});
+                return user;
+            } catch (err) {
+                console.log(err)
+            }
+        },
+        addFriendNotification: async (_:any, args:any, context:any) => {
+            try {
+                const user = await User.findOneAndUpdate({ _id: context.user._id }, { $inc: {friendNotifactions: 1}}, {new: true});
                 return user;
             } catch (err) {
                 console.log(err)
