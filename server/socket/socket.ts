@@ -52,6 +52,8 @@ io.on("connection", (socket:any) => {
       }
     } else {
        await User.findOneAndUpdate({ _id: user._id }, { $addToSet: {friends: { user: thisId, status: 2 }} }, {new: true});
+      // //  Adds notifcation
+       await User.findOneAndUpdate({ _id: user._id }, { $inc: {friendNotifactions: 1}}, {new: true});
        console.log('The user is not online the request was not sent.')
     }
   });

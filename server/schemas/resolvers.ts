@@ -118,6 +118,7 @@ const resolvers = {
                         model: 'User'
                       } 
                 });
+                await User.findOneAndUpdate({ _id: context.user._id }, { $inc: {friendNotifactions: 1}}, {new: true});
                 return user;
             } catch (err) {
                 console.log(err)

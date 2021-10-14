@@ -9,6 +9,7 @@ const typeDefs = gql`
         propic: String
         status: String
         customStatus: String
+        friendNotifactions: Int
         expireDate: String
         friends: [friend]
     }

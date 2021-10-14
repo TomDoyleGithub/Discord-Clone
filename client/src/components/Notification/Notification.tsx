@@ -1,12 +1,16 @@
 import React from 'react'
 import './notify.scss';
+import { useSelector, RootStateOrAny } from 'react-redux';
 
 function Notification() {
-    // If any notifications exist, return the JSX below
-    // If they are double or triple digits, change the styling
+    const { userData: data } = useSelector((state: RootStateOrAny) => state);
+    const notifications = data?.me?.friendNotifactions;
+    if (notifications === 0) {
+        return <></>
+    }
     return (
         <article className='notification normal-font f500'>
-            1
+            {notifications}
         </article>
     )
 }

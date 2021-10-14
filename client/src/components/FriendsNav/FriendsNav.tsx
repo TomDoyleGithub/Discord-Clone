@@ -3,7 +3,7 @@ import './friendsNav.scss'
 import friend from '../../images/Friends.svg';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { CHANGE_FRIEND_NAV } from '../../redux/actions';
-// import Notification from '../Notification/Notification';
+import Notification from '../Notification/Notification';
 
 function FriendsNav() {
     const dispatch = useDispatch();
@@ -20,7 +20,7 @@ function FriendsNav() {
                 <div className='upper-line'></div>
                 <p onClick={handleClick} data-value='online' className={'normal-font select-friend-nav ' + (friendsNav === 'online' ? 'friend-nav-active' : '')}>Online</p>
                 <p onClick={handleClick} data-value='all'  className={'normal-font select-friend-nav ' + (friendsNav === 'all' ? 'friend-nav-active' : '')}>All</p>
-                <section onClick={handleClick} data-value='pending'  className={'normal-font select-friend-nav ' + (friendsNav === 'pending' ? 'friend-nav-active' : '')}>Pending</section>
+                <section onClick={handleClick} data-value='pending'  className={'normal-font select-friend-nav ' + (friendsNav === 'pending' ? 'friend-nav-active' : '')}>Pending <Notification/></section>
                 <p onClick={handleClick} data-value='blocked'  className={'normal-font select-friend-nav ' + (friendsNav === 'blocked' ? 'friend-nav-active' : '')}>Blocked</p>
                 <p onClick={handleClick} data-value='add-friend'  className={'normal-font select-friend-nav add-friend ' + (friendsNav === 'add-friend' ? 'add-friend-active' : 'non-active')}>Add Friend</p>
             </section>

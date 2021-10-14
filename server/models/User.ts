@@ -35,6 +35,10 @@ import bcrypt from "bcrypt";
       type: String,
       default: '',
     },
+    friendNotifactions: {
+      type: Number,
+      default: 0
+    },
     expireDate: String,
     friends: [
       {
