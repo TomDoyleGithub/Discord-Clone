@@ -146,6 +146,15 @@ mutation customStatus ($customStatus: String!, $expireDate: String!) {
 }
 `;
 
+export const ADD_FRIEND_NOTIFICATION = gql `
+mutation addFriendNotification {
+  addFriendNotification {
+    _id
+    friendNotifactions
+  }
+}
+`;
+
 export const REMOVE_FRIEND_NOTIFICATION = gql `
 mutation removeFriendNotification {
   removeFriendNotification {
