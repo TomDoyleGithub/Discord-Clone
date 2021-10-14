@@ -25,6 +25,7 @@ function PendingPage({onlineUsers, pendingLength, pendingResults }) {
             }
         } else {
             await removeFriend({ variables: { id }});
+            // Remove notification here
             upSocket.current.emit("ignoreRequest", {
                 id
               });
