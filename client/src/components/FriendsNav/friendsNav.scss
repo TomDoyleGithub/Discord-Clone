@@ -30,9 +30,12 @@
 }
 
 .select-friend-nav {
+  white-space: nowrap;
   padding: 5px 8px;
   color: #b8bbbe !important;
   cursor: pointer;
+  display: flex;
+  column-gap: 7px;
   border-radius: 5px;
   margin-left: 16px;
   &:hover {

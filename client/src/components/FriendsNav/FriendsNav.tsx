@@ -20,7 +20,7 @@ function FriendsNav() {
                 <div className='upper-line'></div>
                 <p onClick={handleClick} data-value='online' className={'normal-font select-friend-nav ' + (friendsNav === 'online' ? 'friend-nav-active' : '')}>Online</p>
                 <p onClick={handleClick} data-value='all'  className={'normal-font select-friend-nav ' + (friendsNav === 'all' ? 'friend-nav-active' : '')}>All</p>
-                <p onClick={handleClick} data-value='pending'  className={'normal-font select-friend-nav ' + (friendsNav === 'pending' ? 'friend-nav-active' : '')}>Pending</p>
+                <section onClick={handleClick} data-value='pending'  className={'normal-font select-friend-nav ' + (friendsNav === 'pending' ? 'friend-nav-active' : '')}>Pending</section>
                 <p onClick={handleClick} data-value='blocked'  className={'normal-font select-friend-nav ' + (friendsNav === 'blocked' ? 'friend-nav-active' : '')}>Blocked</p>
                 <p onClick={handleClick} data-value='add-friend'  className={'normal-font select-friend-nav add-friend ' + (friendsNav === 'add-friend' ? 'add-friend-active' : 'non-active')}>Add Friend</p>
             </section>
