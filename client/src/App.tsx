@@ -44,6 +44,11 @@ const client = new ApolloClient({
               return incoming
             }
           },
+          friendNotifactions: {
+            merge(existing, incoming) {
+              return incoming
+            }
+          },
         },
       },
     },
