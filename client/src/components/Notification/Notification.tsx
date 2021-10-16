@@ -5,6 +5,7 @@ import { useSelector, RootStateOrAny } from 'react-redux';
 function Notification() {
     const { userData: data } = useSelector((state: RootStateOrAny) => state);
     const notifications = data?.me?.friendNotifactions;
+    console.log(notifications)
     if (notifications === 0) {
         return <></>
     }

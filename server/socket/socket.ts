@@ -38,10 +38,12 @@ io.on("connection", (socket:any) => {
   socket.on("sendRequest", async ({ username }:any) => {
     const user  = await User.findOne({ username })
     const thisId = await getSocketUser(socket.id)?.userId;
+    // Change below to search through socket users so the socket is updated
     const newUser = await users.find((user:any) => user?.username === username);
     const userSend = await newUser?.socketId;
+    const userStatus = await newUser?.status;
 
-    if (userSend) {
+    if (userStatus === 'realOffline' && userStatus === 'realIdle' && userStatus === 'realDisturb') {
       try {
         io.to(userSend).emit("getRequest", {
           id: thisId
