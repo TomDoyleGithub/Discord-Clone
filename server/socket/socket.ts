@@ -38,12 +38,12 @@ io.on("connection", (socket:any) => {
   socket.on("sendRequest", async ({ username }:any) => {
     const user  = await User.findOne({ username })
     const thisId = await getSocketUser(socket.id)?.userId;
-    // Change below to search through socket users so the socket is updated
     const newUser = await users.find((user:any) => user?.username === username);
     const userSend = await newUser?.socketId;
     const userStatus = await newUser?.status;
 
-    if (userStatus === 'realOffline' && userStatus === 'realIdle' && userStatus === 'realDisturb') {
+    if (userStatus !== 'realOffline' && userStatus !== 'realIdle' && userStatus !== 'realDisturb') {
+      console.log('USER ONLINE')
       try {
         io.to(userSend).emit("getRequest", {
           id: thisId
@@ -53,6 +53,7 @@ io.on("connection", (socket:any) => {
         console.log(err)
       }
     } else {
+      console.log('USER OFFLINE')
        await User.findOneAndUpdate({ _id: user._id }, { $addToSet: {friends: { user: thisId, status: 2 }} }, {new: true});
       // //  Adds notifcation
        await User.findOneAndUpdate({ _id: user._id }, { $inc: {friendNotifactions: 1}}, {new: true});
