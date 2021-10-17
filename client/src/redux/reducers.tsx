@@ -21,7 +21,8 @@ import {
     SET_STATUS_DROOPDOWN,
     SET_EXPIRE_DROPDOWN,
     SET_USERDATA,
-    SET_STATUS_MUTATION
+    SET_STATUS_MUTATION,
+    SET_FRIENDS_LENGTH
 } from './actions';
 
 import { io } from "socket.io-client";
@@ -58,11 +59,17 @@ const initalState = {
     dropdownExpire: 'Today',
     userData: {},
     dataLoading: true,
-    customStatusMut: {}
+    customStatusMut: {},
+    pendingLength: 0
 };
 
 export default function reducer (state = initalState, action) {
     switch (action.type) {
+        case SET_FRIENDS_LENGTH:
+            return { 
+                ...state, 
+                pendingLength: action.pendingLength
+            };
         case SET_USERDATA:
             return { 
                 ...state, 

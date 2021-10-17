@@ -10,10 +10,10 @@ import headset from '../../images/Head-on.svg';
 import headsetOff from '../../images/Head-Off.svg';
 import './userCard.scss';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
-import { CHANGE_LOADER, SET_STATUS_MUTATION, SET_USERDATA, TOGGLE_STATUS_MODAL, UPDATE_DEAFEN, UPDATE_MUTE } from '../../redux/actions';
+import { CHANGE_LOADER, SET_FRIENDS_LENGTH, SET_STATUS_MUTATION, SET_USERDATA, TOGGLE_STATUS_MODAL, UPDATE_DEAFEN, UPDATE_MUTE } from '../../redux/actions';
 import { AiOutlineCaretRight } from 'react-icons/ai';
 import { useMutation, useQuery } from '@apollo/client';
-import { GET_ME } from '../../utils/queries';
+import { GET_FRIENDS, GET_ME } from '../../utils/queries';
 import mute1 from '../../sounds/mute-1.mp3';
 import mute2 from '../../sounds/mute-2.mp3';
 import head1 from '../../sounds/head-1.mp3';
@@ -40,7 +40,16 @@ function UserCard() {
 
     // Query that gets the all the data from the logged in user
     const { data, loading } = useQuery(GET_ME);
+    const { data: dataB } = useQuery(GET_FRIENDS);
     const [customStatusMut] = useMutation(CUSTOM_STATUS);
+
+    // Variables that defines the length of pending requests
+    const allFriends = dataB?.getFriends?.friends || [];
+    const pendingResults = allFriends?.filter(e => e?.status === 2);
+    const pendingLength = pendingResults.length;
+    useEffect(() => {
+        dispatch({ type: SET_FRIENDS_LENGTH, pendingLength})
+    }, [dispatch, pendingLength])
 
     // Passes user data to redux so that we don't have to keep calling the same query throughout the application
     useEffect (() => {
