@@ -42,8 +42,6 @@ const typeDefs = gql`
         acceptFriend(id: String!): User
         removeFriend(id: String!): User
         customStatus(customStatus: String!, expireDate: String!): User
-        addFriendNotification: User
-        removeFriendNotification: User
     }
 `;
 
