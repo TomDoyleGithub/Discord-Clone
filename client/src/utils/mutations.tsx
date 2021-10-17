@@ -64,7 +64,6 @@ mutation sendFriend ($username: String!) {
   sendFriend(username: $username) {
     _id
     username
-    friendNotifactions
     friends {
 			user {
         _id
@@ -83,7 +82,6 @@ mutation getFriend ($id: String!) {
   getFriend(id: $id) {
     _id
     username
-    friendNotifactions
     friends {
 			user {
         _id
@@ -102,7 +100,6 @@ mutation acceptFriend ($id: String!) {
   acceptFriend(id: $id) {
     _id
     username
-    friendNotifactions
     friends {
 			user {
         _id
@@ -121,7 +118,6 @@ mutation removeFriend ($id: String!) {
 	removeFriend(id: $id) {
     _id
     username
-    friendNotifactions
     friends {
 			user {
         _id

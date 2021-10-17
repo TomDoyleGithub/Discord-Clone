@@ -8,7 +8,6 @@ export const GET_ME = gql`
         propic
         status
         customStatus
-        friendNotifactions
         expireDate
         friends {
             user {
