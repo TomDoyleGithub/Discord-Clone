@@ -12,14 +12,13 @@ import PendingPage from './PendingPage';
 import AllFriends from './AllFriends';
 import OnlineFriends from './OnlineFriends';
 import './noOneDisplay.scss'
-import { ACCEPT_FRIEND, ADD_FRIEND_NOTIFICATION, GET_FRIEND_REQUEST, REMOVE_FRIEND } from '../../utils/mutations';
+import { ACCEPT_FRIEND, GET_FRIEND_REQUEST, REMOVE_FRIEND } from '../../utils/mutations';
 
 function NoOneDisplay() {
     const { data, loading } = useQuery(GET_FRIENDS);
     const [getRequest] = useMutation(GET_FRIEND_REQUEST);
     const [acceptRequest] = useMutation(ACCEPT_FRIEND);
     const [removeFriend] = useMutation(REMOVE_FRIEND);
-    const [addFriendNotification] = useMutation(ADD_FRIEND_NOTIFICATION);
     const allFriends = data?.getFriends?.friends || [];
 
     let onlineFriends:any = [];
@@ -35,9 +34,8 @@ function NoOneDisplay() {
         upSocket?.current?.on('getRequest', (data) => {
             const id = data?.id
             getRequest({ variables: { id }});
-            addFriendNotification();
         })
-    }, [getRequest, addFriendNotification]);
+    }, [getRequest]);
 
     useEffect(() => {
         upSocket?.current?.on('getAccept', (data) => {

@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import CardUser from './CardUser';
 import { IoCheckmarkSharp, IoCloseSharp } from "react-icons/io5";
 import { useMutation } from '@apollo/client';
-import { ACCEPT_FRIEND, REMOVE_FRIEND, REMOVE_FRIEND_NOTIFICATION } from '../../utils/mutations';
+import { ACCEPT_FRIEND, REMOVE_FRIEND } from '../../utils/mutations';
 import { RootStateOrAny, useSelector } from 'react-redux';
 
 function PendingPage({onlineUsers, pendingLength, pendingResults }) {
@@ -10,12 +10,10 @@ function PendingPage({onlineUsers, pendingLength, pendingResults }) {
     const upSocket = useRef(socket);
     const [acceptRequest] = useMutation(ACCEPT_FRIEND);
     const [removeFriend] = useMutation(REMOVE_FRIEND);
-    const [removeFriendNotification] = useMutation(REMOVE_FRIEND_NOTIFICATION);
 
     const handleClick = async (e) => {
         const className = e.currentTarget.getAttribute('class');
         const id = e.currentTarget.getAttribute('data-value');
-        await removeFriendNotification();
         if (className === 'ticky-one') {
             try {
                 await acceptRequest({ variables: { id }});
